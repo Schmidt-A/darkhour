@@ -5,7 +5,7 @@
 
 void main()
 {
-    int nFound = Random(549) + 1;
+    int nFound = Random(55);
     string sWhat = "";
     int nAmount = 1;
     if(GetLocalInt(GetObjectByTag("debuglever"), "debug") == 1)
@@ -29,111 +29,54 @@ void main()
 
     if (nFound < 10)
     {
-       sWhat = "shamrock";
+        sWhat = "NW_WBWXL001";
+
     }
-    else if (nFound < 20)
+    else if (nFound < 15)
     {
-       sWhat = "nw_wdbmsw002";
+        sWhat = "NW_WBWSH001";
     }
     else if (nFound < 25)
     {
-        sWhat = "us_bolt";
+        sWhat = "MarketCrossbow";
+
     }
     else if (nFound < 35)
     {
-       sWhat = "nw_wammar006";
-       nAmount = Random(15) + 15;
+        sWhat = "NW_WAMBO001";
     }
-    else if (nFound < 50)
+    else if (nFound < 40)
     {
-       sWhat = "NW_WAMMBO002";
-       nAmount = Random(15) + 15;
+        sWhat = "NW_WAMBO001";
+
     }
-    else if (nFound < 70)
+    else if (nFound < 41)
+    {    //Club
+        sWhat = "NW_WBWLN001";
+    }
+    else if (nFound < 42)
     {
-       sWhat = "blessedbolt";
-       nAmount = Random(15) + 5;
+        sWhat = "NW_WAMBO001";
     }
-    else if (nFound < 80)
+    else
     {
-       sWhat = "NW_WAMMBU007";
-       nAmount = Random(15) + 15;
+        int nBookNum = Random(10) + 1;
+        if (nBookNum > 9)
+        {
+            sWhat = "NW_WAMBO001" + IntToString(nBookNum);
+        }
+        else
+        {
+            sWhat = "NW_WAMAR001" + IntToString(nBookNum);
+        }
     }
-    else if (nFound < 100)
-    {
-       sWhat = "blessedarrow";
-       nAmount = Random(15) + 5;
-    }
-    else if (nFound < 110)
-    {
-       sWhat = "nw_wdbmma002";
-    }
-    else if (nFound < 120)
-    {
-        sWhat = "sword_of_ice";
-    }
-    else if (nFound < 130)
-    {
-       sWhat = "nw_wswmgs002";
-    }
-    else if (nFound < 150)
-    {
-       sWhat = "lantern";
-    }
-    else if (nFound < 165)
-    {
-        sWhat = "nw_it_mpotion008";  // invis potion
-    }
-    else if (nFound < 170)
-    {
-       sWhat = "nw_it_mpotion004";   // speed potion
-    }
-    else if (nFound < 180)
-    {
-       sWhat = "nw_it_mring001";   // ring of protection
-    }
-    else if (nFound < 181)
-    {
-        sWhat = "artifactpiece001";   // Artifact Piece 2/4
-    }
-    else if (nFound < 182)
-    {
-        sWhat = "artifactpiece003";   // Artifact Piece 4/4
-    }
-    else if (nFound < 186)
-    {
-        sWhat = "nw_it_mboots001";  // boots of striding
-    }
-    else if (nFound < 195)
-    {
-        sWhat = "sword_of_acid";
-    }
-    else if (nFound < 225)
-    {
-       sWhat = "nw_it_gold001";
-       nAmount = Random(30) + 80;
-    }
-    else if (nFound < 450)
-    {
-    ExecuteScript("randomweapon", OBJECT_SELF);
-    return;
-    }
-    else if (nFound < 550)
-    {
-    ExecuteScript("randomnewarmor", OBJECT_SELF);
-    return;
-    }
-        //  Did the player find something?  If so, let them know and create it.
+
+    //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 
     object oTemp = CreateItemOnObject(sWhat,OBJECT_SELF,nAmount);
     SetIdentified(oTemp,TRUE);
     string sName = GetName(oTemp);
-    if(sName == "")
-    {
-    CreateItemOnObject("shamrock", OBJECT_SELF);
-    return;
-    }
     if (sWhat == "nw_it_gold001")
     {
         FloatingTextStringOnCreature("Found Gold",OBJECT_SELF,TRUE);
@@ -142,4 +85,7 @@ void main()
     {
         FloatingTextStringOnCreature("Found " + sName,OBJECT_SELF,TRUE);
     }
+        int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+    if(DEBUG)
+        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
 }

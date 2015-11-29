@@ -5,10 +5,21 @@
 //
 #include "disease_inc"
 #include "x3_inc_horse"
+
+void DMX_ITEMFIXES(object oPC)
+{
+if(GetItemPossessedBy(oPC,"pickrocks")==OBJECT_INVALID)
+    CreateItemOnObject("dmx_pickrocks",oPC);
+}
+
 void main()
 {
 
     object oPC = GetEnteringObject();
+    if(GetIsPC(oPC))
+    {
+        DMX_ITEMFIXES(oPC);
+    }
     string sModName = GetName(GetModule());
     if(GetHasFeat(FEAT_HORSE_MENU, oPC) == FALSE)
     {
@@ -52,8 +63,6 @@ void main()
         }
     }
     AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff1_5",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff2",1,oPC,FALSE);
     AddJournalQuestEntry("RULES2",1,oPC,FALSE);
     AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
     AddJournalQuestEntry("Stuff4",1,oPC,FALSE);

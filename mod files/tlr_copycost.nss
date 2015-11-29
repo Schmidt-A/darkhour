@@ -15,7 +15,7 @@ int StartingConditional()
 {
     object oPC = GetPCSpeaker();
     int BaseCost = 0; //-- change this to raise your base prices.
-    float BaseDivider = 0.1; //-- mil default
+    float BaseDivider = 0.2; //-- mil default
 
     object oNPCItem = GetItemInSlot(INVENTORY_SLOT_CHEST, OBJECT_SELF);
     object oPCItem = GetItemInSlot(INVENTORY_SLOT_CHEST, oPC);

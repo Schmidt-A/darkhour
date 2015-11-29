@@ -1,4 +1,3 @@
-#include "_incl_xp"
 //Name: Salvaging and Crafting Point System: Item Handler
 //Developer: Skeet/DM Malevolent
 //Date: 8-02-2007
@@ -101,7 +100,7 @@ int iSkill = GetLocalInt(oCrafting, "skill");
 string sSkill = IntToString(iSkill);
 SendMessageToPC(oPC, "You have gained some knowledge in crafting!");
 SendMessageToPC(oPC, "Your crafting skill has advanced to level " + sSkill);
-GiveXPToCreatureDH(oPC, 50);
+GiveXPToCreature(oPC, 50);
 return;
 }
 else

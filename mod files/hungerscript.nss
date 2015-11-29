@@ -1,4 +1,3 @@
-#include "_incl_xp"
 /* MODIFIED TO INCLUDE SCAVENGER CODE, AND A BUNCH OF OTHER STUFF */
 
 /*********************************************************************
@@ -174,6 +173,11 @@ void main()
     //  Loop through all PCs
     while(GetIsObjectValid(oPC))
     {
+    //Don't Apply any effects to players in OOC_AREAS
+      while(GetLocalInt(GetArea(oPC),"OOC_AREA")==TRUE)
+            {oPC = GetNextPC();}
+      if(GetLocalInt(GetArea(oPC),"OOC_AREA")==TRUE)
+            {return;}
       sLeftRing = "";
       sRightRing = "";
       oLeftRing = GetItemInSlot(INVENTORY_SLOT_LEFTRING,oPC);
@@ -265,17 +269,38 @@ void main()
           oCounter = GetNextItemInInventory(oPC);
         }
 
-        if ((nTotalDisease > 0) && (GetCurrentHitPoints(oPC) < GetMaxHitPoints(oPC)) && (GetCurrentHitPoints(oPC) > -11))
+        if ((nTotalKills >= 5) && (OBJECT_INVALID == GetItemPossessedBy(oPC,"badge21")))
         {
-            SetLocalInt(oPC,"heltimer",0);
+          CreateItemOnObject("badge21",oPC);
+          FloatingTextStringOnCreature("You received a new badge!", oPC, FALSE);
+          GiveXPToCreature(oPC,100);
+        }
+
+        if ((nTotalFrenzy >= 5) && (OBJECT_INVALID == GetItemPossessedBy(oPC,"badge22")))
+        {
+          CreateItemOnObject("badge22",oPC);
+          FloatingTextStringOnCreature("You received a new badge!", oPC, FALSE);
+          GiveXPToCreature(oPC,100);
+        }
+
+        if ((nTotalTime >= 6) && (OBJECT_INVALID == GetItemPossessedBy(oPC,"badge23")))
+        {
+          CreateItemOnObject("badge23",oPC);
+          FloatingTextStringOnCreature("You received a new badge!", oPC, FALSE);
+          GiveXPToCreature(oPC,100);
+        }
+
+        if ((nTotalDisease > 0) && (GetCurrentHitPoints(oPC) > -11))
+        {
             int nDisTimer = GetLocalInt(oPC,"distimer") + 1;
-            if (nDisTimer >= 5)
+            SetLocalInt(oPC,"distimer",nDisTimer);
+            if (nDisTimer >= 35)
             {
                 SetLocalInt(oPC,"distimer",0);
                 if (FortitudeSave(oPC,(7 + nTotalDisease),SAVING_THROW_TYPE_DISEASE) == 0)
                 {
                     CreateItemOnObject("zombiedisease",oPC);
-                    if (nTotalDisease >= 9)
+                    if (nTotalDisease >= 6)
                     {
                         CreateItemOnObject("deathtoken",oPC);
                         ExecuteScript("zombieclone",oPC);
@@ -286,12 +311,26 @@ void main()
                     else
                     {
                         ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_DISEASE_S),oPC);
-                        FloatingTextStringOnCreature("The disease continues to spread...",oPC,FALSE);
+                        FloatingTextStringOnCreature("The infection continues to spread...",oPC,FALSE);
+                    }
+                }
+                else if(GetCurrentHitPoints(oPC)>=GetMaxHitPoints(oPC))
+                {
+                    object oDisease = GetItemPossessedBy(oPC,"ZombieDisease");
+                    DestroyObject(oDisease);
+                    RemoveDiseaseEffects(oPC);
+                    if (nTotalDisease == 1)
+                    {
+                        FloatingTextStringOnCreature("The infection has completely passed.",oPC,FALSE);
+                    }
+                    else
+                    {
+                        FloatingTextStringOnCreature("The infection fades a little...",oPC,FALSE);
                     }
                 }
                 else
                 {
-                    FloatingTextStringOnCreature("You resist the disease for now...",oPC,FALSE);
+                    FloatingTextStringOnCreature("You still feel sick for now...",oPC,FALSE);
                 }
             }
             else
@@ -299,6 +338,7 @@ void main()
                 SetLocalInt(oPC,"distimer",nDisTimer);
             }
         }
+        /*
         if ((nTotalDisease > 0) && (GetCurrentHitPoints(oPC) >= GetMaxHitPoints(oPC)))
         {
             SetLocalInt(oPC,"distimer",0);
@@ -313,11 +353,11 @@ void main()
                     RemoveDiseaseEffects(oPC);
                     if (nTotalDisease == 1)
                     {
-                        FloatingTextStringOnCreature("The disease has completely passed.",oPC,FALSE);
+                        FloatingTextStringOnCreature("The infection has completely passed.",oPC,FALSE);
                     }
                     else
                     {
-                        FloatingTextStringOnCreature("The disease fades a little...",oPC,FALSE);
+                        FloatingTextStringOnCreature("The infection fades a little...",oPC,FALSE);
                     }
                 }
                 else
@@ -330,6 +370,7 @@ void main()
                 SetLocalInt(oPC,"heltimer",nHelTimer);
             }
         }
+        */
         if ((GetCurrentHitPoints(oPC) > 0) && (OBJECT_INVALID != GetItemPossessedBy(oPC,"DeathToken")) && (GetLocalInt(oPC,"ingame") == 1))
         {
             DestroyObject(GetItemPossessedBy(oPC,"DeathToken"));
@@ -345,22 +386,8 @@ void main()
         if (nIsHungry == nEightHours)
         {
             CreateItemOnObject("survivaltime", oPC , 1);
-            if (GetItemPossessedBy(oPC, "noroleplay")!= OBJECT_INVALID)
-             {
-                FloatingTextStringOnCreature("You need to roleplay to recieve XP", oPC);
-             }
-             else if (GetItemPossessedBy(oPC, "poorroleplay")!= OBJECT_INVALID)
-             {
-                GiveXPToCreatureDH(oPC, 5);
-             }
-             else if (GetItemPossessedBy(oPC, "goodroleplay")!= OBJECT_INVALID)
-             {
-                GiveXPToCreatureDH(oPC, 6);
-             }
-             else if (GetItemPossessedBy(oPC, "greatroleplay")!= OBJECT_INVALID)
-             {
-                GiveXPToCreatureDH(oPC, 12);
-             }
+            GiveXPToCreature(oPC, 5);
+             //}
          }
 
         //  Check to see if the player is hungry and lost CON (8 hours)
@@ -368,8 +395,13 @@ void main()
         {
             EatFood(oPC);
             //  Warn PC if they have no food.
-            if ( nIsHungry > 0 )
-                SendMessageToPC(oPC,"You are hungry and require food to eat.");
+            int nMessage = GetLocalInt(oPC,"HUNGER_MESSAGE");
+            if ( nIsHungry > 0 && nMessage != TRUE)
+               {
+               SendMessageToPC(oPC,"You are hungry and require food to eat.");
+               SetLocalInt(oPC,"HUNGER_MESSAGE",TRUE);
+               DelayCommand(20.0f,SetLocalInt(oPC,"HUNGER_MESSAGE",FALSE));
+               }
         }  //  End check for nIsHungry >= 2 and nLostCon > 0
         //  Check to see if the player is hungry and no CON loss (12 hours), (20 hours)
         if ( ( (nIsHungry == nTwelveHours) || (nIsHungry >= nTwentyHours) )&& (nLostCon == 0) )
@@ -377,7 +409,16 @@ void main()
             EatFood(oPC);
             //  If the PC is still hungry, after attempting to eat (12 hours), (20 hours)
             if ( (nIsHungry == nTwelveHours) || (nIsHungry >= nTwentyHours) )
-                SendMessageToPC(oPC,"You are hungry and require food to eat.");
+                {
+                 int nMessage = GetLocalInt(oPC,"HUNGER_MESSAGE");
+                        if(nMessage != TRUE)
+                        {
+                        SendMessageToPC(oPC,"You are hungry and require food to eat.");
+                        SetLocalInt(oPC,"HUNGER_MESSAGE",TRUE);
+                        DelayCommand(20.0f,SetLocalInt(oPC,"HUNGER_MESSAGE",FALSE));
+                        }
+
+                }
         }
         //  When CON drops below 4, PC dies (24 hours)
         if ( (nIsHungry > nTwentyFourHours) && (GetAbilityScore(oPC, ABILITY_CONSTITUTION) < 4) )
@@ -391,8 +432,9 @@ void main()
         if ( nIsHungry > nTwentyFourHours )
         {
             //  Use Supernatural flag to prevent rest from curing.
+            eDamage = EffectAbilityDecrease(ABILITY_CONSTITUTION,2);
             eDamage = SupernaturalEffect(eDamage);
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eDamage, oPC));
+            ApplyEffectToObject(DURATION_TYPE_PERMANENT, eDamage, oPC);
             nLostCon++;
             nIsHungry = nSpeedUpHunger;
             SendMessageToPC(oPC,"You are in desparate need of food!");

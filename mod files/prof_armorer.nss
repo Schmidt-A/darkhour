@@ -27,6 +27,5 @@ while (GetIsObjectValid(oItem))
 RewardPartyXP(10, oPC, FALSE);
 
 CreateItemOnObject("armorerprofhide", oPC);
-CreateItemOnObject("craftingpoints", oPC,8);
 }
 

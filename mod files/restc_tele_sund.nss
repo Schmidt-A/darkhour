@@ -9,11 +9,11 @@ void main()
     // If the area is not Sundered Desolation, inform the player and do nothing else.
     if (GetTag(GetArea(oPC)) != "OOCPlayerLounge")
     {
-        SendMessageToPC(oPC, "You can only teleport to Sundered Desolation from the OOC player lounge!");
+        SendMessageToPC(oPC, "You can only teleport back to the game from the OOC Lounge!");
         return;
     }
     // Otherwise, teleport them to the player lounge with a visual effect.
-    location lWPLocation = GetLocation(GetWaypointByTag("SUNDESSTART"));
+    location lWPLocation = GetLocalLocation(oPC,"ReturnToRestSpot");
     // Sorry Vision, I really wasn't sure what visual effect you wanted, so I just used the unsummon effect.
     // Replace this with the visual effect you want.
     int iVisualEffect = VFX_IMP_UNSUMMON;

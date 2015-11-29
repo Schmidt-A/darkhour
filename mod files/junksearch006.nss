@@ -21,7 +21,9 @@ void main()
     //  sure to set nFoundSomething to TRUE; this makes sure that the player
     //  is informed that they found something, and also to create the item
     //  they found on them.
-
+        int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+    if(DEBUG)
+        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
 
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.

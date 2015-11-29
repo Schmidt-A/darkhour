@@ -18,8 +18,7 @@ void main()
     int iSurvivalTime = 0;
     int iCurrentHour = GetTimeHour();
     int iStackSize;
-    string sRoleplayLevel;
-
+      string sRoleplayLevel;
 //The player is not resting, and the player is trying to rest...
 if (GetLocalInt(oPC, "IS_RESTING") == 0 && iRestType == REST_EVENTTYPE_REST_STARTED)
     {
@@ -74,21 +73,21 @@ if (GetLocalInt(oPC, "IS_RESTING") == 0 && iRestType == REST_EVENTTYPE_REST_STAR
             //V: I'm putting in ALT coding to color code these. Should work fine.
             //For reference, I put them in dh_onplrest, and on dh_crspeaker.
             //A master list can be found in dh_modload
-            else if (sTag == "poorroleplay")
+            if (sTag == "poorroleplay")
             {
-                sRoleplayLevel = "<c þþ>Blue</c>";
+                sRoleplayLevel = "<c þþ>1</c>";
             }
             else if (sTag == "greatroleplay")
             {
-                sRoleplayLevel = "<cþ× >Gold</c>";
+                sRoleplayLevel = "<cþ× >10</c>";
             }
             else if (sTag == "goodroleplay")
             {
-                sRoleplayLevel = "<c þ >Green</c>";
+                sRoleplayLevel = "<c þ >5</c>";
             }
             else if (sTag == "noroleplay")
             {
-                sRoleplayLevel = "<cþ  >Red</c>";
+                sRoleplayLevel = "<cþ  >0</c>";
             }
 
             oInventory = GetNextItemInInventory(oPC);
@@ -99,15 +98,17 @@ if (GetLocalInt(oPC, "IS_RESTING") == 0 && iRestType == REST_EVENTTYPE_REST_STAR
 
         //It's every 8 hours I believe, confirmed in hungerscript
         //ishungry == nEightHours-V
-        string sSurvivalTime = IntToString(iSurvivalTime * 8);
-
+        string sSurvivalTime = IntToString(GetCampaignInt(GetPCPlayerName(oPC),GetName(oPC)+"_SURVIVALTIME",oPC) * 8);
+        string sFrenzy = IntToString( GetCampaignInt(GetPCPlayerName(oPC),GetName(oPC)+"_FRENZYKILLS",oPC));
+        iSurvivalTime = GetCampaignInt(GetPCPlayerName(oPC),GetName(oPC)+"_SURVIVALTIME",oPC);
+        iZombieKills =  GetCampaignInt(GetPCPlayerName(oPC),GetName(oPC)+"_ZOMBIEKILLS",oPC);
 
         SetCustomToken(900, IntToString(iZombieKills));
         SetCustomToken(901, IntToString(iCurrentHour));
         if (iCurrentHour = 0) SetCustomToken(901, "<cþ  >DARK HOUR</c>");
         SetCustomToken(902, sSurvivalTime + " Hours");
         SetCustomToken(903, IntToString(iSurvivalTime));
-        SetCustomToken(904, sRoleplayLevel);
+        SetCustomToken(904, sFrenzy);
         AssignCommand(oPC, ClearAllActions());
         AssignCommand(oPC, ActionStartConversation(oPC, "dh_rest_convo", TRUE, FALSE));
     }
@@ -277,10 +278,12 @@ object oInventory = GetFirstItemInInventory(oPC);
         //It's every 8 hours I believe, confirmed in hungerscript
         //ishungry == nEightHours-V
         string sSurvivalTime = IntToString(iSurvivalTime * 8);
+
+        int nKills = GetCampaignInt(GetPCPlayerName(oPC),GetName(oPC)+"_ZOMBIEKILLS",oPC);
         //I cannot rest because I have rested within the hour
         SetLocalInt(oPC, "IS_RESTING", 0);
         DelayCommand(0.3, DeleteLocalInt(oPC, "IS_RESTING"));
-        SetCustomToken(900, IntToString(iZombieKills));
+        SetCustomToken(900, IntToString(nKills));
         SetCustomToken(901, IntToString(iCurrentHour));
         if (iCurrentHour = 0) SetCustomToken(901, "<cþ  >DARK HOUR</c>");
         SetCustomToken(902, sSurvivalTime + " Hours");

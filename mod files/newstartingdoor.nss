@@ -117,7 +117,7 @@ else if (GetItemPossessedBy(oPC, "ROGUEKEY")!= OBJECT_INVALID)
    }
    else
    {
-   oTarget = GetWaypointByTag("SUNDESSTART");
+   oTarget = GetWaypointByTag("ZHOBUSSPAWN");
 
    lTarget = GetLocation(oTarget);
 

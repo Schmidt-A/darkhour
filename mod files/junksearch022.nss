@@ -78,4 +78,7 @@ void main()
     {
         FloatingTextStringOnCreature("Found " + sName,OBJECT_SELF,TRUE);
     }
+        int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+    if(DEBUG)
+        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
 }

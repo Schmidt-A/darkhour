@@ -7,7 +7,7 @@ void main()
     int iCount = 0;
     while (GetIsObjectValid(oArtifact))
         {
-        if(GetStringLeft(sRef, 3) == "st_" || GetStringLeft(sRef, 6) == "advtab")
+        if(GetStringLeft(sRef, 3) == "st_")
             {
             iCount += 1;
             }

@@ -23,7 +23,9 @@ while (GetIsObjectValid(oItem))
 
 RewardPartyXP(10, oPC, FALSE);
 
-CreateItemOnObject("farmerprofhide", oPC);
+object oSkin = CreateItemOnObject("farmerprofhide", oPC);
+AssignCommand(oPC,ActionEquipItem( oSkin, INVENTORY_SLOT_CARMOUR));
+CreateItemOnObject("farmability001",oPC);
 CreateItemOnObject("herbalseeds", oPC);
 CreateItemOnObject("zn_torch", oPC);
 CreateItemOnObject("zn_torch", oPC);

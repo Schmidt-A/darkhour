@@ -769,7 +769,6 @@ string ZEP_PreReadArmorPartList(int nPart) {
 
     string sCache= ":";
     string sLine;
-    string sLine2;
     // get the maxID used (not the amount of ID's !!!)
     //int nMax = StringToInt(Get2DAString("des_crft_aparts", "NumParts", nPart));
     //Note from Loki: Below line changed to make use of
@@ -780,8 +779,7 @@ string ZEP_PreReadArmorPartList(int nPart) {
     while (n<=nMax) {
         // Verify validity of the ID and add to the list
         sLine = Get2DAString(s2DA, "ACBONUS", n);
-        sLine2 = Get2DAString(s2DA, "HASMODEL", n);
-        if (sLine != "" && sLine2 != "") {
+        if (sLine!="") {
             sCache+= IntToString(n)+":";
         }
         n++;

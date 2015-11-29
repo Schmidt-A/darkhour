@@ -1,15 +1,10 @@
 /* ChronusH: Modified routines to use a standard applier to more accurately
     remove effect and apply them. */
+
 void RemoveDiseasedEffects(object oPC)
-{         /*
+{
 AssignCommand(oPC, ClearAllActions());
-int iHP = GetMaxHitPoints(oPC) - GetCurrentHitPoints(oPC);
-if(iHP > 0)
-    {
-    DelayCommand(0.2, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(iHP), oPC));
-    }
 AssignCommand(oPC, ActionCastSpellAtObject(SPELL_GREATER_RESTORATION, OBJECT_SELF, METAMAGIC_ANY, TRUE, 0 ,PROJECTILE_PATH_TYPE_DEFAULT, TRUE));
-*/
 object oApplier = GetObjectByTag("Disease_Applier");
 effect eEffect = GetFirstEffect(oPC);
 while(GetIsEffectValid(eEffect))
@@ -21,6 +16,7 @@ while(GetIsEffectValid(eEffect))
     eEffect = GetNextEffect(oPC);
     }
 }
+
 void RemoveDiseaseEffects(object oPC)
 {
 object oApplier = GetObjectByTag("Disease_Applier");
@@ -32,7 +28,7 @@ while (oCheckDisease != OBJECT_INVALID)
     {
         if (GetTag(oCheckDisease) == "ZombieDisease")
         {
-            nDisease += 1;
+            nDisease = GetItemStackSize(oCheckDisease);
         }
         oCheckDisease = GetNextItemInInventory(oPC);
     }

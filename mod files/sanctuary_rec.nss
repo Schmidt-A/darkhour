@@ -10,7 +10,7 @@ void main()
     if (sItem == "desolaterecall")
     {
             {
-                location lLoc = GetLocation(GetWaypointByTag("SUNDESSTART"));
+                location lLoc = GetLocation(GetWaypointByTag("ZHOBUSSTART"));
                 effect eVanish = EffectVisualEffect(VFX_FNF_PWSTUN);
                 ApplyEffectAtLocation(DURATION_TYPE_INSTANT,eVanish,GetLocation(oUser));
                 DelayCommand(1.0,AssignCommand(oUser,JumpToLocation(lLoc)));

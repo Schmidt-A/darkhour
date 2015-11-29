@@ -28,6 +28,7 @@
 //:://////////////////////////////////////////////
 
 #include "x2_inc_switches"
+#include "lnx_inc_eval_itm"
 
 void main()
 {
@@ -40,6 +41,24 @@ void main()
    oSpellOrigin = OBJECT_SELF;
    oSpellTarget = GetSpellTargetObject();
    oItem        =  GetSpellCastItem();
+
+    // Including degredation -- Lynx
+    object oArmor = GetItemInSlot(INVENTORY_SLOT_CHEST, oSpellTarget);
+    object oHelmet = GetItemInSlot(INVENTORY_SLOT_HEAD, oSpellTarget);
+    object oShield = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oSpellTarget);
+    int iArmor = GetLocalInt(oArmor, "DURABILITY");
+    int iHelmet = GetLocalInt(oArmor, "DURABILITY");
+    if (GetItemType(oShield) == "ARMOR")
+        {
+        int iShield = GetLocalInt(oArmor, "DURABILITY");
+        SetLocalInt(oShield, "DURABILITY", iShield - 1);
+        EvaluateTiers(oShield, "DURABILITY");
+        }
+    SetLocalInt(oArmor, "DURABILITY", iArmor - 1);
+    EvaluateTiers(oArmor, "ARMOR");
+    SetLocalInt(oHelmet, "SHARPNESS", iHelmet - 1);
+    EvaluateTiers(oHelmet, "ARMOR");
+
    //New famine bringer script
    if(GetTag(oItem) == "axe_famine")
         {
@@ -48,60 +67,15 @@ void main()
             return;
             }
         int iRand = Random(100) + 1;
-        if(iRand <= 25)
+        if(iRand <= 15)
             {
-            int nIsHungry = GetLocalInt(oSpellTarget, "IsHungry") + 2;
+            int nIsHungry = GetLocalInt(oSpellTarget, "IsHungry") + 1;
             SetLocalInt(oSpellTarget, "IsHungry", nIsHungry);
             int nIsHungry2 = GetLocalInt(oSpellOrigin, "IsHungry") - 1;
             SetLocalInt(oSpellOrigin, "IsHungry", nIsHungry2);
             ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_PWSTUN), oSpellTarget);
             SendMessageToPC(oSpellOrigin, "You have drained " + GetName(oSpellTarget) + " of sustenance.");
             SendMessageToPC(oSpellTarget, "You have been drained of sustenance!");
-            SetItemCharges(oItem, GetItemCharges(oItem) - 1);
-            }
-        }
-   else if(GetTag(oItem) == "runic_longsword")
-        {
-        int iRand = Random(100) + 1;
-        if(iRand <= 35)
-            {
-            int iDamage = d12() + d6();
-            SendMessageToPC(oSpellTarget, "Runic energies encase your body, ripping flesh from bone, doing an additonal " + IntToString(iDamage) + " damage.");
-            SendMessageToPC(oSpellOrigin, "Runic energies encase your enemy, ripping flesh from bone, doing an additonal " + IntToString(iDamage) + " damage.");
-            ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(iDamage), oSpellTarget);
-            ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_BLIND_DEAF_M), oSpellTarget);
-            ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_PULSE_WIND), oSpellTarget);
-            if(GetItemCharges(oItem) == 1)
-                {
-                SendMessageToPC(oSpellOrigin, "Your " + GetName(oItem) + " has depleted its powers and has crumbled in your hands.");
-                }
-            SetItemCharges(oItem, GetItemCharges(oItem) - 1);
-            }
-        }
-   else if(GetTag(oItem) == "ls_grimjaws")
-        {
-        int iRand = Random(60) + 1;
-        if(iRand == 5)
-            {
-            DelayCommand(2.0, SendMessageToPC(oSpellOrigin, "Your " + GetName(oItem) + " has brought divine judgement upon all undead within its grasp!"));
-            ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_STRIKE_HOLY), oSpellOrigin);
-            AssignCommand(oSpellOrigin, PlaySound("sff_explword"));
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectACIncrease(5, AC_NATURAL_BONUS), oSpellOrigin, 30.0);
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectHaste(), oSpellOrigin, 30.0);
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(VFX_DUR_AURA_WHITE), oSpellOrigin, 30.0);
-            object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_GARGANTUAN, GetLocation(oSpellOrigin));
-            while(GetIsObjectValid(oTarget) == TRUE)
-                {
-                if(GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD && GetIsFriend(oTarget, oSpellOrigin) == FALSE)
-                    {
-                    int iDamage = d12(6);
-                    DelayCommand(0.5, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_PULSE_WIND), oTarget));
-                    DelayCommand(0.5, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SUMMON_UNDEAD), oTarget));
-                    DelayCommand(1.0, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(iDamage, DAMAGE_TYPE_DIVINE), oTarget));
-                    DelayCommand(1.5, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_HOLY_AID), oTarget));
-                    }
-                oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_GARGANTUAN, GetLocation(oSpellOrigin));
-                }
             }
         }
    else

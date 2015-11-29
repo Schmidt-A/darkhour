@@ -289,6 +289,14 @@ void main()
     // * The night "posting" waypoint tag is simply "NIGHT_" + NPC tag.
     WalkWayPoints();
 
+    //* Create a small amount of treasure on the creature
+    if ((GetLocalInt(GetModule(), "X2_L_NOTREASURE") == FALSE)  &&
+        (GetLocalInt(OBJECT_SELF, "X2_L_NOTREASURE") == FALSE)   )
+    {
+        CTG_GenerateNPCTreasure(TREASURE_TYPE_MONSTER, OBJECT_SELF);
+    }
+
+
     // ***** ADD ANY SPECIAL ON-SPAWN CODE HERE ***** //
 
     // * If Incorporeal, apply changes

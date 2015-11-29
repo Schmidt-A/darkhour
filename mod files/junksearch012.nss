@@ -6,7 +6,7 @@
 void main()
 {
     int nFoundSomething = FALSE;
-    int nFound = Random(475) + 1;
+    int nFound = Random(10000);
     string sWhat = "";
     int nAmount = 1;
     if(GetLocalInt(GetObjectByTag("debuglever"), "debug") == 1)
@@ -28,200 +28,158 @@ void main()
     //  is informed that they found something, and also to create the item
     //  they found on them.
 
-    if (nFound < 10)
+    if (nFound < 400)
     {
        sWhat = "blessedbullets";
        nAmount = Random(15) + 5;
     }
-    else if (nFound < 20)
+    else if (nFound < 800)
     {
        sWhat = "blessedarrow";
        nAmount = Random(15) + 5;
     }
-    else if (nFound < 30)
+    else if (nFound < 1200)
     {
        sWhat = "blessedbolt";
        nAmount = Random(15) + 5;
     }
-    else if (nFound < 33)
+    else if (nFound < 1300)
     {
        sWhat = "holybook";
     }
-    else if (nFound < 37)
+    else if (nFound < 1310)
     {
        sWhat = "gemofvalor";
     }
-    else if (nFound < 42)
+    else if (nFound < 1320)
     {
        sWhat = "gemofcorruption";
     }
-    else if (nFound < 45)
+    else if (nFound < 1330)
     {
        sWhat = "gemofshadow";
     }
-    else if (nFound < 50)
+    else if (nFound < 1500)
     {
-       sWhat = "waybread";
+       sWhat = "nw_it_mglove003";
     }
-    else if (nFound < 55)
+    else if (nFound < 1800)
     {
-       sWhat = "desolaterecall";    // Buggy script
+       sWhat = "tempstaff";
     }
-    else if (nFound < 60)
+    else if (nFound < 1825)
     {
         sWhat = "nw_it_spdvscr501";   // this is a raise dead
     }
-    else if (nFound < 65)
+    else if (nFound < 2250)
     {
         sWhat = "us_arrow";
     }
-    else if (nFound < 70)
+    else if (nFound < 2450)
     {
         sWhat = "us_bolt";
     }
-    else if (nFound < 75)
+    else if (nFound < 2650)
     {
         sWhat = "shamrock";
     }
-    else if (nFound < 80)
+    else if (nFound < 2900)
     {
         sWhat = "nw_it_mpotion002";     // potion of cure serious wounds
     }
-    else if (nFound < 82)
+    else if (nFound < 2925)
     {
         sWhat = "artifactpiece";   // Artifact Piece 1/4
     }
-    else if (nFound < 84)
+    else if (nFound < 2950)
     {
         sWhat = "artifactpiece001";   // Artifact Piece 2/4
     }
-    else if (nFound < 86)
+    else if (nFound < 2975)
     {
         sWhat = "artifactpiece002";   // Artifact Piece 3/4
     }
-    else if (nFound < 88)
+    else if (nFound < 3200)
     {
         sWhat = "sirandatea";
     }
-    else if (nFound < 100)
+    else if (nFound < 3700)
     {
-        sWhat = "sword_of_ice";
+        sWhat = "mw_05"; // masterwork dagger
     }
-    else if (nFound < 130)
+    else if (nFound < 4000)
     {
        sWhat = "nw_it_gold001";
        nAmount = Random(30) + 80;
     }
-    else if (nFound < 250)
+    else if (nFound < 4500)
     {
-    ExecuteScript("randomweapon", OBJECT_SELF);
-    return;
+       sWhat = "mw_01"; // masterwork shortbow
     }
-    else if (nFound < 450)
+    else if (nFound < 5000)
     {
-    ExecuteScript("randomnewarmor", OBJECT_SELF);
-    return;
+       sWhat = "mw_02"; // masterwork longbow
     }
-    else if (nFound < 452)
+    else if (nFound < 5500)
     {
-        sWhat = "artbreaker";
+       sWhat = "mw_09"; // masterwork battleaxe
     }
-    else if (nFound < 453)
+    else if (nFound < 6000)
     {
-        sWhat = "axe_famine";
+       sWhat = "mw_14"; // masterwork club
     }
-    else if (nFound < 455)
+    else if (nFound < 6500)
     {
-    ExecuteScript("randomorb", OBJECT_SELF);
-    return;
+       sWhat = "mw_03";
     }
-    else if (nFound < 456)
+    else if (nFound < 7500)
     {
-        sWhat = "bracer_nocturn";
+       sWhat = "mw_04";
     }
-    else if (nFound < 457)
+    else if (nFound < 8000)
     {
-        sWhat = "runic_longsword";
+       sWhat = "mw_10";
     }
-    else if (nFound < 458)
+    else if (nFound < 8200)
     {
-        sWhat = "belt_padleather";
+       sWhat = "fortiplate";
     }
-    else if (nFound < 459)
+    else if (nFound < 8400)
     {
-        sWhat = "boots_quickstep";
+       sWhat = "wintershield1";
     }
-    else if (nFound < 460)
+    else if (nFound < 8700)
     {
-        sWhat = "cloak_identity";
+       sWhat = "waybread";
     }
-    else if (nFound < 461)
+    else if (nFound < 9000)
     {
-        sWhat = "dubscim_exotic";
+       sWhat = "bootsquick";
     }
-    else if (nFound < 462)
+    else if (nFound < 9200)
     {
-        sWhat = "dagger_backstab";
+       sWhat = "eyesrevealing";
     }
-    else if (nFound < 463)
+    else if (nFound < 9400)
     {
-        sWhat = "club_ironwood";
+       sWhat = "thhcloak";
     }
-    else if (nFound < 464)
+    else if (nFound < 9700)
     {
-        sWhat = "dart_volcanic";
-        nAmount = d4();
+       sWhat = "odakerplate";
     }
-    else if (nFound < 465)
+    else if (nFound < 9800)
     {
-        sWhat = "bullet_thunderclap";
-        nAmount = d4();
+       sWhat = "Potions";
     }
-    else if (nFound < 466)
+    else if (nFound < 10000)
     {
-        sWhat = "staff_wizardry";
+       sWhat = "po_gelix";
     }
-    else if (nFound < 467)
-    {
-        sWhat = "staff_sorcerory";
-    }
-    else if (nFound < 468)
-    {
-        sWhat = "staff_bold";
-    }
-    else if (nFound < 469)
-    {
-        sWhat = "ring_duality";
-    }
-    else if (nFound < 470)
-    {
-        sWhat = "trident_seas";
-    }
-    else if (nFound < 471)
-    {
-        sWhat = "amulet_bones";
-    }
-    else if (nFound < 472)
-    {
-        sWhat = "cloak_pranks";
-    }
-    else if (nFound < 475)
-    {
-        sWhat = "trump_card";
-    }
-    else if (nFound == 475)
-    {
-    int iChance = d3();
-        if(iChance == 2)
-            {
-            ExecuteScript("randomuberwep", OBJECT_SELF);
-            return;
-            }
-        else
-            {
-            sWhat = "shamrock";
-            }
-    }
+
+    int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+    if(DEBUG)
+        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 
@@ -230,7 +188,7 @@ void main()
     string sName = GetName(oTemp);
     if(sName == "")
     {
-    CreateItemOnObject("shamrock", OBJECT_SELF);
+        FloatingTextStringOnCreature("Found Nothing",OBJECT_SELF,TRUE);
     return;
     }
     if (sWhat == "nw_it_gold001")

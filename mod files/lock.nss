@@ -1,5 +1,5 @@
 void main()
 {
-DelayCommand(5.0, SetLocked(OBJECT_SELF, TRUE));
+DelayCommand(15.0, SetLocked(OBJECT_SELF, TRUE));
 }
 

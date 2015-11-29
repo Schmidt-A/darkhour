@@ -5,7 +5,7 @@
 
 void main()
 {
-    int nFound = Random(575) + 1;
+    int nFound = Random(10000);
     string sWhat = "";
     int nAmount = 1;
     if(GetLocalInt(GetObjectByTag("debuglever"), "debug") == 1)
@@ -28,286 +28,237 @@ void main()
     //  they found on them.
 
 
-    if (nFound < 10)
+    if (nFound < 200)
     {
        sWhat = "blessedbullets";
        nAmount = Random(5) + 5;
     }
-    else if (nFound < 20)
+    else if (nFound < 400)
     {
        sWhat = "blessedarrow";
        nAmount = Random(5) + 5;
     }
-    else if (nFound < 30)
+    else if (nFound < 600)
     {
        sWhat = "blessedbolt";
        nAmount = Random(5) + 5;
     }
-    else if (nFound < 35)
+    else if (nFound < 800)
     {
-       sWhat = "nw_wdbmsw002";
+       sWhat = "nw_wdbmsw002"; // two-bladed sword +1
     }
-    else if (nFound < 40)
+    else if (nFound < 1000)
     {
-       sWhat = "NW_WAMMAR002";
+       sWhat = "NW_WAMMAR002"; // fire arrow
        nAmount = Random(5) + 5;
     }
-    else if (nFound < 45)
+    else if (nFound < 1200)
     {
-       sWhat = "NW_WAMMBO005";
+       sWhat = "NW_WAMMBO005"; // bold of fire?
        nAmount = Random(5) + 5;
     }
-    else if (nFound < 50)
+    else if (nFound < 1400)
     {
-       sWhat = "NW_WAMMBU005";
+       sWhat = "NW_WAMMBU005"; // bullet of fire?
        nAmount = Random(5) + 5;
     }
-    else if (nFound < 55)
+    else if (nFound < 1600)
     {
-       sWhat = "nw_wdbmma002";
+       sWhat = "nw_wdbmma002"; //warmace +1
     }
-    else if (nFound < 60)
+    else if (nFound < 1900)
     {
-       sWhat = "nw_wdbmsw002";
+       sWhat = "mw_01"; // masterwork shortbow
     }
-    else if (nFound < 65)
+    else if (nFound < 2200)
     {
-       sWhat = "mw_01";
+       sWhat = "mw_02"; // masterwork longbow
     }
-    else if (nFound < 70)
+    else if (nFound < 2500)
     {
-       sWhat = "mw_02";
+       sWhat = "mw_03"; // masterwork kama
     }
-    else if (nFound < 75)
+    else if (nFound < 2800)
     {
-       sWhat = "mw_03";
+       sWhat = "mw_04"; // masterwork nunchaku
     }
-    else if (nFound < 80)
+    else if (nFound < 3100)
     {
-       sWhat = "mw_04";
+       sWhat = "mw_05"; // masterwork dagger
     }
-    else if (nFound < 85)
+    else if (nFound < 3400)
     {
-       sWhat = "mw_05";
+       sWhat = "mw_06"; // masterwork longsword
     }
-    else if (nFound < 90)
+    else if (nFound < 3700)
     {
-       sWhat = "mw_06";
+       sWhat = "mw_07"; //masterwork shortsword
     }
-    else if (nFound < 95)
+    else if (nFound < 4000)
     {
-       sWhat = "mw_07";
+       sWhat = "mw_08"; //masterwork mace
     }
-    else if (nFound < 100)
+    else if (nFound < 4300)
     {
-       sWhat = "mw_08";
+       sWhat = "mw_09"; //masterwork battleaxe
     }
-    else if (nFound < 105)
+    else if (nFound < 4600)
     {
-       sWhat = "mw_09";
+       sWhat = "mw_10"; //masterwork something
     }
-    else if (nFound < 110)
+    else if (nFound < 4900)
     {
-       sWhat = "mw_10";
+       sWhat = "mw_11"; //masterwork handaxe
     }
-    else if (nFound < 115)
+    else if (nFound < 5200)
     {
-       sWhat = "mw_11";
+       sWhat = "mw_12"; //masterwork spear
     }
-    else if (nFound < 120)
+    else if (nFound < 5500)
     {
-       sWhat = "mw_12";
+       sWhat = "mw_13"; //masterwork halberd
     }
-    else if (nFound < 125)
+    else if (nFound < 5800)
     {
-       sWhat = "mw_13";
+       sWhat = "mw_14"; //masterwork club
     }
-    else if (nFound < 130)
+    else if (nFound < 6100)
     {
-       sWhat = "mw_14";
+       sWhat = "mw_15"; //masterwork bastard sword
     }
-    else if (nFound < 135)
-    {
-       sWhat = "mw_15";
-    }
-    else if (nFound < 140)
+    else if (nFound < 6110)
     {
        sWhat = "gemofvalor";
     }
-    else if (nFound < 150)
+    else if (nFound < 6120)
     {
        sWhat = "gemofcorruption";
     }
-    else if (nFound < 155)
+    else if (nFound < 6130)
     {
        sWhat = "gemofshadow";
     }
-    else if (nFound < 160)
+    else if (nFound < 6330)
     {
-       sWhat = "nw_wblmms002";
+       sWhat = "nw_wblmms002"; //morningstar +1
     }
-    else if (nFound < 165)
+    else if (nFound < 6480)
     {
        sWhat = "nw_it_mring025"; // ring fort +2
     }
-    else if (nFound < 170)
+    else if (nFound < 6505)
     {
        sWhat = "nw_it_spdvscr501"; // raise dead
     }
-    else if (nFound < 175)
+    else if (nFound < 6600)
     {
-       sWhat = "us_arrow";
+       sWhat = "us_arrow"; // undead slaying arrow
     }
-    else if (nFound < 180)
+    else if (nFound < 6700)
     {
-       sWhat = "us_bolt";
+       sWhat = "us_bolt"; // undead slaying bolt
     }
-    else if (nFound < 185)
+    else if (nFound < 6900)
     {
        sWhat = "sirandatea";
     }
-    else if (nFound < 190)
+    else if (nFound < 7050)
     {
        sWhat = "shamrock";
     }
-    else if (nFound < 195)
+    else if (nFound < 7200)
     {
        sWhat = "nw_it_mpotion002"; // potion cure serious wounds
     }
-    else if (nFound < 200)
+    else if (nFound < 7225)
     {
         sWhat = "artifactpiece";  // Artifact Piece 1/4
     }
-    else if (nFound < 205)
+    else if (nFound < 7250)
     {
         sWhat = "artifactpiece003";  // Artifact Piece 4/4
     }
-    else if (nFound < 210)
+    else if (nFound < 7350)
     {
         sWhat = "DextrousBelt"; // +1 Dex Belt
     }
-    else if (nFound < 215)
+    else if (nFound < 7500)
     {
         sWhat = "nw_it_mneck001"; // amulet of protection +1
     }
-    else if (nFound < 225)
+    else if (nFound < 7650)
     {
-        sWhat = "sword_of_fire";
+        sWhat = "kailenrobe";
     }
-    else if (nFound < 240)
+    else if (nFound < 7750)
+    {
+        sWhat = "ringofmight";
+    }
+    else if (nFound < 8050)
     {
        sWhat = "nw_it_gold001";
        nAmount = Random(30) + 80;
     }
-    else if (nFound < 450)
+   else if (nFound < 8200)
     {
-    ExecuteScript("randomweapon", OBJECT_SELF);
-    return;
+       sWhat = "sptome1";
     }
-    else if (nFound < 550)
+   else if (nFound < 8300)
     {
-    ExecuteScript("randomnewarmor", OBJECT_SELF);
-    return;
+       sWhat = "leathsilence";
     }
-    else if (nFound < 552)
+    else if (nFound < 8450)
     {
-        sWhat = "artbreaker";
+       sWhat = "nw_it_mbracer002";
     }
-    else if (nFound < 553)
+    else if (nFound < 8550)
     {
-        sWhat = "axe_famine";
+       sWhat = "legionwall";
     }
-    else if (nFound < 555)
+    else if (nFound < 8700)
     {
-    ExecuteScript("randomorb", OBJECT_SELF);
-    return;
+       sWhat = "ironstudcloak";
     }
-    else if (nFound < 556)
+    else if (nFound < 9000)
     {
-        sWhat = "bracer_nocturn";
+       sWhat = "NW_WBWMSL001";
     }
-    else if (nFound < 557)
+    else if (nFound < 9050)
     {
-        sWhat = "runic_longsword";
+      sWhat = "wfirewheel1";
     }
-    else if (nFound < 558)
+    else if (nFound < 9200)
     {
-        sWhat = "belt_padleather";
+      sWhat = "ladyspearl";
     }
-    else if (nFound < 559)
+    else if (nFound < 9500)
     {
-        sWhat = "boots_quickstep";
+      sWhat = "sirandaherb";
     }
-    else if (nFound < 560)
+    else if (nFound < 9600)
     {
-        sWhat = "cloak_identity";
+      sWhat = "lstone";
     }
-    else if (nFound < 561)
+    else if (nFound < 9700)
     {
-        sWhat = "dubscim_exotic";
+      sWhat = "pebelt";
     }
-    else if (nFound < 562)
+    else if (nFound < 9750)
     {
-        sWhat = "dagger_backstab";
+      sWhat = "eyesbrillance";
     }
-    else if (nFound < 563)
+    else if (nFound < 9850)
     {
-        sWhat = "club_ironwood";
+      sWhat = "nw_it_mpotion009";  // Potion of bless
     }
-    else if (nFound < 564)
+    else if (nFound < 10000)
     {
-        sWhat = "dart_volcanic";
-        nAmount = d4();
+      sWhat = "nw_it_mpotion015";   // Bull's strength
     }
-    else if (nFound < 565)
-    {
-        sWhat = "bullet_thunderclap";
-        nAmount = d4();
-    }
-    else if (nFound < 566)
-    {
-        sWhat = "staff_wizardry";
-    }
-    else if (nFound < 567)
-    {
-        sWhat = "staff_sorcerory";
-    }
-    else if (nFound < 568)
-    {
-        sWhat = "staff_bold";
-    }
-    else if (nFound < 569)
-    {
-        sWhat = "ring_duality";
-    }
-    else if (nFound < 570)
-    {
-        sWhat = "trident_seas";
-    }
-    else if (nFound < 571)
-    {
-        sWhat = "amulet_bones";
-    }
-    else if (nFound < 572)
-    {
-        sWhat = "cloak_pranks";
-    }
-    else if (nFound < 575)
-    {
-        sWhat = "trump_card";
-    }
-    {
-    int iChance = d3();
-        if(iChance == 2)
-            {
-            ExecuteScript("randomuberwep", OBJECT_SELF);
-            return;
-            }
-        else
-            {
-            sWhat = "shamrock";
-            }
-    }
+
+    int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+    if(DEBUG)
+        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 
@@ -316,7 +267,7 @@ void main()
     string sName = GetName(oTemp);
     if(sName == "")
     {
-    CreateItemOnObject("shamrock", OBJECT_SELF);
+        FloatingTextStringOnCreature("Found Nothing",OBJECT_SELF,TRUE);
     return;
     }
     if (sWhat == "nw_it_gold001")

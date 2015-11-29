@@ -19,7 +19,6 @@
 //:://////////////////////////////////////////////
 
 #include "x3_inc_horse"
-#include "zep_inc_phenos"
 #include "x2_inc_switches"
 
  /*
@@ -81,7 +80,6 @@ void main()
     //string sResRef = GetLocalString(oPlayer,"PONY_ID");
     if (GetLocalInt(oPlayer, "VAR_HORSEMOUNT")== 1)
    {
-        zep_Dismount (oPlayer, "horse_dismt");
         SetLocalInt(oPlayer,"bX3_IS_MOUNTED",FALSE);
         DeleteLocalString(oPlayer,"X3_HORSE_SCRIPT_DISMOUNT");
         SetLocalInt(oPlayer, "VAR_HORSEMOUNT", 0);//horselord class variable

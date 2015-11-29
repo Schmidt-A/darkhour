@@ -89,12 +89,7 @@
 
 */
 
-//----------------------------------------------------------------------------
-// 04/19/2010      Malishara: added code to play nice with DMTS tools
-//----------------------------------------------------------------------------
-
 #include "zep_inc_main"
-#include "dmts_common_inc"
 
 
 void main()
@@ -148,24 +143,6 @@ void main()
             effect eLight = EffectVisualEffect(nLight);
             ApplyEffectToObject(DURATION_TYPE_PERMANENT, eLight, oNew);
         }
-
-        // Copy DMTS variables to new placeable
-
-        string sVariables = SaveVariables(OBJECT_SELF);
-        RestoreVariables(oNew, sVariables);
-
-        location lOriginal = GetLocalLocation(OBJECT_SELF, "DM_PAA_lOriginal");
-        object oStageManager = GetLocalObject(OBJECT_SELF, "oStageManager");
-        string sPropID_VarName = GetLocalString(OBJECT_SELF, "sPropID_VarName");
-
-        if (GetIsObjectValid(oStageManager))
-        { SetLocalObject(oNew, "oStageManager", oStageManager);
-          SetLocalObject(oStageManager, sPropID_VarName, oNew);
-        }
-
-        SetLocalLocation(oNew, "DM_PAA_lOriginal", lOriginal);
-
-
         DestroyObject(OBJECT_SELF, 0.0);
         return;
     }else{

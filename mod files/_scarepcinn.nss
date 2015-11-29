@@ -18,7 +18,7 @@ if (DoOnce==TRUE) return;
 
 SetLocalInt(oPC, GetTag(OBJECT_SELF), TRUE);
 
-FloatingTextStringOnCreature("*This room feels very cold. You notice that there are no zombies but cannot shake the feeling you're being watched*", oPC);
+FloatingTextStringOnCreature("The once silent inn lights up in the moans and growls of undead, the whites of their flesh-hungry eyes all jolting to your appearance in the inn.", oPC);
 if (GetItemPossessedBy(oPC, "INN")== OBJECT_INVALID)
    {
    CreateItemOnObject("baraban002", oPC);

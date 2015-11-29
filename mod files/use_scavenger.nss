@@ -14,7 +14,61 @@
 //
 //  NOTE:  You will need to modify the section below that calls the junksearch
 //  scripts to customize it for your module.
-//
+
+
+
+//Search Stuff Added by Demon X
+void SearchStuff(object oUser, int nCount, int nDifficulty, object oSearch)
+{
+            int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+            if(GetIsSkillSuccessful(oUser,SKILL_SEARCH,nDifficulty))
+                {
+                int nRand = Random(nCount)+1;
+                int nChance = GetLocalInt(oSearch,"Chance"+IntToString(nRand));
+                if(nChance != 0)
+                    {
+                    int FOUND = FALSE;
+                    while(FOUND!=TRUE)
+                        {
+                            int nFind = Random(1000)+1;
+                            if(nFind <= nChance)
+                            {
+                                FOUND = TRUE;
+                            }
+                            else
+                            {
+                                nRand = Random(nCount)+1;
+                                nChance = GetLocalInt(oSearch,"Chance"+IntToString(nRand));
+                                if(nChance == 0)
+                                    FOUND = TRUE;
+                            }
+                        }
+                    }
+
+                object oFound = CreateItemOnObject(GetLocalString(oSearch,"Resref"+IntToString(nRand)), oUser);
+                if(GetBaseItemType(oFound) == BASE_ITEM_ARROW ||
+                   GetBaseItemType(oFound) == BASE_ITEM_BOLT ||
+                   GetBaseItemType(oFound) == BASE_ITEM_BULLET ||
+                   GetBaseItemType(oFound) == BASE_ITEM_DART ||
+                   GetBaseItemType(oFound) == BASE_ITEM_THROWINGAXE)
+                   {
+                   SetItemStackSize(oFound,10+d6(1));
+                   }
+                   if(DEBUG)
+                   FloatingTextStringOnCreature("RESREF:</c  "+GetLocalString(oSearch,"Resref"+IntToString(nRand)),oUser,FALSE);
+                FloatingTextStringOnCreature("Found "+GetName(oFound)+"!",oUser,FALSE);
+                SetLocalInt(oSearch,"Found",GetLocalInt(oSearch,"Found")+1);
+                if(GetLocalInt(oSearch,"Found")>=4)
+                    {
+                    SetLocalInt(oSearch,"DC",nDifficulty+1);
+                    SetLocalInt(oSearch,"Found",0);
+                    }
+                }
+                else
+                {
+                FloatingTextStringOnCreature("Your search turns up nothing.",oUser,FALSE);
+                }
+}
 
 void FindStuff(object oUser,int nJunkType, int nDC)
 {
@@ -49,6 +103,10 @@ void FindStuff(object oUser,int nJunkType, int nDC)
             case 24:  ExecuteScript("junksearch024",oUser); break;
             case 25:  ExecuteScript("junksearch025",oUser); break;
             case 26:  ExecuteScript("junksearch026",oUser); break;
+            case 27:  ExecuteScript("junksearch027",oUser); break;
+            case 28:  ExecuteScript("junksearch028",oUser); break;
+            case 29:  ExecuteScript("junksearch029",oUser); break;
+            case 30:  ExecuteScript("junksearch030",oUser); break;
         }
     }
     else
@@ -61,6 +119,9 @@ void main()
 {
     object oItem = GetItemActivated();
     object oUser = GetItemActivator();
+    object oSearch = GetLocalObject(oUser,"CanSearch");
+
+
     object oTemp;
     string sItem = GetTag(oItem);
 
@@ -68,7 +129,8 @@ void main()
     {
         object oJunk = GetNearestObjectByTag("SJUNK",oUser);
         int nJunkType = GetLocalInt(oJunk,"junk_type");
-        //Vision: Modify Search DC's globally here.
+        //Vision: I'm a retard.
+
         int nDC = GetLocalInt(oJunk,"dc") - 2;
         int nModifier = GetLocalInt(oJunk,"modifier");
 
@@ -91,6 +153,22 @@ void main()
             ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectCutsceneImmobilize(),oUser,5.0);
             DelayCommand(5.0,FindStuff(oUser,nJunkType,nDC));
             SetLocalInt(oJunk,"modifier",nModifier + 20);
+        }
+        else if(oSearch!=OBJECT_INVALID)
+        {
+
+            AssignCommand(oUser,ActionPlayAnimation(ANIMATION_LOOPING_GET_LOW, 1.0, 5.0));
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectCutsceneImmobilize(),oUser,5.0);
+            int nCount = 1;
+            string sResref = GetLocalString(oSearch,"Resref"+IntToString(nCount));
+            while(sResref!="")
+            {
+            nCount++;
+            sResref = GetLocalString(oSearch,"Resref"+IntToString(nCount));
+            }
+            nCount--;
+            int nDifficulty = GetLocalInt(oSearch,"DC");
+            DelayCommand(5.0,SearchStuff(oUser,nCount,nDifficulty,oSearch));
         }
         else
         {

@@ -1,3 +1,7 @@
+
+
+
+
 //::///////////////////////////////////////////////
 //:: Default: On Spawn In
 //:: NW_C2_DEFAULT9
@@ -16,6 +20,8 @@
 
 void main()
 {
+if(GetLocalInt(OBJECT_SELF,"DMX_SPAWNED"))
+    AssignCommand(OBJECT_SELF,ActionRandomWalk());
 // OPTIONAL BEHAVIORS (Comment In or Out to Activate ) ****************************************************************************
      //SetSpawnInCondition(NW_FLAG_SPECIAL_CONVERSATION);
      //SetSpawnInCondition(NW_FLAG_SPECIAL_COMBAT_CONVERSATION);
@@ -75,26 +81,9 @@ void main()
     SetListening(OBJECT_SELF, TRUE);          //be sure NPC is listening
 
     int nWhatHave = Random(10);
-    object oCarry;
-    if (nWhatHave <= 2)
+    if (nWhatHave == 1)
     {
-        oCarry = CreateItemOnObject("gemofvalor",OBJECT_SELF);
+        object oCarry = CreateItemOnObject("nw_it_spdvscr501",OBJECT_SELF);
+        SetDroppableFlag(oCarry,TRUE);
     }
-    else if (nWhatHave <= 5)
-    {
-        oCarry = CreateItemOnObject("gemofcorruption",OBJECT_SELF);
-    }
-    else if (nWhatHave <= 8)
-    {
-        oCarry = CreateItemOnObject("gemofshadow",OBJECT_SELF);
-    }
-    else
-    {
-        oCarry = CreateItemOnObject("nw_it_spdvscr501",OBJECT_SELF);
-    }
-    SetDroppableFlag(oCarry,TRUE);
-
-    effect eSpawnthing = EffectVisualEffect(VFX_FNF_IMPLOSION);
-    ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eSpawnthing, GetLocation(OBJECT_SELF));
-    ExecuteScript("speedburst",OBJECT_SELF);
 }

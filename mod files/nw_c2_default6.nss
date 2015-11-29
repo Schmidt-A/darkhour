@@ -17,9 +17,28 @@
 //:://////////////////////////////////////////////////
 #include "nw_i0_generic"
 #include "x3_inc_horse"
+#include "lnx_inc_eval_itm"
 void main()
 {
     object oDamager = GetLastDamager();
+    // Additions for degredation -- Lynx
+    int iHand = GetLocalInt(oDamager, "DUAL_WEILD");
+    if (iHand == 1 && GetItemType(GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oDamager)) == "WEAPON")
+        {
+        object oWeapon = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oDamager);
+        int iSharp = GetLocalInt(oWeapon, "SHARPNESS");
+        SetLocalInt(oWeapon, "SHARPNESS", iSharp - 1);
+        EvaluateTiers(oWeapon, "WEAPON");
+        SetLocalInt(oDamager, "DUAL_WIELD", 0);
+        }
+    else
+        {
+        object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oDamager);
+        int iSharp = GetLocalInt(oWeapon, "SHARPNESS");
+        SetLocalInt(oWeapon, "SHARPNESS", iSharp - 1);
+        EvaluateTiers(oWeapon, "WEAPON");
+        SetLocalInt(oDamager, "DUAL_WEILD", 1);
+        }
     object oMe=OBJECT_SELF;
     int nHPBefore;
     if (!GetLocalInt(GetModule(),"X3_NO_MOUNTED_COMBAT_FEAT"))

@@ -58,6 +58,7 @@ void Raise(object oPlayer)
 void main()
 {
 object oSaveMe = GetLastPlayerDied();
+object oKiller = GetLastHostileActor(oSaveMe);
 SetLocalInt(oSaveMe, "raiseattempts", 0);
 if(GetTag(GetArea(oSaveMe)) == "UnknownArea")
     {
@@ -165,7 +166,14 @@ if (CheckSubdual(GetLastPlayerDied())) return;
     SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPlayer));
     SetName(oCorpse,GetName(oPlayer)+"'s Corpse");
     SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPlayer));
-    CreateItemOnObject("deathtoken",oPlayer);
-    CreateItemOnObject("reapertoken",oPlayer);
+    if(GetItemPossessedBy(oPlayer,"DeathToken")==OBJECT_INVALID)
+        CreateItemOnObject("deathtoken",oPlayer);
+    object oReaperToken = CreateItemOnObject("reapertoken",oPlayer);
+    if(GetRacialType(oKiller)==RACIAL_TYPE_UNDEAD)
+        {
+        SetLocalInt(oReaperToken,"ZOMBIEDEATH",TRUE);
+        //SendMessageToPC(oPlayer,"UNDEAD! ZOMBIE DEATH VARIABLE IS "+IntToString(GetLocalInt(oReaperToken,"ZOMBIEDEATH")));
+        }
+
     ExportSingleCharacter(oPlayer);
 }

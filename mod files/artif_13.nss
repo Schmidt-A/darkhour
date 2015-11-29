@@ -1,4 +1,3 @@
-#include "_incl_xp"
 void main()
 {
 object oPC = GetPCSpeaker();
@@ -26,7 +25,7 @@ while(GetIsObjectValid(oItem) == TRUE)
     }
 if(GetCampaignInt(GetName(GetModule()), "hasartifxp", oPC) == 0)
     {
-    GiveXPToCreatureDH(oPC, 1000);
+    GiveXPToCreature(oPC, 1000);
     SendMessageToPC(oPC, "<c þ >You have assembled your first artifact and been rewarded 1,000 experience!</c>");
     }
 if(iCheck == 0)

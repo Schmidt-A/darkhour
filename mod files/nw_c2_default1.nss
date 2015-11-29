@@ -25,14 +25,9 @@ void main()
         {
         return;
         }
-    if(GetRacialType(OBJECT_SELF) != RACIAL_TYPE_UNDEAD)
+    if(GetTag(OBJECT_SELF) == "huggles")
         {
         return;
-        }
-    if(GetTag(GetAttackTarget()) == "SunDesGate" && GetIsOpen(GetAttackTarget()) == TRUE)
-        {
-        AssignCommand(OBJECT_SELF, ClearAllActions(TRUE));
-        DelayCommand(0.1, AssignCommand(OBJECT_SELF, ActionMoveToObject(GetObjectByTag("SunDesZombWP"), TRUE, 0.5)));
         }
     object oBadToken = GetItemPossessedBy(OBJECT_SELF,"DeathToken");
     int nMove = GetLocalInt(OBJECT_SELF,"MovementSpeed");
@@ -46,19 +41,6 @@ void main()
     int nTime = GetTimeHour();
     if(nTime==0 && nMove != 1)
     {
-    object oDoor = GetNearestObjectByTag("SunDesGate");
-    if(GetLocalInt(OBJECT_SELF, "MovementSpeed") != 1 && GetDistanceToObject(oDoor) > 0.0)
-        {
-        if(GetIsOpen(oDoor) == TRUE)
-            {
-            DelayCommand(0.1, AssignCommand(OBJECT_SELF, ActionMoveToObject(GetObjectByTag("SunDesZombWP"), TRUE, 0.5)));
-            }
-        else
-            {
-            AssignCommand(OBJECT_SELF, ClearAllActions());
-            AssignCommand(OBJECT_SELF, ActionAttack(GetNearestObjectByTag("SunDesGate")));
-            }
-        }
     SetLocalInt(OBJECT_SELF,"MovementSpeed",1);
     itemproperty ipLoop=GetFirstItemProperty(oSkin);
     ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectHaste()),OBJECT_SELF);
@@ -79,10 +61,6 @@ void main()
     }
     else if(nTime!=0 && nMove ==1)
     {
-    if(GetTag(GetAttackTarget()) == "SunDesGate")
-        {
-        AssignCommand(OBJECT_SELF, ClearAllActions(TRUE));
-        }
     SetLocalInt(OBJECT_SELF,"MovementSpeed",0);
     AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySpecialWalk(),oSkin);
     effect eLoop=GetFirstEffect(OBJECT_SELF);

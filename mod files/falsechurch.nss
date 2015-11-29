@@ -18,7 +18,7 @@ if (DoOnce==TRUE) return;
 
 SetLocalInt(oPC, GetTag(OBJECT_SELF), TRUE);
 
-FloatingTextStringOnCreature("*The church above looks tainted and evil. Best to stay away for now, lest you incur the wrath of some unknown force.*", oPC);
+FloatingTextStringOnCreature("What the..? It's like some sort of.. ancient ruin. Your sight is restricted due to the darkness- but you are sure the pillars surrounding this odd clearing.. go higher than the tallest trees surrounding you. In the center of the clearing is some sort of... metal portal device, with runes engraved all over it. It looks to have had to of been used over at least two hundred years ago.", oPC);
 
 }
 
