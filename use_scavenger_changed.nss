@@ -34,7 +34,7 @@ void SearchStuff(object oUser, int nCount, int nDifficulty, int nTotalChance, ob
 			// check where the random number falls in the generated int chance
 
 			int nChance = GetLocalInt(oSearch, "RefChance"+IntToString(nIterate));
-			if (nRand >= nAccumChance && nRand < nAccumChance+=nChance) {
+			if (nRand >= nAccumChance && nRand < nAccumChance+nChance) {
 				nFound = nIterate;
 
 				string sFound = GetLocalString(oSearch, "Resref"+IntToString(nFound));
@@ -58,13 +58,13 @@ void SearchStuff(object oUser, int nCount, int nDifficulty, int nTotalChance, ob
 					//add time
 					PrintString("The resref " + sFound + " was scavenged by " + GetName(oSearch) + " at TIME");
 					if (DEBUG) {
-						FloatingTextStringOnCreature("OOPS THIS RESREF " + sFound + " doesn't exist! shiiit! (we gave u another tho) <3");
+						FloatingTextStringOnCreature("OOPS THIS RESREF " + sFound + " doesn't exist! shiiit! (we gave u another tho) <3", oUser, FALSE);
 					}
 					nIterate++;
 
 				} else {
 					// end the loop, cuz they have their item
-					nIterate = nCount += 1;
+					nIterate = nCount + 1;
 
 
 					if (GetBaseItemType(oFound) == BASE_ITEM_ARROW ||
@@ -186,13 +186,13 @@ void main() {
 			// What is the max?? -Aez
 			// Will iteratre over the RefChance float for each resref
 			int nCount = 1;
-			float nTotalChance = 0;
+			int nTotalChance = 0;
 			string sResref = GetLocalString(oSearch, "Resref"+IntToString(nCount));
 			while (sResref != "") {
 				nCount++;
 				sResref = GetLocalString(oSearch, "Resref"+IntToString(nCount));
 				int nRefChance = GetLocalInt(oSearch, "RefChance"+IntToString(nCount));
-				if (nRefChance == "") {
+				if (nRefChance == 0) {
 					//default ref chance if people forget to add one for any given item
 					nRefChance = 50;
 					SetLocalInt(oSearch, "RefChance"+IntToString(nCount), nRefChance);
