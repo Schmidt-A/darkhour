@@ -77,12 +77,12 @@ void TryAmmoSalvage(object oDamager, object oWeapon)
     object oAmmo = OBJECT_INVALID;
     int iCheck = d2();
 
-    if (GetBaseItemType(oWeapon)==BASE_ITEM_LONGBOW || GetBaseItemType(oWeapon)==BASE_ITEM_SHORTBOW)
-        oAmmo=GetItemInSlot(INVENTORY_SLOT_ARROWS,oDamager);
-    else if (GetBaseItemType(oWeapon)==BASE_ITEM_LIGHTCROSSBOW || GetBaseItemType(oWeapon)==BASE_ITEM_HEAVYCROSSBOW)
-        oAmmo=GetItemInSlot(INVENTORY_SLOT_BOLTS,oDamager);
-    else if (GetBaseItemType(oWeapon)==BASE_ITEM_SLING)
-        oAmmo=GetItemInSlot(INVENTORY_SLOT_BULLETS,oDamager);
+    if (GetBaseItemType(oWeapon) == BASE_ITEM_LONGBOW || GetBaseItemType(oWeapon) == BASE_ITEM_SHORTBOW)
+        oAmmo = GetItemInSlot(INVENTORY_SLOT_ARROWS, oDamager);
+    else if (GetBaseItemType(oWeapon) == BASE_ITEM_LIGHTCROSSBOW || GetBaseItemType(oWeapon) == BASE_ITEM_HEAVYCROSSBOW)
+        oAmmo = GetItemInSlot(INVENTORY_SLOT_BOLTS, oDamager);
+    else if (GetBaseItemType(oWeapon) == BASE_ITEM_SLING)
+        oAmmo = GetItemInSlot(INVENTORY_SLOT_BULLETS, oDamager);
     else
         // If this is a ranged weapon that wasn't a sling/bow/etc, it's a
         // throwing weapon.
@@ -99,15 +99,40 @@ void TryAmmoSalvage(object oDamager, object oWeapon)
 
 void BehemothRampage()
 {
+    // TODO: Add param for lesser/greater behemoths.
     // We can't rampage more than once. :(
     if (GetLocalInt(OBJECT_SELF, "rampaged"))
         return;
+
+    object oArea = GetArea(OBJECT_SELF);
+    object oTarget = GetFirstObjectInArea(oArea);
+    int iSave;
 
     SetLocalInt(OBJECT_SELF, "rampaged", TRUE);
     SpeakString("The lumbering behemoth has become enraged by your assault! " +
             "It roars and slams its fists into the ground with such fury that "+
             "the ground trembles. It then begins racing towards you!", TALKVOLUME_TALK);
     // What VFX should we give ourselves?
+
+    while(GetIsObjectValid(oTarget))
+    {
+        // Ignore placeables, doors, etc.
+        if(!GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
+            continue;
+
+        // If close enough, GET REKT
+        if ((GetDistanceBetween(oPC, oTarget) <= 50.0) 
+                && (GetDistanceBetween(oPC, oTarget) > 0.0))
+        {
+            if(ReflexSave(oTarget, 10) < 1)
+            {
+                AssignCommand(oTarget, ClearAllActions(TRUE));
+                ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SCREEN_SHAKE), oTarget);
+                AssignCommand(oTarget, ActionPlayAnimation(ANIMATION_LOOPING_DEAD_BACK, 1.0, 3.0));
+            }
+        }
+    }
+    // TODO: Up the behemoth's speed here.
 }
 
 void main()
