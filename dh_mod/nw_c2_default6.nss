@@ -69,7 +69,7 @@ int ShouldTargetSwitch(object oDamager, object oTarget)
                  || (GetHitDice(oDamager) - 2) > GetHitDice(oTarget)
                  )
             )
-        )
+        );
 }
 
 void TryAmmoSalvage(object oDamager, object oWeapon)
@@ -77,11 +77,11 @@ void TryAmmoSalvage(object oDamager, object oWeapon)
     object oAmmo = OBJECT_INVALID;
     int iCheck = d2();
 
-    if (GetBaseItemType(oItem)==BASE_ITEM_LONGBOW || GetBaseItemType(oItem)==BASE_ITEM_SHORTBOW)
+    if (GetBaseItemType(oWeapon)==BASE_ITEM_LONGBOW || GetBaseItemType(oWeapon)==BASE_ITEM_SHORTBOW)
         oAmmo=GetItemInSlot(INVENTORY_SLOT_ARROWS,oDamager);
-    else if (GetBaseItemType(oItem)==BASE_ITEM_LIGHTCROSSBOW || GetBaseItemType(oItem)==BASE_ITEM_HEAVYCROSSBOW)
+    else if (GetBaseItemType(oWeapon)==BASE_ITEM_LIGHTCROSSBOW || GetBaseItemType(oWeapon)==BASE_ITEM_HEAVYCROSSBOW)
         oAmmo=GetItemInSlot(INVENTORY_SLOT_BOLTS,oDamager);
-    else if (GetBaseItemType(oItem)==BASE_ITEM_SLING)
+    else if (GetBaseItemType(oWeapon)==BASE_ITEM_SLING)
         oAmmo=GetItemInSlot(INVENTORY_SLOT_BULLETS,oDamager);
     else
         // If this is a ranged weapon that wasn't a sling/bow/etc, it's a
@@ -144,6 +144,6 @@ void main()
 
     // See if we can salvage ammo if the attacker was using a ranged weapon.
     object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oDamager);
-    if(GetWeaponRanged(oItem) && GetLocalInt(OBJECT_SELF, "bX3_LAST_ATTACK_PHYSICAL"))
+    if(GetWeaponRanged(oWeapon) && GetLocalInt(OBJECT_SELF, "bX3_LAST_ATTACK_PHYSICAL"))
         TryAmmoSalvage(oDamager, oWeapon);    
 }
