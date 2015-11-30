@@ -41,7 +41,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
                 iFound = iIterate;
                 string sFound = GetLocalString(oSearch, "Resref"+IntToString(iFound));
                 
-                if (scavengeUserItemByTag(oUser, sFound)) 
+                if (ScavengeUserItemByTag(oUser, sFound)) 
                 {
                     // end the loop, cuz they have their item
                     iIterate = iCount + 1;
@@ -76,7 +76,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
 
                     iIterate++;
                 }
-            } 
+            }
             else 
             {
                 // the chance didn't match for this item
@@ -92,7 +92,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
             // ie something fucked up probably
             FloatingTextStringOnCreature("You searched long and hard, but to no avail.", oUser, FALSE);
         } 
-    } 
+    }
     else 
     {
         FloatingTextStringOnCreature("Your search turns up nothing.", oUser, FALSE);
@@ -101,7 +101,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
 
 //returns 0 if the item isn't valid so we can give them another
 // takes in a user object and an item tag string 
-int scavengeUserItemByTag(object oUser, string sFound)
+int ScavengeUserItemByTag(object oUser, string sFound)
 {
     object oFound = CreateItemOnObject(sFound, oUser);
 
@@ -120,7 +120,7 @@ int scavengeUserItemByTag(object oUser, string sFound)
         }
 
         //return false (0) so that we can give them a new item
-        return(FALSE);
+        return FALSE;
     }
     else
     {
@@ -135,7 +135,7 @@ int scavengeUserItemByTag(object oUser, string sFound)
         }
 
         // return true (1) so that we will finish the scavenging
-        return(TRUE);
+        return TRUE;
     }
 }
 
