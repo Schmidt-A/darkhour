@@ -41,7 +41,8 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
                 iFound = iIterate;
                 string sFound = GetLocalString(oSearch, "Resref"+IntToString(iFound));
                 
-                if (giveUserItemByTag(oUser, sFound) == TRUE) {
+                if (scavengeUserItemByTag(oUser, sFound)) 
+                {
                     // end the loop, cuz they have their item
                     iIterate = iCount + 1;
 
@@ -100,7 +101,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
 
 //returns 0 if the item isn't valid so we can give them another
 // takes in a user object and an item tag string 
-int giveUserItemByTag(oUser, sFound)
+int scavengeUserItemByTag(object oUser, string sFound)
 {
     object oFound = CreateItemOnObject(sFound, oUser);
 
@@ -132,6 +133,9 @@ int giveUserItemByTag(oUser, sFound)
         {
             SetItemStackSize(oFound, 10+d6(1));
         }
+
+        // return true (1) so that we will finish the scavenging
+        return(TRUE);
     }
 }
 
