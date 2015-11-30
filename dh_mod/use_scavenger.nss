@@ -17,6 +17,47 @@
 
 
 
+//returns 0 if the item isn't valid so we can give them another
+// takes in a user object and an item tag string 
+int ScavengeUserItemByTag(object oUser, string sFound)
+{
+    object oFound = CreateItemOnObject(sFound, oUser);
+
+    // if the item is invalid, take it out of the list and give them another one
+    if (GetName(oFound) == "_") 
+    {
+        
+        sFound = "";
+        // how we do dis
+        //      oFound = NULL
+
+
+        if (DEBUG) 
+        {
+            FloatingTextStringOnCreature("OOPS THIS RESREF " + sFound + " doesn't exist! shiiit! (we gave u another tho) <3", oUser, FALSE);
+        }
+
+        //return false (0) so that we can give them a new item
+        return FALSE;
+    }
+    else
+    {
+        // the item is valid, so let's give the right stuff to them
+        if (GetBaseItemType(oFound) == BASE_ITEM_ARROW ||
+                GetBaseItemType(oFound) == BASE_ITEM_BOLT ||
+                GetBaseItemType(oFound) == BASE_ITEM_BULLET ||
+                GetBaseItemType(oFound) == BASE_ITEM_DART ||
+                GetBaseItemType(oFound) == BASE_ITEM_THROWINGAXE) 
+        {
+            SetItemStackSize(oFound, 10+d6(1));
+        }
+
+        // return true (1) so that we will finish the scavenging
+        return TRUE;
+    }
+}
+
+
 //Search Stuff Added by Demon X
 
 // Aez redid it
@@ -96,46 +137,6 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
     else 
     {
         FloatingTextStringOnCreature("Your search turns up nothing.", oUser, FALSE);
-    }
-}
-
-//returns 0 if the item isn't valid so we can give them another
-// takes in a user object and an item tag string 
-int ScavengeUserItemByTag(object oUser, string sFound)
-{
-    object oFound = CreateItemOnObject(sFound, oUser);
-
-    // if the item is invalid, take it out of the list and give them another one
-    if (GetName(oFound) == "_") 
-    {
-        
-        sFound = "";
-        // how we do dis
-        //      oFound = NULL
-
-
-        if (DEBUG) 
-        {
-            FloatingTextStringOnCreature("OOPS THIS RESREF " + sFound + " doesn't exist! shiiit! (we gave u another tho) <3", oUser, FALSE);
-        }
-
-        //return false (0) so that we can give them a new item
-        return FALSE;
-    }
-    else
-    {
-        // the item is valid, so let's give the right stuff to them
-        if (GetBaseItemType(oFound) == BASE_ITEM_ARROW ||
-                GetBaseItemType(oFound) == BASE_ITEM_BOLT ||
-                GetBaseItemType(oFound) == BASE_ITEM_BULLET ||
-                GetBaseItemType(oFound) == BASE_ITEM_DART ||
-                GetBaseItemType(oFound) == BASE_ITEM_THROWINGAXE) 
-        {
-            SetItemStackSize(oFound, 10+d6(1));
-        }
-
-        // return true (1) so that we will finish the scavenging
-        return TRUE;
     }
 }
 
