@@ -15,7 +15,7 @@
 //  iOTE:  You will ieed to modify the section below that calls the junksearch
 //  scripts to customize it for your module.
 
-
+int DEBUG = GetLocalInt(GetModule(), "DEBUG_MODE");
 
 //returns 0 if the item isn't valid so we can give them another
 // takes in a user object and an item tag string 
@@ -52,6 +52,8 @@ int ScavengeUserItemByTag(object oUser, string sFound)
             SetItemStackSize(oFound, 10+d6(1));
         }
 
+        FloatingTextStringOnCreature("Found "+GetName(oFound)+"!", oUser, FALSE);
+
         // return true (1) so that we will finish the scavenging
         return TRUE;
     }
@@ -64,7 +66,6 @@ int ScavengeUserItemByTag(object oUser, string sFound)
 // ieed to reorganize this into sub methods
 void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, object oSearch)
 {
-    int DEBUG = GetLocalInt(GetModule(), "DEBUG_MODE");
     if (GetIsSkillSuccessful(oUser, SKILL_SEARCH, iDifficulty)) 
     {
         int iRand = Random(iTotalChance);
@@ -77,7 +78,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
             // check where the random number falls in the generated int chance
 
             int iChance = GetLocalInt(oSearch, "RefChance"+IntToString(iIterate));
-            if (iRand >= iAccumChance && iRand < iAccumChance+nChance) 
+            if (iRand >= iAccumChance && iRand < iAccumChance+iChance) 
             {
                 iFound = iIterate;
                 string sFound = GetLocalString(oSearch, "Resref"+IntToString(iFound));
@@ -92,7 +93,7 @@ void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, ob
                         FloatingTextStringOnCreature("RESREF:</c  "+GetLocalString(oSearch, "Resref"+IntToString(iFound)), oUser, FALSE);
                     }
 
-                    FloatingTextStringOnCreature("Found "+GetName(oFound)+"!", oUser, FALSE);
+                    
                     SetLocalInt(oSearch, "Found", GetLocalInt(oSearch, "Found")+1);
                     if (GetLocalInt(oSearch, "Found") >= 4) 
                     {  
