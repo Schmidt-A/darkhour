@@ -97,6 +97,19 @@ void TryAmmoSalvage(object oDamager, object oWeapon)
     }
 }
 
+void BehemothRampage()
+{
+    // We can't rampage more than once. :(
+    if (GetLocalInt(OBJECT_SELF, "rampaged"))
+        return;
+
+    SetLocalInt(OBJECT_SELF, "rampaged", TRUE);
+    SpeakString("The lumbering behemoth has become enraged by your assault! " +
+            "It roars and slams its fists into the ground with such fury that "+
+            "the ground trembles. It then begins racing towards you!", TALKVOLUME_TALK);
+    // What VFX should we give ourselves?
+}
+
 void main()
 {
     object oDamager = GetLastDamager();
@@ -144,6 +157,11 @@ void main()
 
     // See if we can salvage ammo if the attacker was using a ranged weapon.
     object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oDamager);
-    if(GetWeaponRanged(oWeapon) && GetLocalInt(OBJECT_SELF, "bX3_LAST_ATTACK_PHYSICAL"))
+    int iPhysicalDamage = GetDamageDealtByType(DAMAGE_TYPE_BASE_WEAPON);
+    if(GetWeaponRanged(oWeapon) && iPhysicalDamage > 0)
         TryAmmoSalvage(oDamager, oWeapon);    
+
+    // If we're a damaged behemoth, FUCK 'EM UP.
+    if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB" && GetPercentageHPLoss(OBJECT_SELF) < 50)
+        BehemothRampage();
 }
