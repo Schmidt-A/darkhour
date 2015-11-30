@@ -131,6 +131,7 @@ void BehemothRampage()
                 AssignCommand(oTarget, ActionPlayAnimation(ANIMATION_LOOPING_DEAD_BACK, 1.0, 3.0));
             }
         }
+        oTarget = GetNextObjectInArea(oArea);
     }
     // TODO: Up the behemoth's speed here.
 }
