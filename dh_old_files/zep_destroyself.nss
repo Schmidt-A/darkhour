@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Community Expansion Pack
+//:://////////////////////////////////////////////
+/*
+    Generic Destroy Self script
+*/
+//:://////////////////////////////////////////////
+//:: Created By:   420
+//:: Created On:   April 20, 2009
+//:://////////////////////////////////////////////
+
+void main()
+{
+ChangeToStandardFaction(OBJECT_SELF, STANDARD_FACTION_MERCHANT);
+SetIsDestroyable(TRUE);
+DestroyObject(OBJECT_SELF);
+}
