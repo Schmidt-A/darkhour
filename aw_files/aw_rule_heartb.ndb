@@ -1,0 +1,194 @@
+NDB V1.0
+0000004 0000001 0000062 0000015 0000047
+n00 aps_include
+n01 bodypart_inc
+n02 inc_custom
+N03 aw_rule_heartb
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 v SQLInit
+f 000001af 000001db 001 v SQLExecDirect
+fp s
+f 000001db 00000326 000 i SQLFetch
+f ffffffff ffffffff 000 i SQLFirstRow
+f ffffffff ffffffff 000 i SQLNextRow
+f 00000326 00000570 001 s SQLGetData
+fp i
+f ffffffff ffffffff 001 s LocationToStringAps
+fp e2
+f ffffffff ffffffff 001 e2 StringToLocationAps
+fp s
+f ffffffff ffffffff 001 s VectorToStringAps
+fp t0000
+f ffffffff ffffffff 001 t0000 StringToVectorAps
+fp s
+f ffffffff ffffffff 005 v SetPersistentString
+fp o
+fp s
+fp s
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentInt
+fp o
+fp s
+fp i
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentFloat
+fp o
+fp s
+fp f
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentLocation
+fp o
+fp s
+fp e2
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentVector
+fp o
+fp s
+fp t0000
+fp i
+fp s
+f ffffffff ffffffff 003 s GetPersistentString
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 i GetPersistentInt
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 f GetPersistentFloat
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 e2 GetPersistentLocation
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 t0000 GetPersistentVector
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 v DeletePersistentVariable
+fp o
+fp s
+fp s
+f ffffffff ffffffff 001 s SQLEncodeSpecialChars
+fp s
+f ffffffff ffffffff 001 s SQLDecodeSpecialChars
+fp s
+f ffffffff ffffffff 000 i NWNX_BODYPART_LOW
+f ffffffff ffffffff 000 i NWNX_BODYPART_GENDER
+f ffffffff ffffffff 000 i NWNX_BODYPART_COLOR_SKIN
+f ffffffff ffffffff 000 i NWNX_BODYPART_COLOR_HAIR
+f ffffffff ffffffff 000 i NWNX_BODYPART_COLOR_TATTOO_1
+f ffffffff ffffffff 000 i NWNX_BODYPART_COLOR_TATTOO_2
+f ffffffff ffffffff 000 i NWNX_BODYPART_FOOT_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_FOOT_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_SHIN_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_SHIN_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_THIGH_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_THIGH_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_PELVIS
+f ffffffff ffffffff 000 i NWNX_BODYPART_TORSO
+f ffffffff ffffffff 000 i NWNX_BODYPART_BELT
+f ffffffff ffffffff 000 i NWNX_BODYPART_NECK
+f ffffffff ffffffff 000 i NWNX_BODYPART_FOREARM_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_FOREARM_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_BICEP_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_BICEP_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_SHOULDER_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_SHOULDER_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_HAND_R
+f ffffffff ffffffff 000 i NWNX_BODYPART_HAND_L
+f ffffffff ffffffff 000 i NWNX_BODYPART_UNKNOWN
+f ffffffff ffffffff 000 i NWNX_BODYPART_HEAD
+f ffffffff ffffffff 000 i NWNX_BODYPART_TAIL
+f ffffffff ffffffff 000 i NWNX_BODYPART_WING
+f ffffffff ffffffff 000 i NWNX_BODYPART_HIGH
+f ffffffff ffffffff 002 i GetBodyPart
+fp o
+fp i
+f ffffffff ffffffff 003 v SetBodyPart
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 v MakeJournalEntry
+fp o
+f ffffffff ffffffff 000 v CheckItemID
+f ffffffff ffffffff 001 s AntiworldRules
+fp i
+f ffffffff ffffffff 001 v RemoveWingsTailIfAny
+fp o
+f ffffffff ffffffff 001 v SetPersistentWings
+fp o
+f 00000053 000001af 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 00000053 000 v #globals
+v 00000017 ffffffff 00000000 i SQL_ERROR
+v 0000002d ffffffff 00000004 i SQL_SUCCESS
+v 00000055 000001a7 00000000 o oModule
+v 0000006a 000001a7 00000004 i nPirateStatus
+v 0000016c 0000019b 00000008 s sRule
+v 000001af 000001d3 00000000 s sSQL
+v 000001db 00000324 00000000 i #retval
+v 000001dd 0000031e 00000004 s sRow
+v 000001df 0000031e 00000008 o oModule
+v 00000326 0000056e 00000000 s #retval
+v 00000326 00000568 00000004 i iCol
+v 00000328 00000562 00000008 i iPos
+v 0000032a 00000562 0000000c s sResultSet
+v 0000035c 00000562 00000010 i iCount
+v 00000372 00000562 00000014 s sColValue
+l00 0000016 00000015 0000002b
+l00 0000017 0000002b 00000041
+l03 0000016 00000053 00000068
+l03 0000017 00000068 00000092
+l03 0000018 00000092 000000b8
+l03 0000022 000000be 000000ce
+l03 0000024 000000d4 00000115
+l03 0000026 0000011b 0000011d
+l03 0000028 0000011d 0000015c
+l03 0000030 0000015c 0000016a
+l03 0000031 0000016a 00000188
+l03 0000033 00000188 0000019b
+l03 0000035 000001ad 000001af
+l00 0000159 000001af 000001d3
+l00 0000160 000001d3 000001db
+l00 0000164 000001db 000001dd
+l00 0000165 000001dd 000001f2
+l00 0000166 000001f2 00000233
+l00 0000167 00000233 00000261
+l00 0000168 00000261 00000276
+l00 0000170 0000027c 000002a9
+l00 0000171 000002a9 000002cb
+l00 0000173 000002d1 000002d3
+l00 0000175 000002d3 000002fc
+l00 0000176 000002fc 0000031e
+l00 0000178 00000324 00000326
+l00 0000194 00000326 00000328
+l00 0000195 00000328 0000035a
+l00 0000198 0000035a 00000370
+l00 0000199 00000370 00000384
+l00 0000201 00000384 000003aa
+l00 0000202 000003aa 000003dc
+l00 0000205 000003e2 000003f8
+l00 0000207 000003fe 00000400
+l00 0000210 00000418 0000042a
+l00 0000212 00000430 00000432
+l00 0000215 00000432 0000044a
+l00 0000217 0000044a 0000045e
+l00 0000218 0000045e 00000470
+l00 0000219 00000476 00000499
+l00 0000220 0000049f 000004a1
+l00 0000222 000004a1 000004db
+l00 0000223 000004db 00000501
+l00 0000227 00000501 00000513
+l00 0000228 00000519 00000534
+l00 0000232 00000540 00000562
+l00 0000233 00000568 00000570

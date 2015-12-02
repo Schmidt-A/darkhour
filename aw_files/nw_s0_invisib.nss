@@ -1,0 +1,84 @@
+//::///////////////////////////////////////////////
+//:: Invisibility
+//:: NW_S0_Invisib.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Target creature becomes invisibility
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Jan 7, 2002
+//:://////////////////////////////////////////////
+
+#include "x2_inc_spellhook"
+
+void main()
+{
+
+/*
+  Spellcast Hook Code
+  Added 2003-06-23 by GeorgZ
+  If you want to make changes to all spells,
+  check x2_inc_spellhook.nss to find out more
+
+*/
+
+    if (!X2PreSpellCastCode())
+    {
+    // If code within the PreSpellCastHook (i.e. UMD) reports FALSE, do not run this spell
+        return;
+    }
+
+// End of Spell Cast Hook
+
+
+    //Declare major variables
+    object oTarget = GetSpellTargetObject();
+    object oCaster = OBJECT_SELF;
+
+    //effect eVis = EffectVisualEffect(VFX_DUR_INVISIBILITY);
+    effect eInvis = EffectInvisibility(INVISIBILITY_TYPE_NORMAL);
+    effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+
+    effect eLink = EffectLinkEffects(eInvis, eDur);
+
+    //Delcaring variables for harper change (adding Ethereal Visage as an effect):
+    effect eHarpVis = EffectVisualEffect(VFX_DUR_ETHEREAL_VISAGE);
+    effect eHarpDam = EffectDamageReduction(20, DAMAGE_POWER_PLUS_THREE);
+    effect eHarpSpellAbs = EffectSpellLevelAbsorption(2);
+    effect eHarpConceal = EffectConcealment(25);
+    effect eHarpDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+    int nHarperLevel = GetLevelByClass(CLASS_TYPE_HARPER, OBJECT_SELF);
+    //Linking them as eHarper
+    effect eHarper = EffectLinkEffects(eHarpDam, eHarpVis);
+    eHarper = EffectLinkEffects(eHarper, eHarpSpellAbs);
+    eHarper = EffectLinkEffects(eHarper, eHarpDur);
+    eHarper = EffectLinkEffects(eHarper, eHarpConceal);
+    eHarper = ExtraordinaryEffect(eHarper);
+    int nHarpDuration = 30;
+    if(!GetHasFeat(FEAT_PRESTIGE_INVISIBILITY_1))
+    {
+     nHarpDuration = 15;
+    }
+    //Fire cast spell at event for the specified target
+    SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_INVISIBILITY, FALSE));
+    int nDuration = GetCasterLevel(OBJECT_SELF);
+    int nMetaMagic = GetMetaMagicFeat();
+    //Enter Metamagic conditions
+    if (nMetaMagic == METAMAGIC_EXTEND)
+    {
+        nDuration = nDuration *2; //Duration is +100%
+    }
+    //Apply the VFX impact and effects
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, TurnsToSeconds(nDuration));
+    //If character is a harper, apply harper effects
+    if(GetLastSpellCastClass() == CLASS_TYPE_INVALID)//Using workaround due to retardedness of GetLastSpellCastClass function
+     {
+      if(nHarperLevel >=5)
+       {
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eHarper, oTarget, RoundsToSeconds(nHarpDuration));
+       }
+     }
+}
+

@@ -1,0 +1,168 @@
+NDB V1.0
+0000002 0000001 0000060 0000007 0000011
+n00 x2_inc_itemprop
+N01 wep_is_melee
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 s X2_IP_WORK_CONTAINER_TAG
+f ffffffff ffffffff 000 s X2_IP_ADDRPOP_2DA
+f ffffffff ffffffff 000 s X2_IP_POISONWEAPON_2DA
+f ffffffff ffffffff 000 s X2_IP_ARMORPARTS_2DA
+f ffffffff ffffffff 000 s X2_IP_ARMORAPPEARANCE_2DA
+f ffffffff ffffffff 000 i XP_IP_ITEMMODCONVERSATION_CTOKENBASE
+f ffffffff ffffffff 000 i X2_IP_ITEMMODCONVERSATION_MODE_TAILOR
+f ffffffff ffffffff 000 i X2_IP_ITEMMODCONVERSATION_MODE_CRAFT
+f ffffffff ffffffff 000 i X2_IP_MAX_ITEM_PROPERTIES
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_NEXT
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_PREV
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_RANDOM
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_NEXT
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_PREV
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_RANDOM
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_REPLACE_EXISTING
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_KEEP_EXISTING
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_IGNORE_EXISTING
+f ffffffff ffffffff 004 v IPRemoveMatchingItemProperties
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 v IPRemoveAllItemProperties
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetIsItemEquipable
+fp o
+f ffffffff ffffffff 003 o IPDyeArmor
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 o IPGetIPWorkContainer
+fp o
+f ffffffff ffffffff 005 e4 IPGetItemPropertyByID
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i IPGetIsRangedWeapon
+fp o
+f 000000d2 000006eb 001 i IPGetIsMeleeWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIsProjectile
+fp o
+f ffffffff ffffffff 001 i IPGetIsBludgeoningWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIPConstCastSpellFromSpellID
+fp i
+f ffffffff ffffffff 002 i IPGetItemHasItemOnHitPropertySubType
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetNumberOfAppearances
+fp i
+f ffffffff ffffffff 002 i IPGetNextArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetPrevArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetRandomArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 004 o IPGetModifiedArmor
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 006 v IPSafeAddItemProperty
+fp o
+fp e4
+fp f
+fp i
+fp i
+fp i
+f ffffffff ffffffff 004 i IPGetItemHasProperty
+fp o
+fp e4
+fp i
+fp i
+f ffffffff ffffffff 001 i IPGetItemSequencerProperty
+fp o
+f ffffffff ffffffff 001 i IPGetIsIntelligentWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetDamagePowerConstantFromNumber
+fp i
+f ffffffff ffffffff 001 i IPGetDamageBonusConstantFromNumber
+fp i
+f ffffffff ffffffff 003 v IPWildShapeCopyItemProperties
+fp o
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetWeaponEnhancementBonus
+fp o
+fp i
+f ffffffff ffffffff 003 v IPSetWeaponEnhancementBonus
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 v IPUpgradeWeaponEnhancementBonus
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetHasItemPropertyOnCharacter
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetNumberOfItemProperties
+fp o
+f ffffffff ffffffff 001 i IPGetNumberOfArmorAppearances
+fp i
+f ffffffff ffffffff 003 i IPGetArmorAppearanceType
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 o IPCreateProficiencyFeatItemOnCreature
+fp o
+f ffffffff ffffffff 000 o IPGetTargetedOrEquippedMeleeWeapon
+f ffffffff ffffffff 001 o IPGetTargetedOrEquippedArmor
+fp i
+f ffffffff ffffffff 003 v IPCopyItemProperties
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 i IPGetWeaponAppearanceType
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 o IPGetModifiedWeapon
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 o IPCreateAndModifyArmorRobe
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetHasItemPropertyByConst
+fp i
+fp o
+f ffffffff ffffffff 001 i IPGetHasUseLimitation
+fp o
+f 00000017 000000d2 000 i StartingConditional
+f 0000000d 00000017 000 i #loader
+v 0000000f ffffffff 00000000 i #retval
+v 00000017 000000d0 00000000 i #retval
+v 00000019 000000ca 00000004 o oPC
+v 0000002e 000000ca 00000008 o oWeapon
+v 000000d2 000006e9 00000000 i #retval
+v 000000d2 000006e3 00000004 o oItem
+v 000000d4 000006dd 00000008 i nItem
+l01 0000005 00000017 0000002c
+l01 0000006 0000002c 0000004f
+l01 0000007 0000004f 0000007c
+l01 0000008 00000082 000000a2
+l01 0000010 000000a8 000000aa
+l01 0000011 000000d0 000000d2
+l00 0000536 000000d2 000000ef
+l00 0000538 000000ef 00000691
+l00 0000571 00000697 000006b7
+l00 0000573 000006bd 000006dd
+l00 0000574 000006e3 000006eb

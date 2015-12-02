@@ -1,0 +1,93 @@
+NDB V1.0
+0000002 0000001 0000025 0000005 0000008
+n00 nw_i0_spells
+N01 x0_s2_harpsmile
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 i NW_I0_SPELLS_MAX_BREACH
+f ffffffff ffffffff 004 v TrapDoElectricalDamage
+fp i
+fp i
+fp i
+fp o
+f ffffffff ffffffff 003 i MyResistSpell
+fp o
+fp o
+fp f
+f ffffffff ffffffff 006 i MySavingThrow
+fp i
+fp o
+fp i
+fp i
+fp o
+fp f
+f ffffffff ffffffff 002 e0 CreateProtectionFromAlignmentLink
+fp i
+fp i
+f ffffffff ffffffff 000 e0 CreateDoomEffectsLink
+f ffffffff ffffffff 003 v RemoveSpellEffects
+fp i
+fp o
+fp o
+f ffffffff ffffffff 002 v RemoveSpecificEffect
+fp i
+fp o
+f ffffffff ffffffff 002 f GetSpellEffectDelay
+fp e2
+fp o
+f ffffffff ffffffff 002 f GetRandomDelay
+fp f
+fp f
+f ffffffff ffffffff 002 i GetScaledDuration
+fp i
+fp o
+f ffffffff ffffffff 002 e0 GetScaledEffect
+fp e0
+fp o
+f ffffffff ffffffff 003 i RemoveProtections
+fp i
+fp o
+fp i
+f ffffffff ffffffff 001 i GetSpellBreachProtection
+fp i
+f ffffffff ffffffff 001 v AssignAOEDebugString
+fp s
+f ffffffff ffffffff 000 v PlayDragonBattleCry
+f ffffffff ffffffff 001 i AmIAHumanoid
+fp o
+f ffffffff ffffffff 004 v DoSpellBreach
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 006 v spellsCure
+fp i
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i GetDragonFearDC
+fp i
+f ffffffff ffffffff 000 i CalcNumberOfAttacks
+f ffffffff ffffffff 000 v RemoveTempHitPoints
+f ffffffff ffffffff 002 v RemoveEffectsFromSpell
+fp o
+fp i
+f 00000015 000000f8 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 000000f0 00000000 o oCaster
+v 0000002d 000000f0 00000004 i nCasterLevel
+v 00000050 000000f0 00000008 e0 eMind
+v 0000006b 000000f0 0000000c e0 eVis
+v 0000008c 000000f0 00000010 e0 eMindVis
+l01 0000023 00000015 0000002b
+l01 0000024 0000002b 0000004e
+l01 0000025 0000004e 00000069
+l01 0000026 00000069 0000008a
+l01 0000027 0000008a 000000af
+l01 0000028 000000af 000000ca
+l01 0000031 000000ca 000000f0
+l01 0000032 000000f6 000000f8
