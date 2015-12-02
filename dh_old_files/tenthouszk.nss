@@ -20,6 +20,6 @@ if(iStack == 1)
 if(GetItemPossessedBy(oPC, "badge51") == OBJECT_INVALID)
     {
     CreateItemOnObject("badge51", oPC);
-    GiveXPToCreatureDH(oPC, 100);
+    GiveXPToCreatureDH(oPC, 100, "XP_ZOMBIE");
     }
 }

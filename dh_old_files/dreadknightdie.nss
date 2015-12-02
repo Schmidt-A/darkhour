@@ -13,7 +13,7 @@ object oArea = GetArea(OBJECT_SELF);
             {
                 CreateItemOnObject("badge30",oPeople);
                 FloatingTextStringOnCreature("You received a new badge!", oPeople, FALSE);
-                GiveXPToCreatureDH(oPeople,100);;
+                GiveXPToCreatureDH(oPeople, 100, "XP_BOSS");
             }
         }
         oPeople = GetNextObjectInArea(oArea);

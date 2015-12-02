@@ -69,7 +69,7 @@ void main()
             {
                 CreateItemOnObject("badge25",oPeople);
                 FloatingTextStringOnCreature("You received a new badge!", oPeople, FALSE);
-                GiveXPToCreatureDH(oPeople,300);;
+                GiveXPToCreatureDH(oPeople, 300, "XP_BOSS");
             }
         }
         oPeople = GetNextObjectInArea(oArea);

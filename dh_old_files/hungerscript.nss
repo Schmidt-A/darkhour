@@ -351,15 +351,15 @@ void main()
              }
              else if (GetItemPossessedBy(oPC, "poorroleplay")!= OBJECT_INVALID)
              {
-                GiveXPToCreatureDH(oPC, 5);
+                GiveXPToCreatureDH(oPC, 5, "XP_RP");
              }
              else if (GetItemPossessedBy(oPC, "goodroleplay")!= OBJECT_INVALID)
              {
-                GiveXPToCreatureDH(oPC, 6);
+                GiveXPToCreatureDH(oPC, 6, "XP_RP");
              }
              else if (GetItemPossessedBy(oPC, "greatroleplay")!= OBJECT_INVALID)
              {
-                GiveXPToCreatureDH(oPC, 12);
+                GiveXPToCreatureDH(oPC, 12, "XP_RP");
              }
          }
 

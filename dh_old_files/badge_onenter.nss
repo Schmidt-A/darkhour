@@ -11,7 +11,7 @@ void Badge(object oPC, string sRes, int iExp)
     {
     if(GetItemPossessedBy(oPC, sRes) != OBJECT_INVALID)
         {
-        GiveXPToCreatureDH(oPC, iExp);
+        GiveXPToCreatureDH(oPC, iExp, "XP_BADGE");
         }
     }
 void main()

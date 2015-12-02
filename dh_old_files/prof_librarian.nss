@@ -21,7 +21,7 @@ while (GetIsObjectValid(oItem))
    oItem = GetNextItemInInventory(oPC);
    }
 
-RewardPartyXP(10, oPC, FALSE);
+GiveXPToCreatureDH(oPC, 10, "XP_PROFESSION");
 
 CreateItemOnObject("professionbook", oPC);
 CreateItemOnObject("nw_it_book002", oPC);

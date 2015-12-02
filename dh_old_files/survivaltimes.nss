@@ -17,7 +17,7 @@ void main()
             if (GetItemStackSize(oItem) == 10)
             {
                 DestroyObject(oItem);
-                GiveXPToCreatureDH(oPC, 15);
+                GiveXPToCreatureDH(oPC, 15, "XP_SURVIVE");
                 DelayCommand(1.0, DelayedCreateItemOnObject("survivaltimex10", oPC, 1));
             }
         }

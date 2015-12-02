@@ -2,5 +2,5 @@
 void main()
 {
 object oPC = GetLastUsedBy();
-GiveXPToCreatureDH(oPC, 10000);
+GiveXPToCreatureDH(oPC, 10000, "XP_TEST");
 }

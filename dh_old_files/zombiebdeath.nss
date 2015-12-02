@@ -55,7 +55,7 @@ void main()
         {
             CreateItemOnObject("badge24",oDamager);
             FloatingTextStringOnCreature("You received a new badge!", oDamager, FALSE);
-            GiveXPToCreatureDH(oDamager,100);
+            GiveXPToCreatureDH(oDamager, 100, "XP_BOSS");
         }
     }
 }
