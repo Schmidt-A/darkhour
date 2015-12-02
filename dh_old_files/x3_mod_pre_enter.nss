@@ -170,7 +170,7 @@ void main()
         object oWRing = CreateItemOnObject("warriorring",oPC);
     }
     if (GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
-        SubraceLogin(oPC, TRUE);
+        SubraceLogin(oPC);
 
     int nDisease = 0;
     object oCheckDisease = GetFirstItemInInventory(oPC);

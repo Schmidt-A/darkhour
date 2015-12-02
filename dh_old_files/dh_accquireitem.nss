@@ -16,12 +16,16 @@ string sRef = GetResRef(oItem);
 string sTag = GetTag(oItem);
 if(sTag == "ecl_token")
 {
-    int iLA = GetLA(GetStringLowerCase(GetSubRace(oAcquirer)));
-    SetLocalInt(oItem, "iLA", iLA);
-    SetLocalInt(oItem, "iECL", 1+iLA);
-    SetLocalInt(oItem, "iXPNeeded", GetSubraceXP(1+iLA));
-    SetLocalInt(oItem, "iCumulativeXP", 0);
-    SetLocalInt(oItem, "iRealXP", 1000);
+    string sPre = GetDBVarName(oAcquirer);
+    if(GetCampaignInt("SUBRACE", sPre + "iCumulativeXP") == 0)
+    {
+        int iLA = GetLA(GetStringLowerCase(GetSubRace(oAcquirer)));
+        SetCampaignInt("SUBRACE", sPre + "iLA", iLA);
+        SetCampaignInt("SUBRACE", sPre + "iECL", 1+iLA);
+        SetCampaignInt("SUBRACE", sPre + "iXPNeeded", GetSubraceXP(1+iLA));
+        SetCampaignInt("SUBRACE", sPre + "iCumulativeXP", 0);
+        SetCampaignInt("SUBRACE", sPre + "iRealXP", 1000);
+    }
 }
 if(sTag == "zkxthous")
     {

@@ -42,7 +42,6 @@ void main()
         HorsePreloadAnimations(oPC);
         DelayCommand(3.0,HorseRestoreHenchmenLocations(oPC));
         Authenticate(oPC);
-        SubraceLogin(oPC);
     } // more details
 }
 
