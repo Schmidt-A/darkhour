@@ -8,7 +8,6 @@ void main()
 	SetCampaignLocation(sModName, "lastlocation", lLocation, oPC);
 
 	//log their exp on logout
-
-	WriteTimestampedLogEntry(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + 
-	                " IP ADDRESS: " + GetPCIPAddress(oPC) + " | " + GetXPDH(oPC));
+	WriteTimestampedLogEntry("EXIT: " + GetName(oPC) + " | " + GetPCPublicCDKey(oPC) + 
+	                " | " + GetPCIPAddress(oPC) + " | " + GetXPDH(oPC));
 }
