@@ -13,7 +13,7 @@ XP_LEVEL_RES
 
 
 weird flags:
-XP_SURVIVE - the survival tick xp
+XP_SURVIVE - the survival tick xp (unused)
 XP_RP - the rp hunger heartbeat xp
 XP_LEVEL_RES - the level restriction script that is soon to be removed
 XP_TEST - from the test function
