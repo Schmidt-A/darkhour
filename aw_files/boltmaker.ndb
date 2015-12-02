@@ -1,0 +1,232 @@
+NDB V1.0
+0000002 0000001 0000060 0000028 0000054
+n00 x2_inc_itemprop
+N01 boltmaker
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 s X2_IP_WORK_CONTAINER_TAG
+f ffffffff ffffffff 000 s X2_IP_ADDRPOP_2DA
+f ffffffff ffffffff 000 s X2_IP_POISONWEAPON_2DA
+f ffffffff ffffffff 000 s X2_IP_ARMORPARTS_2DA
+f ffffffff ffffffff 000 s X2_IP_ARMORAPPEARANCE_2DA
+f ffffffff ffffffff 000 i XP_IP_ITEMMODCONVERSATION_CTOKENBASE
+f ffffffff ffffffff 000 i X2_IP_ITEMMODCONVERSATION_MODE_TAILOR
+f ffffffff ffffffff 000 i X2_IP_ITEMMODCONVERSATION_MODE_CRAFT
+f ffffffff ffffffff 000 i X2_IP_MAX_ITEM_PROPERTIES
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_NEXT
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_PREV
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_RANDOM
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_NEXT
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_PREV
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_RANDOM
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_REPLACE_EXISTING
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_KEEP_EXISTING
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_IGNORE_EXISTING
+f 0000042a 00000567 004 v IPRemoveMatchingItemProperties
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 v IPRemoveAllItemProperties
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetIsItemEquipable
+fp o
+f ffffffff ffffffff 003 o IPDyeArmor
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 o IPGetIPWorkContainer
+fp o
+f ffffffff ffffffff 005 e4 IPGetItemPropertyByID
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i IPGetIsRangedWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIsMeleeWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIsProjectile
+fp o
+f ffffffff ffffffff 001 i IPGetIsBludgeoningWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIPConstCastSpellFromSpellID
+fp i
+f ffffffff ffffffff 002 i IPGetItemHasItemOnHitPropertySubType
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetNumberOfAppearances
+fp i
+f ffffffff ffffffff 002 i IPGetNextArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetPrevArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetRandomArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 004 o IPGetModifiedArmor
+fp o
+fp i
+fp i
+fp i
+f 00000226 0000042a 006 v IPSafeAddItemProperty
+fp o
+fp e4
+fp f
+fp i
+fp i
+fp i
+f 00000567 000006cf 004 i IPGetItemHasProperty
+fp o
+fp e4
+fp i
+fp i
+f ffffffff ffffffff 001 i IPGetItemSequencerProperty
+fp o
+f ffffffff ffffffff 001 i IPGetIsIntelligentWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetDamagePowerConstantFromNumber
+fp i
+f ffffffff ffffffff 001 i IPGetDamageBonusConstantFromNumber
+fp i
+f ffffffff ffffffff 003 v IPWildShapeCopyItemProperties
+fp o
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetWeaponEnhancementBonus
+fp o
+fp i
+f ffffffff ffffffff 003 v IPSetWeaponEnhancementBonus
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 v IPUpgradeWeaponEnhancementBonus
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetHasItemPropertyOnCharacter
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetNumberOfItemProperties
+fp o
+f ffffffff ffffffff 001 i IPGetNumberOfArmorAppearances
+fp i
+f ffffffff ffffffff 003 i IPGetArmorAppearanceType
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 o IPCreateProficiencyFeatItemOnCreature
+fp o
+f ffffffff ffffffff 000 o IPGetTargetedOrEquippedMeleeWeapon
+f ffffffff ffffffff 001 o IPGetTargetedOrEquippedArmor
+fp i
+f ffffffff ffffffff 003 v IPCopyItemProperties
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 i IPGetWeaponAppearanceType
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 o IPGetModifiedWeapon
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 o IPCreateAndModifyArmorRobe
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetHasItemPropertyByConst
+fp i
+fp o
+f ffffffff ffffffff 001 i IPGetHasUseLimitation
+fp o
+f 00000015 00000226 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 0000021e 00000000 o oPC
+v 0000002c 0000021e 00000004 o oMaker
+v 00000056 0000021e 00000008 i elemental_bonus
+v 00000086 0000021e 0000000c i physical_bonus
+v 000000b5 0000021e 00000010 i elemental_damage
+v 000000e6 0000021e 00000014 i physical_damage
+v 00000116 0000021e 00000018 o oBolts
+v 00000226 00000422 00000000 i bIgnoreSubType
+v 00000226 00000422 00000004 i bIgnoreDurationType
+v 00000226 00000422 00000008 i nAddItemPropertyPolicy
+v 00000226 00000422 0000000c f fDuration
+v 00000226 00000422 00000010 e4 ip
+v 00000226 00000422 00000014 o oItem
+v 00000228 0000041c 00000018 i nType
+v 00000245 0000041c 0000001c i nSubType
+v 00000262 0000041c 00000020 i nDuration
+v 000002aa 0000041c 00000024 i nDurationCompare
+v 0000042a 0000055f 00000000 i nItemPropertySubType
+v 0000042a 0000055f 00000004 i nItemPropertyDuration
+v 0000042a 0000055f 00000008 i nItemPropertyType
+v 0000042a 0000055f 0000000c o oItem
+v 0000042c 00000559 00000010 e4 ip
+v 00000567 000006cd 00000000 i #retval
+v 00000567 000006c7 00000004 i bIgnoreSubType
+v 00000567 000006c7 00000008 i nDurationCompare
+v 00000567 000006c7 0000000c e4 ipCompareTo
+v 00000567 000006c7 00000010 o oItem
+v 00000569 000006c1 00000014 e4 ip
+l01 0000005 00000015 0000002a
+l01 0000006 0000002a 00000054
+l01 0000008 00000054 00000084
+l01 0000009 00000084 000000b3
+l01 0000010 000000b3 000000e4
+l01 0000011 000000e4 00000114
+l01 0000015 00000114 0000014a
+l01 0000016 0000014a 0000015d
+l01 0000017 0000015d 00000170
+l01 0000019 00000170 00000180
+l01 0000022 00000186 000001c1
+l01 0000024 000001c7 000001d7
+l01 0000027 000001dd 00000218
+l01 0000032 00000224 00000226
+l00 0000839 00000226 00000243
+l00 0000840 00000243 00000260
+l00 0000841 00000260 00000262
+l00 0000843 00000262 00000272
+l00 0000846 00000278 0000028c
+l00 0000847 00000292 00000294
+l00 0000850 00000294 000002a8
+l00 0000853 000002a8 000002c0
+l00 0000854 000002c0 000002c8
+l00 0000856 000002ce 000002e4
+l00 0000859 000002ea 000002fa
+l00 0000863 00000300 00000308
+l00 0000865 0000030e 00000324
+l00 0000867 0000032a 00000350
+l00 0000869 00000356 00000358
+l00 0000872 0000036e 00000396
+l00 0000874 0000039c 000003a8
+l00 0000877 000003b4 000003b6
+l00 0000882 000003b6 000003c6
+l00 0000884 000003cc 000003ef
+l00 0000886 000003f5 000003f7
+l00 0000888 000003f7 0000041c
+l00 0000890 00000422 0000042a
+l00 0000215 0000042a 00000447
+l00 0000218 00000447 0000045a
+l00 0000221 0000045a 00000471
+l00 0000224 00000477 000004be
+l00 0000227 000004c4 0000050b
+l00 0000235 00000511 00000526
+l00 0000239 00000538 00000553
+l00 0000241 0000055f 00000567
+l00 0000897 00000567 00000584
+l00 0000900 00000584 00000597
+l00 0000903 00000597 000005b3
+l00 0000906 000005b9 000005fb
+l00 0000909 00000601 00000648
+l00 0000912 0000064e 0000066e
+l00 0000916 00000680 0000069b
+l00 0000919 000006a1 000006c1
+l00 0000920 000006c7 000006cf

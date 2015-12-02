@@ -1,0 +1,410 @@
+NDB V1.0
+0000007 0000001 0000131 0000049 0000050
+n00 aps_include
+n01 inc_rules
+n02 inc_validate
+n03 inc_bs_module
+n04 inc_forbidden
+n05 aw_include
+N06 player_status
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 v SQLInit
+f ffffffff ffffffff 001 v SQLExecDirect
+fp s
+f ffffffff ffffffff 000 i SQLFetch
+f ffffffff ffffffff 000 i SQLFirstRow
+f ffffffff ffffffff 000 i SQLNextRow
+f ffffffff ffffffff 001 s SQLGetData
+fp i
+f ffffffff ffffffff 001 s LocationToString
+fp e2
+f ffffffff ffffffff 001 e2 StringToLocation
+fp s
+f ffffffff ffffffff 001 s VectorToString
+fp t0000
+f ffffffff ffffffff 001 t0000 StringToVector
+fp s
+f ffffffff ffffffff 005 v SetPersistentString
+fp o
+fp s
+fp s
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentInt
+fp o
+fp s
+fp i
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentFloat
+fp o
+fp s
+fp f
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentLocation
+fp o
+fp s
+fp e2
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentVector
+fp o
+fp s
+fp t0000
+fp i
+fp s
+f ffffffff ffffffff 003 s GetPersistentString
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 i GetPersistentInt
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 f GetPersistentFloat
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 e2 GetPersistentLocation
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 t0000 GetPersistentVector
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 v DeletePersistentVariable
+fp o
+fp s
+fp s
+f ffffffff ffffffff 001 s SQLEncodeSpecialChars
+fp s
+f ffffffff ffffffff 001 s SQLDecodeSpecialChars
+fp s
+f ffffffff ffffffff 001 i GetTotalPlayerItemCost
+fp o
+f ffffffff ffffffff 001 i GetTotalPlayerLevel
+fp o
+f ffffffff ffffffff 002 i GetAllowedItemCostForPlayer
+fp o
+fp i
+f ffffffff ffffffff 002 i GetAllowedLevelForPlayer
+fp o
+fp i
+f ffffffff ffffffff 001 i GetPrimaryClass
+fp o
+f ffffffff ffffffff 001 i GetXPRequiredForLevel
+fp i
+f ffffffff ffffffff 001 i ValidatePlayer
+fp o
+f ffffffff ffffffff 001 v InitializeN00b
+fp o
+f ffffffff ffffffff 002 v CheckItem
+fp o
+fp o
+f ffffffff ffffffff 001 v RemoveAllForbiddenItems
+fp o
+f ffffffff ffffffff 001 v HugeMerchantsRevisions
+fp o
+f ffffffff ffffffff 000 i TEAM_NONE
+f ffffffff ffffffff 000 i TEAM_GOOD
+f ffffffff ffffffff 000 i TEAM_EVIL
+f ffffffff ffffffff 000 i NUM_TEAMS
+f ffffffff ffffffff 000 i NO_TEAM
+f ffffffff ffffffff 002 v AddPlayerToTeam
+fp i
+fp o
+f ffffffff ffffffff 001 i GetPlayerTeam
+fp o
+f ffffffff ffffffff 001 s GetTeamName
+fp i
+f ffffffff ffffffff 001 s GetTeamColour
+fp i
+f ffffffff ffffffff 001 i ChooseTeam
+fp o
+f ffffffff ffffffff 002 v BuildParty
+fp i
+fp o
+f ffffffff ffffffff 002 v SetTeamLeader
+fp i
+fp o
+f ffffffff ffffffff 001 o GetTeamLeader
+fp i
+f ffffffff ffffffff 002 v RemovePlayerFromTeam
+fp i
+fp o
+f ffffffff ffffffff 001 v RemoveAllPlotItems
+fp o
+f ffffffff ffffffff 000 v InitializeModule
+f ffffffff ffffffff 000 v RestartModule
+f ffffffff ffffffff 001 v IntializePlayerForGame
+fp o
+f ffffffff ffffffff 001 v ReimburseGoldToPlayer
+fp o
+f ffffffff ffffffff 000 v SetRound
+f ffffffff ffffffff 000 v GetVotedRound
+f ffffffff ffffffff 000 v ResetMapVote
+f ffffffff ffffffff 002 v PickupFlag
+fp o
+fp o
+f ffffffff ffffffff 001 v FlagDestroyed
+fp i
+f ffffffff ffffffff 001 v DropFlag
+fp o
+f ffffffff ffffffff 001 v RemoveAllGoldFromPlayer
+fp o
+f ffffffff ffffffff 001 v RemoveAllEffects
+fp o
+f ffffffff ffffffff 001 v ApplyFlagEffect
+fp o
+f ffffffff ffffffff 001 v RemoveFlagEffect
+fp o
+f ffffffff ffffffff 002 v RewardCapture
+fp i
+fp o
+f ffffffff ffffffff 002 v BroadcastMessage
+fp s
+fp i
+f ffffffff ffffffff 001 v MovePlayerToSpawn
+fp o
+f ffffffff ffffffff 001 v MovePlayerToArena
+fp o
+f ffffffff ffffffff 001 v MovePlayerAfk
+fp o
+f ffffffff ffffffff 001 v MovePlayerToJail
+fp o
+f ffffffff ffffffff 001 v MoveMeToLocation
+fp e2
+f ffffffff ffffffff 002 i GetIsEnemyTeam
+fp o
+fp o
+f ffffffff ffffffff 002 v IncrementTeamCount
+fp i
+fp i
+f ffffffff ffffffff 001 i GetTeamCount
+fp i
+f ffffffff ffffffff 001 i GetTeamTotalLevel
+fp i
+f ffffffff ffffffff 000 v LockCastleDoors
+f ffffffff ffffffff 000 v UnlockCastleDoors
+f ffffffff ffffffff 002 v RespawnPlayer
+fp o
+fp i
+f ffffffff ffffffff 001 i GetTrapsAcquired
+fp o
+f ffffffff ffffffff 002 v SetTrapsAcquired
+fp o
+fp i
+f ffffffff ffffffff 000 v CleanTheGame
+f ffffffff ffffffff 000 v CleanStores
+f ffffffff ffffffff 002 v DisableTrapsInArea
+fp o
+fp i
+f ffffffff ffffffff 001 v CleanDroppedItems
+fp o
+f ffffffff ffffffff 000 v CheckTeamBalance
+f ffffffff ffffffff 002 v SetPlayersNeeded
+fp i
+fp i
+f ffffffff ffffffff 000 i GetPlayersNeeded
+f ffffffff ffffffff 000 i GetWeakTeam
+f ffffffff ffffffff 001 v ApplyHaste
+fp o
+f ffffffff ffffffff 001 v RemoveHaste
+fp o
+f ffffffff ffffffff 001 v ToggleAllStuff
+fp o
+f ffffffff ffffffff 001 v ApplyTumble
+fp o
+f ffffffff ffffffff 000 v PlayBellSound
+f ffffffff ffffffff 001 i GetIsHasted
+fp o
+f ffffffff ffffffff 002 i GetKillRangeResult
+fp o
+fp o
+f ffffffff ffffffff 002 v SelectPlayer
+fp o
+fp i
+f ffffffff ffffffff 001 v SetGameStarted
+fp i
+f ffffffff ffffffff 000 i GetGameStarted
+f ffffffff ffffffff 001 v EndTheGame
+fp i
+f ffffffff ffffffff 000 v IncrementNumGamesPlayed
+f ffffffff ffffffff 002 v AddTeamScore
+fp i
+fp i
+f ffffffff ffffffff 002 v AddPlayerScore
+fp o
+fp i
+f ffffffff ffffffff 002 i Min
+fp i
+fp i
+f ffffffff ffffffff 002 i Max
+fp i
+fp i
+f ffffffff ffffffff 004 v RewardTeamKill
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 v InitializePlayerForGame
+fp o
+f ffffffff ffffffff 002 v SelectValentine
+fp o
+fp i
+f ffffffff ffffffff 002 v AcceptValentine
+fp o
+fp i
+f ffffffff ffffffff 001 v SendMessageToGM
+fp s
+f ffffffff ffffffff 001 i GetIsGMNormalChar
+fp o
+f ffffffff ffffffff 001 i GetIsGM
+fp o
+f ffffffff ffffffff 001 i GetIsDMAW
+fp o
+f ffffffff ffffffff 001 i GetIsWingedGod
+fp o
+f ffffffff ffffffff 000 i GetNormalPlayers
+f ffffffff ffffffff 004 v SetModuleVar
+fp s
+fp s
+fp i
+fp s
+f ffffffff ffffffff 002 s GetModuleVar
+fp s
+fp s
+f ffffffff ffffffff 002 v BanPlayer
+fp o
+fp i
+f ffffffff ffffffff 001 i IsBanned
+fp o
+f ffffffff ffffffff 001 i GetIsAdmin
+fp o
+f ffffffff ffffffff 001 v RestoreAppearanceFromRace
+fp o
+f ffffffff ffffffff 001 v AdminsOnEnter
+fp o
+f ffffffff ffffffff 001 v GMOnEnter
+fp o
+f ffffffff ffffffff 002 v FreezeUnfreeze
+fp o
+fp o
+f ffffffff ffffffff 001 v CheckXpGoldBalance
+fp o
+f ffffffff ffffffff 001 v RemoveFlag
+fp o
+f ffffffff ffffffff 000 s DELIMITER
+f ffffffff ffffffff 001 s MySQLEncodeSpecialChars
+fp s
+f ffffffff ffffffff 001 v UpdatePlayerStatus
+fp o
+f ffffffff ffffffff 001 s MyEncodeSpecialChars
+fp s
+f 00000463 00000465 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 00000463 000 v #globals
+v 00000017 ffffffff 00000000 i SQL_ERROR
+v 0000002d ffffffff 00000004 i SQL_SUCCESS
+v 00000043 ffffffff 00000008 i DEFAULT_ITEM_COST_RESTRICTION
+v 00000059 ffffffff 0000000c i DEFAULT_LEVEL_RESTRICTION
+v 0000006f ffffffff 00000010 i DEFAULT_AMOUNT_OF_STARTING_GOLD
+v 00000085 ffffffff 00000014 f DEFAULT_COST_FACTOR_BARBARIAN
+v 0000009b ffffffff 00000018 f DEFAULT_COST_FACTOR_BARD
+v 000000b1 ffffffff 0000001c f DEFAULT_COST_FACTOR_CLERIC
+v 000000c7 ffffffff 00000020 f DEFAULT_COST_FACTOR_DRUID
+v 000000dd ffffffff 00000024 f DEFAULT_COST_FACTOR_FIGHTER
+v 000000f3 ffffffff 00000028 f DEFAULT_COST_FACTOR_MONK
+v 00000109 ffffffff 0000002c f DEFAULT_COST_FACTOR_PALADIN
+v 0000011f ffffffff 00000030 f DEFAULT_COST_FACTOR_RANGER
+v 00000135 ffffffff 00000034 f DEFAULT_COST_FACTOR_ROGUE
+v 0000014b ffffffff 00000038 f DEFAULT_COST_FACTOR_SORCERER
+v 00000161 ffffffff 0000003c f DEFAULT_COST_FACTOR_WIZARD
+v 00000177 ffffffff 00000040 i LEVEL_LIMIT_NONE
+v 0000018f ffffffff 00000044 i ITEM_COST_UNLIMITED
+v 000001a7 ffffffff 00000048 i VALIDATE_PLAYER_FAILED_ITEM_COST
+v 000001bd ffffffff 0000004c i VALIDATE_PLAYER_FAILED_HIGH_LEVEL
+v 000001d3 ffffffff 00000050 i VALIDATE_PLAYER_FAILED_LOW_LEVEL
+v 000001e9 ffffffff 00000054 i VALIDATE_PLAYER_SUCCESS
+v 000001ff ffffffff 00000058 i EVENT_SCAN_PLAYERS
+v 00000215 ffffffff 0000005c i EVENT_DAWN_HERE
+v 0000022b ffffffff 00000060 i EVENT_DAWN_WARNING
+v 00000241 ffffffff 00000064 i EVENT_SHOUT_RULES
+v 00000257 ffffffff 00000068 f RESPAWN_TIMER
+v 0000026d ffffffff 0000006c i DAILY_TRAP_LIMIT
+v 00000283 ffffffff 00000070 i TEAMKILL_LIMIT
+v 0000029b ffffffff 00000074 i REWARD_WINNERS
+v 000002b1 ffffffff 00000078 i REWARD_TEAM_WINNERS
+v 000002c7 ffffffff 0000007c i REWARD_XP_WINNERS
+v 000002dd ffffffff 00000080 i REWARD_XP_TEAM_WINNERS
+v 000002f3 ffffffff 00000084 i REWARD_LOSERS
+v 00000309 ffffffff 00000088 i REWARD_KILLER
+v 0000031f ffffffff 0000008c i REWARD_TEAMKILLER
+v 00000335 ffffffff 00000090 i REWARD_MVM
+v 0000034b ffffffff 00000094 i REWARD_MVM_TEAM
+v 00000361 ffffffff 00000098 i PLAYERS_EASY_KILL_CONSTANT
+v 00000377 ffffffff 0000009c i TOTAL_ARENAS
+v 0000038d ffffffff 000000a0 i RULE_ALLOWED_COST
+v 000003a3 ffffffff 000000a4 i RULE_ALLOWED_LEVEL
+v 000003b9 ffffffff 000000a8 i RULE_NUM_TEAMS
+v 000003cf ffffffff 000000ac i RULE_NUM_GAMES
+v 000003e5 ffffffff 000000b0 i OPTION_ALLOWED_ITEM_COST
+v 000003fb ffffffff 000000b4 i OPTION_ALLOWED_LEVEL
+v 00000411 ffffffff 000000b8 i OPTION_RANDOM_START_LOC
+v 00000427 ffffffff 000000bc i OPTION_NUM_TEAMS
+v 0000043d ffffffff 000000c0 i OPTION_NUM_GAMES
+l00 0000013 00000015 0000002b
+l00 0000014 0000002b 00000041
+l01 0000009 00000041 00000057
+l01 0000010 00000057 0000006d
+l01 0000016 0000006d 00000083
+l01 0000018 00000083 00000099
+l01 0000019 00000099 000000af
+l01 0000020 000000af 000000c5
+l01 0000021 000000c5 000000db
+l01 0000022 000000db 000000f1
+l01 0000023 000000f1 00000107
+l01 0000024 00000107 0000011d
+l01 0000025 0000011d 00000133
+l01 0000026 00000133 00000149
+l01 0000027 00000149 0000015f
+l01 0000028 0000015f 00000175
+l01 0000031 00000175 0000018d
+l01 0000034 0000018d 000001a5
+l02 0000011 000001a5 000001bb
+l02 0000012 000001bb 000001d1
+l02 0000013 000001d1 000001e7
+l02 0000014 000001e7 000001fd
+l03 0000010 000001fd 00000213
+l03 0000011 00000213 00000229
+l03 0000012 00000229 0000023f
+l03 0000013 0000023f 00000255
+l03 0000016 00000255 0000026b
+l03 0000017 0000026b 00000281
+l03 0000018 00000281 00000299
+l03 0000021 00000299 000002af
+l03 0000022 000002af 000002c5
+l03 0000023 000002c5 000002db
+l03 0000024 000002db 000002f1
+l03 0000025 000002f1 00000307
+l03 0000026 00000307 0000031d
+l03 0000027 0000031d 00000333
+l03 0000028 00000333 00000349
+l03 0000029 00000349 0000035f
+l03 0000030 0000035f 00000375
+l03 0000040 00000375 0000038b
+l03 0000056 0000038b 000003a1
+l03 0000057 000003a1 000003b7
+l03 0000058 000003b7 000003cd
+l03 0000059 000003cd 000003e3
+l03 0000067 000003e3 000003f9
+l03 0000068 000003f9 0000040f
+l03 0000069 0000040f 00000425
+l03 0000070 00000425 0000043b
+l03 0000071 0000043b 00000451
+l06 0000092 00000463 00000465

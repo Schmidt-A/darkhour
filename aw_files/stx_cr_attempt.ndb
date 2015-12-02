@@ -1,0 +1,628 @@
+NDB V1.0
+0000005 0000003 0000251 0000028 0000099
+n00 x2_inc_craft
+n01 x2_inc_itemprop
+n02 x2_inc_switches
+n03 stx_inc_craft
+N04 stx_cr_attempt
+s 03 vector
+sf f x
+sf f y
+sf f z
+s 05 craft_struct
+sf i nRow
+sf s sResRef
+sf i nDC
+sf i nCost
+sf s sLabel
+s 03 craft_receipe_struct
+sf i nMode
+sf o oMajor
+sf o oMinor
+f ffffffff ffffffff 000 s X2_IP_WORK_CONTAINER_TAG
+f ffffffff ffffffff 000 s X2_IP_ADDRPOP_2DA
+f ffffffff ffffffff 000 s X2_IP_POISONWEAPON_2DA
+f ffffffff ffffffff 000 s X2_IP_ARMORPARTS_2DA
+f ffffffff ffffffff 000 s X2_IP_ARMORAPPEARANCE_2DA
+f ffffffff ffffffff 000 i XP_IP_ITEMMODCONVERSATION_CTOKENBASE
+f ffffffff ffffffff 000 i X2_IP_ITEMMODCONVERSATION_MODE_TAILOR
+f ffffffff ffffffff 000 i X2_IP_ITEMMODCONVERSATION_MODE_CRAFT
+f ffffffff ffffffff 000 i X2_IP_MAX_ITEM_PROPERTIES
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_NEXT
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_PREV
+f ffffffff ffffffff 000 i X2_IP_ARMORTYPE_RANDOM
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_NEXT
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_PREV
+f ffffffff ffffffff 000 i X2_IP_WEAPONTYPE_RANDOM
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_REPLACE_EXISTING
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_KEEP_EXISTING
+f ffffffff ffffffff 000 i X2_IP_ADDPROP_POLICY_IGNORE_EXISTING
+f ffffffff ffffffff 004 v IPRemoveMatchingItemProperties
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 v IPRemoveAllItemProperties
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetIsItemEquipable
+fp o
+f ffffffff ffffffff 003 o IPDyeArmor
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 o IPGetIPWorkContainer
+fp o
+f ffffffff ffffffff 005 e4 IPGetItemPropertyByID
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i IPGetIsRangedWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIsMeleeWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIsProjectile
+fp o
+f ffffffff ffffffff 001 i IPGetIsBludgeoningWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetIPConstCastSpellFromSpellID
+fp i
+f ffffffff ffffffff 002 i IPGetItemHasItemOnHitPropertySubType
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetNumberOfAppearances
+fp i
+f ffffffff ffffffff 002 i IPGetNextArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetPrevArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetRandomArmorAppearanceType
+fp o
+fp i
+f ffffffff ffffffff 004 o IPGetModifiedArmor
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 006 v IPSafeAddItemProperty
+fp o
+fp e4
+fp f
+fp i
+fp i
+fp i
+f ffffffff ffffffff 004 i IPGetItemHasProperty
+fp o
+fp e4
+fp i
+fp i
+f ffffffff ffffffff 001 i IPGetItemSequencerProperty
+fp o
+f ffffffff ffffffff 001 i IPGetIsIntelligentWeapon
+fp o
+f ffffffff ffffffff 001 i IPGetDamagePowerConstantFromNumber
+fp i
+f ffffffff ffffffff 001 i IPGetDamageBonusConstantFromNumber
+fp i
+f ffffffff ffffffff 003 v IPWildShapeCopyItemProperties
+fp o
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetWeaponEnhancementBonus
+fp o
+fp i
+f ffffffff ffffffff 003 v IPSetWeaponEnhancementBonus
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 v IPUpgradeWeaponEnhancementBonus
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetHasItemPropertyOnCharacter
+fp o
+fp i
+f ffffffff ffffffff 001 i IPGetNumberOfItemProperties
+fp o
+f ffffffff ffffffff 001 i IPGetNumberOfArmorAppearances
+fp i
+f ffffffff ffffffff 003 i IPGetArmorAppearanceType
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 o IPCreateProficiencyFeatItemOnCreature
+fp o
+f ffffffff ffffffff 000 o IPGetTargetedOrEquippedMeleeWeapon
+f ffffffff ffffffff 001 o IPGetTargetedOrEquippedArmor
+fp i
+f ffffffff ffffffff 003 v IPCopyItemProperties
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 i IPGetWeaponAppearanceType
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 o IPGetModifiedWeapon
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 o IPCreateAndModifyArmorRobe
+fp o
+fp i
+f ffffffff ffffffff 002 i IPGetHasItemPropertyByConst
+fp i
+fp o
+f ffffffff ffffffff 001 i IPGetHasUseLimitation
+fp o
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_UMD_SCROLLS
+f ffffffff ffffffff 000 s MODULE_SWITCH_DISABLE_ITEM_CREATION_FEATS
+f ffffffff ffffffff 000 s MODULE_SWITCH_AOE_HURT_NEUTRAL_NPCS
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_CRAFT_WAND_50_CHARGES
+f ffffffff ffffffff 000 s MODULE_SWITCH_EPIC_SPELLS_HURT_CASTER
+f ffffffff ffffffff 000 s MODULE_SWITCH_SPELL_CORERULES_DMASTERTOUCH
+f ffffffff ffffffff 000 s MODULE_SWITCH_RESTRICT_USE_POISON_TO_FEAT
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_MULTI_HENCH_AOE_DAMAGE
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_NPC_AOE_HURT_ALLIES
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_BEBILITH_RUIN_ARMOR
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_INVISIBLE_GLYPH_OF_WARDING
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_CROSSAREA_WALKWAYPOINTS
+f ffffffff ffffffff 000 s MODULE_SWITCH_DISABLE_SECRET_DOOR_FLASH
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_TAGBASED_SCRIPTS
+f ffffffff ffffffff 000 s MODULE_SWITCH_USE_XP2_RESTSYSTEM
+f ffffffff ffffffff 000 s MODULE_SWITCH_DISABLE_AI_DISPEL_AOE
+f ffffffff ffffffff 000 s MODULE_SWITCH_NO_RANDOM_MONSTER_LOOT
+f ffffffff ffffffff 000 s MODULE_VAR_OVERRIDE_SPELLSCRIPT
+f ffffffff ffffffff 000 s MODULE_VAR_TAGBASED_SCRIPT_PREFIX
+f ffffffff ffffffff 000 s MODULE_VAR_WANDERING_MONSTER_2DA
+f ffffffff ffffffff 000 s MODULE_VAR_AI_NO_DISPEL_AOE_CHANCE
+f ffffffff ffffffff 000 s MODULE_VAR_AI_STOP_EXPERTISE_ABUSE
+f ffffffff ffffffff 000 s CREATURE_VAR_CUSTOM_AISCRIPT
+f ffffffff ffffffff 000 s CREATURE_VAR_RANDOMIZE_SPELLUSE
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_STEALTH
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_SEARCH
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_AMBIENT
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_AMBIENT_IMMOBILE
+f ffffffff ffffffff 000 s CREATURE_VAR_IMMUNE_TO_DISPEL
+f ffffffff ffffffff 000 s CREATURE_VAR_IS_INCORPOREAL
+f ffffffff ffffffff 000 s CREATURE_VAR_NUMBER_OF_ATTACKS
+f ffffffff ffffffff 000 s CREATURE_AI_MODIFIED_MAGIC_RATE
+f ffffffff ffffffff 000 s CREATURE_AI_MODIFIED_OFFENSE_RATE
+f ffffffff ffffffff 000 s CREATURE_AI_MODIFIED_COMPASSION_RATE
+f ffffffff ffffffff 000 s CREATURE_VAR_PALE_MASTER_SPECIAL_ITEM
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_ACTIVATE
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_EQUIP
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_UNEQUIP
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_ONHITCAST
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_ACQUIRE
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_UNACQUIRE
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_SPELLCAST_AT
+f ffffffff ffffffff 000 i X2_EXECUTE_SCRIPT_CONTINUE
+f ffffffff ffffffff 000 i X2_EXECUTE_SCRIPT_END
+f ffffffff ffffffff 001 i SetUserDefinedItemEventNumber
+fp i
+f ffffffff ffffffff 000 i GetUserDefinedItemEventNumber
+f ffffffff ffffffff 002 v SetModuleSwitch
+fp s
+fp i
+f ffffffff ffffffff 001 i GetModuleSwitchValue
+fp s
+f ffffffff ffffffff 000 s DOOR_FLAG_RESIST_KNOCK
+f ffffffff ffffffff 003 v SetDoorFlag
+fp o
+fp s
+fp i
+f ffffffff ffffffff 002 i GetDoorFlag
+fp o
+fp s
+f ffffffff ffffffff 000 s WAYPOINT_VAR_FORCE_SETFACING
+f ffffffff ffffffff 000 s ITEM_FLAG_NO_CRAFT_MODIFICATION
+f ffffffff ffffffff 003 v SetItemFlag
+fp o
+fp s
+fp i
+f ffffffff ffffffff 002 i GetItemFlag
+fp o
+fp s
+f ffffffff ffffffff 002 i ExecuteScriptAndReturnInt
+fp s
+fp o
+f ffffffff ffffffff 001 v SetExecutedScriptReturnValue
+fp i
+f ffffffff ffffffff 001 v SetUserDefinedItemEventPrefix
+fp s
+f ffffffff ffffffff 001 v SetModuleOverrideSpellscript
+fp s
+f ffffffff ffffffff 003 v SetCreatureFlag
+fp o
+fp s
+fp i
+f ffffffff ffffffff 002 i GetCreatureFlag
+fp o
+fp s
+f ffffffff ffffffff 002 v SetCreatureOverrideAIScript
+fp o
+fp s
+f ffffffff ffffffff 001 v SetCreatureOverrideAIScriptFinished
+fp o
+f ffffffff ffffffff 001 v ClearCreatureOverrideAIScriptTarget
+fp o
+f ffffffff ffffffff 001 o GetCreatureOverrideAIScriptTarget
+fp o
+f ffffffff ffffffff 001 v SetWanderingMonster2DAFile
+fp s
+f ffffffff ffffffff 000 s GetModuleOverrideSpellscript
+f ffffffff ffffffff 000 v SetModuleOverrideSpellScriptFinished
+f ffffffff ffffffff 000 i GetModuleOverrideSpellScriptFinished
+f ffffffff ffffffff 001 s GetUserDefinedItemEventScriptName
+fp o
+f ffffffff ffffffff 000 s X2_CI_CRAFTSKILL_CONV
+f ffffffff ffffffff 000 i X2_CI_BREWPOTION_FEAT_ID
+f ffffffff ffffffff 000 i X2_CI_BREWPOTION_MAXLEVEL
+f ffffffff ffffffff 000 i X2_CI_BREWPOTION_COSTMODIFIER
+f ffffffff ffffffff 000 s X2_CI_BREWPOTION_NEWITEM_RESREF
+f ffffffff ffffffff 000 i X2_CI_SCRIBESCROLL_FEAT_ID
+f ffffffff ffffffff 000 i X2_CI_SCRIBESCROLL_COSTMODIFIER
+f ffffffff ffffffff 000 s X2_CI_SCRIBESCROLL_NEWITEM_RESREF
+f ffffffff ffffffff 000 i X2_CI_CRAFTWAND_FEAT_ID
+f ffffffff ffffffff 000 i X2_CI_CRAFTWAND_MAXLEVEL
+f ffffffff ffffffff 000 i X2_CI_CRAFTWAND_COSTMODIFIER
+f ffffffff ffffffff 000 s X2_CI_CRAFTWAND_NEWITEM_RESREF
+f ffffffff ffffffff 000 s X2_CI_CRAFTING_WP_2DA
+f ffffffff ffffffff 000 s X2_CI_CRAFTING_AR_2DA
+f ffffffff ffffffff 000 s X2_CI_CRAFTING_MAT_2DA
+f ffffffff ffffffff 000 s X2_CI_CRAFTING_SP_2DA
+f ffffffff ffffffff 000 i X2_CI_CRAFTINGSKILL_CTOKENBASE
+f ffffffff ffffffff 000 i X2_CI_CRAFTINGSKILL_DC_CTOKENBASE
+f ffffffff ffffffff 000 i X2_CI_CRAFTINGSKILL_GP_CTOKENBASE
+f ffffffff ffffffff 000 i X2_CI_MODIFYARMOR_GP_CTOKENBASE
+f ffffffff ffffffff 000 i X2_CI_CRAFTING_ITEMS_PER_ROW
+f ffffffff ffffffff 000 s X2_CI_2DA_SCROLLS
+f ffffffff ffffffff 000 i X2_CI_CRAFTMODE_INVALID
+f ffffffff ffffffff 000 i X2_CI_CRAFTMODE_CONTAINER
+f ffffffff ffffffff 000 i X2_CI_CRAFTMODE_BASE_ITEM
+f ffffffff ffffffff 000 i X2_CI_CRAFTMODE_ASSEMBLE
+f ffffffff ffffffff 000 i X2_CI_MAGICTYPE_INVALID
+f ffffffff ffffffff 000 i X2_CI_MAGICTYPE_ARCANE
+f ffffffff ffffffff 000 i X2_CI_MAGICTYPE_DIVINE
+f ffffffff ffffffff 000 i X2_CI_MODMODE_INVALID
+f ffffffff ffffffff 000 i X2_CI_MODMODE_ARMOR
+f ffffffff ffffffff 000 i X2_CI_MODMODE_WEAPON
+f ffffffff ffffffff 001 i CIGetIsCraftFeatBaseItem
+fp o
+f ffffffff ffffffff 002 i CICraftCheckBrewPotion
+fp o
+fp o
+f ffffffff ffffffff 002 i CICraftCheckScribeScroll
+fp o
+fp o
+f ffffffff ffffffff 002 o CICraftBrewPotion
+fp o
+fp i
+f ffffffff ffffffff 002 o CICraftScribeScroll
+fp o
+fp i
+f ffffffff ffffffff 001 i CIGetSpellWasUsedForItemCreation
+fp o
+f ffffffff ffffffff 002 i CIGetSpellInnateLevel
+fp i
+fp i
+f ffffffff ffffffff 005 o CIUseCraftItemSkill
+fp o
+fp i
+fp s
+fp i
+fp o
+f ffffffff ffffffff 002 i CIGetIsSpellRestrictedFromCraftFeat
+fp i
+fp i
+f ffffffff ffffffff 003 t0001 CIGetCraftItemStructFrom2DA
+fp s
+fp i
+fp i
+f ffffffff ffffffff 001 i CI_GetClassMagicType
+fp i
+f ffffffff ffffffff 001 s GetMaterialComponentTag
+fp i
+f ffffffff ffffffff 002 i CIGetCraftGPCost
+fp i
+fp i
+f ffffffff ffffffff 002 o CICraftCraftWand
+fp o
+fp i
+f ffffffff ffffffff 002 i CICraftCheckCraftWand
+fp o
+fp o
+f ffffffff ffffffff 001 i CIDoCraftItemFromConversation
+fp i
+f ffffffff ffffffff 002 i CIGetItemPartModificationCost
+fp o
+fp i
+f ffffffff ffffffff 002 i CIGetItemPartModificationDC
+fp o
+fp i
+f ffffffff ffffffff 002 i CIGetArmorModificationCost
+fp o
+fp o
+f ffffffff ffffffff 002 i CIGetArmorModificationDC
+fp o
+fp o
+f ffffffff ffffffff 004 i CIGetCraftingReceipeRow
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 007 v CISetupCraftingConversation
+fp o
+fp i
+fp i
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 t0002 CIGetCraftingModeFromTarget
+fp o
+fp o
+fp o
+f ffffffff ffffffff 001 i CIGetInModWeaponOrArmorConv
+fp o
+f ffffffff ffffffff 002 v CISetCurrentModMode
+fp o
+fp i
+f ffffffff ffffffff 001 i CIGetCurrentModMode
+fp o
+f ffffffff ffffffff 001 o CIGetCurrentModBackup
+fp o
+f ffffffff ffffffff 001 o CIGetCurrentModItem
+fp o
+f ffffffff ffffffff 002 v CISetCurrentModBackup
+fp o
+fp o
+f ffffffff ffffffff 002 v CISetCurrentModItem
+fp o
+fp o
+f ffffffff ffffffff 003 v CISetCurrentModPart
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 i CIGetCurrentModPart
+fp o
+f ffffffff ffffffff 001 v CISetDefaultModItemCamera
+fp o
+f ffffffff ffffffff 003 v CIUpdateModItemCostDC
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 i CIGetWeaponModificationCost
+fp o
+fp o
+f ffffffff ffffffff 000 i STX_CR_REQUIRE_PLACEABLE
+f ffffffff ffffffff 000 s STX_CR_PLACEABLE_TAG
+f ffffffff ffffffff 000 f STX_CR_REQUIRED_DISTANCE
+f ffffffff ffffffff 000 i STX_CR_REQUIRE_DYES
+f ffffffff ffffffff 000 i STX_CR_MAXCOST
+f ffffffff ffffffff 000 i STX_CR_PARTCOST
+f ffffffff ffffffff 000 i STX_CR_NPCDYECOST
+f ffffffff ffffffff 000 i STX_CR_SELFCRAFT
+f ffffffff ffffffff 000 i STX_CR_DCADD
+f ffffffff ffffffff 001 i GetIsOldAmmoMaker
+fp o
+f ffffffff ffffffff 001 i GetIsAmmoMaker
+fp o
+f ffffffff ffffffff 000 s STX_CR_BACKUP_PLACEABLE
+f ffffffff ffffffff 001 i StX_GetIsWeapon
+fp o
+f ffffffff ffffffff 000 i STX_CR_DONE_SUCCESS
+f ffffffff ffffffff 000 i STX_CR_DONE_FAILED
+f ffffffff ffffffff 000 i STX_CR_DONE_NOGOLD
+f ffffffff ffffffff 000 i STX_CR_DONE_NODYE
+f ffffffff ffffffff 000 i STX_CR_PART_NEXT
+f ffffffff ffffffff 000 i STX_CR_PART_PREV
+f ffffffff ffffffff 000 i STX_CR_COLOR_NEXT
+f ffffffff ffffffff 000 i STX_CR_COLOR_PREV
+f ffffffff ffffffff 000 i STX_CR_TOKENBASE
+f ffffffff ffffffff 000 i STX_CR_HELMET
+f ffffffff ffffffff 000 i STX_CR_SHIELD
+f ffffffff ffffffff 000 i STX_CR_PART_BELT
+f ffffffff ffffffff 000 i STX_CR_PART_BRACER
+f ffffffff ffffffff 000 i STX_CR_PART_GLOVES
+f ffffffff ffffffff 000 i STX_CR_PART_NECK
+f ffffffff ffffffff 000 i STX_CR_PART_CLOAK
+f ffffffff ffffffff 000 i STX_CR_PART_RRING
+f ffffffff ffffffff 000 i STX_CR_PART_LRING
+f ffffffff ffffffff 000 i STX_CR_PART_ARROWS
+f ffffffff ffffffff 000 i STX_CR_PART_BOLTS
+f ffffffff ffffffff 000 i STX_CR_PART_BULLETS
+f ffffffff ffffffff 002 v StX_StartCraft
+fp o
+fp o
+f 0000002e 0000037f 001 v StX_AttemptCraft
+fp o
+f ffffffff ffffffff 002 v StX_StopCraft
+fp o
+fp i
+f ffffffff ffffffff 003 v StX_SetPart
+fp o
+fp i
+fp i
+f 0000037f 0000085e 003 i StX_GetModificationCost
+fp o
+fp o
+fp i
+f 0000085e 00000b68 003 i StX_GetModificationDC
+fp o
+fp o
+fp i
+f ffffffff ffffffff 002 v StX_RemakeItem
+fp o
+fp i
+f ffffffff ffffffff 002 v StX_RecolorItem
+fp o
+fp i
+f ffffffff ffffffff 004 o MatchItem
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 005 i StX_ColorCheck
+fp o
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 v StX_SetColorToken
+fp i
+fp i
+f ffffffff ffffffff 001 s StX_ListReverse
+fp s
+f ffffffff ffffffff 001 s StX_PreReadArmorACList
+fp s
+f ffffffff ffffffff 001 s StX_PreReadArmorPartList
+fp i
+f ffffffff ffffffff 001 i StX_GetIsAmmo
+fp o
+f ffffffff ffffffff 001 i StX_GetIsMonkGlove
+fp o
+f ffffffff ffffffff 001 i StX_GetIsShield
+fp o
+f ffffffff ffffffff 003 v aw_StartCraft
+fp o
+fp o
+fp i
+f ffffffff ffffffff 002 v aw_StopCraft
+fp o
+fp i
+f 00000021 0000002e 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 00000021 000 v #globals
+v 0000002e 00000377 00000000 o oPC
+v 00000066 00000371 00000004 o oItem
+v 00000092 00000371 00000008 o oBackup
+v 000000c0 00000371 0000000c i nNPC
+v 000000f0 00000371 00000010 i nCost
+v 00000120 00000371 00000014 i nDC
+v 00000150 00000371 00000018 i nSkill
+v 0000023c 00000371 0000001c s sDyes
+v 00000268 00000371 00000020 s sDyeTag
+v 0000026a 00000371 00000024 i nLen
+v 00000287 00000371 00000028 i n
+v 0000037f 0000085c 00000000 i #retval
+v 0000037f 00000856 00000004 i nNPC
+v 0000037f 00000856 00000008 o oNew
+v 0000037f 00000856 0000000c o oItem
+v 00000381 00000850 00000010 i nCost
+v 00000397 00000850 00000014 i nChanges
+v 000003af 00000850 00000018 i nPart
+v 000003b1 00000850 0000001c f fFactor
+v 0000085e 00000b66 00000000 i #retval
+v 0000085e 00000b60 00000004 i nNPC
+v 0000085e 00000b60 00000008 o oNew
+v 0000085e 00000b60 0000000c o oItem
+v 00000894 00000b5a 00000010 i nDC
+v 00000896 00000b5a 00000014 i nChanges
+v 000008ae 00000b5a 00000018 i nPart
+v 000008b0 00000b5a 0000001c f fFactor
+v 00000acd 00000b5a 00000020 e4 iP
+l00 0000021 00000015 00000015
+l00 0000022 00000015 00000015
+l00 0000023 00000015 00000015
+l00 0000024 00000015 00000015
+l00 0000025 00000015 00000015
+l00 0000030 00000015 00000015
+l00 0000031 00000015 00000015
+l00 0000032 00000015 00000015
+l04 0000004 00000021 0000002c
+l04 0000005 0000002c 0000002e
+l03 0000252 0000002e 00000052
+l03 0000255 00000064 00000090
+l03 0000256 00000090 000000be
+l03 0000257 000000be 000000ee
+l03 0000258 000000ee 0000011e
+l03 0000259 0000011e 0000014e
+l03 0000260 0000014e 00000150
+l03 0000262 00000150 00000167
+l03 0000264 0000016d 0000018f
+l03 0000265 0000018f 0000019b
+l03 0000268 000001a1 000001e9
+l03 0000270 000001ef 00000203
+l03 0000271 00000209 0000020b
+l03 0000273 0000020b 0000021f
+l03 0000277 0000021f 0000023a
+l03 0000279 0000023a 00000266
+l03 0000280 00000266 00000268
+l03 0000281 00000268 00000285
+l03 0000282 00000285 00000287
+l03 0000283 00000287 0000029b
+l03 0000284 0000029b 000002c1
+l03 0000285 000002c1 000002ea
+l03 0000286 000002ea 0000031d
+l03 0000287 0000031d 0000033d
+l03 0000291 00000343 00000365
+l03 0000292 00000365 00000371
+l03 0000295 00000377 0000037f
+l03 0000461 0000037f 00000395
+l03 0000462 00000395 000003ad
+l03 0000463 000003ad 000003af
+l03 0000464 000003af 000003b1
+l03 0000467 000003b1 000003c6
+l03 0000468 000003cc 000003e0
+l03 0000469 000003f6 0000042e
+l03 0000471 00000434 0000047e
+l03 0000473 0000047e 00000492
+l03 0000468 00000498 000004ac
+l03 0000476 000004b8 000004ba
+l03 0000477 000004ba 000004ce
+l03 0000478 000004e4 0000051c
+l03 0000480 00000522 00000540
+l03 0000481 00000540 00000554
+l03 0000477 0000055a 0000056e
+l03 0000484 00000574 00000592
+l03 0000487 00000592 000005a2
+l03 0000489 000005ce 000005de
+l03 0000490 000005fe 00000606
+l03 0000492 0000060c 00000621
+l03 0000493 00000627 0000063b
+l03 0000494 00000651 00000689
+l03 0000496 0000068f 000006ad
+l03 0000493 000006b3 000006c7
+l03 0000499 000006d3 000006d5
+l03 0000500 000006d5 000006e9
+l03 0000501 000006ff 00000737
+l03 0000503 0000073d 0000075b
+l03 0000500 00000761 00000775
+l03 0000507 0000077b 0000079e
+l03 0000508 000007a4 000007a6
+l03 0000510 000007a6 000007d1
+l03 0000513 000007d1 00000800
+l03 0000514 00000800 00000810
+l03 0000515 00000830 00000850
+l03 0000516 00000856 0000085e
+l03 0000521 0000085e 00000866
+l03 0000522 00000892 00000894
+l03 0000523 00000894 000008ac
+l03 0000524 000008ac 000008ae
+l03 0000525 000008ae 000008b0
+l03 0000528 000008b0 000008c5
+l03 0000529 000008cb 000008df
+l03 0000530 000008f5 0000092d
+l03 0000532 00000933 0000097b
+l03 0000534 0000097b 0000098f
+l03 0000529 00000995 000009a9
+l03 0000537 000009b5 000009b7
+l03 0000538 000009b7 000009cb
+l03 0000539 000009e1 00000a19
+l03 0000541 00000a1f 00000a3d
+l03 0000542 00000a3d 00000a51
+l03 0000538 00000a57 00000a6b
+l03 0000545 00000a71 00000a8f
+l03 0000548 00000a8f 00000a9f
+l03 0000549 00000acb 00000ae8
+l03 0000550 00000ae8 00000afb
+l03 0000551 00000afb 00000b19
+l03 0000552 00000b19 00000b34
+l03 0000554 00000b3a 00000b5a
+l03 0000555 00000b60 00000b68
