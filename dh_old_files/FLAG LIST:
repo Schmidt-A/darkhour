@@ -1,0 +1,14 @@
+FLAG LIST:
+XP_CRAFTING
+XP_PROFESSION
+XP_ZOMBIE
+XP_BADGE
+XP_BOSS
+XP_DM
+XP_NW
+XP_TEST
+XP_LEVEL_RES
+
+
+WEIRD FLAGS:
+XP_LEVEL_RES - the level restriction script that is soon to be removed
