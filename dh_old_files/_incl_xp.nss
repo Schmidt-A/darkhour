@@ -5,13 +5,17 @@ void GiveXPToCreatureDH(object oPC, int iAmount, string sSource);
 void GiveXPToCreatureDH(object oPC, int iAmount, string sSource)
 {
     //logging first
-    WriteTimestampedEntry("XP Gained: " + sSource + " | " + GetName(oPC) + " | " + GetPCPlayerName(oPC) + " | " + iAmount);
+    
 
 
     // Normal case - not an ECL character.
     if(GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
     {
         GiveXPToCreature(oPC, iAmount);
+
+        //logigng exp gains
+        WriteTimestampedEntry("XP Gained: " + sSource + " | " + GetName(oPC) + " | " + GetPCPlayerName(oPC) + " | " + iAmount + " | " + getXP(oPC));
+
         return;
     }
     string sPre = GetDBVarName(oPC);
@@ -22,6 +26,9 @@ void GiveXPToCreatureDH(object oPC, int iAmount, string sSource)
     iCumulativeXP += iAmount;
     SetCampaignInt("SUBRACE", sPre+"iCumulativeXP", iCumulativeXP);
     SendMessageToPC(oPC, "You gained " + IntToString(iAmount) + " XP.");
+
+    //logging exp gains
+    WriteTimestampedEntry("XP Gained: " + sSource + " | " + GetName(oPC) + " | " + GetPCPlayerName(oPC) + " | " + iAmount + " | " + iCumulativeXP);
 
     // Woo they have enough to level
     if(iCumulativeXP >= iXPNeeded)
