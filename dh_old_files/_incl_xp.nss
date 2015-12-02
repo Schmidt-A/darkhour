@@ -1,9 +1,13 @@
 #include "_incl_subrace"
 
-void GiveXPToCreatureDH(object oPC, int iAmount);
+void GiveXPToCreatureDH(object oPC, int iAmount, string sSource);
 
-void GiveXPToCreatureDH(object oPC, int iAmount)
+void GiveXPToCreatureDH(object oPC, int iAmount, string sSource)
 {
+    //logging first
+    WriteTimestampedEntry("XP Gained: " + sSource + " | " + GetName(oPC) + " | " + GetPCPlayerName(oPC) + " | " + iAmount);
+
+
     // Normal case - not an ECL character.
     if(GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
     {

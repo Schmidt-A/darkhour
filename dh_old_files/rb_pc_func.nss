@@ -246,7 +246,7 @@ void GiveXPToParty(int iXPAmount, object oPC, int bSplitXP = FALSE)
     oPartyMember = GetFirstFactionMember(oPC, TRUE);
     while (GetIsObjectValid(oPartyMember) == TRUE)
     {
-        GiveXPToCreatureDH(oPC, iXPAmount);
+        GiveXPToCreatureDH(oPartyMember, iXPAmount, "XP_NW");
         oPartyMember = GetNextFactionMember(oPC, TRUE);
     }
 

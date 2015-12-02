@@ -1800,7 +1800,7 @@ void DoXPFunction(int iXP, object oUser)
         oPartyMember=GetFirstFactionMember(oTarget, TRUE);
         while (GetIsObjectValid(oPartyMember))
         {
-            GiveXPToCreatureDH(oPartyMember, iReward);
+            GiveXPToCreatureDH(oPartyMember, iReward, "XP_DM:" + GetPCPlayerName(oUser));
             SetLocalInt(oPartyMember, "dmfi_XPGiven", GetLocalInt(oPartyMember, "dmfi_XPGiven") + iReward);
             FloatingTextStringOnCreature(sFloating + ": " + IntToString(iReward), oPartyMember, FALSE);
             oPartyMember = GetNextFactionMember(oTarget, TRUE);
@@ -1813,7 +1813,7 @@ void DoXPFunction(int iXP, object oUser)
         if (iReward==0)
             iReward = (GetHitDice(oTarget)*iPercent*10);
 
-        GiveXPToCreatureDH(oTarget, iReward);
+        GiveXPToCreatureDH(oTarget, iReward, "XP_DM:" + GetPCPlayerName(oUser));
 
         SetLocalInt(oTarget, "dmfi_XPGiven", GetLocalInt(oTarget, "dmfi_XPGiven") + iReward);
         FloatingTextStringOnCreature(sFloating + ": " + IntToString(iReward), oTarget, FALSE);

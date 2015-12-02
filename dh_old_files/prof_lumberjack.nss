@@ -14,7 +14,7 @@ while (GetIsObjectValid(oItem))
    oItem = GetNextItemInInventory(oPC);
    }
 
-RewardPartyXP(10, oPC, FALSE);
+GiveXPToCreatureDH(oPC, 10, "XP_PROFESSION");
 
 CreateItemOnObject("ljtool", oPC);
 }

@@ -51,7 +51,7 @@ void TryForLevelup(object oPC, object oCrafting, int iOdds, int iSkillroll, int 
         int iSkill = GetLocalInt(oCrafting, "skill");
         SendMessageToPC(oPC, "You have gained some knowledge in crafting!");
         SendMessageToPC(oPC, "Your crafting skill has advanced to level " + IntToString(iSkill));
-        GiveXPToCreatureDH(oPC, 50);
+        GiveXPToCreatureDH(oPC, 50, "XP_CRAFTING");
     }
 }
 

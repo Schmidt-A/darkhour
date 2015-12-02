@@ -63,7 +63,7 @@ void main()
 
     if (GetItemPossessedBy(oKiller, "badge26")== OBJECT_INVALID)
    {
-   GiveXPToCreatureDH(oKiller, 100);
+   GiveXPToCreatureDH(oKiller, 100, "XP_BOSS");
    FloatingTextStringOnCreature("You received a new badge!", oDamager, FALSE);
    CreateItemOnObject("badge026",oKiller);
 

@@ -24,7 +24,7 @@ while (GetIsObjectValid(oItem))
    oItem = GetNextItemInInventory(oPC);
    }
 
-RewardPartyXP(10, oPC, FALSE);
+GiveXPToCreatureDH(oPC, 10, "XP_PROFESSION");
 
 CreateItemOnObject("wsmithprofhide", oPC);
 CreateItemOnObject("craftingpoints", oPC,8);

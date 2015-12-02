@@ -50,17 +50,7 @@ void main()
         {
             iZkc += 1;
             SetLocalInt(oDamager, "zkxpcount", iZkc);
-            RewardPartyXP(2, oDamager, FALSE);
+            GiveXPToCreatureDH(oDamager, 2, "XP_ZOMBIE");
         }
-
-        // Give badge to player if they defeated "ZN_VIPER"
-        // Also give 200 EXP.
-        else if ((GetTag(OBJECT_SELF) == "ZN_VIPER") && (GetItemPossessedBy(oDamager,"badge26") == OBJECT_INVALID))
-        {
-            CreateItemOnObject("badge26",oDamager);
-            FloatingTextStringOnCreature("You received a new badge!", oDamager, FALSE);
-            GiveXPToCreatureDH(oDamager,200);
-        }
-
     }
 }

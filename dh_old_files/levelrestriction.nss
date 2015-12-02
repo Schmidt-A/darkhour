@@ -40,7 +40,7 @@ if (GetHitDice(oPC) >= 8)
       iExp = GetXP(oPC);
       DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
       DelayCommand(1.2, SetXP(oPC, iExp - 10));
-      DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+      DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
       SendMessageToPC(oPC, "You require DM Approval before you can continue to level");
       return;
       }
@@ -65,7 +65,7 @@ if(GetHitDice(oPC) == 6)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 15000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You require an Advanced Artifact before you can continue to level");
         }
     if(GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) != 0)
@@ -73,7 +73,7 @@ if(GetHitDice(oPC) == 6)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 15000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You may not level in Shadowdancer on this server.");
         }
     if(GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) != 0)
@@ -81,7 +81,7 @@ if(GetHitDice(oPC) == 6)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 15000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You may not level in Shifter on this server.");
         }
     }
@@ -104,7 +104,7 @@ else if(GetHitDice(oPC) == 7)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You require two Advanced Artifacts before you can continue to level");
         }
      if(GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) != 0)
@@ -112,7 +112,7 @@ else if(GetHitDice(oPC) == 7)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You may not level in Shadowdancer on this server.");
         }
     if(GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) != 0)
@@ -120,7 +120,7 @@ else if(GetHitDice(oPC) == 7)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You may not level in Shifter on this server.");
         }
     }
@@ -143,7 +143,7 @@ else if(GetHitDice(oPC) >= 8)
         {
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 28000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You require three Advanced Artifacts before you can continue to level");
         }
     }
@@ -152,7 +152,7 @@ else if(GetHitDice(oPC) >= 8)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 28000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You may not level in Shadowdancer on this server.");
         }
     if(GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) != 0)
@@ -160,7 +160,7 @@ else if(GetHitDice(oPC) >= 8)
         iExp = GetXP(oPC);
         DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 28000 + 10, oPC, FALSE));
         DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, RewardPartyXP(10, oPC, FALSE));
+        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
         SendMessageToPC(oPC, "You may not level in Shifter on this server.");
         }
 }
