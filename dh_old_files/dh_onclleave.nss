@@ -1,7 +1,14 @@
+#include "_incl_xp"
+
 void main()
 {
-object oPC = GetExitingObject();
-location lLocation = GetLocation(oPC);
-string sModName = GetName(GetModule());
-SetCampaignLocation(sModName, "lastlocation", lLocation, oPC);
+	object oPC = GetExitingObject();
+	location lLocation = GetLocation(oPC);
+	string sModName = GetName(GetModule());
+	SetCampaignLocation(sModName, "lastlocation", lLocation, oPC);
+
+	//log their exp on logout
+
+	WriteTimestampedLogEntry(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + 
+	                " IP ADDRESS: " + GetPCIPAddress(oPC) + " | " + GetXPDH(oPC));
 }

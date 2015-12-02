@@ -5,6 +5,7 @@
 //
 #include "disease_inc"
 #include "x3_inc_horse"
+#include "_incl_xp"
 void main()
 {
 
@@ -28,6 +29,10 @@ void main()
     }
     string sName = GetName(oPC);
     int nHitpoints = GetLocalInt(GetModule(),sName);
+
+    //set their xp vars
+    SetXPVars(oPC);
+    
     //Demon X6
     if (GetPCPlayerName(oPC)=="ThisIsAFakeAccountNameLawl")
     {
@@ -38,6 +43,10 @@ void main()
     {
         SendMessageToAllDMs (GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
         PrintString(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
+        // a new logging form
+        WriteTimestampedLogEntry(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + 
+                " IP ADDRESS: " + GetPCIPAddress(oPC) + " | " + GetXPDH(oPC));
+
     }
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
     {

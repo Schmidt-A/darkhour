@@ -1,4 +1,5 @@
 #include "_incl_xp"
+#include "disease_inc"
 /* MODIFIED TO INCLUDE SCAVENGER CODE, AND A BUNCH OF OTHER STUFF */
 
 /*********************************************************************
@@ -20,7 +21,7 @@
 
 **********************************************************************/
 //#include "nw_i0_tool"
-#include "disease_inc"
+
 int nIsHungry;
 //int nRestTimer = 0;
 int nLostCon;
@@ -174,6 +175,9 @@ void main()
     //  Loop through all PCs
     while(GetIsObjectValid(oPC))
     {
+        //log their EXP
+        SetXPVars(oPC);
+
       sLeftRing = "";
       sRightRing = "";
       oLeftRing = GetItemInSlot(INVENTORY_SLOT_LEFTRING,oPC);
