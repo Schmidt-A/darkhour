@@ -1,8 +1,18 @@
 import tailer
+import os
 
-day_rec = {}
-red_flags = []
-curr_day = ''
+day_rec     = {}
+red_flags   = []
+curr_day    = ''
+naughty_d   = os.path.join(os.getcwd(), 'naughty-xp')
+nice_d      = os.path.join(os.getcwd(), 'nice-xp')
+
+def setup_dirs():
+    if not os.path.exists(naughty_d):
+        os.makedirs(naughty_d)
+
+    if not os.path.exists(nice_d):
+        os.makedirs(nice_d)
 
 def parse_xp(tokens):
 
@@ -24,7 +34,8 @@ def parse_xp(tokens):
 
 def do_summary_day(day):
 
-    with open(day + '.log', 'w') as f:
+    fname = day + '.log'
+    with open(fname, 'w') as f:
 
         # Put problem cases at the top. See full record for details.
         f.write('EXCESSIVE XP GIVEN\n')
@@ -56,6 +67,13 @@ def do_summary_day(day):
                     f.write('\t\t{0} - {1}\n'.format(timestamp, amt))
                 f.write('\n')
 
+    # Move file to the appropriate directory.
+    old = os.path.join(os.getcwd(), fname)
+    new = os.path.join(nice_d, fname)
+    if len(red_flags) > 0:
+        new = os.path.join(naughty_d, fname)
+
+    os.rename(old, new)
 
 def log_line(timestamp, dm_event, dm, pc, player, amt):
 
@@ -86,8 +104,8 @@ def log_line(timestamp, dm_event, dm, pc, player, amt):
         if day_rec[dm][pc_idx] > 250 and dm not in red_flags:
             red_flags.append(dm)
 
-    print day_rec
 
+setup_dirs()
 
 for line in tailer.follow(open('samplelog.txt')):
 
@@ -121,5 +139,3 @@ for line in tailer.follow(open('samplelog.txt')):
     log_line(timestamp, dm_event, dm, pc, player, amt)
 
     #TODO: write to a json file too so we have it
-    #TODO: organize logging directory structure better
-    #TODO: make a good vs. bad logs folder
