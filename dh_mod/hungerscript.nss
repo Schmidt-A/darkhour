@@ -300,7 +300,7 @@ void main()
                 if (FortitudeSave(oPC,(7 + nTotalDisease),SAVING_THROW_TYPE_DISEASE) == 0)
                 {
                     CreateItemOnObject("zombiedisease",oPC);
-                    if (nTotalDisease >= 6)
+                    if (nTotalDisease >= 10)
                     {
                         CreateItemOnObject("deathtoken",oPC);
                         ExecuteScript("zombieclone",oPC);

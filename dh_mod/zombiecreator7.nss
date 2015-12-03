@@ -79,8 +79,8 @@ void main()
         //Apply Buffs
         object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR,oZomb);
         AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,(4)),oSkin);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,(4)),oSkin);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,(4)),oSkin);
+        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,(1)),oSkin);
+        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,(1)),oSkin);
         // Force zombie to move away from his spawn location by the use of WalkGuide placeables
         location lGetOut = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
         AssignCommand( oZomb, ActionMoveToLocation(lGetOut) );

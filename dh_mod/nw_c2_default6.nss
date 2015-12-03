@@ -15,179 +15,151 @@
 //:: Modified On: Jan 17th, 2008
 //:: Added Support for Mounted Combat Feat Support
 //:://////////////////////////////////////////////////
-
-// Refactored and bug-fixed by Tweek.
-
 #include "nw_i0_generic"
 #include "x3_inc_horse"
 #include "lnx_inc_eval_itm"
-
-void TryMountedDamageEvasion(object oDamager)
-{
-    // No horsey damage to negate if we don't have the feat or are not mounted.
-    // Also can only negate physical damage. Bail out if it's not.
-    if(!GetHasFeat(FEAT_MOUNTED_COMBAT) || !HorseGetIsMounted(OBJECT_SELF)
-            || !GetLocalInt(OBJECT_SELF, "bX3_LAST_ATTACK_PHYSICAL"))
-        return;
-
-    int nHPBefore=GetLocalInt(OBJECT_SELF, "nX3_HP_BEFORE");
-
-    if (!GetLocalInt(OBJECT_SELF, "bX3_ALREADY_MOUNTED_COMBAT"))
-    {
-        // haven't already had a chance to use this for the round
-        SetLocalInt(OBJECT_SELF, "bX3_ALREADY_MOUNTED_COMBAT", TRUE);
-
-        int nAttackRoll = d20() + GetBaseAttackBonus(oDamager);
-        int nRideCheck = d20() + GetSkillRank(SKILL_RIDE, OBJECT_SELF);
-        if (nRideCheck >= nAttackRoll && !GetIsDead(OBJECT_SELF))
-        { 
-            // averted attack
-            if (GetIsPC(oDamager))
-                SendMessageToPC(oDamager, GetName(OBJECT_SELF) + GetStringByStrRef(111991));
-            // heal
-            if (GetCurrentHitPoints(OBJECT_SELF) < nHPBefore)
-            { 
-                effect eHeal = EffectHeal(nHPBefore - GetCurrentHitPoints(OBJECT_SELF));
-                AssignCommand(GetModule(), ApplyEffectToObject(DURATION_TYPE_INSTANT, eHeal, OBJECT_SELF));
-            } 
-        }
-    } 
-}
-
-int ShouldTargetSwitch(object oDamager, object oTarget)
-{
-
-    // Switch targets if:
-    // - our target isn't valid OR
-    // - our damager has just dealt us 25% or more of our hp in damage OR
-    // - our damager is more than 2HD more powerful than our target
-    return (!GetIsObjectValid(oTarget)
-        || (
-            oTarget != oDamager
-            &&  (
-                 GetTotalDamageDealt() > (GetMaxHitPoints(OBJECT_SELF) / 4)
-                 || (GetHitDice(oDamager) - 2) > GetHitDice(oTarget)
-                 )
-            )
-        );
-}
-
-void TryAmmoSalvage(object oDamager, object oWeapon)
-{
-    object oAmmo = OBJECT_INVALID;
-    int iCheck = d2();
-
-    if (GetBaseItemType(oWeapon) == BASE_ITEM_LONGBOW || GetBaseItemType(oWeapon) == BASE_ITEM_SHORTBOW)
-        oAmmo = GetItemInSlot(INVENTORY_SLOT_ARROWS, oDamager);
-    else if (GetBaseItemType(oWeapon) == BASE_ITEM_LIGHTCROSSBOW || GetBaseItemType(oWeapon) == BASE_ITEM_HEAVYCROSSBOW)
-        oAmmo = GetItemInSlot(INVENTORY_SLOT_BOLTS, oDamager);
-    else if (GetBaseItemType(oWeapon) == BASE_ITEM_SLING)
-        oAmmo = GetItemInSlot(INVENTORY_SLOT_BULLETS, oDamager);
-    else
-        // If this is a ranged weapon that wasn't a sling/bow/etc, it's a
-        // throwing weapon.
-        oAmmo = oWeapon;
-
-    // 50% chance of salvage success.
-    if(oAmmo != OBJECT_INVALID && iCheck == 1)
-    {
-        object oCreate =  CreateItemOnObject(GetResRef(oAmmo), oDamager);
-        SendMessageToPC(oDamager, "You were able to salvage some of your " + GetName(oAmmo) + " ammunition.");
-        SetIdentified(oCreate, TRUE);
-    }
-}
-
-void BehemothRampage()
-{
-    // TODO: Add param for lesser/greater behemoths.
-    // We can't rampage more than once. :(
-    if (GetLocalInt(OBJECT_SELF, "rampaged"))
-        return;
-
-    object oArea = GetArea(OBJECT_SELF);
-    object oTarget = GetFirstObjectInArea(oArea);
-    int iSave;
-
-    SetLocalInt(OBJECT_SELF, "rampaged", TRUE);
-    SpeakString("The lumbering behemoth has become enraged by your assault! " +
-            "It roars and slams its fists into the ground with such fury that "+
-            "the ground trembles. It then begins racing towards you!", TALKVOLUME_TALK);
-    // What VFX should we give ourselves?
-
-    while(GetIsObjectValid(oTarget))
-    {
-        // Ignore placeables, doors, etc.
-        if(!GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
-            continue;
-
-        // If close enough, GET REKT
-        if ((GetDistanceBetween(oPC, oTarget) <= 50.0) 
-                && (GetDistanceBetween(oPC, oTarget) > 0.0))
-        {
-            if(ReflexSave(oTarget, 10) < 1)
-            {
-                AssignCommand(oTarget, ClearAllActions(TRUE));
-                ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SCREEN_SHAKE), oTarget);
-                AssignCommand(oTarget, ActionPlayAnimation(ANIMATION_LOOPING_DEAD_BACK, 1.0, 3.0));
-            }
-        }
-        oTarget = GetNextObjectInArea(oArea);
-    }
-    // TODO: Up the behemoth's speed here.
-}
-
 void main()
 {
     object oDamager = GetLastDamager();
-    TryMountedDamageEvasion(oDamager);
-
-    // Act only if we're not fleeing.
-    if(!GetFleeToExit() && !GetSpawnInCondition(NW_FLAG_SET_WARNINGS))
-    {
-        if(GetIsObjectValid(oDamager) &&!GetIsFighting(OBJECT_SELF))
+    // Additions for degredation -- Lynx
+    int iHand = GetLocalInt(oDamager, "DUAL_WEILD");
+    if (iHand == 1 && GetItemType(GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oDamager)) == "WEAPON")
         {
-            // If we're not fighting, determine combat round.
-            if(GetBehaviorState(NW_FLAG_BEHAVIOR_SPECIAL))
+        object oWeapon = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oDamager);
+        int iSharp = GetLocalInt(oWeapon, "SHARPNESS");
+        SetLocalInt(oWeapon, "SHARPNESS", iSharp - 1);
+        EvaluateTiers(oWeapon, "WEAPON");
+        SetLocalInt(oDamager, "DUAL_WIELD", 0);
+        }
+    else
+        {
+        object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oDamager);
+        int iSharp = GetLocalInt(oWeapon, "SHARPNESS");
+        SetLocalInt(oWeapon, "SHARPNESS", iSharp - 1);
+        EvaluateTiers(oWeapon, "WEAPON");
+        SetLocalInt(oDamager, "DUAL_WEILD", 1);
+        }
+    object oMe=OBJECT_SELF;
+    int nHPBefore;
+    if (!GetLocalInt(GetModule(),"X3_NO_MOUNTED_COMBAT_FEAT"))
+    if (GetHasFeat(FEAT_MOUNTED_COMBAT)&&HorseGetIsMounted(OBJECT_SELF))
+    { // see if can negate some damage
+        if (GetLocalInt(OBJECT_SELF,"bX3_LAST_ATTACK_PHYSICAL"))
+        { // last attack was physical
+            nHPBefore=GetLocalInt(OBJECT_SELF,"nX3_HP_BEFORE");
+            if (!GetLocalInt(OBJECT_SELF,"bX3_ALREADY_MOUNTED_COMBAT"))
+            { // haven't already had a chance to use this for the round
+                SetLocalInt(OBJECT_SELF,"bX3_ALREADY_MOUNTED_COMBAT",TRUE);
+                int nAttackRoll=GetBaseAttackBonus(oDamager)+d20();
+                int nRideCheck=GetSkillRank(SKILL_RIDE,OBJECT_SELF)+d20();
+                if (nRideCheck>=nAttackRoll&&!GetIsDead(OBJECT_SELF))
+                { // averted attack
+                    if (GetIsPC(oDamager)) SendMessageToPC(oDamager,GetName(OBJECT_SELF)+GetStringByStrRef(111991));
+                    //if (GetIsPC(OBJECT_SELF)) SendMessageToPCByStrRef(OBJECT_SELF,111992");
+                    if (GetCurrentHitPoints(OBJECT_SELF)<nHPBefore)
+                    { // heal
+                        effect eHeal=EffectHeal(nHPBefore-GetCurrentHitPoints(OBJECT_SELF));
+                        AssignCommand(GetModule(),ApplyEffectToObject(DURATION_TYPE_INSTANT,eHeal,oMe));
+                    } // heal
+                } // averted attack
+            } // haven't already had a chance to use this for the round
+        } // last attack was physical
+    } // see if can negate some damage
+    if(GetFleeToExit()) {
+        // We're supposed to run away, do nothing
+    } else if (GetSpawnInCondition(NW_FLAG_SET_WARNINGS)) {
+        // don't do anything?
+    } else {
+        if (!GetIsObjectValid(oDamager)) {
+            // don't do anything, we don't have a valid damager
+        } else if (!GetIsFighting(OBJECT_SELF)) {
+            // If we're not fighting, determine combat round
+            if(GetBehaviorState(NW_FLAG_BEHAVIOR_SPECIAL)) {
                 DetermineSpecialBehavior(oDamager);
-            else
-            {
+            } else {
                 if(!GetObjectSeen(oDamager)
-                   && GetArea(OBJECT_SELF) == GetArea(oDamager))
-                {
-                    // We don't see our attacker, go find them.
+                   && GetArea(OBJECT_SELF) == GetArea(oDamager)) {
+                    // We don't see our attacker, go find them
                     ActionMoveToLocation(GetLocation(oDamager), TRUE);
                     ActionDoCommand(DetermineCombatRound());
-                }
-                else 
+                } else {
                     DetermineCombatRound();
+                }
             }
-        }
-        else if(GetIsObjectValid(oDamager))
-        {
+        } else {
             // We are fighting already -- consider switching if we've been
-            // attacked by a more powerful enemy.
+            // attacked by a more powerful enemy
             object oTarget = GetAttackTarget();
             if (!GetIsObjectValid(oTarget))
                 oTarget = GetAttemptedAttackTarget();
             if (!GetIsObjectValid(oTarget))
                 oTarget = GetAttemptedSpellTarget();
-
-            if(ShouldTargetSwitch(oDamager, oTarget))
+            // If our target isn't valid
+            // or our damager has just dealt us 25% or more
+            //    of our hp in damager
+            // or our damager is more than 2HD more powerful than our target
+            // switch to attack the damager.
+            if (!GetIsObjectValid(oTarget)
+                || (
+                    oTarget != oDamager
+                    &&  (
+                         GetTotalDamageDealt() > (GetMaxHitPoints(OBJECT_SELF) / 4)
+                         || (GetHitDice(oDamager) - 2) > GetHitDice(oTarget)
+                         )
+                    )
+                )
+            {
+                // Switch targets
                 DetermineCombatRound(oDamager);
+            }
         }
     }
-
-    // Send the user-defined event signal.
+    // Send the user-defined event signal
     if(GetSpawnInCondition(NW_FLAG_DAMAGED_EVENT))
+    {
         SignalEvent(OBJECT_SELF, EventUserDefined(EVENT_DAMAGED));
-
-    // See if we can salvage ammo if the attacker was using a ranged weapon.
-    object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oDamager);
-    int iPhysicalDamage = GetDamageDealtByType(DAMAGE_TYPE_BASE_WEAPON);
-    if(GetWeaponRanged(oWeapon) && iPhysicalDamage > 0)
-        TryAmmoSalvage(oDamager, oWeapon);    
-
-    // If we're a damaged behemoth, FUCK 'EM UP.
-    if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB" && GetPercentageHPLoss(OBJECT_SELF) < 50)
-        BehemothRampage();
+    }
+   object oAmmo;
+   object oItem = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oDamager);
+   int iCheck = d2();
+   if (GetWeaponRanged(oItem))
+    {
+        if (GetBaseItemType(oItem)==BASE_ITEM_LONGBOW || GetBaseItemType(oItem)==BASE_ITEM_SHORTBOW)
+            {
+                oAmmo=GetItemInSlot(INVENTORY_SLOT_ARROWS,oDamager);
+                  //  if (d4()==1) // here put your saving throw
+                  if (iCheck == 1)
+                    {
+                       object oCreate =  CreateItemOnObject(GetResRef(oAmmo), oDamager);
+                       SendMessageToPC(oDamager, "You were able to salvage some of your " + GetName(oAmmo) + " ammunition.");
+                       SetIdentified(oCreate, TRUE);
+                    }
+            }else if (GetBaseItemType(oItem)==BASE_ITEM_LIGHTCROSSBOW || GetBaseItemType(oItem)==BASE_ITEM_HEAVYCROSSBOW)
+            {
+                oAmmo=GetItemInSlot(INVENTORY_SLOT_BOLTS,oDamager);
+                   //if (d4()==1) // here put your saving throw
+                   if (iCheck == 1)
+                    {
+                       object oCreate =  CreateItemOnObject(GetResRef(oAmmo), oDamager);
+                       SendMessageToPC(oDamager, "You were able to salvage some of your " + GetName(oAmmo) + " ammunition.");
+                       SetIdentified(oCreate, TRUE);
+                        }
+            }else if (GetBaseItemType(oItem)==BASE_ITEM_SLING)
+            {
+                   oAmmo=GetItemInSlot(INVENTORY_SLOT_BULLETS,oDamager);
+                  //  if (d4()==1) // here put your saving throw
+                  if (iCheck == 1)
+                    {
+                       object oCreate =  CreateItemOnObject(GetResRef(oAmmo), oDamager);
+                       SendMessageToPC(oDamager, "You were able to salvage some of your " + GetName(oAmmo) + " ammunition.");
+                       SetIdentified(oCreate, TRUE);
+                       }
+            }
+            else
+            {
+            object oCreate =  CreateItemOnObject(GetResRef(oAmmo), oDamager);
+            SendMessageToPC(oDamager, "You were able to salvage some of your " + GetName(oAmmo) + " ammunition.");
+            SetIdentified(oCreate, TRUE);
+            }
+    }
 }
