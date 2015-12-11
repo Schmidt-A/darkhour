@@ -39,12 +39,7 @@ void main()
 
     //Declare major variables
     int nSpellID = GetSpellId();
-    int nDuration = GetCasterLevel(OBJECT_SELF);
-    nDuration = 30;
-    if(nDuration == 1)
-    {
-        nDuration = 2;
-    }
+    int nDuration = GetCasterLevel(OBJECT_SELF) * 10;
     effect eSummon = SetSummonEffect(nSpellID);
 
     //Make metamagic check for extend
@@ -55,7 +50,7 @@ void main()
     }
     //Apply the VFX impact and summon effect
 
-    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, GetSpellTargetLocation(), IntToFloat(nDuration));
+    ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, GetSpellTargetLocation(), TurnsToSeconds(nDuration));
 }
 
 
