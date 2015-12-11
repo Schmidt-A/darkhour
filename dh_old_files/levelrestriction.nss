@@ -5,163 +5,39 @@ For download info, please visit:
 http://nwvault.ign.com/View.php?view=Other.Detail&id=4683&id=625    */
 
 //Put this script OnUsed
+
+#include "nw_i0_tool"
 void RemoveXPFromParty(int nXP, object oPC, int bAllParty=TRUE)
 {
+    if (!bAllParty)
+    {
+        nXP=(GetXP(oPC)-nXP)>=0 ? GetXP(oPC)-nXP : 0;
+        SetXP(oPC, nXP);
+    }
+    else
+    {
+        object oMember=GetFirstFactionMember(oPC, TRUE);
 
-if (!bAllParty)
-   {
-   nXP=(GetXP(oPC)-nXP)>=0 ? GetXP(oPC)-nXP : 0;
-   SetXP(oPC, nXP);
-   }
-else
-   {
-   object oMember=GetFirstFactionMember(oPC, TRUE);
-
-   while (GetIsObjectValid(oMember))
-      {
-      nXP=(GetXP(oMember)-nXP)>=0 ? GetXP(oMember)-nXP : 0;
-      SetXP(oMember, nXP);
-      oMember=GetNextFactionMember(oPC, TRUE);
-      }
-   }
+        while (GetIsObjectValid(oMember))
+        {
+            nXP=(GetXP(oMember)-nXP)>=0 ? GetXP(oMember)-nXP : 0;
+            SetXP(oMember, nXP);
+            oMember=GetNextFactionMember(oPC, TRUE);
+        }
+    }
 }
-#include "nw_i0_tool"
 void main()
 {
-int iExp = 0;
-object oPC = GetPCLevellingUp();
+    object oPC = GetPCLevellingUp();
 
-if (!GetIsPC(oPC)) return;
+    if (!GetIsPC(oPC))
+        return;
 
-if (GetHitDice(oPC) >= 8)
-   {
-   if (GetItemPossessedBy(oPC, "Approval") == OBJECT_INVALID)
-      {
-      iExp = GetXP(oPC);
-      DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
-      DelayCommand(1.2, SetXP(oPC, iExp - 10));
-      DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-      SendMessageToPC(oPC, "You require DM Approval before you can continue to level");
-      return;
-      }
-     object oItem = GetItemPossessedBy(oPC, "Approval");
-    }
-if(GetHitDice(oPC) == 6)
-    {
-    object oItem = GetFirstItemInInventory(oPC);
-    int iCount = 0;
-    string sRef = GetResRef(oItem);
-    while(GetIsObjectValid(oItem))
-        {
-        if((sRef == "advtab1") | (sRef == "advtab2") | (sRef == "advtab3") | (sRef == "advtab4") | (sRef == "advtab5") | (sRef == "advtab6") | (sRef == "advtab7") | (sRef == "advtab8") | (sRef == "advtab9") | (sRef == "advtab10") | (sRef == "advtab11") | (sRef == "advtab12"))
-        {
-        iCount++;
-        }
-        oItem = GetNextItemInInventory(oPC);
-        sRef = GetResRef(oItem);
-        }
-    if(iCount < 1)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 15000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You require an Advanced Artifact before you can continue to level");
-        }
-    if(GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) != 0)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 15000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You may not level in Shadowdancer on this server.");
-        }
-    if(GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) != 0)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 15000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You may not level in Shifter on this server.");
-        }
-    }
-else if(GetHitDice(oPC) == 7)
-    {
-    object oItem = GetFirstItemInInventory(oPC);
-    int iCount = 0;
-    string sRef = GetResRef(oItem);
-    while(GetIsObjectValid(oItem))
-        {
-        if((sRef == "advtab1") | (sRef == "advtab2") | (sRef == "advtab3") | (sRef == "advtab4") | (sRef == "advtab5") | (sRef == "advtab6") | (sRef == "advtab7") | (sRef == "advtab8") | (sRef == "advtab9") | (sRef == "advtab10") | (sRef == "advtab11") | (sRef == "advtab12"))
-        {
-        iCount++;
-        }
-        oItem = GetNextItemInInventory(oPC);
-        sRef = GetResRef(oItem);
-        }
-    if(iCount < 2)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You require two Advanced Artifacts before you can continue to level");
-        }
-     if(GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) != 0)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You may not level in Shadowdancer on this server.");
-        }
-    if(GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) != 0)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 21000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You may not level in Shifter on this server.");
-        }
-    }
-else if(GetHitDice(oPC) >= 8)
-    {
-    object oItem = GetFirstItemInInventory(oPC);
-    int iCount = 0;
-    string sRef = GetResRef(oItem);
-    while(GetIsObjectValid(oItem))
-        {
-        if((sRef == "advtab1") | (sRef == "advtab2") | (sRef == "advtab3") | (sRef == "advtab4") | (sRef == "advtab5") | (sRef == "advtab6") | (sRef == "advtab7") | (sRef == "advtab8") | (sRef == "advtab9") | (sRef == "advtab10") | (sRef == "advtab11") | (sRef == "advtab12"))
-        {
-        iCount++;
-        }
-        iExp = GetXP(oPC);
-        oItem = GetNextItemInInventory(oPC);
-        sRef = GetResRef(oItem);
-        }
-    if(iCount < 3)
-        {
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 28000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You require three Advanced Artifacts before you can continue to level");
-        }
-    }
-    if(GetLevelByClass(CLASS_TYPE_SHADOWDANCER, oPC) != 0)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 28000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You may not level in Shadowdancer on this server.");
-        }
-    if(GetLevelByClass(CLASS_TYPE_SHIFTER, oPC) != 0)
-        {
-        iExp = GetXP(oPC);
-        DelayCommand(0.5, RemoveXPFromParty(GetXP(oPC) - 28000 + 10, oPC, FALSE));
-        DelayCommand(1.2, SetXP(oPC, iExp - 10));
-        DelayCommand(2.0, GiveXPToCreatureDH(oPC, 10, "XP_LEVEL_RES"));
-        SendMessageToPC(oPC, "You may not level in Shifter on this server.");
-        }
+    /* Tweek note:
+       Got rid of all the level restriction stuff for now.
+       We don't want to restrict people from leveling based on how many
+       artifacts that they have.
+       Also currently don't have any plans to restrict SD/Shfiter levels.
+       We can update this later if we want any levelup restrictions. */
 }
 
