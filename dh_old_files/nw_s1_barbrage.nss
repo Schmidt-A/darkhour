@@ -60,14 +60,5 @@ void main()
         // 2003-07-08, Georg: Rage Epic Feat Handling
         CheckAndApplyEpicRageFeats(nCon);
         }
-        if(GetName(OBJECT_SELF) == "Grumbarol")
-            {
-            SetCreatureAppearanceType(OBJECT_SELF, 1350);
-            ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SUPER_HEROISM), GetLocation(OBJECT_SELF));
-            ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_PULSE_FIRE), GetLocation(OBJECT_SELF));
-            ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_DUR_LIGHT_RED_20), OBJECT_SELF, RoundsToSeconds(nCon));
-            DelayCommand(RoundsToSeconds(nCon), SetCreatureAppearanceType(OBJECT_SELF, 1371));
-            DelayCommand(RoundsToSeconds(nCon), ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_POLYMORPH), GetLocation(OBJECT_SELF)));
-            }
     }
 }
