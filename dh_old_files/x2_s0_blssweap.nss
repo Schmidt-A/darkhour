@@ -67,7 +67,7 @@ void main()
     effect eVis = EffectVisualEffect(VFX_IMP_SUPER_HEROISM);
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     object oTarget = GetSpellTargetObject();
-    int nDuration = 2 * GetCasterLevel(OBJECT_SELF);
+    int nDuration = 10 * GetCasterLevel(OBJECT_SELF);
     int nMetaMagic = GetMetaMagicFeat();
     if (nMetaMagic == METAMAGIC_EXTEND)
     {

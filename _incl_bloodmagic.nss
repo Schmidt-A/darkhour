@@ -31,7 +31,7 @@ void BloodMagic(string sSpellId, object oTargetObject, location lTargetObject, o
 		iDamage++;
 	}
 
-	effect eDam = EffectDamage(iDamage, DAMAGE_TYPE_DIVINE);
+	effect eDam = EffectDamage(iDamage, DAMAGE_TYPE_POSITIVE);
 	ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oCaster);
 
 	SetLocalFloat(oCastItem, "storedIncrement", fAdded);
