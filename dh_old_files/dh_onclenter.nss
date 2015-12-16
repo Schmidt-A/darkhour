@@ -82,8 +82,11 @@ void main()
         object oCraft = CreateItemOnObject("craftingitem",oPC);
      }
 
-
-
+     //we should get rid of the DM check
+    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ROMM")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
+    {
+        object oMMRod = CreateItemOnObject("rodofmagicmissil",oPC);
+    }
     if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "BloodMagicBook")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
     {
         //what is the resref?
@@ -99,7 +102,7 @@ void main()
     }
     if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ExtraScavenger")) && (GetLevelByClass(CLASS_TYPE_ROGUE,oPC) > 0))
     {
-            object oXtraScav = CreateItemOnObject("extrascavenger",oPC);
+        object oXtraScav = CreateItemOnObject("extrascavenger",oPC);
     }
     if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "FoodPurifier")) && (GetLevelByClass(CLASS_TYPE_DRUID,oPC) > 0))
     {
@@ -113,6 +116,7 @@ void main()
     {
         object oForager = CreateItemOnObject("forager",oPC);
     }
+    //we should get rid fo the check for an item in that slot
     if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "MonkBoots")) && (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_BOOTS,oPC)) && (GetLevelByClass(CLASS_TYPE_MONK,oPC) > 0))
     {
         object oMBoots = CreateItemOnObject("monkboots",oPC);
@@ -187,58 +191,16 @@ void main()
     // If the entering object happens to be a DM and they don't have a PC list item,
     // give one to them.
     if (GetIsDM(oPC) && GetItemPossessedBy(oPC, "PC_LIST") == OBJECT_INVALID)
-    {CreateItemOnObject("pc_list", oPC, 1);}
+    {
+        CreateItemOnObject("pc_list", oPC, 1);
+    }
 
     ExecuteScript("window_mod_enter", OBJECT_SELF);
-    //DISEASE ADDITION - DEMON X
+    
     if(GetItemPossessedBy(oPC,"ZombieDisease") != OBJECT_INVALID && GetLocalInt(oPC,"DiseaseApplied") != TRUE)
     {
-    nDisease = 0;
-    oCheckDisease = GetFirstItemInInventory(oPC);
-    while (oCheckDisease != OBJECT_INVALID)
-    {
-        if (GetTag(oCheckDisease) == "ZombieDisease")
-        {
-            nDisease += 1;
-                if(nDisease == 2)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
-                    SetLocalInt(oPC,"DiseaseApplied",TRUE);
-                }
-                else if(nDisease == 3)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
-                }
-                else if(nDisease == 4)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
-                }
-                else if(nDisease == 5)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_INTELLIGENCE,2)),oPC);
-                }
-                else if(nDisease == 6)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_WISDOM,2)),oPC);
-                }
-                else if(nDisease == 7)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CHARISMA,2)),oPC);
-                }
-                else if(nDisease == 8)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
-                }
-                else if(nDisease == 9)
-                {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectConfused(),oPC,IntToFloat(Random(60)+1));
-                }
-        }
-        oCheckDisease = GetNextItemInInventory(oPC);
+        ApplyDisease(oPC);
     }
-}
 
 
      if(!GetIsObjectValid(GetItemPossessedBy(GetEnteringObject(),"SubdualModeTog")))
