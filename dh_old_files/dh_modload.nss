@@ -47,4 +47,6 @@ void main()
     SetCustomToken(134, GetCampaignString("NPC_STORAGE_NAMES","10"));
     SetLocalInt(GetModule(), "X3_MOUNTS_EXTERNAL_ONLY", TRUE);
     SetLocalInt(GetModule(), "X3_MOUNT_NO_REST_DESPAWN", FALSE);
+
+    SetModuleOverrideSpellscript("dh_spellhook");
 }
