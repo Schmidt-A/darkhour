@@ -1,5 +1,6 @@
 // TODO: Long-term we need an _incl_badge function so that this is generic.
 
+#include "_incl_xp"
 void main()
 {
     object oPC = GetLastAttacker(OBJECT_SELF);

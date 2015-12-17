@@ -12,10 +12,9 @@ void main()
     object oCastItem = GetSpellCastItem();
     if (GetIsPC(oCaster) && GetIsObjectValid(oCastItem) && GetTag(oCastItem) == "BloodMagicBook")
     {
-        string sCastClass = GetLastSpellCastClass(oCaster);
+        int iCastClass = GetLastSpellCastClass();
         int iCastLevel = GetCasterLevel(oCaster);
 
-        BloodMagic(oCaster, sCastClass, oCastItem, iCastLevel);
+        BloodMagic(oCaster, iCastClass, oCastItem, iCastLevel);
     }
 }
-

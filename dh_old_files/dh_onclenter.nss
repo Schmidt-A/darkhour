@@ -41,11 +41,17 @@ void main()
     }
     else
     {
-        SendMessageToAllDMs (GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
-        PrintString(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
+        string sMessage = GetName(oPC) + " is entering the game from: " +
+                            GetPCPublicCDKey(oPC) + " IP ADDRESS: " +
+                            GetPCIPAddress(oPC);
+        string sLog = "ENTRY: " + GetName(oPC) + " | " +
+                                    GetPCPublicCDKey(oPC) + " | " +
+                                    GetPCIPAddress(oPC) + " | " +
+                                    IntToString(GetXPDH(oPC));
+        SendMessageToAllDMs(sMessage);
+        PrintString(sMessage);
         // a new logging form
-        WriteTimestampedLogEntry("ENTRY: " + GetName(oPC) + " | " + GetPCPublicCDKey(oPC) + 
-                    " | " + GetPCIPAddress(oPC) + " | " + GetXPDH(oPC));
+        WriteTimestampedLogEntry(sLog);
 
     }
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
@@ -196,7 +202,7 @@ void main()
     }
 
     ExecuteScript("window_mod_enter", OBJECT_SELF);
-    
+
     if(GetItemPossessedBy(oPC,"ZombieDisease") != OBJECT_INVALID && GetLocalInt(oPC,"DiseaseApplied") != TRUE)
     {
         ApplyDisease(oPC);

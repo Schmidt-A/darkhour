@@ -26,7 +26,7 @@ void SetXPVars(object oPC)
     }
     else
     {
-        SetLocalInt(oPC, "PC_XP", GetCampaignInt("SUBRACE", GetDBVarName(oPC)+"iCumulativeXP");
+        SetLocalInt(oPC, "PC_XP", GetCampaignInt("SUBRACE", GetDBVarName(oPC)+"iCumulativeXP"));
     }
 }
 
@@ -39,7 +39,12 @@ void GiveXPToCreatureDH(object oPC, int iAmount, string sSource)
         GiveXPToCreature(oPC, iAmount);
 
         //logigng exp gains
-        WriteTimestampedEntry("XP Gained: " + sSource + " | " + GetName(oPC) + " | " + GetPCPlayerName(oPC) + " | " + iAmount + " | " + getXP(oPC));
+        string sLog = "XP Gained: " + sSource + " | " +
+                                    GetName(oPC) + " | " +
+                                    GetPCPlayerName(oPC) + " | " +
+                                    IntToString(iAmount) + " | " +
+                                    IntToString(GetXP(oPC));
+        WriteTimestampedLogEntry(sLog);
 
         return;
     }
@@ -53,7 +58,12 @@ void GiveXPToCreatureDH(object oPC, int iAmount, string sSource)
     SendMessageToPC(oPC, "You gained " + IntToString(iAmount) + " XP.");
 
     //logging exp gains
-    WriteTimestampedEntry("XP Gained: " + sSource + " | " + GetName(oPC) + " | " + GetPCPlayerName(oPC) + " | " + iAmount + " | " + iCumulativeXP);
+    string sLog = "XP Gained: " + sSource + " | " +
+                                GetName(oPC) + " | " +
+                                GetPCPlayerName(oPC) + " | " +
+                                IntToString(iAmount) + " | " +
+                                IntToString(iCumulativeXP);
+    WriteTimestampedLogEntry(sLog);
 
     // Woo they have enough to level
     if (iCumulativeXP >= iXPNeeded)

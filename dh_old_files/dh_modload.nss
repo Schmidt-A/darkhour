@@ -1,4 +1,5 @@
 // Wrapper for the Dark Hour module
+#include "x2_inc_switches"
 
 void main()
 {
