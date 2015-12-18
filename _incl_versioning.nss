@@ -5,54 +5,43 @@ void GiveClassItems(object oPC, int iPCClass)
 	switch(iPCClass)
 	{
 		// should we use the resref or the tag?
-		case 10:
-			//wizard
+		case CLASS_TYPE_WIZARD:
 			//what's the bloodmagic resref?
 			object oBloodMagic = CreateItemOnObject("BloodMagicBook",oPC);
 			object oArCloak = CreateItemOnObject("arcanecloak",oPC);
 			object oMMRod = CreateItemOnObject("rodofmagicmissil",oPC);
 			break;
-		case 9:
-			//sorcerer
+		case CLASS_TYPE_SORCERER:
 			object oBloodMagic = CreateItemOnObject("BloodMagicBook",oPC);
 			object oArCloak = CreateItemOnObject("arcanecloak",oPC);
 			object oMMRod = CreateItemOnObject("rodofmagicmissil",oPC);
 			break;
-		case 8:
-			//rogue
+		case CLASS_TYPE_ROGUE:
 			object oXtraScav = CreateItemOnObject("extrascavenger",oPC);
 			break;
-		case 7:
-			//ranger
+		case CLASS_TYPE_RANGER:
 			object oForager = CreateItemOnObject("forager",oPC);
 			break;
-		case 6:
-			//paladin
+		case CLASS_TYPE_PALADIN:
 			break;
-		case 5:
-			//monk
+		case CLASS_TYPE_MONK:
 			object oMBoots = CreateItemOnObject("monkboots",oPC);
 			break;
-		case 4:
-			//fighter
+		case CLASS_TYPE_FIGHTER:
 			//this int is never used
 			SetCampaignInt(GetName(GetModule()), "Has_WRing", 1, oPC);
         	object oWRing = CreateItemOnObject("warriorring",oPC);
 			break;
-		case 3:
-			//druid
+		case CLASS_TYPE_DRUID:
 			object oFoodPure = CreateItemOnObject("foodpurifier",oPC);
 			object oHerbForage = CreateItemOnObject("herbalforager",oPC);
 			break;
-		case 2:
-			//cleric
+		case CLASS_TYPE_CLERIC:
 			break;
-		case 1:
-			//bard
+		case CLASS_TYPE_BARD:
 			object oMuzak = CreateItemOnObject("sheetmusic",oPC);
 			break;
-		case 0:
-			//barbarian
+		case CLASS_TYPE_BARBARIAN:
 			//this int is never used
 			SetCampaignInt(GetName(GetModule()), "Has_WRing", 1, oPC);
         	object oWRing = CreateItemOnObject("warriorring",oPC);
@@ -67,51 +56,40 @@ string CullClassItems(object oPC, int iLaterClass)
 	switch(iLaterClass)
 	{
 		// should we use the resref or the tag?
-		case 10:
-			//wizard
+		case CLASS_TYPE_WIZARD:
 			DestroyObject(GetItemPossessedBy(oPC, "ArcaneCloak"), 0.0f, TRUE);
 			DestroyObject(GetItemPossessedBy(oPC, "ROMM"), 0.0f, TRUE);
 			break;
-		case 9:
-			//sorcerer
+		case CLASS_TYPE_SORCERER:
 			DestroyObject(GetItemPossessedBy(oPC, "ArcaneCloak"), 0.0f, TRUE);
 			DestroyObject(GetItemPossessedBy(oPC, "ROMM"), 0.0f, TRUE);
 			break;
-		case 8:
-			//rogue
+		case CLASS_TYPE_ROGUE:
 			DestroyObject(GetItemPossessedBy(oPC, "ExtraScavenger"), 0.0f, TRUE);
 			break;
-		case 7:
-			//ranger
+		case CLASS_TYPE_RANGER:
 			DestroyObject(GetItemPossessedBy(oPC, "Forager"), 0.0f, TRUE);
 			break;
-		case 6:
-			//paladin
+		case CLASS_TYPE_PALADIN:
 			break;
-		case 5:
-			//monk
+		case CLASS_TYPE_MONK:
 			DestroyObject(GetItemPossessedBy(oPC, "MonkBoots"), 0.0f, TRUE);
 			break;
-		case 4:
-			//fighter
+		case CLASS_TYPE_FIGHTER:
 			//this int is never used
 			SetCampaignInt(GetName(GetModule()), "Has_WRing", 0, oPC);
         	DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f, TRUE);
 			break;
-		case 3:
-			//druid
+		case CLASS_TYPE_DRUID:
 			DestroyObject(GetItemPossessedBy(oPC, "FoodPurifier"), 0.0f, TRUE);
 			DestroyObject(GetItemPossessedBy(oPC, "HerbalForager"), 0.0f, TRUE);
 			break;
-		case 2:
-			//cleric
+		case CLASS_TYPE_CLERIC:
 			break;
-		case 1:
-			//bard
+		case CLASS_TYPE_BARD:
 			DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f, TRUE);
 			break;
-		case 0:
-			//barbarian
+		case CLASS_TYPE_BARBARIAN:
 			//this int is never used
 			SetCampaignInt(GetName(GetModule()), "Has_WRing", 0, oPC);
         	DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f, TRUE);

@@ -28,8 +28,8 @@
 
 #include "nw_i0_spells"
 #include "x2_i0_spells"
-
 #include "x2_inc_spellhook"
+#include "x2_inc_itemprop"
 
 
 void AddBlessEffectToWeapon(object oTarget, float fDuration)
@@ -88,22 +88,62 @@ void main()
         }
     }
 
-   object oMyWeapon   =  IPGetTargetedOrEquippedMeleeWeapon();
-   if(GetIsObjectValid(oMyWeapon) )
-   {
-        SignalEvent(GetItemPossessor(oMyWeapon), EventSpellCastAt(OBJECT_SELF, GetSpellId(), FALSE));
+    IPGetIsMeleeWeapon();
 
-        if (nDuration>0)
+    
+   object oWeaponTarget   =  IPGetTargetedOrEquippedMeleeWeapon();
+
+   if (GetIsObjectValid(oWeaponTarget))
+   {
+      
+      //adding check to cast this on yourself by default
+      // essentially making it self cast
+      // also temp requirement paladin to prevent people from just giving the items away
+
+      if (GetItemPossessor(oWeaponTarget) == OBJECT_SELF)
+      {
+        SignalEvent(GetItemPossessor(oWeaponTarget), EventSpellCastAt(OBJECT_SELF, GetSpellId(), FALSE));
+
+        if (nDuration > 0)
         {
-           AddBlessEffectToWeapon(oMyWeapon, TurnsToSeconds(nDuration));
-           ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetItemPossessor(oMyWeapon));
-           ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, GetItemPossessor(oMyWeapon), TurnsToSeconds(nDuration));
+           AddBlessEffectToWeapon(oWeaponTarget, TurnsToSeconds(nDuration));
+           ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetItemPossessor(oWeaponTarget));
+           ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, GetItemPossessor(oWeaponTarget), TurnsToSeconds(nDuration));
         }
         return;
+      }
+      else 
+      {
+        SignalEvent(OBJECT_SELF, EventSpellCastAt(OBJECT_SELF, GetSpellId(), FALSE));
+
+        if (nDuration > 0)
+        {
+          object oMyWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, OBJECT_SELF);
+          if (GetIsObjectValid(oMyWeapon) && IPGetIsMeleeWeapon(oMyWeapon))
+          {
+            FloatingTextStringOnCreature("You can't cast bless weapon on anyone other than yourself.", OBJECT_SELF);
+
+            AddBlessEffectToWeapon(oMyWeapon, TurnsToSeconds(nDuration));
+            ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, GetItemPossessor(oMyWeapon));
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur, GetItemPossessor(oMyWeapon), TurnsToSeconds(nDuration));
+
+            itemproperty ipPaladinOnly = ItemPropertyLimitUseByClass(CLASS_TYPE_PALADIN);
+            IPSafeAddItemProperty(oMyWeapon, ipPaladinOnly, TurnsToSeconds(nDuration), X2_IP_ADDPROP_POLICY_KEEP_EXISTING, TRUE, FALSE);
+          }
+          else
+          {
+            FloatingTextStringOnCreature("You can't cast bless weapon on anyone other than yourself. You didn't have a valid weapon equipped, or it would autocast on yourself.", OBJECT_SELF);
+          }
+        }
+        return;
+      }
+      
+        
     }
-        else
+    else
     {
-           FloatingTextStrRefOnCreature(83615, OBJECT_SELF);
-           return;
+       FloatingTextStrRefOnCreature(83615, OBJECT_SELF);
+       return;
     }
+    
 }

@@ -4,6 +4,7 @@
 
 // Created by Zunath on August 1, 2007
 // Edited by Vision on September 7, 2007 for rest limitation
+// Aez refactored dis 2015
 
 void main()
 {
@@ -90,10 +91,11 @@ void main()
             ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eUnsummon, GetLocation(oFamiliar));
             DestroyObject(oFamiliar);
         }
-}
-else
-
-//{SendMessageToPC(oPC, "You are not tired and cannot rest. You must wait 30 minutes (Game Time) before you can rest again.");}
-
-{SendMessageToPC(oPC, "You must be near a restable object, such as a bedroll.");}
+    }
+    else
+    {
+        //This was removed by Vision presumably -Aez
+        //SendMessageToPC(oPC, "You are not tired and cannot rest. You must wait 30 minutes (Game Time) before you can rest again.");
+        SendMessageToPC(oPC, "You must be near a restable object, such as a bedroll.");
+    }
 }
