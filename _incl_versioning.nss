@@ -37,6 +37,18 @@ void GiveClassItems(object oPC, int iPCClass)
 			object oHerbForage = CreateItemOnObject("herbalforager",oPC);
 			break;
 		case CLASS_TYPE_CLERIC:
+			if (GetAlignmentGoodEvil(oPC) == ALIGNMENT_GOOD)
+		    {
+		        object oHolyS = CreateItemOnObject("holysymbol",oPC);
+		    }
+			else if (GetAlignmentGoodEvil(oPC) == ALIGNMENT_EVIL)
+		    {
+		        object oHolyS = CreateItemOnObject("holysymbol2",oPC);
+		    }
+			else
+		    {
+		        object oHolyS = CreateItemOnObject("holysymbol3",oPC);
+		    }
 			break;
 		case CLASS_TYPE_BARD:
 			object oMuzak = CreateItemOnObject("sheetmusic",oPC);
@@ -85,6 +97,9 @@ string CullClassItems(object oPC, int iLaterClass)
 			DestroyObject(GetItemPossessedBy(oPC, "HerbalForager"), 0.0f, TRUE);
 			break;
 		case CLASS_TYPE_CLERIC:
+			DestroyObject(GetItemPossessedBy(oPC, "holysymbol"), 0.0f, TRUE);
+			DestroyObject(GetItemPossessedBy(oPC, "holysymbol2"), 0.0f, TRUE);
+			DestroyObject(GetItemPossessedBy(oPC, "holysymbol3"), 0.0f, TRUE);
 			break;
 		case CLASS_TYPE_BARD:
 			DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f, TRUE);

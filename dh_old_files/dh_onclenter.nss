@@ -132,6 +132,24 @@ void main()
         SetCampaignInt(GetName(GetModule()), "Has_WRing", 1, oPC);
         object oWRing = CreateItemOnObject("warriorring",oPC);
     }
+    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "holysymbol")) && 
+            (OBJECT_INVALID == GetItemPossessedBy(oPC, "holysymbol2")) &&
+            (OBJECT_INVALID == GetItemPossessedBy(oPC, "holysymbol3")) &&
+            (GetLevelByClass(CLASS_TYPE_CLERIC,oPC) > 0))
+    {
+        if (GetAlignmentGoodEvil(oPC) == ALIGNMENT_GOOD)
+        {
+            object oHolyS = CreateItemOnObject("holysymbol",oPC);
+        }
+        else if (GetAlignmentGoodEvil(oPC) == ALIGNMENT_EVIL)
+        {
+            object oHolyS = CreateItemOnObject("holysymbol2",oPC);
+        }
+        else
+        {
+            object oHolyS = CreateItemOnObject("holysymbol3",oPC);
+        }
+    }
 
     int nDisease = 0;
     object oCheckDisease = GetFirstItemInInventory(oPC);
