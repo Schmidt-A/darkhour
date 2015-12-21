@@ -117,6 +117,8 @@ string CullClassItems(object oPC, int iLaterClass)
 void ZeroToVersionOne(object oPC)
 {
 	AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
+    AddJournalQuestEntry("Stuff1_5",1,oPC,FALSE);
+    AddJournalQuestEntry("Stuff2",1,oPC,FALSE);
     AddJournalQuestEntry("RULES2",1,oPC,FALSE);
     AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
     AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
@@ -131,10 +133,9 @@ void ZeroToVersionOne(object oPC)
     }
 
     if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "craftingitem")))
-     {
-
+    {
         object oCraft = CreateItemOnObject("craftingitem",oPC);
-     }
+    }
 
     // If the entering object happens to be a DM and they don't have a PC list item,
     // give one to them.
@@ -149,7 +150,7 @@ void ZeroToVersionOne(object oPC)
     	CreateItemOnObject("subdualmodetog",GetEnteringObject());
     }
 
-    SetLocalInt(oPC, "Version", 1);
+    SetCampaignInt("VERSIONING", sPre+"Version", 1);
 }
 
 
@@ -164,7 +165,7 @@ void ZeroToVersionTwo(object oPC)
 	}
 	
 
-    SetLocalInt(oPC, "Version", 2);
+    SetCampaignInt("VERSIONING", sPre+"Version", 2);
 }
 
 void OneToVersionTwo(object oPC) 
@@ -194,7 +195,7 @@ void OneToVersionTwo(object oPC)
         object oBloodMagic = CreateItemOnObject("BloodMagicBook",oPC);
     }
 
-    SetLocalInt(oPC, "Version", 2);
+    SetCampaignInt("VERSIONING", sPre+"Version", 2);
 
 }
 
