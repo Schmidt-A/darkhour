@@ -1,0 +1,1088 @@
+NDB V1.0
+0000013 0000003 0000796 0000024 0000070
+n00 x0_i0_enemy
+n01 zep_inc_demi
+n02 x2_inc_compon
+n03 x0_i0_debug
+n04 x0_i0_assoc
+n05 x0_i0_match
+n06 x0_i0_equip
+n07 x0_inc_generic
+n08 x0_i0_talent
+n09 x0_i0_combat
+n10 x0_i0_spawncond
+n11 colors_inc
+N12 zep_restded_deth
+s 03 vector
+sf f x
+sf f y
+sf f z
+s 10 sEnemies
+sf i FIGHTERS
+sf i FIGHTER_LEVELS
+sf i CLERICS
+sf i CLERIC_LEVELS
+sf i MAGES
+sf i MAGE_LEVELS
+sf i MONSTERS
+sf i MONTERS_LEVELS
+sf i TOTAL
+sf i TOTAL_LEVELS
+s 04 sSituation
+sf i ENEMY_NUM
+sf i ALLY_NUM
+sf i ENEMY_CR
+sf i ALLY_CR
+f ffffffff ffffffff 000 i MIN_SKILL_LEVEL
+f 0000036e 00000771 001 v craft_drop_items
+fp o
+f ffffffff ffffffff 000 v craft_drop_placeable
+f ffffffff ffffffff 001 v newdebug
+fp s
+f ffffffff ffffffff 001 v DubugPrintTalentID
+fp e3
+f ffffffff ffffffff 001 v DebugPrintTalentID
+fp e3
+f ffffffff ffffffff 001 v MyPrintString
+fp s
+f ffffffff ffffffff 000 i CLEAR_DEBUG
+f ffffffff ffffffff 000 s sAssociateMasterConditionVarname
+f ffffffff ffffffff 000 i NW_ASC_DISTANCE_2_METERS
+f ffffffff ffffffff 000 i NW_ASC_DISTANCE_4_METERS
+f ffffffff ffffffff 000 i NW_ASC_DISTANCE_6_METERS
+f ffffffff ffffffff 000 i NW_ASC_HEAL_AT_75
+f ffffffff ffffffff 000 i NW_ASC_HEAL_AT_50
+f ffffffff ffffffff 000 i NW_ASC_HEAL_AT_25
+f ffffffff ffffffff 000 i NW_ASC_AGGRESSIVE_BUFF
+f ffffffff ffffffff 000 i NW_ASC_AGGRESSIVE_SEARCH
+f ffffffff ffffffff 000 i NW_ASC_AGGRESSIVE_STEALTH
+f ffffffff ffffffff 000 i NW_ASC_RETRY_OPEN_LOCKS
+f ffffffff ffffffff 000 i NW_ASC_OVERKIll_CASTING
+f ffffffff ffffffff 000 i NW_ASC_POWER_CASTING
+f ffffffff ffffffff 000 i NW_ASC_SCALED_CASTING
+f ffffffff ffffffff 000 i NW_ASC_USE_CUSTOM_DIALOGUE
+f ffffffff ffffffff 000 i NW_ASC_DISARM_TRAPS
+f ffffffff ffffffff 000 i NW_ASC_USE_RANGED_WEAPON
+f ffffffff ffffffff 000 i NW_ASC_MODE_DYING
+f ffffffff ffffffff 000 i NW_ASC_MODE_DEFEND_MASTER
+f ffffffff ffffffff 000 i NW_ASC_MODE_STAND_GROUND
+f ffffffff ffffffff 000 i NW_ASC_MASTER_GONE
+f ffffffff ffffffff 000 i NW_ASC_MASTER_REVOKED
+f ffffffff ffffffff 000 i NW_ASC_IS_BUSY
+f ffffffff ffffffff 000 i NW_ASC_HAVE_MASTER
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_BKATTEMPTTODISARMTRAP_ThrowSelfOnTrap
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ASSOC_RESETHENCHMENSTATE
+f ffffffff ffffffff 000 i CLEAR_NW_C2_DEFAULT4_29
+f ffffffff ffffffff 000 i CLEAR_NW_C2_DEFAULTB_GUSTWIND
+f ffffffff ffffffff 000 i CLEAR_NW_CH_AC1_49
+f ffffffff ffffffff 000 i CLEAR_NW_CH_AC1_81
+f ffffffff ffffffff 000 i CLEAR_NW_CH_AC4_28
+f ffffffff ffffffff 000 i CLEAR_NW_I0_GENERIC_658
+f ffffffff ffffffff 000 i CLEAR_NW_I0_GENERIC_834
+f ffffffff ffffffff 000 i CLEAR_NW_I0_GENERIC_ExitAOESpellArea
+f ffffffff ffffffff 000 i CLEAR_NW_I0_GENERIC_DetermineSpecialBehavior1
+f ffffffff ffffffff 000 i CLEAR_NW_I0_GENERIC_DetermineSpecialBehavior2
+f ffffffff ffffffff 000 i CLEAR_X0_CH_HEN_CONV_26
+f ffffffff ffffffff 000 i CLEAR_X0_CH_HEN_USRDEF_91
+f ffffffff ffffffff 000 i CLEAR_X0_CH_HEN_USRDEF_92
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_PlayMobile
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_PlayRandomMobile
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_PlayRandomCloseRange1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_PlayRandomCloseRange2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionPlayRandomMobile1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionPlayRandomMobile2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionPlayRandomUncivilized
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionGetUpFromChair
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionGoToStop
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionRest1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionRest2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_GoHome
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionLeaveHome
+f ffffffff ffffffff 000 i CLEAR_X0_I0_ANIMS_AnimActionChallengeIntruder
+f ffffffff ffffffff 000 i CLEAR_X0_I0_COMBAT_SpecialTacticsRanged1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_COMBAT_SpecialTacticsRanged2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_COMBAT_SpecialTacticsRanged3
+f ffffffff ffffffff 000 i CLEAR_X0_I0_COMBAT_SpecialTacticsAmbusher
+f ffffffff ffffffff 000 i CLEAR_X0_I0_COMBAT_SpecialTacticsCowardly1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_COMBAT_SpecialTacticsCowardly2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_EQUIP_EquipAppropriateWeapons1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_EQUIP_EquipAppropriateWeapons2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_EQUIP_EquipMelee1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_EQUIP_EquipMelee2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_EQUIP_EquipMelee3
+f ffffffff ffffffff 000 i CLEAR_X0_I0_HENCHMAN_Fire
+f ffffffff ffffffff 000 i CLEAR_X0_I0_HENCHMAN_LevelUp
+f ffffffff ffffffff 000 i CLEAR_X0_I0_HENCHMAN_PreRespawn
+f ffffffff ffffffff 000 i CLEAR_X0_INC_GENERIC_TalentFilter
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_RangedAttackers
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_RangedEnemies
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_TalentFlee
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_UseTurning
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_SummonAllies
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_MeleeAttack1
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_MeleeAttack2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_TalentFlee2
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_AdvancedBuff
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_SeeInvisible
+f ffffffff ffffffff 000 i CLEAR_X0_I0_TALENT_BardSong
+f ffffffff ffffffff 000 i CLEAR_X0_I0_WALKWAY_WalkWayPoints
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_HCR
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_AttemptToDisarmTrap
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_AttemptToOpenLock1
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_AttemptToOpenLock2
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_AttemptToOpenLock3
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_RespondToShout1
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_RespondToShout2
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_RespondToShout3
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_RespondToShout4
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_CombatAttemptHeal1
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_CombatAttemptHeal2
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_Combat
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_CombatAttemptHeal
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_CombatFollowMaster1
+f ffffffff ffffffff 000 i CLEAR_X0_INC_HENAI_CombatFollowMaster2
+f ffffffff ffffffff 001 i GetPercentageHPLoss
+fp o
+f ffffffff ffffffff 003 v SetAssociateState
+fp i
+fp i
+fp o
+f ffffffff ffffffff 002 i GetAssociateState
+fp i
+fp o
+f ffffffff ffffffff 000 v ResetHenchmenState
+f ffffffff ffffffff 001 i AssociateCheck
+fp o
+f ffffffff ffffffff 000 i GetAssociateHealMaster
+f ffffffff ffffffff 000 f GetFollowDistance
+f ffffffff ffffffff 000 v SetAssociateStartLocation
+f ffffffff ffffffff 000 e2 GetAssociateStartLocation
+f ffffffff ffffffff 002 v ClearActions
+fp i
+fp i
+f ffffffff ffffffff 000 i NW_TALENT_PROTECT
+f ffffffff ffffffff 000 i NW_TALENT_ENHANCE
+f ffffffff ffffffff 003 i GetMatchCompatibility
+fp e3
+fp s
+fp i
+f ffffffff ffffffff 001 i MatchDoIHaveAMindAffectingSpellOnMe
+fp o
+f ffffffff ffffffff 001 i MatchAreaOfEffectSpell
+fp i
+f ffffffff ffffffff 001 i MatchCombatProtections
+fp e3
+f ffffffff ffffffff 001 i MatchSpellProtections
+fp e3
+f ffffffff ffffffff 001 i MatchElementalProtections
+fp e3
+f ffffffff ffffffff 001 i MatchSingleHandedWeapon
+fp o
+f ffffffff ffffffff 001 i MatchDoubleHandedWeapon
+fp o
+f ffffffff ffffffff 001 i MatchMeleeWeapon
+fp o
+f ffffffff ffffffff 001 i MatchShield
+fp o
+f ffffffff ffffffff 001 i MatchCrossbow
+fp o
+f ffffffff ffffffff 001 i MatchNormalBow
+fp o
+f ffffffff ffffffff 001 i MatchMindAffectingSpells
+fp i
+f ffffffff ffffffff 001 i MatchPersonSpells
+fp i
+f ffffffff ffffffff 001 i MatchInflictTouchAttack
+fp i
+f ffffffff ffffffff 001 i MatchNonliving
+fp i
+f ffffffff ffffffff 002 i VerifyDisarm
+fp e3
+fp o
+f ffffffff ffffffff 002 i VerifyCombatMeleeTalent
+fp e3
+fp o
+f ffffffff ffffffff 002 i GetHasEffect
+fp i
+fp o
+f ffffffff ffffffff 000 i GetRemovalSpell
+f ffffffff ffffffff 000 f MELEE_DISTANCE
+f ffffffff ffffffff 002 o GetNearestEnemy
+fp o
+fp i
+f ffffffff ffffffff 004 o GetNearestPerceivedEnemy
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 o GetNearestSeenEnemy
+fp o
+fp i
+f ffffffff ffffffff 002 o GetNearestSeenOrHeardEnemy
+fp o
+fp i
+f ffffffff ffffffff 002 o GetNearestSeenFriend
+fp o
+fp i
+f ffffffff ffffffff 002 t0002 CountEnemiesAndAllies
+fp f
+fp o
+f ffffffff ffffffff 000 t0001 DetermineEnemies
+f ffffffff ffffffff 001 s GetMostDangerousClass
+fp t0001
+f ffffffff ffffffff 001 i GetIsMeleeAttacker
+fp o
+f ffffffff ffffffff 001 i GetIsRangedAttacker
+fp o
+f ffffffff ffffffff 001 i GetIsWieldingRanged
+fp o
+f ffffffff ffffffff 000 i GetNumberOfMeleeAttackers
+f ffffffff ffffffff 000 i GetNumberOfRangedAttackers
+f ffffffff ffffffff 001 i GetRacialTypeCount
+fp i
+f ffffffff ffffffff 002 i CheckFriendlyFireOnTarget
+fp o
+fp f
+f ffffffff ffffffff 002 i CheckEnemyGroupingOnTarget
+fp o
+fp f
+f ffffffff ffffffff 000 o FindSingleRangedTarget
+f ffffffff ffffffff 001 i WiseToDualWield
+fp o
+f ffffffff ffffffff 001 v EquipAppropriateWeapons
+fp o
+f ffffffff ffffffff 001 i IsOutOfAmmo
+fp i
+f ffffffff ffffffff 002 v bkEquipMelee
+fp o
+fp i
+f ffffffff ffffffff 003 v bkEquipRanged
+fp o
+fp i
+fp i
+f ffffffff ffffffff 003 v bkEquipAppropriateWeapons
+fp o
+fp i
+fp i
+f ffffffff ffffffff 001 v WrapperActionAttack
+fp o
+f ffffffff ffffffff 000 v StoreLastRanged
+f ffffffff ffffffff 001 i GetIsWeaponLarge
+fp o
+f ffffffff ffffffff 000 i NO_SMART
+f ffffffff ffffffff 001 v bkSetupBehavior
+fp i
+f ffffffff ffffffff 002 i GetCombatDifficulty
+fp o
+fp i
+f ffffffff ffffffff 000 o bkAcquireTarget
+f ffffffff ffffffff 000 o ChooseNewTarget
+f ffffffff ffffffff 000 i GetCRMax
+f ffffffff ffffffff 002 i bkEvaluationSanityCheck
+fp o
+fp f
+f ffffffff ffffffff 003 i bkTalentFilter
+fp e3
+fp o
+fp i
+f ffffffff ffffffff 001 v SetLastGenericSpellCast
+fp i
+f ffffffff ffffffff 000 i GetLastGenericSpellCast
+f ffffffff ffffffff 001 i CompareLastSpellCast
+fp i
+f ffffffff ffffffff 001 i GetIsFighting
+fp o
+f ffffffff ffffffff 000 i TALENT_ANY
+f ffffffff ffffffff 000 i COND_CURSE
+f ffffffff ffffffff 000 i COND_POISON
+f ffffffff ffffffff 000 i COND_DISEASE
+f ffffffff ffffffff 000 i COND_ABILITY
+f ffffffff ffffffff 000 i COND_DRAINED
+f ffffffff ffffffff 000 i COND_BLINDDEAF
+f ffffffff ffffffff 000 f WHIRL_DISTANCE
+f ffffffff ffffffff 001 i TryKiDamage
+fp o
+f ffffffff ffffffff 003 i TrySpell
+fp i
+fp o
+fp o
+f ffffffff ffffffff 004 i TrySpellForEffect
+fp i
+fp i
+fp o
+fp o
+f ffffffff ffffffff 003 i TryTalent
+fp e3
+fp o
+fp o
+f ffffffff ffffffff 000 i TalentUseProtectionOnSelf
+f ffffffff ffffffff 001 i TalentUseProtectionOthers
+fp o
+f ffffffff ffffffff 000 i TalentEnhanceOthers
+f ffffffff ffffffff 000 i TalentUseEnhancementOnSelf
+f ffffffff ffffffff 002 i genericDoHarmfulRangedAttack
+fp e3
+fp o
+f ffffffff ffffffff 002 i genericAttemptHarmfulRanged
+fp e3
+fp o
+f ffffffff ffffffff 001 i TalentMeleeAttacked
+fp o
+f ffffffff ffffffff 001 i TalentRangedAttackers
+fp o
+f ffffffff ffffffff 001 i TalentRangedEnemies
+fp o
+f ffffffff ffffffff 000 i TalentSummonAllies
+f ffffffff ffffffff 001 i TalentHealingSelf
+fp i
+f ffffffff ffffffff 002 i TalentHeal
+fp i
+fp o
+f ffffffff ffffffff 001 i TalentMeleeAttack
+fp o
+f ffffffff ffffffff 000 i TalentSneakAttack
+f ffffffff ffffffff 001 i TalentFlee
+fp o
+f ffffffff ffffffff 000 i TalentUseTurning
+f ffffffff ffffffff 000 i TalentPersistentAbilities
+f ffffffff ffffffff 002 i TalentAdvancedBuff
+fp f
+fp i
+f ffffffff ffffffff 000 i TalentBuffSelf
+f ffffffff ffffffff 000 i TalentSeeInvisible
+f ffffffff ffffffff 002 i GetHasNegativeCondition
+fp i
+fp i
+f ffffffff ffffffff 001 i GetCurrentNegativeConditions
+fp o
+f ffffffff ffffffff 000 i TalentCureCondition
+f ffffffff ffffffff 001 i TalentDragonCombat
+fp o
+f ffffffff ffffffff 000 i TalentBardSong
+f ffffffff ffffffff 000 i TalentAdvancedProtectSelf
+f ffffffff ffffffff 000 i TalentSelfProtectionMantleOrGlobe
+f ffffffff ffffffff 001 i TalentSpellAttack
+fp o
+f ffffffff ffffffff 000 e3 StartProtectionLoop
+f ffffffff ffffffff 004 e3 GetCreatureTalent
+fp i
+fp i
+fp i
+fp o
+f ffffffff ffffffff 001 i WhirlwindGetNumberOfMeleeAttackers
+fp f
+f ffffffff ffffffff 001 i GetOKToWhirl
+fp o
+f ffffffff ffffffff 000 s sCombatCondVarname
+f ffffffff ffffffff 000 i X0_COMBAT_FLAG_RANGED
+f ffffffff ffffffff 000 i X0_COMBAT_FLAG_DEFENSIVE
+f ffffffff ffffffff 000 i X0_COMBAT_FLAG_COWARDLY
+f ffffffff ffffffff 000 i X0_COMBAT_FLAG_AMBUSHER
+f ffffffff ffffffff 002 i GetCombatCondition
+fp i
+fp o
+f ffffffff ffffffff 003 v SetCombatCondition
+fp i
+fp i
+fp o
+f ffffffff ffffffff 001 i SpecialTactics
+fp o
+f ffffffff ffffffff 001 i SpecialTacticsRanged
+fp o
+f ffffffff ffffffff 001 i SpecialTacticsAmbusher
+fp o
+f ffffffff ffffffff 001 i SpecialTacticsCowardly
+fp o
+f ffffffff ffffffff 001 i SpecialTacticsDefensive
+fp o
+f ffffffff ffffffff 000 s sSpawnCondVarname
+f ffffffff ffffffff 000 i NW_FLAG_SPECIAL_CONVERSATION
+f ffffffff ffffffff 000 i NW_FLAG_SHOUT_ATTACK_MY_TARGET
+f ffffffff ffffffff 000 i NW_FLAG_STEALTH
+f ffffffff ffffffff 000 i NW_FLAG_SEARCH
+f ffffffff ffffffff 000 i NW_FLAG_SET_WARNINGS
+f ffffffff ffffffff 000 i NW_FLAG_ESCAPE_RETURN
+f ffffffff ffffffff 000 i NW_FLAG_ESCAPE_LEAVE
+f ffffffff ffffffff 000 i NW_FLAG_TELEPORT_RETURN
+f ffffffff ffffffff 000 i NW_FLAG_TELEPORT_LEAVE
+f ffffffff ffffffff 000 i NW_FLAG_PERCIEVE_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_ATTACK_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_DAMAGED_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_SPELL_CAST_AT_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_DISTURBED_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_END_COMBAT_ROUND_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_ON_DIALOGUE_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_RESTED_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_DEATH_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_SPECIAL_COMBAT_CONVERSATION
+f ffffffff ffffffff 000 i NW_FLAG_AMBIENT_ANIMATIONS
+f ffffffff ffffffff 000 i NW_FLAG_HEARTBEAT_EVENT
+f ffffffff ffffffff 000 i NW_FLAG_IMMOBILE_AMBIENT_ANIMATIONS
+f ffffffff ffffffff 000 i NW_FLAG_DAY_NIGHT_POSTING
+f ffffffff ffffffff 000 i NW_FLAG_AMBIENT_ANIMATIONS_AVIAN
+f ffffffff ffffffff 000 i NW_FLAG_APPEAR_SPAWN_IN_ANIMATION
+f ffffffff ffffffff 000 i NW_FLAG_SLEEPING_AT_NIGHT
+f ffffffff ffffffff 000 i NW_FLAG_FAST_BUFF_ENEMY
+f ffffffff ffffffff 002 v SetSpawnInCondition
+fp i
+fp i
+f 000002d2 0000036e 001 i GetSpawnInCondition
+fp i
+f ffffffff ffffffff 001 v SetSpawnInLocals
+fp i
+f ffffffff ffffffff 000 v SetListeningPatterns
+f ffffffff ffffffff 000 s ColorArray
+f ffffffff ffffffff 003 s ColorToken
+fp i
+fp i
+fp i
+f ffffffff ffffffff 000 s ColorTokenEnd
+f ffffffff ffffffff 000 s ColorTokenBlack
+f ffffffff ffffffff 000 s ColorTokenBlue
+f ffffffff ffffffff 000 s ColorTokenGray
+f ffffffff ffffffff 000 s ColorTokenGreen
+f ffffffff ffffffff 000 s ColorTokenLightPurple
+f ffffffff ffffffff 000 s ColorTokenOrange
+f ffffffff ffffffff 000 s ColorTokenPink
+f ffffffff ffffffff 000 s ColorTokenPurple
+f ffffffff ffffffff 000 s ColorTokenRed
+f ffffffff ffffffff 000 s ColorTokenWhite
+f ffffffff ffffffff 000 s ColorTokenYellow
+f ffffffff ffffffff 000 s ColorTokenCombat
+f ffffffff ffffffff 000 s ColorTokenDialog
+f ffffffff ffffffff 000 s ColorTokenDialogAction
+f ffffffff ffffffff 000 s ColorTokenDialogCheck
+f ffffffff ffffffff 000 s ColorTokenDialogHighlight
+f ffffffff ffffffff 000 s ColorTokenDialogReply
+f ffffffff ffffffff 000 s ColorTokenDM
+f ffffffff ffffffff 000 s ColorTokenGameEngine
+f ffffffff ffffffff 000 s ColorTokenSavingThrow
+f ffffffff ffffffff 000 s ColorTokenScript
+f ffffffff ffffffff 000 s ColorTokenServer
+f ffffffff ffffffff 000 s ColorTokenShout
+f ffffffff ffffffff 000 s ColorTokenSkillCheck
+f ffffffff ffffffff 000 s ColorTokenTalk
+f ffffffff ffffffff 000 s ColorTokenTell
+f ffffffff ffffffff 000 s ColorTokenWhisper
+f ffffffff ffffffff 001 s GetNamePCColor
+fp o
+f ffffffff ffffffff 001 s GetNameNPCColor
+fp o
+f ffffffff ffffffff 000 i nZEPPitJump
+f ffffffff ffffffff 000 i nZEPPitFall
+f ffffffff ffffffff 000 i nZEPPitClimb
+f ffffffff ffffffff 000 i nZEPDrowning
+f ffffffff ffffffff 000 i nZEPTrapFind
+f ffffffff ffffffff 000 i nZEPTrapSearch1
+f ffffffff ffffffff 000 i nZEPTrapSearch2
+f ffffffff ffffffff 000 i nZEPTrapSearch3
+f ffffffff ffffffff 000 i nZEPTrapReset
+f ffffffff ffffffff 000 i nZEPGenderRestTXT
+f ffffffff ffffffff 000 i nZEPDoorLocked
+f ffffffff ffffffff 000 i nZEPReturnToLife
+f ffffffff ffffffff 000 i nZEPCacklingLaugh
+f ffffffff ffffffff 000 i nZEPCantBeRaised
+f ffffffff ffffffff 000 i nZEPNoRaiseExplan
+f ffffffff ffffffff 000 i nZEPDemiRestored
+f ffffffff ffffffff 000 i nZEPDemiDisturbed
+f ffffffff ffffffff 000 i nZEPDemiHavePower
+f ffffffff ffffffff 000 i nZEPDemiVictFree
+f ffffffff ffffffff 000 i nZEPMarilithDMG
+f ffffffff ffffffff 000 i nZEPRustMonBrush
+f ffffffff ffffffff 000 i nZEPRustButResist1
+f ffffffff ffffffff 000 i nZEPRustButResist2
+f ffffffff ffffffff 000 i nZEPRustAndDest
+f ffffffff ffffffff 000 i nZEPRustYourTXT
+f ffffffff ffffffff 000 i nZEPRustWeapRes
+f ffffffff ffffffff 000 i nZEPRustWeapDest
+f ffffffff ffffffff 000 i nZEPFoundSecret
+f ffffffff ffffffff 000 s ZEP_DEMI_RESS_VICTIMS
+f ffffffff ffffffff 000 s ZEP_DEMI_DEAD_SCRIPT
+f ffffffff ffffffff 000 s ZEP_DEMI_DEST_SCRIPT
+f ffffffff ffffffff 000 f ZEP_DEMILICH_PSEUDO_DELAY
+f ffffffff ffffffff 000 i ZEP_DEMI_USE_LEGACY
+f ffffffff ffffffff 000 f ZEP_DEMI_PERC_RANGE
+f ffffffff ffffffff 000 s ZEP_DEMI_SKULL_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_INERT_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_DUST_RESREF
+f ffffffff ffffffff 000 f ZEP_DEMILICH_REGEN_TIME
+f ffffffff ffffffff 000 s ZEP_DEMI_DEST_TAG
+f ffffffff ffffffff 000 i ZEP_DEMI_NUM_SOULGEMS
+f ffffffff ffffffff 000 i ZEP_DEMI_POWER_THRESHOLD
+f ffffffff ffffffff 000 i ZEP_DEMI_TRAPSOUL_SAVEDC
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_AMBIENT
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_SOURCE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_HOLDER
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_SGCORPSE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_HITDICE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_PARTY
+f ffffffff ffffffff 002 v MoveDroppableInventory
+fp o
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichSpawnBones
+fp o
+fp i
+f ffffffff ffffffff 003 o ZEPDemilichFromBones
+fp o
+fp s
+fp i
+f ffffffff ffffffff 001 o ZEPDemilichCreateDetector
+fp e2
+f ffffffff ffffffff 003 v ZEPDemilichRestore
+fp s
+fp o
+fp o
+f ffffffff ffffffff 001 i ZEPDemilichChooseSoulGem
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichTrapSoul
+fp o
+fp i
+f ffffffff ffffffff 001 v ZEPDemilichFreeSoul
+fp i
+f ffffffff ffffffff 002 v ZEPDemilichRaiseVictim
+fp o
+fp f
+f ffffffff ffffffff 001 v ZEPDemilichCorpseInit
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichCorpseCheck
+fp o
+fp f
+f ffffffff ffffffff 001 o ZEPDemilichGetVictim
+fp i
+f ffffffff ffffffff 001 o ZEPDemilichGetVictimParty
+fp i
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WEMIC
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_TWIG_BLIGHT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BROWNIE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SATYR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SATYR_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_CALF_DARK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_CALF_BROWN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUFFALO_CALF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_LONGHORN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUFFALO_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUFFALO_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUFFALO_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_ROTHE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_BLACK_ANGUS
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_BROWN_ANGUS
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BISON
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BISON_ANTIQUUS
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_BRAHMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_FIGHTING
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_HIGHLAND
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CATTLE_HOLSTEIN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PACK_BADGER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PACK_OX
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OX_PLOW
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OX_PACK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SWINE_PIG
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SWINE_HOG
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SWINE_PECCARY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SWINE_BABIRUSA
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SWINE_POTBELLY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ARMOR_STAND
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRACOLICH_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_RUST_MONSTER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OWLBEAR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEHOLDER_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCARECROW
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GHOUL_ICE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_SMALL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_STIRGE_CAVE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SHRIEKER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_XORN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MYCONID
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MYCONID_SPROUT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MYCONID_ELDER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_TROLL_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VEGEPYGMY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_THORNY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VEGEPYGMY_THORNY_RIDER_T
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VEGEPYGMY_THORNY_RIDER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VEGEPYGMY_THORNY_RIDER_V
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CYCLOPS
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELF_BLACKROSE_MALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELF_BLACKROSE_FEMALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_FLYING_EYE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MARILITH_DEMONIC
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MARILITH_HUMANOID
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MARILITH_BLACKGUARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ERINYES
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PLANETOUCHED_FEYRI
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SUCCUBUS_2ND_ED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SHADE_HOODED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SHADE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SUCCUBUS__PG_RATED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CORNUGON_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WRAITH_HOODED_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WRAITH_HOODED_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DEVIL_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GELUGON
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VISAGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VISAGE_GREATER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DEMON_VORLAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_HAMATULA
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BARGHEST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BELKER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SALAMANDER_AVERAGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SALAMANDER_FLAME_BRO
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SALAMANDER_NOBLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_AZER_MALE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_AZER_FEMALE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_RAKSHASA_WOLF_FEMALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_RAKSHASA_BEAR_FEMALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_MALE_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_MALE_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_MALE_3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_MALE_4
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_FEMALE_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_FEMALE_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_FEMALE_3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LUPINAL_FEMALE_4
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MANTICORE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPHINX_ANDRO
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPHINX_HIERACO
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPHINX_GYNO
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_FAERUN_CHIEF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_FAERUN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_D
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_E
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_F
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_MERCENARY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_SNOW
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_SNOW_CHIEFTAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_SNOW_SHAMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_BONE_WIZARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_SPIDER_RIDER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_URAK_HAI_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_URAK_HAI_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_URAK_CAPTAIN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_URAK_WORG_TRAINER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_URAK_HAI_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ORC_BLOODGUAR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OGRILLION_TAN_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OGRILLION_TAN_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OGRILLION_DULL_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OGRILLION_DULL_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_WORG_RIDER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_WORG_RIDER_W
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_WORG_RIDER_G
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_FROST_CHIEF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_FROST_SHAMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_FROST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_CAVE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_CAVE_ARCHER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_CAVE_BERKSERK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOBLIN_CAVE_SHAMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_KOBOLD_ICE_NOBLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_KOBOLD_ICE_WIZARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_KOBOLD_ICE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDER_BLOODBACK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT_FIRE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUGS
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUGS_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_HUGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_HUGE_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_HUGE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_HUGE_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_GIANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_GIANT_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_GIANT_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_GIANT_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_SMALL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_SMALL_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_SMALL_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SCORPION_SMALL_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_SLICER_FINE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_SLICER_TINY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_SLICER_HUGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_FIRE_FINE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_FIRE_TINY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_FIRE_HUGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_STAG_FINE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_STAG_TINY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_STAG_HUGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_STINK_FINE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_STINK_TINY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_STINK_HUGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERFIEND_KAKKUU
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERFIEND_SPITHRIKU
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERFIEND_PHISARAZU
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERFIEND_LYCOSIDILTH
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERFIEND_RAKLUPIS
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_MALE_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_MALE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_MALE_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_MALE_D
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_MALE_E
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_FEMALE_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_FEMALE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_FEMALE_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_FEMALE_D
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_ARMOR_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_ARMOR_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DRIDER_ARMOR_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_LOLTH
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOPPELGANGER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MECHANON_SPIKER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MECHANON_SPIDER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MECHANON_CUTTER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID_SCIENTIST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID_BIOLOGIST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID_3E
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID_MURRAY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID_KID
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ILLITHID_BIOLOGIST_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_HUGE_FOREST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_MEDIUM_FOREST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_TINY_FOREST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_HUGE_DESERT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_MEDIUM_DESERT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_TINY_DESERT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_HUGE_SWAMP
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_MEDIUM_SWAMP
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_TINY_SWAMP
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_HUGE_JUNGLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_MEDIUM_JUNGLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VIPER_TINY_JUNGLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT_SOLDIER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT_GUARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT_QUEEN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT_LARVA
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANT_GIANT_HIVEQUEEN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDER_REDBACK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PACK_BEAR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PACK_BEETLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PACK_BOAR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PACK_PENGUIN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DEMON_BEBILITH_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_COW_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDER_WRAITH_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MINOGON_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_COUGAR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VAMPIRIC_MIST_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLAAD_GREEN_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BARGHEST_GREATER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEETLE_BOMBARDIER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_MALE_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_FEMALE_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_MALE_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_FEMALE_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_MALE_3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_FEMALE_3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_MALE_4
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_FEMALE_4
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_MALE_5
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CHILD_FEMALE_5
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_EAGLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_DWARF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUGBEAR_ARCTIC
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUGBEAR_ARCTIC_SHAMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BUGBEAR_ARCTIC_CHIEF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BAT_BATTLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BAT_BONE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ETHER_SCARAB
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDER_ICE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_RED_EYES
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_FLAMING
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_GREEN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PURPLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_YELLOW
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WENDIGO
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BALROG
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEAR_SUN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEAR_SPECTACLED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEAR_SLOTH
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BEAR_PANDA
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_TROLLOC_BOAR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_TROLLOC_GOAT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_TROLLOC_HAWK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_TIGER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_WHITE_TIGER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_SNOW_LEOPARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_CLOUDED_LEOPARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_BLADELING
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_HUMAN_NPC_KING
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_HUMAN_CLERIC_OF_TYR
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DEMILICH_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MOUSE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERLING
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERLING_GIANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERLING_DIRE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERLING_SWORD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SPIDERLING_PHASE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKULK_FEMALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKULK_MALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_HALF_DRAGON_FIEND
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CYCLOPS_ARMORED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ERINYES_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_VECNA
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_HYENA_SPOTTED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_HYENA_STRIPED
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_RACCOON
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_RED_PANDA
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_RINGTAIL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANTELOPE_BROWN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANTELOPE_BLACK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GAZELLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OTTER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WEASEL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WOLVERINE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKUNK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MINK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_FISHER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_FERRET
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_AIR_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_AIR_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_AIR_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_SMOKE_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_SMOKE_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_SMOKE_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_MAGMA_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_MAGMA_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_MAGMA_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_OOZE_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_OOZE_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_OOZE_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_WATER_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_WATER_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_WATER_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_FIRE_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_FIRE_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_FIRE_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_EARTH_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_EARTH_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_EARTH_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_ICE_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_ICE_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_ICE_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_RADIANCE_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_RADIANCE_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_RADIANCE_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_MINERAL_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_MINERAL_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_MINERAL_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_STEAM_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_STEAM_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_STEAM_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_LIGHTNING_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_LIGHTNING_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_LIGHTNING_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_SALT_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_SALT_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_SALT_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_DUST_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_DUST_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_DUST_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_ASH_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_ASH_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_ASH_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_VACUUM_L
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_VACUUM_M
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ELEMENTAL_VACUUM_S
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_COOSHEE_FEMALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_COOSHEE_MALE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_DALMATIAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_DOBERMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_HUSKY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_MALAMUTE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_MASTIFF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_TERRIER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DOG_YELLOW
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_DALMATIAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_COOSHEE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_DOBERMAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_HUSKY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_MASTIFF
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_TERRIER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUPPY_YELLOW
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_BLACK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_BLACK_AND_WHITE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_BOBTAIL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CAT_WHITE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_KITTEN_BLK_N_WHT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_KITTEN_WHITE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GLABREZU
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANIMATED_WHEEL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANIMATED_TABLE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANIMATED_CHEST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANIMATED_TOME
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ANIMATED_CHEST_FLYING
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CRAB_GIANT_BLUE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CRAB_BLUE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CRAB_GIANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CRAB
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_STIRGE_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_STIRGE_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_DEMON_BEBILITH_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_CORNUGON_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_FLYING_BOOK_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_FLYING_BOOK_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_FLYING_BOOK_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ZOMBIE_PIRATE_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PIRATE_1
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PIRATE_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PIRATE_3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ZOMBIE_PIRATE_2
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ZOMBIE_PIRATE_3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PIRATE_4
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PIRATE_5
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_PIRATE_6
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ZOMBIE_PIRATE_4
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GHOST_PIRATE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SKELETON_OGRE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_JELLY_MUSTARD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_JELLY_MUSTARD_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_JELLY_MUSTARD_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_JELLY_OCHRE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_JELLY_OCHRE_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_JELLY_OCHRE_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OOZE_CRYSTAL
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OOZE_CRYSTAL_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OOZE_CRYSTAL_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OOZE_GRAY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OOZE_GRAY_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OOZE_GRAY_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_BLACK
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_BLACK_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_BLACK_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_BROWN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_BROWN_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_BROWN_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_DUN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_DUN_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_DUN_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_WHITE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_WHITE_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_PUDDING_WHITE_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLIME_GREEN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLIME_GREEN_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLIME_GREEN_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLIME_OLIVE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLIME_OLIVE_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLIME_OLIVE_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLITHERING_TRACKER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLITHERING_TRACKER_MEDIUM
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_SLITHERING_TRACKER_LARGE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOLEM_RUBY
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOLEM_EMERALD
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOLEM_CITRINE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOLEM_SAPPHIRE
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOLEM_AMETHYST
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_GOLEM_OBSIDIAN
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_TREANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WEREBAT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_WASP_GIANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ERINYES3
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ASSASSIN_VINE_H
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_ASSASSIN_VINE_V
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MAUG
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MAUG_LIEUTENANT
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MAUG_COMMANDER
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OSYLUTH_A
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OSYLUTH_B
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_OSYLUTH_C
+f ffffffff ffffffff 000 i APPEARANCE_TYPE_ZEP_MAUG_CAPTAIN
+f ffffffff ffffffff 000 i ZEP_RESTLESS_DEAD_RESPAWN_CHANCE
+f ffffffff ffffffff 000 f ZEP_RESTLESS_DEAD_RESPAWN_TIME
+f 00000104 000002d2 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 00000104 000 v #globals
+v 00000017 ffffffff 00000000 s ZEP_DEMI_REGEN_MSG
+v 00000038 ffffffff 00000004 s ZEP_DEMI_DIST_MSG
+v 00000059 ffffffff 00000008 s ZEP_DEMI_FINAL_DEST
+v 0000007a ffffffff 0000000c s ZEP_DEMI_ONSPELL_MSG
+v 0000009b ffffffff 00000010 s ZEP_DEMI_TRAPSOUL_MESSAGE
+v 000000c7 ffffffff 00000014 s ZEP_DEMI_TRAPSOUL_FLOATINGTEXT
+v 00000106 000002ca 00000000 i nClass
+v 00000127 000002ca 00000004 i nAlign
+v 00000142 000002ca 00000008 o oKiller
+v 0000025b 000002ca 0000000c i nRandomChance
+v 000002d2 0000036c 00000000 i #retval
+v 000002d2 00000366 00000004 i nCondition
+v 000002d4 00000360 00000008 i nPlot
+v 0000036e 00000769 00000000 o oSlayer
+v 000003d6 0000075d 00000004 o oSelf
+v 000003ec 0000075d 00000008 i nAppearance
+v 00000409 0000075d 0000000c s sCol
+v 0000042b 0000075d 00000010 s sNumCol
+v 0000044c 0000075d 00000014 i bDoor
+v 00000462 0000075d 00000018 i nNum
+v 00000575 0000075d 0000001c s sResRef
+v 000005ab 0000075d 00000020 s sNum
+v 0000066e 00000751 00000024 i i
+v 00000684 00000751 00000028 e2 lLoc
+l00 0000031 00000015 00000015
+l00 0000032 00000015 00000015
+l00 0000033 00000015 00000015
+l00 0000034 00000015 00000015
+l00 0000035 00000015 00000015
+l00 0000036 00000015 00000015
+l00 0000037 00000015 00000015
+l00 0000038 00000015 00000015
+l00 0000039 00000015 00000015
+l00 0000040 00000015 00000015
+l00 0000047 00000015 00000015
+l00 0000048 00000015 00000015
+l00 0000049 00000015 00000015
+l00 0000050 00000015 00000015
+l01 0000119 00000015 00000036
+l01 0000121 00000036 00000057
+l01 0000136 00000057 00000078
+l01 0000162 00000078 00000099
+l01 0000167 00000099 000000c5
+l01 0000170 000000c5 000000f2
+l12 0000030 00000104 00000125
+l12 0000031 00000125 00000140
+l12 0000032 00000140 00000155
+l12 0000036 00000155 000001b3
+l12 0000038 000001b9 000001d8
+l12 0000042 000001de 000001f9
+l12 0000045 000001f9 0000021b
+l12 0000049 0000021b 00000229
+l12 0000051 0000022f 00000245
+l12 0000053 0000024b 00000259
+l12 0000061 00000259 00000274
+l12 0000066 00000274 00000284
+l12 0000068 0000028a 000002c4
+l12 0000070 000002d0 000002d2
+l10 0000107 000002d2 00000302
+l10 0000108 00000302 00000314
+l10 0000110 0000031a 0000033a
+l10 0000112 00000340 00000360
+l10 0000113 00000366 0000036e
+l02 0000030 0000036e 000003ce
+l02 0000032 000003d4 000003ea
+l02 0000033 000003ea 00000407
+l02 0000035 00000407 00000429
+l02 0000036 00000429 0000044a
+l02 0000037 0000044a 00000460
+l02 0000038 00000460 00000476
+l02 0000040 00000476 0000048b
+l02 0000042 00000491 000004b0
+l02 0000043 000004b0 000004ce
+l02 0000046 000004d4 000004d6
+l02 0000047 000004d6 000004eb
+l02 0000049 000004f1 0000050c
+l02 0000050 0000050c 00000520
+l02 0000051 00000520 0000053a
+l02 0000054 00000540 00000553
+l02 0000055 00000559 0000056d
+l02 0000058 00000573 000005a9
+l02 0000060 000005a9 000005df
+l02 0000061 000005df 0000060f
+l02 0000062 00000615 00000630
+l02 0000065 00000636 00000666
+l02 0000067 0000066c 00000682
+l02 0000068 00000682 0000069d
+l02 0000072 0000069d 000006b1
+l02 0000074 000006c9 000006d9
+l02 0000076 000006df 0000070a
+l02 0000078 00000710 00000712
+l02 0000079 00000712 00000737
+l02 0000072 00000737 0000074b
+l02 0000083 00000769 00000771

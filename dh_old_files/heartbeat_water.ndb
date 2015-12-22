@@ -1,0 +1,1133 @@
+NDB V1.0
+0000004 0000001 0000232 0000022 0000214
+n00 x2_inc_cutscene
+n01 nw_i0_plot
+n02 breathing
+N03 heartbeat_water
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 003 i CutSetActiveCutsceneForObject
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 f GetShift
+fp o
+fp i
+f ffffffff ffffffff 003 v CutSetActiveCutscene
+fp i
+fp i
+fp i
+f ffffffff ffffffff 000 i GetActiveCutsceneNum
+f ffffffff ffffffff 001 v RemoveCommandable
+fp o
+f ffffffff ffffffff 004 v CutPlayVoiceChat
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 003 v CutRemoveEffects
+fp f
+fp o
+fp i
+f ffffffff ffffffff 004 v CutJumpAssociateToLocation
+fp f
+fp o
+fp e2
+fp i
+f ffffffff ffffffff 005 v CutActionStartConversation
+fp f
+fp o
+fp o
+fp s
+fp i
+f ffffffff ffffffff 005 v CutBeginConversation
+fp f
+fp o
+fp o
+fp s
+fp i
+f ffffffff ffffffff 005 v CutActionAttack
+fp f
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 v CutActionCloseDoor
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 005 v CutActionEquipItem
+fp f
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 v CutActionUnequipItem
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 005 v CutActionForceFollowObject
+fp f
+fp o
+fp o
+fp f
+fp i
+f ffffffff ffffffff 004 v CutActionLockObject
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 004 v CutActionUnLockObject
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 006 v CutActionMoveAwayFromLocation
+fp f
+fp o
+fp e2
+fp i
+fp f
+fp i
+f ffffffff ffffffff 006 v CutActionMoveAwayFromObject
+fp f
+fp o
+fp o
+fp i
+fp f
+fp i
+f ffffffff ffffffff 004 v CutActionOpenDoor
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 004 v CutActionSit
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 004 v CutSpeakString
+fp f
+fp o
+fp s
+fp i
+f ffffffff ffffffff 004 v CutSpeakStringByStrRef
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 005 v CutPlayAnimation
+fp f
+fp o
+fp i
+fp f
+fp i
+f ffffffff ffffffff 004 v CutJumpToLocation
+fp f
+fp o
+fp e2
+fp i
+f ffffffff ffffffff 004 v CutJumpToObject
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 005 v CutActionMoveToObject
+fp f
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 005 v CutActionMoveToLocation
+fp f
+fp o
+fp e2
+fp i
+fp i
+f ffffffff ffffffff 007 v CutActionForceMoveToObject
+fp f
+fp o
+fp o
+fp i
+fp f
+fp f
+fp i
+f ffffffff ffffffff 006 v CutActionForceMoveToLocation
+fp f
+fp o
+fp e2
+fp i
+fp f
+fp i
+f ffffffff ffffffff 008 v CutCreateObject
+fp f
+fp o
+fp i
+fp s
+fp e2
+fp i
+fp i
+fp i
+f ffffffff ffffffff 004 v CutSetFacingPoint
+fp f
+fp o
+fp s
+fp i
+f ffffffff ffffffff 005 v CutFadeOutAndIn
+fp f
+fp o
+fp f
+fp f
+fp i
+f ffffffff ffffffff 004 v CutFadeToBlack
+fp f
+fp o
+fp f
+fp i
+f ffffffff ffffffff 004 v CutFadeFromBlack
+fp f
+fp o
+fp f
+fp i
+f ffffffff ffffffff 008 v CutSetCamera
+fp f
+fp o
+fp i
+fp f
+fp f
+fp f
+fp i
+fp i
+f ffffffff ffffffff 004 v CutClearAllActions
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 007 v CutApplyEffectAtLocation
+fp f
+fp o
+fp i
+fp i
+fp e2
+fp f
+fp i
+f ffffffff ffffffff 006 v CutApplyEffectToObject
+fp f
+fp i
+fp i
+fp o
+fp f
+fp i
+f ffffffff ffffffff 006 v CutApplyEffectToObject2
+fp f
+fp i
+fp e0
+fp o
+fp f
+fp i
+f ffffffff ffffffff 004 v CutKnockdown
+fp f
+fp o
+fp f
+fp i
+f ffffffff ffffffff 004 v CutDeath
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 006 v CutActionCastFakeSpellAtObject
+fp f
+fp i
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 006 v CutActionCastFakeSpellAtLocation
+fp f
+fp i
+fp o
+fp e2
+fp i
+fp i
+f ffffffff ffffffff 010 v CutActionCastSpellAtObject
+fp f
+fp i
+fp o
+fp o
+fp i
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 009 v CutActionCastSpellAtLocation
+fp f
+fp i
+fp o
+fp e2
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 003 v CutSetLocation
+fp f
+fp o
+fp i
+f ffffffff ffffffff 003 v CutRestoreLocation
+fp f
+fp o
+fp i
+f ffffffff ffffffff 000 i VANISH
+f ffffffff ffffffff 000 i CUT_CAMERA_HEIGHT_VERY_LOW
+f ffffffff ffffffff 000 i CUT_CAMERA_HEIGHT_LOW
+f ffffffff ffffffff 000 i CUT_CAMERA_HEIGHT_MEDIUM
+f ffffffff ffffffff 000 i CUT_CAMERA_HEIGHT_HIGH
+f ffffffff ffffffff 000 i CUT_CAMERA_HEIGHT_VERY_HIGH
+f ffffffff ffffffff 007 v CutSetCutsceneMode
+fp f
+fp o
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 004 v CutSetPlotFlag
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 003 v CutDestroyObject
+fp f
+fp o
+fp i
+f ffffffff ffffffff 003 v CutStoreCameraFacing
+fp f
+fp o
+fp i
+f ffffffff ffffffff 003 v CutRestoreCameraFacing
+fp f
+fp o
+fp i
+f ffffffff ffffffff 003 v CutBlackScreen
+fp f
+fp o
+fp i
+f ffffffff ffffffff 003 v CutStopFade
+fp f
+fp o
+fp i
+f ffffffff ffffffff 004 v CutPlaySound
+fp f
+fp o
+fp s
+fp i
+f ffffffff ffffffff 004 v CutSetMusic
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 003 v CutStoreMusic
+fp f
+fp o
+fp i
+f ffffffff ffffffff 003 v CutRestoreMusic
+fp f
+fp o
+fp i
+f ffffffff ffffffff 004 v CutSetAmbient
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 006 v CutSetTileMainColor
+fp f
+fp o
+fp e2
+fp i
+fp i
+fp i
+f ffffffff ffffffff 006 v CutSetTileSourceColor
+fp f
+fp o
+fp e2
+fp i
+fp i
+fp i
+f ffffffff ffffffff 004 v CutSetWeather
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 002 v CutSetAbortDelay
+fp i
+fp f
+f ffffffff ffffffff 001 f CutGetAbortDelay
+fp i
+f ffffffff ffffffff 002 v CutSetDestroyCopyDelay
+fp i
+fp f
+f ffffffff ffffffff 001 f CutGetDestroyCopyDelay
+fp i
+f ffffffff ffffffff 003 o CutCreatePCCopy
+fp o
+fp e2
+fp s
+f ffffffff ffffffff 005 o CutCreateObjectCopy
+fp f
+fp o
+fp e2
+fp s
+fp i
+f ffffffff ffffffff 004 v CutDestroyPCCopy
+fp f
+fp o
+fp i
+fp i
+f ffffffff ffffffff 000 i RESTORE_TYPE_NONE
+f ffffffff ffffffff 000 i RESTORE_TYPE_NORMAL
+f ffffffff ffffffff 000 i RESTORE_TYPE_COPY
+f ffffffff ffffffff 004 v CutDisableCutscene
+fp i
+fp f
+fp f
+fp i
+f ffffffff ffffffff 001 v CutDisableAbort
+fp i
+f ffffffff ffffffff 001 i CutGetIsAbortDisabled
+fp i
+f ffffffff ffffffff 001 f CutGetConvDuration
+fp s
+f ffffffff ffffffff 005 v CutAdjustReputation
+fp f
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 v CutSetCameraSpeed
+fp f
+fp o
+fp f
+fp i
+f ffffffff ffffffff 001 v UnFreezeAssociate
+fp o
+f ffffffff ffffffff 002 f CutCalculateCurrentDelay
+fp f
+fp i
+f ffffffff ffffffff 001 i CutGetActiveCutsceneForObject
+fp o
+f ffffffff ffffffff 001 v CutResetActiveObjectsForCutscene
+fp i
+f ffffffff ffffffff 002 v CallRestorePCCopyLocation
+fp i
+fp o
+f ffffffff ffffffff 002 v CallRemoveEffects
+fp i
+fp o
+f ffffffff ffffffff 002 v CallRemoveAssociatesEffects
+fp i
+fp o
+f ffffffff ffffffff 003 v CallJumpAssociateToLocation
+fp i
+fp o
+fp e2
+f ffffffff ffffffff 003 v CallDestroyPCCopy
+fp i
+fp o
+fp i
+f ffffffff ffffffff 004 v CallCreateObjectCopy
+fp i
+fp o
+fp e2
+fp s
+f ffffffff ffffffff 001 i CutGetIsMainPC
+fp o
+f ffffffff ffffffff 001 v RemoveAssociateEffects
+fp o
+f ffffffff ffffffff 002 o FreezeAssociate
+fp o
+fp i
+f ffffffff ffffffff 002 v Talk
+fp s
+fp o
+f ffffffff ffffffff 004 v CallBeginConversation
+fp i
+fp o
+fp o
+fp s
+f ffffffff ffffffff 004 v CallActionStartConversation
+fp i
+fp o
+fp o
+fp s
+f ffffffff ffffffff 003 v CallSpeakString
+fp i
+fp o
+fp s
+f ffffffff ffffffff 003 v CallSpeakStringByStrRef
+fp i
+fp o
+fp i
+f ffffffff ffffffff 004 v CallPlayAnimation
+fp i
+fp o
+fp i
+fp f
+f ffffffff ffffffff 003 v CallJumpToLocation
+fp i
+fp o
+fp e2
+f ffffffff ffffffff 003 v CallJumpToObject
+fp i
+fp o
+fp o
+f ffffffff ffffffff 006 v CallActionForceMoveToObject
+fp i
+fp o
+fp o
+fp i
+fp f
+fp f
+f ffffffff ffffffff 004 v CallActionMoveToObject
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 005 v CallActionForceMoveToLocation
+fp i
+fp o
+fp e2
+fp i
+fp f
+f ffffffff ffffffff 004 v CallActionMoveToLocation
+fp i
+fp o
+fp e2
+fp i
+f ffffffff ffffffff 007 v CallCreateObject
+fp i
+fp i
+fp o
+fp s
+fp e2
+fp i
+fp i
+f ffffffff ffffffff 003 v CallSetFacingPoint
+fp i
+fp o
+fp s
+f ffffffff ffffffff 004 v CallAdjustReputation
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 004 v CallFadeOutAndIn
+fp i
+fp o
+fp f
+fp f
+f ffffffff ffffffff 003 v CallFadeToBlack
+fp i
+fp o
+fp f
+f ffffffff ffffffff 003 v CallFadeFromBlack
+fp i
+fp o
+fp f
+f ffffffff ffffffff 007 v CallSetCamera
+fp i
+fp o
+fp i
+fp f
+fp f
+fp f
+fp i
+f ffffffff ffffffff 003 v CallClearAllActions
+fp i
+fp o
+fp i
+f ffffffff ffffffff 006 v CallApplyEffectAtLocation
+fp i
+fp o
+fp i
+fp i
+fp e2
+fp f
+f ffffffff ffffffff 005 v CallApplyEffectToObject
+fp i
+fp i
+fp i
+fp o
+fp f
+f ffffffff ffffffff 005 v CallApplyEffectToObject2
+fp i
+fp i
+fp e0
+fp o
+fp f
+f ffffffff ffffffff 003 v CallKnockdown
+fp i
+fp o
+fp f
+f ffffffff ffffffff 004 v CallActionAttack
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 v CallDeath
+fp i
+fp o
+fp i
+f ffffffff ffffffff 003 v CallActionUnlockObject
+fp i
+fp o
+fp o
+f ffffffff ffffffff 004 v CutActionUnlockObject
+fp f
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 v CallActionLockObject
+fp i
+fp o
+fp o
+f ffffffff ffffffff 005 v CallActionMoveAwayFromLocation
+fp i
+fp o
+fp e2
+fp i
+fp f
+f ffffffff ffffffff 005 v CallActionMoveAwayFromObject
+fp i
+fp o
+fp o
+fp i
+fp f
+f ffffffff ffffffff 004 v CallActionForceFollowObject
+fp i
+fp o
+fp o
+fp f
+f ffffffff ffffffff 003 v CallActionUnequipItem
+fp i
+fp o
+fp o
+f ffffffff ffffffff 004 v CallActionEquipItem
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 003 v CallActionSit
+fp i
+fp o
+fp o
+f ffffffff ffffffff 003 v CallActionOpenDoor
+fp i
+fp o
+fp o
+f ffffffff ffffffff 003 v CallActionCloseDoor
+fp i
+fp o
+fp o
+f ffffffff ffffffff 005 v CallActionCastFakeSpellAtObject
+fp i
+fp i
+fp o
+fp o
+fp i
+f ffffffff ffffffff 009 v CallActionCastSpellAtObject
+fp i
+fp i
+fp o
+fp o
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 005 v CallActionCastFakeSpellAtLocation
+fp i
+fp i
+fp o
+fp e2
+fp i
+f ffffffff ffffffff 008 v CallActionCastSpellAtLocation
+fp i
+fp i
+fp o
+fp e2
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 v CallSetLocation
+fp i
+fp o
+f ffffffff ffffffff 002 v CallRestoreLocation
+fp i
+fp o
+f ffffffff ffffffff 002 v CutRestorePCAppearance
+fp i
+fp o
+f ffffffff ffffffff 001 v CutRemoveHenchmenAssociates
+fp o
+f ffffffff ffffffff 006 v CallSetCutsceneMode
+fp i
+fp o
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 003 v CallSetPlotFlag
+fp i
+fp o
+fp i
+f ffffffff ffffffff 002 v CallDestroyObject
+fp i
+fp o
+f ffffffff ffffffff 002 v CallStoreCameraFacing
+fp i
+fp o
+f ffffffff ffffffff 002 v CallRestoreCameraFacing
+fp i
+fp o
+f ffffffff ffffffff 002 v CallBlackScreen
+fp i
+fp o
+f ffffffff ffffffff 002 v CallStopFade
+fp i
+fp o
+f ffffffff ffffffff 003 v CallPlayVoiceChat
+fp i
+fp o
+fp i
+f ffffffff ffffffff 003 v CallPlaySound
+fp i
+fp o
+fp s
+f ffffffff ffffffff 003 v CallSetAmbient
+fp i
+fp o
+fp i
+f ffffffff ffffffff 003 v CallSetMusic
+fp i
+fp o
+fp i
+f ffffffff ffffffff 002 v CallStoreMusic
+fp i
+fp o
+f ffffffff ffffffff 002 v CallRestoreMusic
+fp i
+fp o
+f ffffffff ffffffff 005 v CallSetTileMainColor
+fp i
+fp o
+fp e2
+fp i
+fp i
+f ffffffff ffffffff 005 v CallSetTileSourceColor
+fp i
+fp o
+fp e2
+fp i
+fp i
+f ffffffff ffffffff 003 v CallSetWeather
+fp i
+fp o
+fp i
+f ffffffff ffffffff 003 v CallSetCameraSpeed
+fp i
+fp o
+fp f
+f ffffffff ffffffff 000 i DC_EASY
+f ffffffff ffffffff 000 i DC_MEDIUM
+f ffffffff ffffffff 000 i DC_HARD
+f ffffffff ffffffff 000 i DC_SUPERIOR
+f ffffffff ffffffff 000 i DC_MASTER
+f ffffffff ffffffff 000 i DC_LEGENDARY
+f ffffffff ffffffff 000 i DC_EPIC
+f ffffffff ffffffff 000 i G_CLASSCHANCE
+f ffffffff ffffffff 000 i XP_VERY_LOW
+f ffffffff ffffffff 000 i XP_LOW
+f ffffffff ffffffff 000 i XP_MEDIUM_LOW
+f ffffffff ffffffff 000 i XP_MEDIUM
+f ffffffff ffffffff 000 i XP_MEDIUM_HIGH
+f ffffffff ffffffff 000 i XP_HIGH
+f ffffffff ffffffff 000 i XP_VERY_HIGH
+f ffffffff ffffffff 000 i XP_EPIC
+f ffffffff ffffffff 002 i plotCanRemoveXP
+fp o
+fp i
+f ffffffff ffffffff 001 i GetCanCastHealingSpells
+fp o
+f ffffffff ffffffff 000 i DoOnce
+f ffffffff ffffffff 001 v DebugSpeak
+fp s
+f ffffffff ffffffff 000 o GetMyMaster
+f ffffffff ffffffff 000 i IsRecall
+f ffffffff ffffffff 001 v DimensionHop
+fp o
+f ffffffff ffffffff 000 i CanSeePlayer
+f ffffffff ffffffff 002 v EscapeArea
+fp i
+fp s
+f ffffffff ffffffff 002 i HasItem
+fp o
+fp s
+f ffffffff ffffffff 003 v TakeGold
+fp i
+fp o
+fp i
+f ffffffff ffffffff 000 o GetNearestPC
+f ffffffff ffffffff 001 v SetIsEnemy
+fp o
+f ffffffff ffffffff 003 i AutoDC
+fp i
+fp i
+fp o
+f ffffffff ffffffff 002 v AutoAlignG
+fp i
+fp o
+f ffffffff ffffffff 002 v AutoAlignE
+fp i
+fp o
+f ffffffff ffffffff 004 v DoGiveXP
+fp s
+fp i
+fp o
+fp i
+f ffffffff ffffffff 005 v RewardXP
+fp s
+fp i
+fp o
+fp i
+fp i
+f ffffffff ffffffff 003 v RewardGP
+fp i
+fp o
+fp i
+f ffffffff ffffffff 000 i CheckCharismaMiddle
+f ffffffff ffffffff 000 i CheckCharismaNormal
+f ffffffff ffffffff 000 i CheckCharismaLow
+f ffffffff ffffffff 000 i CheckCharismaHigh
+f ffffffff ffffffff 000 i CheckIntelligenceLow
+f ffffffff ffffffff 000 i CheckIntelligenceNormal
+f ffffffff ffffffff 000 i CheckIntelligenceHigh
+f ffffffff ffffffff 000 i CheckWisdomHigh
+f ffffffff ffffffff 001 i GetWisdom
+fp o
+f ffffffff ffffffff 001 i GetIntelligence
+fp o
+f ffffffff ffffffff 001 i GetCharisma
+fp o
+f ffffffff ffffffff 002 i GetNumItems
+fp o
+fp s
+f ffffffff ffffffff 003 v GiveNumItems
+fp o
+fp s
+fp i
+f ffffffff ffffffff 003 v TakeNumItems
+fp o
+fp s
+fp i
+f ffffffff ffffffff 001 v PlayCharacterTheme
+fp i
+f ffffffff ffffffff 000 v PlayOldTheme
+f ffffffff ffffffff 002 i GetPLocalInt
+fp o
+fp s
+f ffffffff ffffffff 003 v SetPLocalInt
+fp o
+fp s
+fp i
+f ffffffff ffffffff 001 v RemoveEffects
+fp o
+f ffffffff ffffffff 004 v gplotAppraiseOpenStore
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 004 v gplotAppraiseFavOpenStore
+fp o
+fp o
+fp i
+fp i
+f ffffffff ffffffff 003 i CheckDCStr
+fp i
+fp i
+fp o
+f ffffffff ffffffff 001 i GetIsPlayerCharacter
+fp o
+f ffffffff ffffffff 004 v Reward_2daXP
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 v PlaySpeakSoundByStrRef
+fp i
+f ffffffff ffffffff 001 i GetNPCEasyMark
+fp o
+f ffffffff ffffffff 001 f GetReactionAdjustment
+fp o
+f ffffffff ffffffff 003 v AdjustFactionReputation
+fp o
+fp o
+fp i
+f ffffffff ffffffff 001 v EscapeViaTeleport
+fp o
+f ffffffff ffffffff 002 i HasGold
+fp i
+fp o
+f ffffffff ffffffff 001 v HXAreaEnter
+fp o
+f ffffffff ffffffff 001 v HXDoColdDamage
+fp i
+f ffffffff ffffffff 001 o GetAreaPC
+fp o
+f 00000307 00001b1f 002 v Liquid
+fp o
+fp i
+f 00000053 00000307 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 00000053 000 v #globals
+v 00000017 ffffffff 00000000 i CUT_DELAY_TYPE_CUMULATIVE
+v 0000002d ffffffff 00000004 i CUT_DELAY_TYPE_CONSTANT
+v 00000055 000002ff 00000000 o oPC
+v 0000006a 000002ff 00000004 i iDamage
+v 000000c2 000002ff 00000008 o oItem
+v 000000dd 000002ff 0000000c o oInside
+v 000000df 000002ff 00000010 i nDecay
+v 00000307 00001b17 00000000 i iDamage
+v 00000307 00001b17 00000004 o oPC
+v 00000309 00001b11 00000008 o oHench1
+v 00000332 00001b11 0000000c o oHench2
+v 0000035b 00001b11 00000010 o oHench3
+v 00000384 00001b11 00000014 o oSummoned
+v 000003ad 00001b11 00000018 o oDominated
+v 000003d6 00001b11 0000001c o oAnimal
+v 000003ff 00001b11 00000020 o oFamiliar
+v 00000428 00001b11 00000024 o oTorch
+v 0000044b 00001b11 00000028 i trueremaining
+v 0000044d 00001b11 0000002c i nInt
+v 0000044f 00001b11 00000030 e0 eEffect2
+v 00000451 00001b11 00000034 e0 eEffect99
+v 00000453 00001b11 00000038 s remaining
+l00 0000101 00000015 0000002b
+l00 0000102 0000002b 00000041
+l03 0000017 00000053 00000068
+l03 0000018 00000068 0000007e
+l03 0000020 0000007e 00000094
+l03 0000022 00000094 000000a1
+l03 0000024 000000a7 000000ba
+l03 0000027 000000c0 000000db
+l03 0000028 000000db 000000dd
+l03 0000029 000000dd 000000df
+l03 0000030 000000df 000000f5
+l03 0000033 000000f5 0000010a
+l03 0000035 00000110 00000123
+l03 0000037 00000129 000001f4
+l03 0000039 000001fa 00000226
+l03 0000040 00000226 00000236
+l03 0000042 0000023c 00000257
+l03 0000043 00000257 0000026d
+l03 0000045 0000026d 00000280
+l03 0000046 00000280 0000029b
+l03 0000048 000002a1 000002b4
+l03 0000050 000002ba 000002bc
+l03 0000052 000002bc 000002da
+l03 0000055 000002e0 000002f9
+l03 0000057 00000305 00000307
+l02 0000138 00000307 00000330
+l02 0000139 00000330 00000359
+l02 0000140 00000359 00000382
+l02 0000141 00000382 000003ab
+l02 0000142 000003ab 000003d4
+l02 0000143 000003d4 000003fd
+l02 0000144 000003fd 00000426
+l02 0000145 00000426 00000449
+l02 0000146 00000449 0000044b
+l02 0000147 0000044b 0000044d
+l02 0000148 0000044d 0000044f
+l02 0000149 0000044f 00000451
+l02 0000150 00000451 00000453
+l02 0000153 00000453 00000474
+l02 0000155 0000047a 0000049f
+l02 0000156 0000049f 000004bf
+l02 0000157 000004bf 000004da
+l02 0000158 000004da 00000503
+l02 0000159 00000503 00000545
+l02 0000160 00000545 00000564
+l02 0000162 0000056a 0000059c
+l02 0000165 000005a8 000005aa
+l02 0000167 000005aa 000005d1
+l02 0000168 000005d1 000005f0
+l02 0000170 000005f0 00000611
+l02 0000174 00000617 00000619
+l02 0000176 00000619 0000063e
+l02 0000177 0000063e 00000670
+l02 0000179 00000676 0000068f
+l02 0000180 0000068f 000006b0
+l02 0000182 000006b6 000006b8
+l02 0000184 000006b8 000006d1
+l02 0000185 000006d1 000006f2
+l02 0000192 000006f2 000006ff
+l02 0000194 00000705 00000726
+l02 0000195 00000726 00000747
+l02 0000197 0000074d 00000772
+l02 0000198 00000772 00000792
+l02 0000199 00000792 000007ad
+l02 0000200 000007ad 000007d6
+l02 0000201 000007d6 00000818
+l02 0000202 00000818 00000837
+l02 0000204 0000083d 0000086f
+l02 0000207 0000087b 0000087d
+l02 0000209 0000087d 000008a4
+l02 0000210 000008a4 000008c3
+l02 0000212 000008c3 000008e4
+l02 0000216 000008ea 000008ec
+l02 0000218 000008ec 00000911
+l02 0000219 00000911 00000943
+l02 0000221 00000949 00000962
+l02 0000222 00000962 00000983
+l02 0000224 00000989 0000098b
+l02 0000226 0000098b 000009a4
+l02 0000227 000009a4 000009c5
+l02 0000235 000009d1 000009de
+l02 0000237 000009e4 00000a05
+l02 0000238 00000a05 00000a26
+l02 0000240 00000a2c 00000a51
+l02 0000241 00000a51 00000a71
+l02 0000242 00000a71 00000a8c
+l02 0000243 00000a8c 00000ab5
+l02 0000244 00000ab5 00000af7
+l02 0000245 00000af7 00000b16
+l02 0000247 00000b1c 00000b4e
+l02 0000250 00000b5a 00000b5c
+l02 0000252 00000b5c 00000b83
+l02 0000253 00000b83 00000ba2
+l02 0000255 00000ba2 00000bc3
+l02 0000259 00000bc9 00000bcb
+l02 0000261 00000bcb 00000bf0
+l02 0000262 00000bf0 00000c22
+l02 0000264 00000c28 00000c41
+l02 0000265 00000c41 00000c62
+l02 0000267 00000c68 00000c6a
+l02 0000269 00000c6a 00000c83
+l02 0000270 00000c83 00000ca4
+l02 0000275 00000cb0 00000cbd
+l02 0000277 00000cc3 00000ce4
+l02 0000278 00000ce4 00000d05
+l02 0000280 00000d0b 00000d30
+l02 0000281 00000d30 00000d50
+l02 0000282 00000d50 00000d6b
+l02 0000283 00000d6b 00000d94
+l02 0000284 00000d94 00000dd6
+l02 0000285 00000dd6 00000df5
+l02 0000287 00000dfb 00000e2d
+l02 0000290 00000e39 00000e3b
+l02 0000292 00000e3b 00000e62
+l02 0000293 00000e62 00000e81
+l02 0000295 00000e81 00000ea2
+l02 0000299 00000ea8 00000eaa
+l02 0000301 00000eaa 00000ecf
+l02 0000302 00000ecf 00000f01
+l02 0000304 00000f07 00000f20
+l02 0000305 00000f20 00000f41
+l02 0000307 00000f47 00000f49
+l02 0000309 00000f49 00000f62
+l02 0000310 00000f62 00000f83
+l02 0000315 00000f8f 00000f9c
+l02 0000317 00000fa2 00000fc3
+l02 0000318 00000fc3 00000fe4
+l02 0000320 00000fea 0000100f
+l02 0000321 0000100f 0000102f
+l02 0000322 0000102f 0000104a
+l02 0000323 0000104a 00001073
+l02 0000324 00001073 000010b5
+l02 0000325 000010b5 000010d4
+l02 0000327 000010da 0000110c
+l02 0000330 00001118 0000111a
+l02 0000332 0000111a 00001141
+l02 0000333 00001141 00001160
+l02 0000335 00001160 00001181
+l02 0000339 00001187 00001189
+l02 0000341 00001189 000011ae
+l02 0000342 000011ae 000011e0
+l02 0000344 000011e6 000011ff
+l02 0000345 000011ff 00001220
+l02 0000347 00001226 00001228
+l02 0000349 00001228 00001241
+l02 0000350 00001241 00001262
+l02 0000352 00001262 00001262
+l02 0000355 0000126e 0000127b
+l02 0000357 00001281 000012a2
+l02 0000358 000012a2 000012c3
+l02 0000360 000012c9 000012ee
+l02 0000361 000012ee 0000130e
+l02 0000362 0000130e 00001329
+l02 0000363 00001329 00001352
+l02 0000364 00001352 00001394
+l02 0000365 00001394 000013b3
+l02 0000367 000013b9 000013eb
+l02 0000370 000013f7 000013f9
+l02 0000372 000013f9 00001420
+l02 0000373 00001420 0000143f
+l02 0000375 0000143f 00001460
+l02 0000379 00001466 00001468
+l02 0000381 00001468 0000148d
+l02 0000382 0000148d 000014bf
+l02 0000384 000014c5 000014de
+l02 0000385 000014de 000014ff
+l02 0000387 00001505 00001507
+l02 0000389 00001507 00001520
+l02 0000390 00001520 00001541
+l02 0000395 0000154d 0000155a
+l02 0000397 00001560 00001581
+l02 0000398 00001581 000015a2
+l02 0000400 000015a8 000015cd
+l02 0000401 000015cd 000015ed
+l02 0000402 000015ed 00001608
+l02 0000403 00001608 00001631
+l02 0000404 00001631 00001673
+l02 0000405 00001673 00001692
+l02 0000407 00001698 000016ca
+l02 0000410 000016d6 000016d8
+l02 0000412 000016d8 000016ff
+l02 0000413 000016ff 0000171e
+l02 0000415 0000171e 0000173f
+l02 0000419 00001745 00001747
+l02 0000421 00001747 0000176c
+l02 0000422 0000176c 0000179e
+l02 0000424 000017a4 000017bd
+l02 0000425 000017bd 000017de
+l02 0000427 000017e4 000017e6
+l02 0000429 000017e6 000017ff
+l02 0000430 000017ff 00001820
+l02 0000435 0000182c 00001839
+l02 0000437 0000183f 00001860
+l02 0000438 00001860 00001881
+l02 0000440 00001887 000018ac
+l02 0000441 000018ac 000018cc
+l02 0000442 000018cc 000018e7
+l02 0000443 000018e7 00001910
+l02 0000444 00001910 00001952
+l02 0000445 00001952 00001971
+l02 0000447 00001977 000019a9
+l02 0000450 000019b5 000019b7
+l02 0000452 000019b7 000019de
+l02 0000453 000019de 000019fd
+l02 0000455 000019fd 00001a1e
+l02 0000459 00001a24 00001a26
+l02 0000461 00001a26 00001a4b
+l02 0000462 00001a4b 00001a7d
+l02 0000464 00001a83 00001a9c
+l02 0000465 00001a9c 00001abd
+l02 0000467 00001ac3 00001ac5
+l02 0000469 00001ac5 00001ade
+l02 0000470 00001ade 00001aff
+l02 0000476 00001b17 00001b1f

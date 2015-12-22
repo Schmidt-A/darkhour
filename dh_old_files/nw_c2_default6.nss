@@ -39,18 +39,18 @@ void TryMountedDamageEvasion(object oDamager)
         int nAttackRoll = d20() + GetBaseAttackBonus(oDamager);
         int nRideCheck = d20() + GetSkillRank(SKILL_RIDE, OBJECT_SELF);
         if (nRideCheck >= nAttackRoll && !GetIsDead(OBJECT_SELF))
-        { 
+        {
             // averted attack
             if (GetIsPC(oDamager))
                 SendMessageToPC(oDamager, GetName(OBJECT_SELF) + GetStringByStrRef(111991));
             // heal
             if (GetCurrentHitPoints(OBJECT_SELF) < nHPBefore)
-            { 
+            {
                 effect eHeal = EffectHeal(nHPBefore - GetCurrentHitPoints(OBJECT_SELF));
                 AssignCommand(GetModule(), ApplyEffectToObject(DURATION_TYPE_INSTANT, eHeal, OBJECT_SELF));
-            } 
+            }
         }
-    } 
+    }
 }
 
 int ShouldTargetSwitch(object oDamager, object oTarget)
@@ -120,8 +120,8 @@ void BehemothRampage()
             continue;
 
         // If close enough, GET REKT
-        if ((GetDistanceBetween(oPC, oTarget) <= 50.0) 
-                && (GetDistanceBetween(oPC, oTarget) > 0.0))
+        if ((GetDistanceBetween(OBJECT_SELF, oTarget) <= 50.0)
+                && (GetDistanceBetween(OBJECT_SELF, oTarget) > 0.0))
         {
             if(ReflexSave(oTarget, 10) < 1)
             {
@@ -157,7 +157,7 @@ void main()
                     ActionMoveToLocation(GetLocation(oDamager), TRUE);
                     ActionDoCommand(DetermineCombatRound());
                 }
-                else 
+                else
                     DetermineCombatRound();
             }
         }
@@ -184,7 +184,7 @@ void main()
     object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oDamager);
     int iPhysicalDamage = GetDamageDealtByType(DAMAGE_TYPE_BASE_WEAPON);
     if(GetWeaponRanged(oWeapon) && iPhysicalDamage > 0)
-        TryAmmoSalvage(oDamager, oWeapon);    
+        TryAmmoSalvage(oDamager, oWeapon);
 
     // If we're a damaged behemoth, FUCK 'EM UP.
     if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB" && GetPercentageHPLoss(OBJECT_SELF) < 50)

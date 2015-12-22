@@ -1,0 +1,50 @@
+NDB V1.0
+0000002 0000001 0000034 0000002 0000006
+n00 inc_emotewand
+N01 ew_talkplead
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 v Roll100
+f ffffffff ffffffff 000 v Roll10
+f ffffffff ffffffff 000 v Roll12
+f ffffffff ffffffff 000 v Roll20
+f ffffffff ffffffff 000 v Roll4
+f ffffffff ffffffff 000 v Roll6
+f ffffffff ffffffff 000 v Roll8
+f ffffffff ffffffff 000 v Dance
+f ffffffff ffffffff 000 v Drunk
+f ffffffff ffffffff 000 v Meditate
+f ffffffff ffffffff 000 v Read
+f ffffffff ffffffff 000 v Sit
+f ffffffff ffffffff 000 v Worship
+f ffffffff ffffffff 000 v TalkForceful
+f ffffffff ffffffff 000 v TalkLaughing
+f 00000046 0000007e 000 v TalkPleading
+f ffffffff ffffffff 000 v TakeNap
+f ffffffff ffffffff 000 v SingWhistle
+f ffffffff ffffffff 000 v Drink
+f ffffffff ffffffff 000 v Duck
+f ffffffff ffffffff 000 v Dodge
+f ffffffff ffffffff 000 v Steal
+f ffffffff ffffffff 000 v LayBack
+f ffffffff ffffffff 000 v LayFacedown
+f ffffffff ffffffff 000 v Shiver
+f ffffffff ffffffff 000 v ScratchHead
+f ffffffff ffffffff 000 v Salute
+f ffffffff ffffffff 000 v Conjure1
+f ffffffff ffffffff 000 v Conjure2
+f ffffffff ffffffff 000 v FiddleWith
+f ffffffff ffffffff 000 v FiddleLow
+f 0000003e 00000046 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 0000003e 000 v #globals
+v 00000017 ffffffff 00000000 o oPlayer
+v 0000002c ffffffff 00000004 i iRoll
+l00 0000013 00000015 0000002a
+l00 0000014 0000002a 0000002c
+l01 0000016 0000003e 00000044
+l01 0000017 00000044 00000046
+l00 0000109 00000046 0000007c
+l00 0000110 0000007c 0000007e

@@ -63,13 +63,15 @@ void main()
     int iVer = GetCampaignInt("VERSIONING", sPre+"Version");
     switch(iVer)
     {
-        case 0: 
+        case 0:
+            //All new PCs
             ZeroToVersionTwo(oPC);
             break;
-        case 1: 
-            OneToVersionTwo(oPC);
+        case 1:
+            //There should be no pcs marked as v1, they predate this system
+            ZeroToVersionTwo(oPC);
             break;
-        case 2: 
+        case 2:
             break;
         default:
             break;

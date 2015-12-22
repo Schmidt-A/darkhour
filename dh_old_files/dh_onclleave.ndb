@@ -1,0 +1,141 @@
+NDB V1.0
+0000004 0000001 0000034 0000013 0000027
+n00 _incl_subrace
+n01 _incl_xp
+n02 nw_i0_spells
+N03 dh_onclleave
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 001 v SubraceLogin
+fp o
+f ffffffff ffffffff 001 v SetupNextECLLevel
+fp o
+f ffffffff ffffffff 001 i GetLA
+fp s
+f ffffffff ffffffff 001 s GetSubraceSkinName
+fp s
+f 00000265 000002cb 001 s GetDBVarName
+fp o
+f ffffffff ffffffff 001 i GetSubraceXP
+fp i
+f 000001aa 00000265 001 i GetXPDH
+fp o
+f ffffffff ffffffff 001 v SetXPVars
+fp o
+f ffffffff ffffffff 003 v GiveXPToCreatureDH
+fp o
+fp i
+fp s
+f ffffffff ffffffff 000 i NW_I0_SPELLS_MAX_BREACH
+f ffffffff ffffffff 003 v TrapDoElectricalDamage
+fp i
+fp i
+fp i
+f ffffffff ffffffff 003 i MyResistSpell
+fp o
+fp o
+fp f
+f ffffffff ffffffff 006 i MySavingThrow
+fp i
+fp o
+fp i
+fp i
+fp o
+fp f
+f ffffffff ffffffff 002 e0 CreateProtectionFromAlignmentLink
+fp i
+fp i
+f ffffffff ffffffff 000 e0 CreateDoomEffectsLink
+f ffffffff ffffffff 003 v RemoveSpellEffects
+fp i
+fp o
+fp o
+f 000002cb 0000038c 002 v RemoveSpecificEffect
+fp i
+fp o
+f ffffffff ffffffff 002 f GetSpellEffectDelay
+fp e2
+fp o
+f ffffffff ffffffff 002 f GetRandomDelay
+fp f
+fp f
+f ffffffff ffffffff 002 i GetScaledDuration
+fp i
+fp o
+f ffffffff ffffffff 002 e0 GetScaledEffect
+fp e0
+fp o
+f ffffffff ffffffff 003 i RemoveProtections
+fp i
+fp o
+fp i
+f ffffffff ffffffff 001 i GetSpellBreachProtection
+fp i
+f ffffffff ffffffff 001 v AssignAOEDebugString
+fp s
+f ffffffff ffffffff 000 v PlayDragonBattleCry
+f ffffffff ffffffff 001 i AmIAHumanoid
+fp o
+f ffffffff ffffffff 004 v DoSpellBreach
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 006 v spellsCure
+fp i
+fp i
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i GetDragonFearDC
+fp i
+f ffffffff ffffffff 000 i CalcNumberOfAttacks
+f ffffffff ffffffff 000 v RemoveTempHitPoints
+f ffffffff ffffffff 002 v RemoveEffectsFromSpell
+fp o
+fp i
+f 00000015 000001aa 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 000001a2 00000000 o oPC
+v 0000002c 000001a2 00000004 e2 lLocation
+v 00000049 000001a2 00000008 s sModName
+v 00000096 000001a2 0000000c s sLog
+v 00000128 000001a2 00000010 o oBackup
+v 000001aa 00000263 00000000 i #retval
+v 000001aa 0000025d 00000004 o oPC
+v 00000265 000002c9 00000000 s #retval
+v 00000265 000002c3 00000004 o oPC
+v 000002cb 00000384 00000000 o oTarget
+v 000002cb 00000384 00000004 i nEffectTypeID
+v 000002cd 0000037e 00000008 i bValid
+v 000002e3 0000037e 0000000c e0 eAOE
+l03 0000006 00000015 0000002a
+l03 0000007 0000002a 00000047
+l03 0000008 00000047 00000067
+l03 0000009 00000067 00000094
+l03 0000012 00000094 00000119
+l03 0000016 00000119 00000126
+l03 0000019 00000126 00000154
+l03 0000020 00000154 00000164
+l03 0000022 0000016a 00000188
+l03 0000023 00000188 0000019c
+l03 0000025 000001a8 000001aa
+l01 0000009 000001aa 000001cc
+l01 0000011 000001d2 00000202
+l01 0000013 00000208 0000020a
+l01 0000015 0000020a 0000025d
+l01 0000017 0000025d 00000265
+l00 0000011 00000265 000002c3
+l00 0000012 000002c3 000002cb
+l02 0000576 000002cb 000002e1
+l02 0000577 000002e1 000002e3
+l02 0000579 000002e3 000002fe
+l02 0000580 000002fe 00000311
+l02 0000582 00000311 00000328
+l02 0000585 0000032e 00000342
+l02 0000586 00000342 00000357
+l02 0000589 0000035d 00000378
+l02 0000591 00000384 0000038c

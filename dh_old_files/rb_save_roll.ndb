@@ -1,0 +1,166 @@
+NDB V1.0
+0000004 0000001 0000035 0000015 0000034
+n00 _incl_subrace
+n01 _incl_xp
+n02 rb_pc_func
+N03 rb_save_roll
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 001 v SubraceLogin
+fp o
+f ffffffff ffffffff 001 v SetupNextECLLevel
+fp o
+f ffffffff ffffffff 001 i GetLA
+fp s
+f ffffffff ffffffff 001 s GetSubraceSkinName
+fp s
+f ffffffff ffffffff 001 s GetDBVarName
+fp o
+f ffffffff ffffffff 001 i GetSubraceXP
+fp i
+f ffffffff ffffffff 001 i GetXPDH
+fp o
+f ffffffff ffffffff 001 v SetXPVars
+fp o
+f ffffffff ffffffff 003 v GiveXPToCreatureDH
+fp o
+fp i
+fp s
+f ffffffff ffffffff 001 i GetIsRealPC
+fp o
+f ffffffff ffffffff 000 o GetFirstRealPC
+f ffffffff ffffffff 002 o GetNearestRealPC
+fp o
+fp i
+f ffffffff ffffffff 000 o GetFirstDM
+f ffffffff ffffffff 003 v GiveXPToParty
+fp i
+fp o
+fp i
+f ffffffff ffffffff 007 v AddToJournal
+fp s
+fp i
+fp i
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i CheckJournal
+fp s
+f ffffffff ffffffff 001 s GetSkillName
+fp i
+f ffffffff ffffffff 002 i SkillRoll
+fp i
+fp o
+f ffffffff ffffffff 003 i SkillCheck
+fp i
+fp i
+fp o
+f ffffffff ffffffff 001 s GetAbilityName
+fp i
+f ffffffff ffffffff 002 i AbilityRoll
+fp i
+fp o
+f ffffffff ffffffff 003 i AbilityCheck
+fp i
+fp i
+fp o
+f 0000030d 00000407 001 s GetSavingThrowName
+fp i
+f 00000138 0000030d 002 i SavingRoll
+fp i
+fp o
+f ffffffff ffffffff 005 v SendMessageToPlayer
+fp o
+fp s
+fp i
+fp i
+fp i
+f ffffffff ffffffff 005 v SendMessageBroadcast
+fp e2
+fp s
+fp f
+fp i
+fp i
+f ffffffff ffffffff 002 i GetNumberOfPCs
+fp o
+fp i
+f ffffffff ffffffff 003 i GetNumberOfPCsNearObject
+fp f
+fp o
+fp i
+f ffffffff ffffffff 002 i GetNumberOfPCsInParty
+fp o
+fp i
+f ffffffff ffffffff 006 o GetHighestAbilityPC
+fp i
+fp o
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 v PartyClearAllActions
+fp o
+fp i
+f ffffffff ffffffff 002 v PartyActionJumpToObject
+fp o
+fp o
+f ffffffff ffffffff 005 v PartyActionForceMoveToObject
+fp o
+fp o
+fp i
+fp f
+fp f
+f 00000015 00000138 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 00000130 00000000 o oPC
+v 0000002d 00000130 00000004 i bOpenRoll
+v 00000057 00000130 00000008 i iSaveType
+v 00000081 00000130 0000000c i iRoll
+v 000000a9 00000130 00000010 s sMessage
+v 00000138 0000030b 00000000 i #retval
+v 00000138 00000305 00000004 o oTarget
+v 00000138 00000305 00000008 i iSaveType
+v 0000013a 000002ff 0000000c i iSaveMod
+v 0000013c 000002ff 00000010 i iDieRoll
+v 0000013e 000002ff 00000014 i iResult
+v 00000183 0000022e 00000018 i #switcheval
+v 0000030d 00000405 00000000 s #retval
+v 0000030d 000003ff 00000004 i iSaveType
+v 00000315 000003ca 00000008 i #switcheval
+l03 0000005 00000015 0000002b
+l03 0000006 0000002b 00000055
+l03 0000007 00000055 0000007f
+l03 0000008 0000007f 000000a7
+l03 0000009 000000a7 00000109
+l03 0000011 00000109 00000111
+l03 0000012 00000117 0000012a
+l03 0000014 00000136 00000138
+l02 0000531 00000138 0000013e
+l02 0000533 0000013e 0000014d
+l02 0000535 0000017b 000001cb
+l02 0000537 000001cb 000001cb
+l02 0000538 000001cb 000001e6
+l02 0000539 000001e6 000001ec
+l02 0000542 000001ec 000001ec
+l02 0000543 000001ec 00000207
+l02 0000544 00000207 0000020d
+l02 0000547 0000020d 0000020d
+l02 0000548 0000020d 00000228
+l02 0000549 00000228 0000022e
+l02 0000551 00000234 0000024d
+l02 0000552 0000024d 0000026d
+l02 0000554 0000026d 000002dd
+l02 0000555 000002dd 000002ff
+l02 0000557 00000305 0000030d
+l02 0000508 0000030d 0000035d
+l02 0000510 0000035d 0000035d
+l02 0000511 0000035d 00000384
+l02 0000513 00000384 00000384
+l02 0000514 00000384 000003a8
+l02 0000516 000003a8 000003a8
+l02 0000517 000003a8 000003ca
+l02 0000520 000003d0 000003ff
+l02 0000521 000003ff 00000407

@@ -1,0 +1,177 @@
+NDB V1.0
+0000002 0000001 0000075 0000014 0000047
+n00 x2_inc_switches
+N01 zep_lantern
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_UMD_SCROLLS
+f ffffffff ffffffff 000 s MODULE_SWITCH_DISABLE_ITEM_CREATION_FEATS
+f ffffffff ffffffff 000 s MODULE_SWITCH_AOE_HURT_NEUTRAL_NPCS
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_CRAFT_WAND_50_CHARGES
+f ffffffff ffffffff 000 s MODULE_SWITCH_EPIC_SPELLS_HURT_CASTER
+f ffffffff ffffffff 000 s MODULE_SWITCH_SPELL_CORERULES_DMASTERTOUCH
+f ffffffff ffffffff 000 s MODULE_SWITCH_RESTRICT_USE_POISON_TO_FEAT
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_MULTI_HENCH_AOE_DAMAGE
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_NPC_AOE_HURT_ALLIES
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_BEBILITH_RUIN_ARMOR
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_INVISIBLE_GLYPH_OF_WARDING
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_CROSSAREA_WALKWAYPOINTS
+f ffffffff ffffffff 000 s MODULE_SWITCH_DISABLE_SECRET_DOOR_FLASH
+f ffffffff ffffffff 000 s MODULE_SWITCH_ENABLE_TAGBASED_SCRIPTS
+f ffffffff ffffffff 000 s MODULE_SWITCH_USE_XP2_RESTSYSTEM
+f ffffffff ffffffff 000 s MODULE_SWITCH_DISABLE_AI_DISPEL_AOE
+f ffffffff ffffffff 000 s MODULE_SWITCH_NO_RANDOM_MONSTER_LOOT
+f ffffffff ffffffff 000 s MODULE_VAR_OVERRIDE_SPELLSCRIPT
+f ffffffff ffffffff 000 s MODULE_VAR_TAGBASED_SCRIPT_PREFIX
+f ffffffff ffffffff 000 s MODULE_VAR_WANDERING_MONSTER_2DA
+f ffffffff ffffffff 000 s MODULE_VAR_AI_NO_DISPEL_AOE_CHANCE
+f ffffffff ffffffff 000 s MODULE_VAR_AI_STOP_EXPERTISE_ABUSE
+f ffffffff ffffffff 000 s CREATURE_VAR_CUSTOM_AISCRIPT
+f ffffffff ffffffff 000 s CREATURE_VAR_RANDOMIZE_NAME
+f ffffffff ffffffff 000 s CREATURE_VAR_RANDOMIZE_SPELLUSE
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_STEALTH
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_SEARCH
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_AMBIENT
+f ffffffff ffffffff 000 s CREATURE_VAR_USE_SPAWN_AMBIENT_IMMOBILE
+f ffffffff ffffffff 000 s CREATURE_VAR_IMMUNE_TO_DISPEL
+f ffffffff ffffffff 000 s CREATURE_VAR_IS_INCORPOREAL
+f ffffffff ffffffff 000 s CREATURE_VAR_NUMBER_OF_ATTACKS
+f ffffffff ffffffff 000 s CREATURE_AI_MODIFIED_MAGIC_RATE
+f ffffffff ffffffff 000 s CREATURE_AI_MODIFIED_OFFENSE_RATE
+f ffffffff ffffffff 000 s CREATURE_AI_MODIFIED_COMPASSION_RATE
+f ffffffff ffffffff 000 s CREATURE_VAR_PALE_MASTER_SPECIAL_ITEM
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_ACTIVATE
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_EQUIP
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_UNEQUIP
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_ONHITCAST
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_ACQUIRE
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_UNACQUIRE
+f ffffffff ffffffff 000 i X2_ITEM_EVENT_SPELLCAST_AT
+f ffffffff ffffffff 000 i X2_EXECUTE_SCRIPT_CONTINUE
+f ffffffff ffffffff 000 i X2_EXECUTE_SCRIPT_END
+f ffffffff ffffffff 001 v SetUserDefinedItemEventNumber
+fp i
+f 000002e5 00000324 000 i GetUserDefinedItemEventNumber
+f ffffffff ffffffff 002 v SetModuleSwitch
+fp s
+fp i
+f ffffffff ffffffff 001 i GetModuleSwitchValue
+fp s
+f ffffffff ffffffff 000 s DOOR_FLAG_RESIST_KNOCK
+f ffffffff ffffffff 003 v SetDoorFlag
+fp o
+fp s
+fp i
+f ffffffff ffffffff 002 i GetDoorFlag
+fp o
+fp s
+f ffffffff ffffffff 000 s WAYPOINT_VAR_FORCE_SETFACING
+f ffffffff ffffffff 000 s ITEM_FLAG_NO_CRAFT_MODIFICATION
+f ffffffff ffffffff 003 v SetItemFlag
+fp o
+fp s
+fp i
+f ffffffff ffffffff 002 i GetItemFlag
+fp o
+fp s
+f ffffffff ffffffff 002 i ExecuteScriptAndReturnInt
+fp s
+fp o
+f 00000324 00000353 001 v SetExecutedScriptReturnValue
+fp i
+f ffffffff ffffffff 001 v SetUserDefinedItemEventPrefix
+fp s
+f ffffffff ffffffff 001 v SetModuleOverrideSpellscript
+fp s
+f ffffffff ffffffff 003 v SetCreatureFlag
+fp o
+fp s
+fp i
+f ffffffff ffffffff 002 i GetCreatureFlag
+fp o
+fp s
+f ffffffff ffffffff 002 v SetCreatureOverrideAIScript
+fp o
+fp s
+f ffffffff ffffffff 001 v SetCreatureOverrideAIScriptFinished
+fp o
+f ffffffff ffffffff 001 v ClearCreatureOverrideAIScriptTarget
+fp o
+f ffffffff ffffffff 001 o GetCreatureOverrideAIScriptTarget
+fp o
+f ffffffff ffffffff 001 v SetWanderingMonster2DAFile
+fp s
+f ffffffff ffffffff 000 s GetModuleOverrideSpellscript
+f ffffffff ffffffff 000 v SetModuleOverrideSpellScriptFinished
+f ffffffff ffffffff 000 i GetModuleOverrideSpellScriptFinished
+f ffffffff ffffffff 001 s GetUserDefinedItemEventScriptName
+fp o
+f 000004f0 000005d8 001 v AddLight
+fp o
+f 00000353 000004f0 001 v RemoveLight
+fp o
+f 00000015 000002e5 000 v main
+f 0000000d 00000015 000 v #loader
+v 0000001d 000002d1 00000000 i #switcheval
+v 00000067 0000012a 00000004 o oEquipper
+v 0000007c 0000012a 00000008 o oLantern
+v 0000014a 000001e0 00000004 o oUnequipper
+v 0000015f 000001e0 00000008 o oLantern
+v 00000200 000002b3 00000004 o oOldOwner
+v 00000215 000002b3 00000008 o oLantern
+v 0000022a 000002b3 0000000c o oNewOwner
+v 000002e5 00000322 00000000 i #retval
+v 00000324 0000034b 00000000 i nValue
+v 00000353 000004e8 00000000 o oCreature
+v 000003a9 000004e2 00000004 e0 eLight
+v 000004f0 000005d0 00000000 o oCreature
+v 00000585 000005ca 00000004 e0 eLight
+l01 0000030 00000015 00000065
+l01 0000031 00000065 00000065
+l01 0000033 00000065 0000007a
+l01 0000034 0000007a 0000008f
+l01 0000035 0000008f 000000cb
+l01 0000036 000000d1 000000dd
+l01 0000037 000000dd 000000e9
+l01 0000041 000000ef 000000fd
+l01 0000042 000000fd 0000012a
+l01 0000044 00000130 0000013c
+l01 0000045 0000013c 00000148
+l01 0000047 00000148 00000148
+l01 0000049 00000148 0000015d
+l01 0000050 0000015d 00000172
+l01 0000051 00000172 000001ae
+l01 0000052 000001b4 000001c0
+l01 0000053 000001c0 000001cc
+l01 0000057 000001d2 000001e0
+l01 0000059 000001e6 000001f2
+l01 0000060 000001f2 000001fe
+l01 0000062 000001fe 000001fe
+l01 0000064 000001fe 00000213
+l01 0000065 00000213 00000228
+l01 0000066 00000228 00000245
+l01 0000067 00000245 00000281
+l01 0000068 00000287 00000293
+l01 0000069 00000293 0000029f
+l01 0000073 000002a5 000002b3
+l01 0000075 000002b9 000002c5
+l01 0000076 000002c5 000002d1
+l01 0000078 000002d7 000002e3
+l01 0000079 000002e3 000002e5
+l00 0000541 000002e5 00000322
+l00 0000542 00000322 00000324
+l00 0000598 00000324 0000034b
+l00 0000599 0000034b 00000353
+l01 0000014 00000353 00000395
+l01 0000016 000003a7 000003c4
+l01 0000017 000003c4 000003d7
+l01 0000018 000003d7 000004a0
+l01 0000022 000004a6 000004bb
+l01 0000024 000004c1 000004dc
+l01 0000026 000004e8 000004f0
+l01 0000006 000004f0 00000571
+l01 0000008 00000583 000005a4
+l01 0000009 000005a4 000005ca
+l01 0000010 000005d0 000005d8

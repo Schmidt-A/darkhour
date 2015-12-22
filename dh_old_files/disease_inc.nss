@@ -5,8 +5,8 @@
 void ApplyDisease(object oPC)
 {
     //DISEASE ADDITION - DEMON X
-    nDisease = 0;
-    oCheckDisease = GetFirstItemInInventory(oPC);
+    int nDisease = 0;
+    object oCheckDisease = GetFirstItemInInventory(oPC);
     while (oCheckDisease != OBJECT_INVALID)
     {
         if (GetTag(oCheckDisease) == "ZombieDisease")

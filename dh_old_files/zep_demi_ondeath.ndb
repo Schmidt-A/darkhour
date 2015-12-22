@@ -1,0 +1,268 @@
+NDB V1.0
+0000003 0000001 0000097 0000037 0000098
+n00 zep_inc_demi
+n01 colors_inc
+N02 zep_demi_ondeath
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 s ColorArray
+f ffffffff ffffffff 003 s ColorToken
+fp i
+fp i
+fp i
+f 00000e98 00000ebc 000 s ColorTokenEnd
+f ffffffff ffffffff 000 s ColorTokenBlack
+f ffffffff ffffffff 000 s ColorTokenBlue
+f ffffffff ffffffff 000 s ColorTokenGray
+f ffffffff ffffffff 000 s ColorTokenGreen
+f ffffffff ffffffff 000 s ColorTokenLightPurple
+f ffffffff ffffffff 000 s ColorTokenOrange
+f ffffffff ffffffff 000 s ColorTokenPink
+f ffffffff ffffffff 000 s ColorTokenPurple
+f ffffffff ffffffff 000 s ColorTokenRed
+f ffffffff ffffffff 000 s ColorTokenWhite
+f ffffffff ffffffff 000 s ColorTokenYellow
+f ffffffff ffffffff 000 s ColorTokenCombat
+f ffffffff ffffffff 000 s ColorTokenDialog
+f ffffffff ffffffff 000 s ColorTokenDialogAction
+f ffffffff ffffffff 000 s ColorTokenDialogCheck
+f ffffffff ffffffff 000 s ColorTokenDialogHighlight
+f ffffffff ffffffff 000 s ColorTokenDialogReply
+f ffffffff ffffffff 000 s ColorTokenDM
+f ffffffff ffffffff 000 s ColorTokenGameEngine
+f ffffffff ffffffff 000 s ColorTokenSavingThrow
+f ffffffff ffffffff 000 s ColorTokenScript
+f ffffffff ffffffff 000 s ColorTokenServer
+f 00000b2a 00000e98 000 s ColorTokenShout
+f ffffffff ffffffff 000 s ColorTokenSkillCheck
+f ffffffff ffffffff 000 s ColorTokenTalk
+f ffffffff ffffffff 000 s ColorTokenTell
+f ffffffff ffffffff 000 s ColorTokenWhisper
+f ffffffff ffffffff 001 s GetNamePCColor
+fp o
+f ffffffff ffffffff 001 s GetNameNPCColor
+fp o
+f ffffffff ffffffff 000 i nZEPPitJump
+f ffffffff ffffffff 000 i nZEPPitFall
+f ffffffff ffffffff 000 i nZEPPitClimb
+f ffffffff ffffffff 000 i nZEPDrowning
+f ffffffff ffffffff 000 i nZEPTrapFind
+f ffffffff ffffffff 000 i nZEPTrapSearch1
+f ffffffff ffffffff 000 i nZEPTrapSearch2
+f ffffffff ffffffff 000 i nZEPTrapSearch3
+f ffffffff ffffffff 000 i nZEPTrapReset
+f ffffffff ffffffff 000 i nZEPGenderRestTXT
+f ffffffff ffffffff 000 i nZEPDoorLocked
+f ffffffff ffffffff 000 i nZEPReturnToLife
+f ffffffff ffffffff 000 i nZEPCacklingLaugh
+f ffffffff ffffffff 000 i nZEPCantBeRaised
+f ffffffff ffffffff 000 i nZEPNoRaiseExplan
+f ffffffff ffffffff 000 i nZEPDemiRestored
+f ffffffff ffffffff 000 i nZEPDemiDisturbed
+f ffffffff ffffffff 000 i nZEPDemiHavePower
+f ffffffff ffffffff 000 i nZEPDemiVictFree
+f ffffffff ffffffff 000 i nZEPMarilithDMG
+f ffffffff ffffffff 000 i nZEPRustMonBrush
+f ffffffff ffffffff 000 i nZEPRustButResist1
+f ffffffff ffffffff 000 i nZEPRustButResist2
+f ffffffff ffffffff 000 i nZEPRustAndDest
+f ffffffff ffffffff 000 i nZEPRustYourTXT
+f ffffffff ffffffff 000 i nZEPRustWeapRes
+f ffffffff ffffffff 000 i nZEPRustWeapDest
+f ffffffff ffffffff 000 i nZEPFoundSecret
+f ffffffff ffffffff 000 s ZEP_DEMI_RESS_VICTIMS
+f ffffffff ffffffff 000 s ZEP_DEMI_DEAD_SCRIPT
+f ffffffff ffffffff 000 s ZEP_DEMI_DEST_SCRIPT
+f ffffffff ffffffff 000 f ZEP_DEMILICH_PSEUDO_DELAY
+f ffffffff ffffffff 000 i ZEP_DEMI_USE_LEGACY
+f ffffffff ffffffff 000 f ZEP_DEMI_PERC_RANGE
+f ffffffff ffffffff 000 s ZEP_DEMI_SKULL_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_INERT_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_DUST_RESREF
+f ffffffff ffffffff 000 f ZEP_DEMILICH_REGEN_TIME
+f ffffffff ffffffff 000 s ZEP_DEMI_DEST_TAG
+f ffffffff ffffffff 000 i ZEP_DEMI_NUM_SOULGEMS
+f ffffffff ffffffff 000 i ZEP_DEMI_POWER_THRESHOLD
+f ffffffff ffffffff 000 i ZEP_DEMI_TRAPSOUL_SAVEDC
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_AMBIENT
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_SOURCE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_HOLDER
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_SGCORPSE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_HITDICE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_PARTY
+f 0000061e 00000796 002 v MoveDroppableInventory
+fp o
+fp o
+f 000001a1 0000061e 002 v ZEPDemilichSpawnBones
+fp o
+fp i
+f 0000088e 00000b2a 003 o ZEPDemilichFromBones
+fp o
+fp s
+fp i
+f 00000ebc 0000108f 001 o ZEPDemilichCreateDetector
+fp e2
+f 00000796 0000088e 003 v ZEPDemilichRestore
+fp s
+fp o
+fp o
+f ffffffff ffffffff 001 i ZEPDemilichChooseSoulGem
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichTrapSoul
+fp o
+fp i
+f ffffffff ffffffff 001 v ZEPDemilichFreeSoul
+fp i
+f ffffffff ffffffff 002 v ZEPDemilichRaiseVictim
+fp o
+fp f
+f ffffffff ffffffff 001 v ZEPDemilichCorpseInit
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichCorpseCheck
+fp o
+fp f
+f ffffffff ffffffff 001 o ZEPDemilichGetVictim
+fp i
+f ffffffff ffffffff 001 o ZEPDemilichGetVictimParty
+fp i
+f 00000104 000001a1 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 00000104 000 v #globals
+v 00000017 ffffffff 00000000 s ZEP_DEMI_REGEN_MSG
+v 00000038 ffffffff 00000004 s ZEP_DEMI_DIST_MSG
+v 00000059 ffffffff 00000008 s ZEP_DEMI_FINAL_DEST
+v 0000007a ffffffff 0000000c s ZEP_DEMI_ONSPELL_MSG
+v 0000009b ffffffff 00000010 s ZEP_DEMI_TRAPSOUL_MESSAGE
+v 000000c7 ffffffff 00000014 s ZEP_DEMI_TRAPSOUL_FLOATINGTEXT
+v 000001a1 00000616 00000000 i bWasKilled
+v 000001a1 00000616 00000004 o oDemilich
+v 000001a3 00000610 00000008 e2 lDemilich
+v 000001c0 00000610 0000000c s sDemilich
+v 000001dd 00000610 00000010 o oDust
+v 0000021b 00000610 00000014 o oBones
+v 0000032d 00000610 00000018 i nGem
+v 000003d9 00000527 0000001c o oHolder
+v 00000468 00000527 00000020 f fDelay
+v 00000545 00000604 0000001c o oDetector
+v 0000061e 0000078e 00000000 o oFrom
+v 0000061e 0000078e 00000004 o oTo
+v 00000641 00000788 00000008 o oItem
+v 000006e2 00000788 0000000c i nSlot
+v 00000796 00000886 00000000 o oHolder
+v 00000796 00000886 00000004 o oDust
+v 00000796 00000886 00000008 s sResRef
+v 000007e4 00000880 0000000c o oItem
+v 0000088e 00000b28 00000000 o #retval
+v 0000088e 00000b22 00000004 i bIntrusion
+v 0000088e 00000b22 00000008 s sResRef
+v 0000088e 00000b22 0000000c o oBones
+v 000008c9 00000b1c 00000010 o oDemilich
+v 0000092d 00000b1c 00000014 i nGem
+v 000009cb 00000b1c 00000018 s sSayThis
+v 00000b2a 00000e96 00000000 s #retval
+v 00000e98 00000eba 00000000 s #retval
+v 00000ebc 0000108d 00000000 o #retval
+v 00000ebc 00001087 00000004 e2 lTarget
+v 00000ebe 00001081 00000008 e0 eDetector
+v 00000f16 00001081 0000000c o oDetector
+l00 0000119 00000015 00000036
+l00 0000121 00000036 00000057
+l00 0000136 00000057 00000078
+l00 0000162 00000078 00000099
+l00 0000167 00000099 000000c5
+l00 0000170 000000c5 000000f2
+l02 0000021 00000104 00000131
+l02 0000024 00000131 00000165
+l02 0000027 00000165 00000177
+l02 0000030 00000177 0000018e
+l02 0000031 0000018e 0000019f
+l02 0000032 0000019f 000001a1
+l00 0000332 000001a1 000001be
+l00 0000335 000001be 000001db
+l00 0000338 000001db 00000219
+l00 0000339 00000219 0000021b
+l00 0000340 0000021b 00000223
+l00 0000341 00000229 00000267
+l00 0000342 0000026d 0000026f
+l00 0000343 0000026f 000002ac
+l00 0000345 000002ac 000002d5
+l00 0000347 000002d5 000002fd
+l00 0000349 000002fd 0000032b
+l00 0000352 0000032b 00000341
+l00 0000353 00000341 0000035d
+l00 0000354 0000035d 000003c3
+l00 0000358 000003c9 000003d1
+l00 0000361 000003d7 00000415
+l00 0000362 00000415 0000042b
+l00 0000363 0000042b 0000043e
+l00 0000364 0000043e 00000466
+l00 0000367 00000466 0000049b
+l00 0000368 0000049b 000004ab
+l00 0000369 000004b1 000004c5
+l00 0000371 000004cb 00000527
+l00 0000374 00000533 00000535
+l00 0000377 00000543 00000563
+l00 0000380 00000563 0000058b
+l00 0000381 0000058b 000005b4
+l00 0000382 000005b4 000005dc
+l00 0000384 000005dc 00000604
+l00 0000386 00000616 0000061e
+l00 0000287 0000061e 0000062d
+l00 0000288 00000633 00000639
+l00 0000291 0000063f 0000065c
+l00 0000292 0000065c 00000672
+l00 0000295 00000672 0000067f
+l00 0000298 00000685 000006a6
+l00 0000299 000006a6 000006b9
+l00 0000302 000006bf 000006da
+l00 0000306 000006e0 000006f6
+l00 0000307 000006f6 00000712
+l00 0000309 00000712 00000735
+l00 0000311 00000735 00000742
+l00 0000314 00000748 00000769
+l00 0000315 00000769 0000077c
+l00 0000318 0000078e 00000796
+l00 0000481 00000796 000007ae
+l00 0000483 000007b4 000007ba
+l00 0000486 000007c0 000007e2
+l00 0000489 000007e2 000007ff
+l00 0000490 000007ff 00000815
+l00 0000492 00000815 00000828
+l00 0000493 00000828 00000843
+l00 0000497 00000849 0000085c
+l00 0000498 0000085c 0000086f
+l00 0000499 0000086f 00000880
+l00 0000500 00000886 0000088e
+l00 0000400 0000088e 0000089c
+l00 0000402 000008a2 000008c1
+l00 0000405 000008c7 00000901
+l00 0000406 00000901 0000092b
+l00 0000409 0000092b 00000941
+l00 0000410 00000941 0000095d
+l00 0000411 0000095d 000009c3
+l00 0000415 000009c9 000009e1
+l00 0000416 000009e1 000009e9
+l00 0000417 000009ef 00000a0f
+l00 0000418 00000a15 00000a17
+l00 0000419 00000a17 00000a37
+l00 0000420 00000a37 00000a57
+l00 0000424 00000a57 00000aa6
+l00 0000426 00000aa6 00000afa
+l00 0000429 00000afa 00000b1c
+l00 0000430 00000b22 00000b2a
+l01 0000475 00000b2a 00000e96
+l01 0000478 00000e96 00000e98
+l01 0000175 00000e98 00000eba
+l01 0000176 00000eba 00000ebc
+l00 0000442 00000ebc 00000ef3
+l00 0000443 00000ef3 00000f14
+l00 0000446 00000f14 00000f5b
+l00 0000448 00000f5b 00000f6e
+l00 0000451 00000f6e 00000fe8
+l00 0000456 00000fee 00001010
+l00 0000460 00001016 0000105b
+l00 0000465 00001061 00001081
+l00 0000466 00001087 0000108f

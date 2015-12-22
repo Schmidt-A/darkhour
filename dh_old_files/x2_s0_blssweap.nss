@@ -87,15 +87,11 @@ void main()
            return;
         }
     }
-
-    IPGetIsMeleeWeapon();
-
-    
    object oWeaponTarget   =  IPGetTargetedOrEquippedMeleeWeapon();
 
    if (GetIsObjectValid(oWeaponTarget))
    {
-      
+
       //adding check to cast this on yourself by default
       // essentially making it self cast
       // also temp requirement paladin to prevent people from just giving the items away
@@ -112,7 +108,7 @@ void main()
         }
         return;
       }
-      else 
+      else
       {
         SignalEvent(OBJECT_SELF, EventSpellCastAt(OBJECT_SELF, GetSpellId(), FALSE));
 
@@ -137,13 +133,13 @@ void main()
         }
         return;
       }
-      
-        
+
+
     }
     else
     {
        FloatingTextStrRefOnCreature(83615, OBJECT_SELF);
        return;
     }
-    
+
 }
