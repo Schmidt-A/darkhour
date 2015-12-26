@@ -35,8 +35,6 @@ void GiveClassItems(object oPC, int iPCClass)
             CreateItemOnObject("monkboots",oPC);
             break;
         case CLASS_TYPE_FIGHTER:
-            //this int is never used
-            SetCampaignInt(GetName(GetModule()), "Has_WRing", 1, oPC);
             CreateItemOnObject("warriorring",oPC);
             break;
         case CLASS_TYPE_DRUID:
@@ -61,8 +59,6 @@ void GiveClassItems(object oPC, int iPCClass)
             CreateItemOnObject("sheetmusic",oPC);
             break;
         case CLASS_TYPE_BARBARIAN:
-            //this int is never used
-            SetCampaignInt(GetName(GetModule()), "Has_WRing", 1, oPC);
             CreateItemOnObject("warriorring",oPC);
             break;
         default:
