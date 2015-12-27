@@ -1,0 +1,18 @@
+{
+    "log_path": "/opt/nwn/logs.0/nwserverLog1.txt",
+    "log_splits": {
+        "/opt/lumberjack/dm.log": ["ITEM_OBJ_DM:",
+				   "XP_DM:",
+				   "ITEM_AREA_DM",
+				   "GOLD_DM:"],
+        "/opt/lumberjack/item.log": ["] PC_ENTER:",
+					"] ITEM_ACQUIRE:", 
+					") Joined as ",
+					" Left as a ",
+				   	"ITEM_OBJ_DM:",
+					"ITEM_AREA_DM",
+					"is entering the game from:"
+			            ]
+    },
+    "rest": 5
+}
