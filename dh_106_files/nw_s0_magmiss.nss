@@ -53,6 +53,13 @@ void main()
         {
         nMissiles = 2;
         }
+
+    if(GetTag(GetSpellCastItem()) == "BloodMagicBook")
+    {
+        nCasterLvl = 1;
+        nMissiles = 1;
+    }
+
     float fDist = GetDistanceBetween(OBJECT_SELF, oTarget);
     float fDelay = fDist/(3.0 * log(fDist) + 2.0);
     float fDelay2, fTime;

@@ -1,0 +1,208 @@
+NDB V1.0
+0000005 0000001 0000058 0000012 0000034
+n00 x0_i0_position
+n01 mali_string_fns
+n02 dmts_common_inc
+n03 dm_sm_inc
+N04 dm_sm_repack
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 f DISTANCE_TINY
+f ffffffff ffffffff 000 f DISTANCE_SHORT
+f ffffffff ffffffff 000 f DISTANCE_MEDIUM
+f ffffffff ffffffff 000 f DISTANCE_LARGE
+f ffffffff ffffffff 000 f DISTANCE_HUGE
+f ffffffff ffffffff 001 s LocationToString
+fp e2
+f ffffffff ffffffff 001 s VectorToString
+fp t0000
+f ffffffff ffffffff 002 v MoveToNewLocation
+fp e2
+fp o
+f ffffffff ffffffff 002 f GetChangeInX
+fp f
+fp f
+f ffffffff ffffffff 002 f GetChangeInY
+fp f
+fp f
+f ffffffff ffffffff 003 t0000 GetChangedPosition
+fp t0000
+fp f
+fp f
+f ffffffff ffffffff 002 f GetAngleBetweenLocations
+fp e2
+fp e2
+f ffffffff ffffffff 001 f GetOppositeDirection
+fp f
+f ffffffff ffffffff 001 f GetRightDirection
+fp f
+f ffffffff ffffffff 001 f GetHalfRightDirection
+fp f
+f ffffffff ffffffff 001 f GetFarRightDirection
+fp f
+f ffffffff ffffffff 002 f GetCustomRightDirection
+fp f
+fp f
+f ffffffff ffffffff 001 f GetLeftDirection
+fp f
+f ffffffff ffffffff 001 f GetHalfLeftDirection
+fp f
+f ffffffff ffffffff 001 f GetFarLeftDirection
+fp f
+f ffffffff ffffffff 002 f GetCustomLeftDirection
+fp f
+fp f
+f ffffffff ffffffff 002 v TurnToFaceObject
+fp o
+fp o
+f ffffffff ffffffff 001 e2 GetFlankingRightLocation
+fp o
+f ffffffff ffffffff 001 e2 GetFlankingLeftLocation
+fp o
+f ffffffff ffffffff 001 e2 GetOppositeLocation
+fp o
+f ffffffff ffffffff 001 e2 GetAheadLocation
+fp o
+f ffffffff ffffffff 001 e2 GetBehindLocation
+fp o
+f ffffffff ffffffff 001 e2 GetForwardFlankingRightLocation
+fp o
+f ffffffff ffffffff 001 e2 GetForwardFlankingLeftLocation
+fp o
+f ffffffff ffffffff 001 e2 GetAheadRightLocation
+fp o
+f ffffffff ffffffff 001 e2 GetAheadLeftLocation
+fp o
+f ffffffff ffffffff 001 e2 GetStepLeftLocation
+fp o
+f ffffffff ffffffff 001 e2 GetStepRightLocation
+fp o
+f ffffffff ffffffff 003 e2 GetRandomLocation
+fp o
+fp o
+fp f
+f ffffffff ffffffff 001 v SpeakLocation
+fp e2
+f ffffffff ffffffff 001 v PrintLocation
+fp e2
+f ffffffff ffffffff 001 f GetNormalizedDirection
+fp f
+f ffffffff ffffffff 004 e2 GenerateNewLocation
+fp o
+fp f
+fp f
+fp f
+f ffffffff ffffffff 004 e2 GenerateNewLocationFromLocation
+fp e2
+fp f
+fp f
+fp f
+f ffffffff ffffffff 001 e2 GetCenterPointOfArea
+fp o
+f ffffffff ffffffff 002 s FirstWord
+fp s
+fp s
+f ffffffff ffffffff 002 s RestWords
+fp s
+fp s
+f ffffffff ffffffff 003 s SearchAndReplace
+fp s
+fp s
+fp s
+f ffffffff ffffffff 003 s FetchWord
+fp s
+fp s
+fp i
+f ffffffff ffffffff 002 i CountWords
+fp s
+fp s
+f ffffffff ffffffff 003 i FindWord
+fp s
+fp s
+fp s
+f ffffffff ffffffff 002 s LastWord
+fp s
+fp s
+f 000003b7 00000429 001 v DestroyContents
+fp o
+f ffffffff ffffffff 003 v CopyContents
+fp o
+fp o
+fp s
+f ffffffff ffffffff 002 s SaveVariables
+fp o
+fp i
+f ffffffff ffffffff 003 s RestoreVariables
+fp o
+fp s
+fp i
+f ffffffff ffffffff 003 o RecreateObjectAtLocation
+fp o
+fp e2
+fp s
+f 0000005d 000003b7 002 v Repack
+fp o
+fp o
+f ffffffff ffffffff 007 v Unpack
+fp o
+fp e2
+fp o
+fp i
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 f GetTheta
+fp t0000
+fp t0000
+f ffffffff ffffffff 001 s Upgrade
+fp s
+f 00000015 0000005d 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 00000055 00000000 o oWidget
+v 0000005d 000003af 00000000 o oSpawnedBy
+v 0000005d 000003af 00000004 o oWidget
+v 0000005f 000003a9 00000008 i iCurrentSets
+v 0000008c 000003a9 0000000c o oProp
+v 000000a2 000003a9 00000010 s sNameTag
+v 000000b6 000003a9 00000014 s sProp
+v 000000ca 000003a9 00000018 i iSetLoop
+v 000000e0 000003a9 0000001c i iPropLoop
+v 000000f6 000003a9 00000020 i iProps
+v 000003b7 00000421 00000000 o oObject
+v 000003b9 0000041b 00000004 o oItem
+l04 0000011 00000015 00000041
+l04 0000012 00000041 00000055
+l04 0000013 0000005b 0000005d
+l03 0000157 0000005d 0000008a
+l03 0000159 0000008a 000000a0
+l03 0000160 000000a0 000000b4
+l03 0000161 000000b4 000000c8
+l03 0000163 000000c8 000000de
+l03 0000164 000000de 000000f4
+l03 0000166 000000f4 00000135
+l03 0000168 00000135 0000016f
+l03 0000169 0000016f 000001ad
+l03 0000170 000001ad 000001d0
+l03 0000172 000001d0 00000210
+l03 0000173 00000216 00000223
+l03 0000174 00000229 00000237
+l03 0000175 0000023d 00000250
+l03 0000178 00000256 0000026b
+l03 0000179 0000026b 0000027f
+l03 0000181 0000027f 00000291
+l03 0000182 00000297 000002c8
+l03 0000183 000002c8 000002dc
+l03 0000184 000002dc 000002f0
+l03 0000185 000002f0 0000032f
+l03 0000188 0000033b 00000358
+l03 0000189 00000358 00000372
+l03 0000190 00000372 00000388
+l03 0000191 00000388 000003a9
+l03 0000193 000003af 000003b7
+l02 0000012 000003b7 000003d4
+l02 0000013 000003d4 000003e7
+l02 0000014 000003e7 000003fa
+l02 0000015 000003fa 00000415
+l02 0000017 00000421 00000429

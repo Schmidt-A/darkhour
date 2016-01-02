@@ -1,0 +1,42 @@
+NDB V1.0
+0000002 0000001 0000009 0000004 0000004
+n00 mali_string_fns
+N01 dm_sm_canadd
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 002 s FirstWord
+fp s
+fp s
+f ffffffff ffffffff 002 s RestWords
+fp s
+fp s
+f ffffffff ffffffff 003 s SearchAndReplace
+fp s
+fp s
+fp s
+f ffffffff ffffffff 003 s FetchWord
+fp s
+fp s
+fp i
+f ffffffff ffffffff 002 i CountWords
+fp s
+fp s
+f ffffffff ffffffff 003 i FindWord
+fp s
+fp s
+fp s
+f ffffffff ffffffff 002 s LastWord
+fp s
+fp s
+f 00000017 000000a2 000 i StartingConditional
+f 0000000d 00000017 000 i #loader
+v 0000000f ffffffff 00000000 i #retval
+v 00000017 000000a0 00000000 i #retval
+v 00000019 0000009a 00000004 o oWidget
+v 00000045 0000009a 00000008 i iSets
+l01 0000006 00000017 00000043
+l01 0000007 00000043 00000070
+l01 0000009 00000070 0000009a
+l01 0000010 000000a0 000000a2

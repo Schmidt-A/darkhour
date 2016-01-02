@@ -1,0 +1,187 @@
+NDB V1.0
+0000004 0000001 0000033 0000014 0000060
+n00 _incl_subrace
+n01 _incl_xp
+n02 rb_pc_func
+N03 rb_skill_roll
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 001 v SubraceLogin
+fp o
+f ffffffff ffffffff 001 v SetupNextECLLevel
+fp o
+f ffffffff ffffffff 001 i GetLA
+fp s
+f ffffffff ffffffff 001 s GetSubraceSkinName
+fp s
+f ffffffff ffffffff 001 s GetDBVarName
+fp o
+f ffffffff ffffffff 001 i GetSubraceXP
+fp i
+f ffffffff ffffffff 003 v GiveXPToCreatureDH
+fp o
+fp i
+fp s
+f ffffffff ffffffff 001 i GetIsRealPC
+fp o
+f ffffffff ffffffff 000 o GetFirstRealPC
+f ffffffff ffffffff 002 o GetNearestRealPC
+fp o
+fp i
+f ffffffff ffffffff 000 o GetFirstDM
+f ffffffff ffffffff 003 v GiveXPToParty
+fp i
+fp o
+fp i
+f ffffffff ffffffff 007 v AddToJournal
+fp s
+fp i
+fp i
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 001 i CheckJournal
+fp s
+f 000002b8 000007b8 001 s GetSkillName
+fp i
+f 00000135 000002b8 002 i SkillRoll
+fp i
+fp o
+f ffffffff ffffffff 003 i SkillCheck
+fp i
+fp i
+fp o
+f ffffffff ffffffff 001 s GetAbilityName
+fp i
+f ffffffff ffffffff 002 i AbilityRoll
+fp i
+fp o
+f ffffffff ffffffff 003 i AbilityCheck
+fp i
+fp i
+fp o
+f ffffffff ffffffff 001 s GetSavingThrowName
+fp i
+f ffffffff ffffffff 002 i SavingRoll
+fp i
+fp o
+f ffffffff ffffffff 005 v SendMessageToPlayer
+fp o
+fp s
+fp i
+fp i
+fp i
+f ffffffff ffffffff 005 v SendMessageBroadcast
+fp e2
+fp s
+fp f
+fp i
+fp i
+f ffffffff ffffffff 002 i GetNumberOfPCs
+fp o
+fp i
+f ffffffff ffffffff 003 i GetNumberOfPCsNearObject
+fp f
+fp o
+fp i
+f ffffffff ffffffff 002 i GetNumberOfPCsInParty
+fp o
+fp i
+f ffffffff ffffffff 006 o GetHighestAbilityPC
+fp i
+fp o
+fp o
+fp i
+fp i
+fp i
+f ffffffff ffffffff 002 v PartyClearAllActions
+fp o
+fp i
+f ffffffff ffffffff 002 v PartyActionJumpToObject
+fp o
+fp o
+f ffffffff ffffffff 005 v PartyActionForceMoveToObject
+fp o
+fp o
+fp i
+fp f
+fp f
+f 00000015 00000135 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 0000012d 00000000 o oPC
+v 0000002d 0000012d 00000004 i bOpenRoll
+v 00000057 0000012d 00000008 i iSkill
+v 0000007e 0000012d 0000000c i iRoll
+v 000000a6 0000012d 00000010 s sMessage
+v 00000135 000002b6 00000000 i #retval
+v 00000135 000002b0 00000004 o oTarget
+v 00000135 000002b0 00000008 i iSkill
+v 00000137 000002aa 0000000c i iSkillRank
+v 00000139 000002aa 00000010 i iDieRoll
+v 0000013b 000002aa 00000014 i iResult
+v 000002b8 000007b6 00000000 s #retval
+v 000002b8 000007b0 00000004 i iSkill
+v 000002c0 0000077f 00000008 i #switcheval
+l03 0000005 00000015 0000002b
+l03 0000006 0000002b 00000055
+l03 0000007 00000055 0000007c
+l03 0000008 0000007c 000000a4
+l03 0000009 000000a4 00000106
+l03 0000011 00000106 0000010e
+l03 0000012 00000114 00000127
+l03 0000014 00000133 00000135
+l02 0000320 00000135 0000013b
+l02 0000323 0000013b 0000014a
+l02 0000325 00000178 0000018f
+l02 0000326 000001bb 000001e4
+l02 0000327 000001e4 000001fd
+l02 0000328 000001fd 0000021d
+l02 0000330 0000021d 00000288
+l02 0000331 00000288 000002aa
+l02 0000332 000002b0 000002b8
+l02 0000363 000002b8 0000047e
+l02 0000365 0000047e 0000047e
+l02 0000366 0000047e 000004aa
+l02 0000368 000004aa 000004aa
+l02 0000369 000004aa 000004d5
+l02 0000371 000004d5 000004d5
+l02 0000372 000004d5 000004ff
+l02 0000374 000004ff 000004ff
+l02 0000375 000004ff 00000527
+l02 0000377 00000527 00000527
+l02 0000378 00000527 00000549
+l02 0000380 00000549 00000549
+l02 0000381 00000549 0000056b
+l02 0000383 0000056b 0000056b
+l02 0000384 0000056b 0000058f
+l02 0000386 0000058f 0000058f
+l02 0000387 0000058f 000005b1
+l02 0000389 000005b1 000005b1
+l02 0000390 000005b1 000005dc
+l02 0000392 000005dc 000005dc
+l02 0000393 000005dc 00000603
+l02 0000395 00000603 00000603
+l02 0000396 00000603 00000626
+l02 0000398 00000626 00000626
+l02 0000399 00000626 0000064b
+l02 0000401 0000064b 0000064b
+l02 0000402 0000064b 00000671
+l02 0000404 00000671 00000671
+l02 0000405 00000671 0000069a
+l02 0000407 0000069a 0000069a
+l02 0000408 0000069a 000006be
+l02 0000410 000006be 000006be
+l02 0000411 000006be 000006e4
+l02 0000413 000006e4 000006e4
+l02 0000414 000006e4 0000070c
+l02 0000416 0000070c 0000070c
+l02 0000417 0000070c 0000072e
+l02 0000419 0000072e 0000072e
+l02 0000420 0000072e 00000751
+l02 0000422 00000751 00000751
+l02 0000423 00000751 0000077f
+l02 0000426 00000785 000007b0
+l02 0000427 000007b0 000007b8

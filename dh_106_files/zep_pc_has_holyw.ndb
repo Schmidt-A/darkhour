@@ -1,0 +1,156 @@
+NDB V1.0
+0000003 0000001 0000097 0000010 0000013
+n00 zep_inc_demi
+n01 colors_inc
+N02 zep_pc_has_holyw
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 s ColorArray
+f ffffffff ffffffff 003 s ColorToken
+fp i
+fp i
+fp i
+f ffffffff ffffffff 000 s ColorTokenEnd
+f ffffffff ffffffff 000 s ColorTokenBlack
+f ffffffff ffffffff 000 s ColorTokenBlue
+f ffffffff ffffffff 000 s ColorTokenGray
+f ffffffff ffffffff 000 s ColorTokenGreen
+f ffffffff ffffffff 000 s ColorTokenLightPurple
+f ffffffff ffffffff 000 s ColorTokenOrange
+f ffffffff ffffffff 000 s ColorTokenPink
+f ffffffff ffffffff 000 s ColorTokenPurple
+f ffffffff ffffffff 000 s ColorTokenRed
+f ffffffff ffffffff 000 s ColorTokenWhite
+f ffffffff ffffffff 000 s ColorTokenYellow
+f ffffffff ffffffff 000 s ColorTokenCombat
+f ffffffff ffffffff 000 s ColorTokenDialog
+f ffffffff ffffffff 000 s ColorTokenDialogAction
+f ffffffff ffffffff 000 s ColorTokenDialogCheck
+f ffffffff ffffffff 000 s ColorTokenDialogHighlight
+f ffffffff ffffffff 000 s ColorTokenDialogReply
+f ffffffff ffffffff 000 s ColorTokenDM
+f ffffffff ffffffff 000 s ColorTokenGameEngine
+f ffffffff ffffffff 000 s ColorTokenSavingThrow
+f ffffffff ffffffff 000 s ColorTokenScript
+f ffffffff ffffffff 000 s ColorTokenServer
+f ffffffff ffffffff 000 s ColorTokenShout
+f ffffffff ffffffff 000 s ColorTokenSkillCheck
+f ffffffff ffffffff 000 s ColorTokenTalk
+f ffffffff ffffffff 000 s ColorTokenTell
+f ffffffff ffffffff 000 s ColorTokenWhisper
+f ffffffff ffffffff 001 s GetNamePCColor
+fp o
+f ffffffff ffffffff 001 s GetNameNPCColor
+fp o
+f ffffffff ffffffff 000 i nZEPPitJump
+f ffffffff ffffffff 000 i nZEPPitFall
+f ffffffff ffffffff 000 i nZEPPitClimb
+f ffffffff ffffffff 000 i nZEPDrowning
+f ffffffff ffffffff 000 i nZEPTrapFind
+f ffffffff ffffffff 000 i nZEPTrapSearch1
+f ffffffff ffffffff 000 i nZEPTrapSearch2
+f ffffffff ffffffff 000 i nZEPTrapSearch3
+f ffffffff ffffffff 000 i nZEPTrapReset
+f ffffffff ffffffff 000 i nZEPGenderRestTXT
+f ffffffff ffffffff 000 i nZEPDoorLocked
+f ffffffff ffffffff 000 i nZEPReturnToLife
+f ffffffff ffffffff 000 i nZEPCacklingLaugh
+f ffffffff ffffffff 000 i nZEPCantBeRaised
+f ffffffff ffffffff 000 i nZEPNoRaiseExplan
+f ffffffff ffffffff 000 i nZEPDemiRestored
+f ffffffff ffffffff 000 i nZEPDemiDisturbed
+f ffffffff ffffffff 000 i nZEPDemiHavePower
+f ffffffff ffffffff 000 i nZEPDemiVictFree
+f ffffffff ffffffff 000 i nZEPMarilithDMG
+f ffffffff ffffffff 000 i nZEPRustMonBrush
+f ffffffff ffffffff 000 i nZEPRustButResist1
+f ffffffff ffffffff 000 i nZEPRustButResist2
+f ffffffff ffffffff 000 i nZEPRustAndDest
+f ffffffff ffffffff 000 i nZEPRustYourTXT
+f ffffffff ffffffff 000 i nZEPRustWeapRes
+f ffffffff ffffffff 000 i nZEPRustWeapDest
+f ffffffff ffffffff 000 i nZEPFoundSecret
+f ffffffff ffffffff 000 s ZEP_DEMI_RESS_VICTIMS
+f ffffffff ffffffff 000 s ZEP_DEMI_DEAD_SCRIPT
+f ffffffff ffffffff 000 s ZEP_DEMI_DEST_SCRIPT
+f ffffffff ffffffff 000 f ZEP_DEMILICH_PSEUDO_DELAY
+f ffffffff ffffffff 000 i ZEP_DEMI_USE_LEGACY
+f ffffffff ffffffff 000 f ZEP_DEMI_PERC_RANGE
+f ffffffff ffffffff 000 s ZEP_DEMI_SKULL_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_INERT_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_DUST_RESREF
+f ffffffff ffffffff 000 f ZEP_DEMILICH_REGEN_TIME
+f ffffffff ffffffff 000 s ZEP_DEMI_DEST_TAG
+f ffffffff ffffffff 000 i ZEP_DEMI_NUM_SOULGEMS
+f ffffffff ffffffff 000 i ZEP_DEMI_POWER_THRESHOLD
+f ffffffff ffffffff 000 i ZEP_DEMI_TRAPSOUL_SAVEDC
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_AMBIENT
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_RESREF
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_SOURCE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_HOLDER
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_SGCORPSE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_HITDICE
+f ffffffff ffffffff 000 s ZEP_DEMI_LOCAL_PARTY
+f ffffffff ffffffff 002 v MoveDroppableInventory
+fp o
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichSpawnBones
+fp o
+fp i
+f ffffffff ffffffff 003 o ZEPDemilichFromBones
+fp o
+fp s
+fp i
+f ffffffff ffffffff 001 o ZEPDemilichCreateDetector
+fp e2
+f ffffffff ffffffff 003 v ZEPDemilichRestore
+fp s
+fp o
+fp o
+f ffffffff ffffffff 001 i ZEPDemilichChooseSoulGem
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichTrapSoul
+fp o
+fp i
+f ffffffff ffffffff 001 v ZEPDemilichFreeSoul
+fp i
+f ffffffff ffffffff 002 v ZEPDemilichRaiseVictim
+fp o
+fp f
+f ffffffff ffffffff 001 v ZEPDemilichCorpseInit
+fp o
+f ffffffff ffffffff 002 v ZEPDemilichCorpseCheck
+fp o
+fp f
+f ffffffff ffffffff 001 o ZEPDemilichGetVictim
+fp i
+f ffffffff ffffffff 001 o ZEPDemilichGetVictimParty
+fp i
+f 00000116 000001dc 000 i StartingConditional
+f 0000000d 00000017 000 i #loader
+f 00000017 00000116 000 v #globals
+v 0000000f ffffffff 00000000 i #retval
+v 00000019 ffffffff 00000000 s ZEP_DEMI_REGEN_MSG
+v 0000003a ffffffff 00000004 s ZEP_DEMI_DIST_MSG
+v 0000005b ffffffff 00000008 s ZEP_DEMI_FINAL_DEST
+v 0000007c ffffffff 0000000c s ZEP_DEMI_ONSPELL_MSG
+v 0000009d ffffffff 00000010 s ZEP_DEMI_TRAPSOUL_MESSAGE
+v 000000c9 ffffffff 00000014 s ZEP_DEMI_TRAPSOUL_FLOATINGTEXT
+v 00000116 000001da 00000000 i #retval
+v 00000118 000001d4 00000004 o oPC
+v 0000012d 000001d4 00000008 o oHolyWater
+l00 0000119 00000017 00000038
+l00 0000121 00000038 00000059
+l00 0000136 00000059 0000007a
+l00 0000162 0000007a 0000009b
+l00 0000167 0000009b 000000c7
+l00 0000170 000000c7 000000f4
+l02 0000029 00000116 0000012b
+l02 0000033 0000012b 0000015a
+l02 0000036 0000015a 0000016a
+l02 0000037 00000170 00000190
+l02 0000040 00000196 000001b4
+l02 0000043 000001b4 000001d4
+l02 0000044 000001da 000001dc

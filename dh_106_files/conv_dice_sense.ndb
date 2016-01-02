@@ -1,0 +1,144 @@
+NDB V1.0
+0000002 0000001 0000030 0000028 0000056
+n00 dmfi_dmw_inc
+N01 conv_dice_sense
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 i DMFI_LISTENING_GLOBAL
+f ffffffff ffffffff 000 i dmwand_isnearbydestroyable
+f ffffffff ffffffff 000 i dmwand_istargetcreateable
+f ffffffff ffffffff 000 i dmwand_istargetdestroyable
+f ffffffff ffffffff 000 i dmwand_istargetinvalid
+f ffffffff ffffffff 000 i dmwand_istargetinventory
+f ffffffff ffffffff 000 i dmwand_istargetnotme
+f ffffffff ffffffff 000 i dmwand_istargetnpc
+f ffffffff ffffffff 000 i dmwand_istargetpc
+f ffffffff ffffffff 000 i dmwand_istargetpcnme
+f ffffffff ffffffff 000 i dmwand_istargetpcornpc
+f ffffffff ffffffff 000 i dmwand_istargetpcornpcnme
+f ffffffff ffffffff 000 i dmwand_istargetplaceable
+f ffffffff ffffffff 004 i dmwand_BuildConversationDialog
+fp i
+fp i
+fp s
+fp s
+f ffffffff ffffffff 003 i dmw_conv_ListPlayers
+fp i
+fp i
+fp s
+f ffffffff ffffffff 003 i dmw_conv_Start
+fp i
+fp i
+fp s
+f ffffffff ffffffff 002 v dmwand_BuildConversation
+fp s
+fp s
+f ffffffff ffffffff 000 v dmwand_StartConversation
+f 000005f4 000007c0 002 s ColorText
+fp s
+fp s
+f ffffffff ffffffff 002 v DMFI_untoad
+fp o
+fp o
+f ffffffff ffffffff 002 v DMFI_toad
+fp o
+fp o
+f ffffffff ffffffff 002 v dmwand_KickPC
+fp o
+fp o
+f ffffffff ffffffff 000 v dmwand_JumpPlayerHere
+f ffffffff ffffffff 000 v dmwand_JumpPartyHere
+f ffffffff ffffffff 000 v dmwand_JumpToPlayer
+f ffffffff ffffffff 001 v dmwand_PlayerListConv
+fp s
+f ffffffff ffffffff 001 v dmwand_DoDialogChoice
+fp i
+f 0000023d 000005f4 000 v main
+f 0000000d 00000015 000 v #loader
+f 00000015 0000023d 000 v #globals
+v 00000017 ffffffff 00000000 s DST_COLOR_TAGS
+v 0000004f ffffffff 00000004 s DST_COLOR_WHITE
+v 00000078 ffffffff 00000008 s DST_COLOR_YELLOW
+v 000000a1 ffffffff 0000000c s DST_COLOR_MAGENTA
+v 000000ca ffffffff 00000010 s DST_COLOR_CYAN
+v 000000f3 ffffffff 00000014 s DST_COLOR_RED
+v 0000011c ffffffff 00000018 s DST_COLOR_GREEN
+v 00000145 ffffffff 0000001c s DST_COLOR_BLUE
+v 0000016e ffffffff 00000020 s DMFI_ROLL_COLOR
+v 00000186 ffffffff 00000024 s DST_COLOR_NORMAL
+v 0000019e ffffffff 00000028 i DMW_START_CUSTOM_TOKEN
+v 000001b4 ffffffff 0000002c o oMySpeaker
+v 000001c9 ffffffff 00000030 o oMyTarget
+v 000001fa ffffffff 00000034 e2 lMyLoc
+v 0000023f 000005ec 00000000 o oPC
+v 00000254 000005ec 00000004 i iBroadcast
+v 00000281 000005ec 00000008 i iRoll
+v 000002a4 000005ec 0000000c i iMod
+v 000002d6 000005ec 00000010 i iSkill
+v 000003e9 000005ec 00000014 i iTotal
+v 0000040b 000005ec 00000018 s sMsg
+v 000004c2 000005e6 0000001c i #switcheval
+v 000005f4 000007be 00000000 s #retval
+v 000005f4 000007b8 00000004 s sColor
+v 000005f4 000007b8 00000008 s sText
+v 000005f6 000007b2 0000000c s sApply
+v 0000060e 000007b2 00000010 s sTest
+v 00000766 000007b2 00000014 s sFinal
+l00 0000012 00000015 0000004d
+l00 0000013 0000004d 00000076
+l00 0000014 00000076 0000009f
+l00 0000015 0000009f 000000c8
+l00 0000016 000000c8 000000f1
+l00 0000017 000000f1 0000011a
+l00 0000018 0000011a 00000143
+l00 0000019 00000143 0000016c
+l00 0000022 0000016c 00000184
+l00 0000023 00000184 0000019c
+l00 0000025 0000019c 000001b2
+l00 0000028 000001b2 000001c7
+l00 0000029 000001c7 000001f8
+l00 0000030 000001f8 0000022b
+l01 0000007 0000023d 00000252
+l01 0000008 00000252 0000027f
+l01 0000009 0000027f 000002a2
+l01 0000013 000002a2 000002d4
+l01 0000014 000002d4 000002fd
+l01 0000015 000002fd 0000030f
+l01 0000016 00000315 0000032b
+l01 0000017 00000331 00000358
+l01 0000018 00000358 0000036a
+l01 0000019 00000370 00000386
+l01 0000020 0000038c 000003b3
+l01 0000021 000003b3 000003c5
+l01 0000022 000003cb 000003e1
+l01 0000024 000003e7 00000409
+l01 0000026 00000409 00000494
+l01 0000029 00000494 000004ba
+l01 0000031 000004ba 0000050a
+l01 0000033 0000050a 0000050a
+l01 0000035 0000050a 0000053c
+l01 0000036 0000053c 00000542
+l01 0000037 00000542 00000542
+l01 0000039 00000542 00000574
+l01 0000040 00000574 0000057a
+l01 0000041 0000057a 0000057a
+l01 0000043 0000057a 000005ac
+l01 0000044 000005ac 000005b2
+l01 0000045 000005b2 000005b2
+l01 0000047 000005b2 000005bf
+l01 0000048 000005c5 000005da
+l01 0000049 000005e0 000005e6
+l01 0000051 000005f2 000005f4
+l00 0000071 000005f4 0000060c
+l00 0000072 0000060c 00000634
+l00 0000073 00000634 00000643
+l00 0000074 00000665 00000667
+l00 0000075 00000698 0000069a
+l00 0000076 000006cb 000006cd
+l00 0000077 000006fe 00000700
+l00 0000078 00000731 00000733
+l00 0000080 00000764 00000790
+l00 0000081 00000790 000007b2
+l00 0000082 000007b8 000007c0

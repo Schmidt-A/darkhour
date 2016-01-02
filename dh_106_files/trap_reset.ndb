@@ -1,0 +1,74 @@
+NDB V1.0
+0000001 0000001 0000030 0000007 0000030
+N00 trap_reset
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 i nZEPPitJump
+f ffffffff ffffffff 000 i nZEPPitFall
+f ffffffff ffffffff 000 i nZEPPitClimb
+f ffffffff ffffffff 000 i nZEPDrowning
+f ffffffff ffffffff 000 i nZEPTrapFind
+f ffffffff ffffffff 000 i nZEPTrapSearch1
+f ffffffff ffffffff 000 i nZEPTrapSearch2
+f ffffffff ffffffff 000 i nZEPTrapSearch3
+f ffffffff ffffffff 000 i nZEPTrapReset
+f ffffffff ffffffff 000 i nZEPGenderRestTXT
+f ffffffff ffffffff 000 i nZEPDoorLocked
+f ffffffff ffffffff 000 i nZEPReturnToLife
+f ffffffff ffffffff 000 i nZEPCacklingLaugh
+f ffffffff ffffffff 000 i nZEPCantBeRaised
+f ffffffff ffffffff 000 i nZEPNoRaiseExplan
+f ffffffff ffffffff 000 i nZEPDemiRestored
+f ffffffff ffffffff 000 i nZEPDemiDisturbed
+f ffffffff ffffffff 000 i nZEPDemiHavePower
+f ffffffff ffffffff 000 i nZEPDemiVictFree
+f ffffffff ffffffff 000 i nZEPMarilithDMG
+f ffffffff ffffffff 000 i nZEPRustMonBrush
+f ffffffff ffffffff 000 i nZEPRustButResist1
+f ffffffff ffffffff 000 i nZEPRustButResist2
+f ffffffff ffffffff 000 i nZEPRustAndDest
+f ffffffff ffffffff 000 i nZEPRustYourTXT
+f ffffffff ffffffff 000 i nZEPRustWeapRes
+f ffffffff ffffffff 000 i nZEPRustWeapDest
+f ffffffff ffffffff 000 i nZEPFoundSecret
+f 00000015 000003c1 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 000003b9 00000000 o oPC
+v 0000002c 000003b9 00000004 s sTag
+v 00000047 000003b9 00000008 i nTrap
+v 0000009f 000003b9 0000000c o oO
+v 000000ca 000003b9 00000010 o oAOE
+v 000000cc 000003b9 00000014 s sMessageToPC
+v 00000120 000003b9 00000018 o oTrap
+l00 0000010 00000015 0000002a
+l00 0000011 0000002a 00000045
+l00 0000012 00000045 0000006d
+l00 0000014 0000006d 0000009d
+l00 0000015 0000009d 000000c8
+l00 0000016 000000c8 000000ca
+l00 0000017 000000ca 000000eb
+l00 0000018 000000eb 00000100
+l00 0000019 00000100 0000011e
+l00 0000021 0000011e 0000014c
+l00 0000022 0000014c 00000173
+l00 0000023 00000173 0000018a
+l00 0000025 00000190 000001a3
+l00 0000028 000001a9 000001be
+l00 0000031 000001c4 000001fa
+l00 0000033 00000200 00000202
+l00 0000036 0000021d 00000253
+l00 0000037 00000253 00000266
+l00 0000038 00000266 00000285
+l00 0000040 0000028b 0000028d
+l00 0000042 000002a8 000002de
+l00 0000043 000002de 000002f1
+l00 0000044 000002f1 00000310
+l00 0000045 00000310 00000334
+l00 0000047 0000033a 0000033c
+l00 0000049 0000033c 00000372
+l00 0000050 00000372 00000385
+l00 0000051 00000385 000003a4
+l00 0000054 000003a4 000003b9
+l00 0000055 000003bf 000003c1

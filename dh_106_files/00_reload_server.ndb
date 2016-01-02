@@ -1,0 +1,110 @@
+NDB V1.0
+0000002 0000001 0000029 0000002 0000011
+n00 aps_include
+N01 00_reload_server
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 i SQL_ERROR
+f ffffffff ffffffff 000 i SQL_SUCCESS
+f ffffffff ffffffff 000 v SQLInit
+f 0000015c 00000188 001 v SQLExecDirect
+fp s
+f ffffffff ffffffff 000 i SQLFetch
+f ffffffff ffffffff 000 i SQLFirstRow
+f ffffffff ffffffff 000 i SQLNextRow
+f ffffffff ffffffff 001 s SQLGetData
+fp i
+f ffffffff ffffffff 001 s APSLocationToString
+fp e2
+f ffffffff ffffffff 001 e2 APSStringToLocation
+fp s
+f ffffffff ffffffff 001 s APSVectorToString
+fp t0000
+f ffffffff ffffffff 001 t0000 APSStringToVector
+fp s
+f ffffffff ffffffff 005 v SetPersistentString
+fp o
+fp s
+fp s
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentInt
+fp o
+fp s
+fp i
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentFloat
+fp o
+fp s
+fp f
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentLocation
+fp o
+fp s
+fp e2
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentVector
+fp o
+fp s
+fp t0000
+fp i
+fp s
+f ffffffff ffffffff 005 v SetPersistentObject
+fp o
+fp s
+fp o
+fp i
+fp s
+f ffffffff ffffffff 003 s GetPersistentString
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 i GetPersistentInt
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 f GetPersistentFloat
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 e2 GetPersistentLocation
+fp o
+fp s
+fp s
+f ffffffff ffffffff 003 t0000 GetPersistentVector
+fp o
+fp s
+fp s
+f ffffffff ffffffff 004 o GetPersistentObject
+fp o
+fp s
+fp o
+fp s
+f ffffffff ffffffff 003 v DeletePersistentVariable
+fp o
+fp s
+fp s
+f ffffffff ffffffff 001 s SQLEncodeSpecialChars
+fp s
+f ffffffff ffffffff 001 s SQLDecodeSpecialChars
+fp s
+f 00000015 0000015c 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 00000154 00000000 o oPC
+v 0000015c 00000180 00000000 s sSQL
+l01 0000008 00000015 0000002a
+l01 0000009 0000002a 0000003d
+l01 0000010 0000003d 0000004c
+l01 0000011 00000052 0000005f
+l01 0000013 00000065 00000078
+l01 0000015 0000007e 000000b7
+l01 0000016 000000b7 000000ef
+l01 0000017 000000ef 00000154
+l01 0000018 0000015a 0000015c
+l00 0000173 0000015c 00000180
+l00 0000174 00000180 00000188

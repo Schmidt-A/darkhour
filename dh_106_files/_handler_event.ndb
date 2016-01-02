@@ -1,0 +1,96 @@
+NDB V1.0
+0000002 0000001 0000058 0000005 0000015
+n00 nwnx_events
+N01 _handler_event
+s 03 vector
+sf f x
+sf f y
+sf f z
+f ffffffff ffffffff 000 i EVENT_TYPE_ALL
+f ffffffff ffffffff 000 i EVENT_TYPE_SAVE_CHAR
+f ffffffff ffffffff 000 i EVENT_TYPE_PICKPOCKET
+f ffffffff ffffffff 000 i EVENT_TYPE_ATTACK
+f ffffffff ffffffff 000 i EVENT_TYPE_USE_ITEM
+f ffffffff ffffffff 000 i EVENT_TYPE_QUICKCHAT
+f ffffffff ffffffff 000 i EVENT_TYPE_EXAMINE
+f ffffffff ffffffff 000 i EVENT_TYPE_USE_SKILL
+f ffffffff ffffffff 000 i EVENT_TYPE_USE_FEAT
+f ffffffff ffffffff 000 i EVENT_TYPE_TOGGLE_MODE
+f ffffffff ffffffff 000 i EVENT_TYPE_CAST_SPELL
+f ffffffff ffffffff 000 i EVENT_TYPE_TOGGLE_PAUSE
+f ffffffff ffffffff 000 i EVENT_TYPE_POSSESS_FAMILIAR
+f ffffffff ffffffff 000 i EVENT_TYPE_VALIDATE_CHARACTER
+f ffffffff ffffffff 000 i EVENT_TYPE_DESTROY_OBJECT
+f ffffffff ffffffff 000 i EVENT_TYPE_CREATE_OBJECT
+f ffffffff ffffffff 000 i EVENT_SAVE_CHAR
+f ffffffff ffffffff 000 i EVENT_PICKPOCKET
+f ffffffff ffffffff 000 i EVENT_ATTACK
+f ffffffff ffffffff 000 i EVENT_USE_ITEM
+f ffffffff ffffffff 000 i EVENT_QUICKCHAT
+f ffffffff ffffffff 000 i EVENT_EXAMINE
+f ffffffff ffffffff 000 i EVENT_USE_SKILL
+f ffffffff ffffffff 000 i EVENT_USE_FEAT
+f ffffffff ffffffff 000 i EVENT_TOGGLE_MODE
+f ffffffff ffffffff 000 i NODE_TYPE_STARTING_NODE
+f ffffffff ffffffff 000 i NODE_TYPE_ENTRY_NODE
+f ffffffff ffffffff 000 i NODE_TYPE_REPLY_NODE
+f ffffffff ffffffff 000 i LANGUAGE_ENGLISH
+f ffffffff ffffffff 000 i LANGUAGE_FRENCH
+f ffffffff ffffffff 000 i LANGUAGE_GERMAN
+f ffffffff ffffffff 000 i LANGUAGE_ITALIAN
+f ffffffff ffffffff 000 i LANGUAGE_SPANISH
+f ffffffff ffffffff 000 i LANGUAGE_POLISH
+f ffffffff ffffffff 000 i LANGUAGE_KOREAN
+f ffffffff ffffffff 000 i LANGUAGE_CHINESE_TRADITIONAL
+f ffffffff ffffffff 000 i LANGUAGE_CHINESE_SIMPLIFIED
+f ffffffff ffffffff 000 i LANGUAGE_JAPANESE
+f 00000191 00000208 000 i GetEventType
+f ffffffff ffffffff 000 i GetEventSubType
+f ffffffff ffffffff 000 o GetEventTarget
+f ffffffff ffffffff 000 o GetEventItem
+f ffffffff ffffffff 000 t0000 GetEventPosition
+f 00000208 0000022f 000 v BypassEvent
+f ffffffff ffffffff 001 v SetReturnValue
+fp i
+f ffffffff ffffffff 002 v SetGlobalEventHandler
+fp i
+fp s
+f ffffffff ffffffff 000 i GetCurrentNodeType
+f ffffffff ffffffff 000 i GetCurrentNodeID
+f ffffffff ffffffff 000 i GetCurrentAbsoluteNodeID
+f ffffffff ffffffff 002 s GetCurrentNodeText
+fp i
+fp i
+f ffffffff ffffffff 003 v SetCurrentNodeText
+fp s
+fp i
+fp i
+f ffffffff ffffffff 000 i GetSelectedNodeID
+f ffffffff ffffffff 000 i GetSelectedAbsoluteNodeID
+f ffffffff ffffffff 002 s GetSelectedNodeText
+fp i
+fp i
+f ffffffff ffffffff 000 i GetScriptReturnValue
+f ffffffff ffffffff 000 o GetActionTarget
+f 00000015 00000191 000 v main
+f 0000000d 00000015 000 v #loader
+v 00000017 00000189 00000000 i iEventType
+v 00000035 00000183 00000004 i #switcheval
+v 00000053 0000017d 00000008 o oPC
+v 00000069 0000017d 0000000c o oTarget
+v 00000191 00000206 00000000 i #retval
+l01 0000005 00000015 0000002d
+l01 0000007 0000002d 00000051
+l01 0000009 00000051 00000051
+l01 0000010 00000051 00000067
+l01 0000011 00000067 00000098
+l01 0000012 00000098 0000009e
+l01 0000013 0000009e 00000132
+l01 0000018 00000132 00000171
+l01 0000019 00000171 0000017d
+l01 0000021 0000018f 00000191
+l00 0000066 00000191 000001c1
+l00 0000067 000001c1 00000206
+l00 0000068 00000206 00000208
+l00 0000123 00000208 0000022d
+l00 0000124 0000022d 0000022f
