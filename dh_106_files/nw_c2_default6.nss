@@ -42,7 +42,8 @@ void TryMountedDamageEvasion(object oDamager)
         {
             // averted attack
             if (GetIsPC(oDamager))
-                SendMessageToPC(oDamager, GetName(OBJECT_SELF) + GetStringByStrRef(111991));
+                SendMessageToPC(oDamager, GetName(OBJECT_SELF) +
+                                GetStringByStrRef(111991));
             // heal
             if (GetCurrentHitPoints(OBJECT_SELF) < nHPBefore)
             {
@@ -98,15 +99,15 @@ void TryAmmoSalvage(object oDamager, object oWeapon)
 void BehemothRampage()
 {
     // TODO: Add param for lesser/greater behemoths.
-    // We can't rampage more than once. :(
-    if (GetLocalInt(OBJECT_SELF, "rampaged"))
+    // We can't stack rampages. :(
+    if (GetLocalInt(OBJECT_SELF, "rampaging"))
         return;
 
     location lMyLocation = GetLocation(OBJECT_SELF);
     object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, 51.0, lMyLocation);
     int iSave;
 
-    SetLocalInt(OBJECT_SELF, "rampaged", TRUE);
+    SetLocalInt(OBJECT_SELF, "rampaging", TRUE);
 
     SpeakString("The lumbering behemoth has become enraged by your assault! " +
             "It roars and slams its fists into the ground with such fury that " +
@@ -122,10 +123,8 @@ void BehemothRampage()
 
     while(GetIsObjectValid(oTarget))
     {
-
-        // Ignore placeables, doors, etc. Also zombies for now.
-        if(!GetObjectType(oTarget) == OBJECT_TYPE_CREATURE ||
-            GetStringLeft(GetTag(oTarget),9) == "ZN_ZOMBIE")
+        // Ignore placeables, doors, etc.
+        if(!GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
         {
             oTarget = GetNextObjectInShape(SHAPE_SPHERE, 51.0, lMyLocation);
             continue;
@@ -139,7 +138,6 @@ void BehemothRampage()
                             EffectVisualEffect(VFX_FNF_SCREEN_SHAKE), oTarget, 2.0);
             if(ReflexSave(oTarget, 10) < 1)
             {
-                //AssignCommand(oTarget, ClearAllActions(TRUE));
                 ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
                             EffectKnockdown(), oTarget, 3.0);
             }
