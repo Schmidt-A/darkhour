@@ -14,7 +14,7 @@ void main()
                 sRemedy = "foragedremedy";
 
             // Rangers/druids can only carry one remedy
-            if(GetItemPossessedBy(oPC, sRemedy) != OBJECT_INVALID)
+            if(GetResRef(GetItemPossessedBy(oPC, sRemedy)) != sRemedy)
             {
                 sMsg = "You could not find any useful herbs.";
                 FloatingTextStringOnCreature(sMsg, oPC, FALSE);
