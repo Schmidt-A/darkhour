@@ -164,7 +164,7 @@ void DoGiveXP(string sJournalTag, int nPercentage, object oTarget, int QuestAlig
         nRewardMod = 0.75;
     }
 
-    GiveXPToCreatureDH(oTarget, FloatToInt(nRewardMod * nXP));
+    GiveXPToCreatureDH(oTarget, FloatToInt(nRewardMod * nXP), "XP_NW");
 }
 
 
@@ -223,13 +223,13 @@ void RewardPartyXP(int XP, object oTarget,int bAllParty=TRUE)
         object oPartyMember = GetFirstFactionMember(oTarget, TRUE);
         while (GetIsObjectValid(oPartyMember) == TRUE)
         {
-            GiveXPToCreatureDH(oPartyMember, XP);
+            GiveXPToCreatureDH(oPartyMember, XP, "XP_NW");
             oPartyMember = GetNextFactionMember(oTarget, TRUE);
         }
     }
     else
     {
-     GiveXPToCreatureDH(oTarget, XP);
+     GiveXPToCreatureDH(oTarget, XP, "XP_NW");
     }
 }
 

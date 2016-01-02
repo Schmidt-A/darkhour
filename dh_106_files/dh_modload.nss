@@ -2,6 +2,8 @@
 
 #include "nwnx_dmactions"
 #include "nwnx_events"
+#include "x2_inc_switches"
+#include "nwnx_chat"
 
 void main()
 {
@@ -15,6 +17,9 @@ void main()
     SetDMActionScript(DM_ACTION_CREATE_ITEM_ON_AREA, "_handler_dmact");
 
     SetGlobalEventHandler(EVENT_TYPE_PICKPOCKET, "_handler_event");
+
+    // init nwnx_chat
+    dmb_ChatInit();
 
     int iHour = GetTimeHour();
     int iMilli = GetTimeMillisecond();
@@ -61,4 +66,6 @@ void main()
     SetCustomToken(134, GetCampaignString("NPC_STORAGE_NAMES","10"));
     SetLocalInt(GetModule(), "X3_MOUNTS_EXTERNAL_ONLY", TRUE);
     SetLocalInt(GetModule(), "X3_MOUNT_NO_REST_DESPAWN", FALSE);
+
+    SetModuleOverrideSpellscript("dh_spellhook");
 }

@@ -4,74 +4,13 @@
 // each player as they enter the module.
 //
 #include "disease_inc"
-#include "_incl_subrace"
-//#include "x3_inc_horse"
+#include "_incl_xp"
+#include "_incl_versioning"
+
 void main()
 {
-
     object oPC = GetEnteringObject();
-    if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook002")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook002");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
 
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook001")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook001");
-        DestroyObject(oItemTake);
-        CreateItemOnObject("alchbook001", oPC, 1);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook003")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook003");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook004")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook004");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook005")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook005");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook006")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook006");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook007")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook007");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook008")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook008");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook009")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook009");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "alchbook010")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oItemTake = GetItemPossessedBy(oPC, "alchbook010");
-        DestroyObject(oItemTake);
-        SendMessageToPC(oPC, "The Alchemy system has been modified. Only one book is now necessary.");
-    }
-    }
     if(GetCampaignInt(GetPCPlayerName(oPC)+"_BANNED",GetPCPlayerName(oPC))==TRUE)
     {
         BootPC(oPC);
@@ -84,23 +23,31 @@ void main()
     {
         BootPC(oPC);
     }
-    string sName = GetName(oPC);
-    int nHitpoints = GetLocalInt(GetModule(),sName);
-    //Demon X6
-    if (GetPCPlayerName(oPC)=="ThisIsAFakeAccountNameLawl")
-    {
-        SendMessageToAllDMs (GetName(oPC) + " has entered the game.");
-        PrintString(GetName(oPC) + " has entered the game.");
-    }
-    else
-    {
-        SendMessageToAllDMs (GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
-        PrintString(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
-    }
+
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
     {
         BootPC(oPC);
     }
+
+    string sName = GetName(oPC);
+    string sMessage = sName + " is entering the game from: " +
+                        GetPCPublicCDKey(oPC) + " IP ADDRESS: " +
+                        GetPCIPAddress(oPC);
+    SendMessageToAllDMs(sMessage);
+    PrintString(sMessage);
+
+    //set their xp vars
+    if (GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
+    {
+        SubraceLogin(oPC);
+    }
+
+    if (GetIsPC(oPC))
+    {
+        SetLocalInt(oPC, "Is_PC", 1);
+    }
+
+    int nHitpoints = GetLocalInt(GetModule(),sName);
     if (nHitpoints > 0)
     {
         int nLessHP = GetMaxHitPoints(oPC) - nHitpoints;
@@ -109,82 +56,23 @@ void main()
             ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nLessHP),oPC);
         }
     }
-    AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff1_5",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff2",1,oPC,FALSE);
-    AddJournalQuestEntry("RULES2",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
-    AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
-    AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
-    AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
 
-    DelayCommand(12.0,SetLocalInt(oPC,"ingame",1));
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "scavenger")) && (GetIsDM(oPC) == FALSE))
+    string sPre = GetDBVarName(oPC);
+    int iVer = GetCampaignInt("VERSIONING", sPre+"Version");
+    switch(iVer)
     {
-        ExecuteScript("setupnewstuff",oPC);
-    }
-
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "craftingitem")))
-     {
-
-        object oCraft = CreateItemOnObject("craftingitem",oPC);
-     }
-
-
-
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ROMM")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oMMRod = CreateItemOnObject("rodofmagicmissil",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ArcaneCloak")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oArCloak = CreateItemOnObject("arcanecloak",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "SheetMusic")) && (GetLevelByClass(CLASS_TYPE_BARD,oPC) > 0))
-    {
-        object oMuzak = CreateItemOnObject("sheetmusic",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ExtraScavenger")) && (GetLevelByClass(CLASS_TYPE_ROGUE,oPC) > 0))
-    {
-        object oXtraScav = CreateItemOnObject("extrascavenger",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "FoodPurifier")) && (GetLevelByClass(CLASS_TYPE_DRUID,oPC) > 0))
-    {
-        object oFoodPure = CreateItemOnObject("foodpurifier",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "HerbalForager")) && (GetLevelByClass(CLASS_TYPE_DRUID,oPC) > 0))
-    {
-        object oHerbForage = CreateItemOnObject("herbalforager",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "Forager")) && (GetLevelByClass(CLASS_TYPE_RANGER,oPC) > 0))
-    {
-        object oForager = CreateItemOnObject("forager",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "MonkBoots")) && (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_BOOTS,oPC)) && (GetLevelByClass(CLASS_TYPE_MONK,oPC) > 0))
-    {
-        object oMBoots = CreateItemOnObject("monkboots",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "WarriorRing")) && (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_RIGHTRING,oPC)) + (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_LEFTRING,oPC)) && ((GetLevelByClass(CLASS_TYPE_FIGHTER,oPC)) + (GetLevelByClass(CLASS_TYPE_BARBARIAN,oPC)) > 0))
-    {
-        object oWRing = CreateItemOnObject("warriorring",oPC);
-    }
-    if (GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
-        SubraceLogin(oPC);
-
-    int nDisease = 0;
-    object oCheckDisease = GetFirstItemInInventory(oPC);
-    while (oCheckDisease != OBJECT_INVALID)
-    {
-        if (GetTag(oCheckDisease) == "ZombieDisease")
-        {
-            nDisease += 1;
-        }
-        oCheckDisease = GetNextItemInInventory(oPC);
-    }
-    if (nDisease >= 10)
-    {
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(GetLocation(GetWaypointByTag("lostsoularrive")))));
+        case 0:
+            //All new PCs
+            ZeroToVersionTwo(oPC);
+            break;
+        case 1:
+            //There should be no pcs marked as v1, they predate this system
+            ZeroToVersionTwo(oPC);
+            break;
+        case 2:
+            break;
+        default:
+            break;
     }
 
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken"))
@@ -230,66 +118,24 @@ void main()
         DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
     }
 
-
-
-
-    // If the entering object happens to be a DM and they don't have a PC list item,
-    // give one to them.
-    if (GetIsDM(oPC) && GetItemPossessedBy(oPC, "PC_LIST") == OBJECT_INVALID)
-    {CreateItemOnObject("pc_list", oPC, 1);}
-
-    ExecuteScript("window_mod_enter", OBJECT_SELF);
-    //DISEASE ADDITION - DEMON X
-    if(GetItemPossessedBy(oPC,"ZombieDisease") != OBJECT_INVALID && GetLocalInt(oPC,"DiseaseApplied") != TRUE)
-    {
-    nDisease = 0;
-    oCheckDisease = GetFirstItemInInventory(oPC);
+    //This needs to get rewritten so that it's not being duplicated by ApplyDisease
+    int nDisease = 0;
+    object oCheckDisease = GetFirstItemInInventory(oPC);
     while (oCheckDisease != OBJECT_INVALID)
     {
         if (GetTag(oCheckDisease) == "ZombieDisease")
         {
             nDisease += 1;
-                if(nDisease == 2)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
-                    SetLocalInt(oPC,"DiseaseApplied",TRUE);
-                }
-                else if(nDisease == 3)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
-                }
-                else if(nDisease == 4)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
-                }
-                else if(nDisease == 5)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_INTELLIGENCE,2)),oPC);
-                }
-                else if(nDisease == 6)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_WISDOM,2)),oPC);
-                }
-                else if(nDisease == 7)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CHARISMA,2)),oPC);
-                }
-                else if(nDisease == 8)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
-                }
-                else if(nDisease == 9)
-                {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectConfused(),oPC,IntToFloat(Random(60)+1));
-                }
         }
         oCheckDisease = GetNextItemInInventory(oPC);
     }
-}
+    if (nDisease >= 10)
+    {
+        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(GetLocation(GetWaypointByTag("lostsoularrive")))));
+    }
 
-
-     if(!GetIsObjectValid(GetItemPossessedBy(GetEnteringObject(),"SubdualModeTog")))
-       CreateItemOnObject("subdualmodetog",GetEnteringObject());
+    if (GetItemPossessedBy(oPC,"ZombieDisease") != OBJECT_INVALID && GetLocalInt(oPC,"DiseaseApplied") != TRUE)
+    {
+        ApplyDisease(oPC);
+    }
 }

@@ -23,8 +23,7 @@ void main()
 
             if(GetIsSkillSuccessful(oPC, SKILL_SPOT, 10) == TRUE)
             {
-                sMsg = "You've found some herbs that can help cure the plague!";
-
+                sMsg = "You've found some remedial herbs.";
 
                 AssignCommand(oPC, ActionPlayAnimation(ANIMATION_LOOPING_GET_LOW,
                                                        1.0, 2.0));

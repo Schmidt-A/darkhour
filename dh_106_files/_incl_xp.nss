@@ -1,8 +1,8 @@
 #include "_incl_subrace"
 
-void GiveXPToCreatureDH(object oPC, int iAmount);
+void GiveXPToCreatureDH(object oPC, int iAmount, string sSource="");
 
-void GiveXPToCreatureDH(object oPC, int iAmount)
+void GiveXPToCreatureDH(object oPC, int iAmount, string sSource="")
 {
     // Normal case - not an ECL character.
     if(GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)

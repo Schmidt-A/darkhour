@@ -1,5 +1,58 @@
 /* ChronusH: Modified routines to use a standard applier to more accurately
     remove effect and apply them. */
+
+
+void ApplyDisease(object oPC)
+{
+    //DISEASE ADDITION - DEMON X
+    int nDisease = 0;
+    object oCheckDisease = GetFirstItemInInventory(oPC);
+    while (oCheckDisease != OBJECT_INVALID)
+    {
+        if (GetTag(oCheckDisease) == "ZombieDisease")
+        {
+            nDisease += 1;
+            if(nDisease == 2)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
+                SetLocalInt(oPC,"DiseaseApplied",TRUE);
+            }
+            else if(nDisease == 3)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
+            }
+            else if(nDisease == 4)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
+            }
+            else if(nDisease == 5)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_INTELLIGENCE,2)),oPC);
+            }
+            else if(nDisease == 6)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_WISDOM,2)),oPC);
+            }
+            else if(nDisease == 7)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CHARISMA,2)),oPC);
+            }
+            else if(nDisease == 8)
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
+            }
+            else if(nDisease == 9)
+            {
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectConfused(),oPC,IntToFloat(Random(60)+1));
+            }
+        }
+        oCheckDisease = GetNextItemInInventory(oPC);
+    }
+
+}
+
 void RemoveDiseasedEffects(object oPC)
 {         /*
 AssignCommand(oPC, ClearAllActions());
