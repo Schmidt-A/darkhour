@@ -15,6 +15,9 @@ void main()
         int iCastClass = GetClassByPosition(1, oPC);
         int iCastLevel = GetCasterLevel(oCaster);
 
-        BloodMagic(oCaster, iCastClass, oCastItem, iCastLevel);
+        if(BloodMagic(oCaster, iCastClass, oCastItem, iCastLevel) == FALSE)
+        {
+            SetModuleOverrideSpellScriptFinished();
+        }
     }
 }

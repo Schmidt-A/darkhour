@@ -18,7 +18,7 @@ float GetHPIncrement(object oCaster, int iCastClass)
     return fIncrement;
 }
 
-void BloodMagic(object oCaster, int iCastClass, object oCastItem, int iCastLevel)
+int BloodMagic(object oCaster, int iCastClass, object oCastItem, int iCastLevel)
 {
     float fIncrement = GetHPIncrement(oCaster, iCastClass);
     float fStoredIncrement = GetLocalFloat(oCastItem, "storedIncrement");
@@ -32,8 +32,23 @@ void BloodMagic(object oCaster, int iCastClass, object oCastItem, int iCastLevel
         iDamage++;
     }
 
-    effect eDam = EffectDamage(iDamage, DAMAGE_TYPE_POSITIVE);
-    ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oCaster);
+    if(iDamage < GetCurrentHitPoints(oCaster))
+    {
+        effect eDam = EffectDamage(iDamage, DAMAGE_TYPE_POSITIVE);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oCaster);
 
-    SetLocalFloat(oCastItem, "storedIncrement", fAdded);
+        FloatingTextStringOnCreature("Your body shudders as overflown energy from the Weave courses through your veins.", oCaster, FALSE);
+
+        SetLocalFloat(oCastItem, "storedIncrement", fAdded);
+
+        return TRUE;
+    }
+    else
+    {
+        FloatingTextStringOnCreature("Your body cannot fuel the Weave's raw power any longer.", oCaster, FALSE);
+
+        return FALSE;
+    }
+
+    
 }
