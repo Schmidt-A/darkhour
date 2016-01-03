@@ -136,7 +136,7 @@ void main()
         if (nSanct == FALSE)
         {
           int iPCClass = GetClassByPosition(1, oPC);
-           if (iPCClass == CLASS_TYPE_PALADIN && GetHasFeat(FEAT_DIVINE_HEALTH, oSpellTarget))
+           if (iPCClass != CLASS_TYPE_PALADIN || !GetHasFeat(FEAT_DIVINE_HEALTH, oSpellTarget))
            {
                if (FortitudeSave(oSpellTarget,9,SAVING_THROW_TYPE_DISEASE) == 0)
                {
@@ -145,7 +145,7 @@ void main()
                    FloatingTextStringOnCreature("You have been diseased!",oSpellTarget,FALSE);
                }
            }
-           if (iPCClass == CLASS_TYPE_MONK && GetHasFeat(FEAT_MONK_AC_BONUS, oSpellTarget))
+           if (iPCClass != CLASS_TYPE_MONK || !GetHasFeat(FEAT_MONK_AC_BONUS, oSpellTarget))
            {
                if (FortitudeSave(oSpellTarget,7) == 0)
                {
