@@ -122,9 +122,10 @@ void main()
                     sTag != "SurvivalTime" && sAreaTag != "OOCPlayerLounge" &&
                     sRef != "cr_arrows")
     {
-        // Format : ITEM_ACQUIRE:[pc name] | [item resref] | [item name] | [area name]
-        // Example: ITEM_ACQUIRE:Tweek | item001 | Test Item  | Sundered Desolation
+        // Format : ITEM_ACQUIRE:[pc name] | [account name] | [item resref] | [item name] | [area name]
+        // Example: ITEM_ACQUIRE:Seth | Tweek | item001 | Test Item  | Sundered Desolation
         string sLog = "ITEM_ACQUIRE:" + GetName(oAcquirer) + " | " +
+                        GetPCPlayerName(oAcquirer) + " | " +
                         sRef + " | " +
                         GetName(oItem) + " | " +
                         sAreaName;

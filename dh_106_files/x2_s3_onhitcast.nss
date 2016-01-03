@@ -135,7 +135,7 @@ void main()
         }
         if (nSanct == FALSE)
         {
-          int iPCClass = GetClassByPosition(1, oPC);
+          int iPCClass = GetClassByPosition(1, oSpellTarget);
            if (iPCClass != CLASS_TYPE_PALADIN || !GetHasFeat(FEAT_DIVINE_HEALTH, oSpellTarget))
            {
                if (FortitudeSave(oSpellTarget,9,SAVING_THROW_TYPE_DISEASE) == 0)
