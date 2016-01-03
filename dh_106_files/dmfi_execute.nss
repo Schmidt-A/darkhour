@@ -1777,6 +1777,15 @@ void DoXPFunction(int iXP, object oUser)
         while (GetIsObjectValid(oPartyMember))
         {
             GiveXPToCreatureDH(oPartyMember, iReward);
+
+            //logging exp gains
+            string sLog = "XP_DM:" + GetName(oUser) + " | " +
+                        GetPCPlayerName(oPartyMember) + " | " +
+                        GetName(oPartyMember) + " | " +
+                        IntToString(iReward) + " | " +
+                        IntToString(GetXP(oPartyMember));
+            WriteTimestampedLogEntry(sLog);
+
             SetLocalInt(oPartyMember, "dmfi_XPGiven", GetLocalInt(oPartyMember, "dmfi_XPGiven") + iReward);
             FloatingTextStringOnCreature(sFloating + ": " + IntToString(iReward), oPartyMember, FALSE);
             oPartyMember = GetNextFactionMember(oTarget, TRUE);
@@ -1790,6 +1799,14 @@ void DoXPFunction(int iXP, object oUser)
             iReward = (GetHitDice(oTarget)*iPercent*10);
 
         GiveXPToCreatureDH(oTarget, iReward);
+
+        //logging exp gains
+        string sLog = "XP_DM:" + GetName(oUser) + " | " +
+                    GetPCPlayerName(oTarget) + " | " +
+                    GetName(oTarget) + " | " +
+                    IntToString(iReward) + " | " +
+                    IntToString(GetXP(oTarget));
+        WriteTimestampedLogEntry(sLog);
 
         SetLocalInt(oTarget, "dmfi_XPGiven", GetLocalInt(oTarget, "dmfi_XPGiven") + iReward);
         FloatingTextStringOnCreature(sFloating + ": " + IntToString(iReward), oTarget, FALSE);

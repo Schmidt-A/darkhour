@@ -98,13 +98,13 @@ void Craft(string sItemTag, string sMWTag, int iCost, int ammo=FALSE)
     }
 
     //If masterwork roll is failed, try for a normal one.
-    if (iRoll + iSkill + ((iWeaponSkill + iArmorSkill)/5) >= 19)
+    if (iRoll + iSkill + ((iWeaponSkill + iArmorSkill)/5) >= 22)
     {
         if(ammo == TRUE)
             CreateAmmo(oPC, sItemTag, iRand);
         else
             CreateItemOnObject(sItemTag, oPC);
-        TryForLevelup(oPC, oCrafting, 15, iSkillroll, iSkill);
+        TryForLevelup(oPC, oCrafting, 10, iSkillroll, iSkill);
         SendMessageToPC(oPC, "You have successfully crafted an item!");
         UpdateAndNotify(oPC, oCrafting, iAmount, iCost);
         return;
@@ -113,6 +113,6 @@ void Craft(string sItemTag, string sMWTag, int iCost, int ammo=FALSE)
     // If we got here, they failed to craft anything. Let's give them a little
     // chance to level to be nice.
     SetLocalInt(oCrafting, "crafting", iAmount - iRoll);
-    SendMessageToPC(oPC, "You failed to craft anything and lost " + IntToString(iAmount) + " crafting points in the process");
-    TryForLevelup(oPC, oCrafting, 5, iSkillroll, iSkill);
+    SendMessageToPC(oPC, "You failed to craft anything and lost " + IntToString(iRoll) + " crafting points in the process");
+    TryForLevelup(oPC, oCrafting, 3, iSkillroll, iSkill);
 }
