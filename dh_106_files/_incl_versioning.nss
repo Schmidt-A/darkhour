@@ -93,7 +93,10 @@ void CullClassItems(object oPC, int iLaterClass)
         case CLASS_TYPE_FIGHTER:
             //this int is never used
             SetCampaignInt(GetName(GetModule()), "Has_WRing", 0, oPC);
-            DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f);
+            if (GetClassByPosition(1, oPC) != CLASS_TYPE_BARBARIAN)
+            {
+                DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f);
+            }
             break;
         case CLASS_TYPE_DRUID:
             DestroyObject(GetItemPossessedBy(oPC, "FoodPurifier"), 0.0f);
@@ -110,7 +113,10 @@ void CullClassItems(object oPC, int iLaterClass)
         case CLASS_TYPE_BARBARIAN:
             //this int is never used
             SetCampaignInt(GetName(GetModule()), "Has_WRing", 0, oPC);
-            DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f);
+            if (GetClassByPosition(1, oPC) != CLASS_TYPE_FIGHTER)
+            {
+                DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f);
+            }
             break;
         default:
             break;
@@ -188,7 +194,7 @@ void ZeroToVersionTwo(object oPC)
             {
                 CullClassItems(oPC, iThirdClass);
             }
-            if (iPCClass == CLASS_TYPE_WIZARD)
+            if (iPCClass == CLASS_TYPE_WIZARD || iPCClass == CLASS_TYPE_SORCERER)
             {
                 CreateItemOnObject("BloodMagicBook",oPC);
             }
