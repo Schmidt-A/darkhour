@@ -7,7 +7,7 @@ void GiveXPToCreatureDH(object oPC, int iAmount, string sSource="")
     // Normal case - not an ECL character.
     if(GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
     {
-        GiveXPToCreature(oPC, iAmount);
+        GiveXPToCreature(oPC, GetXP(oPC) + iAmount);
         return;
     }
     string sPre = GetDBVarName(oPC);
