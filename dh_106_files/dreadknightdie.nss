@@ -1,7 +1,7 @@
 #include "_incl_xp"
 void main()
 {
-object oArea = GetArea(OBJECT_SELF);
+    object oArea = GetArea(OBJECT_SELF);
     object oPeople = GetFirstObjectInArea(oArea);
     while (oPeople != OBJECT_INVALID)
     {
