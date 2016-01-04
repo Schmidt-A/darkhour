@@ -94,7 +94,7 @@ void Craft(string sItemTag, string sMWTag, int iCost, int ammo=FALSE)
             CreateItemOnObject(sMWTag, oPC);
         TryForLevelup(oPC, oCrafting, 15, iSkillroll, iSkill);
         SendMessageToPC(oPC, "You have crafted a masterwork item!");
-
+        return;
     }
 
     //If masterwork roll is failed, try for a normal one.
