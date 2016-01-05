@@ -12,7 +12,6 @@ def output_data(areas):
         doors = area['doors']
         placeables = area['placeables']
         triggers = area['triggers']
-        waypoints = area['waypoints']
 
         if len(doors) > 0:
             print('\tDoors:')
@@ -29,10 +28,7 @@ def output_data(areas):
             for t in triggers:
                 print_obj(t)
 
-        if len(waypoints) > 0:
-            print('\tWaypoints:')
-            for w in waypoints:
-                print_obj(w)
+        print('')
 
 def print_obj(obj):
     print('\t\t'+ obj['tag'])
@@ -74,8 +70,7 @@ def main():
                 'name': a_name,
                 'doors': [],
                 'placeables': [],
-                'triggers': [],
-                'waypoints': []
+                'triggers': []
                 }
 
         for d in area.doors:
@@ -87,6 +82,11 @@ def main():
             p_data = get_data(p)
             if p_data:
                 a_dict['placeables'].append(p_data)
+
+        for t in area.triggers:
+            t_data = get_data(t)
+            if t_data:
+                a_dict['triggers'].append(t_data)
 
         areas.append(a_dict)
 

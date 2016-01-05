@@ -49,6 +49,7 @@
 			USED: zep_use_chair
 		ZEP_CI_CHR_001
 			USED: zep_use_chair
+
 -- <cÿøÜ>New Player Start</c> --
 	Placeables:
 		TrashBarrel
@@ -67,6 +68,7 @@
 			USED: customizeport
 		PortalToModels
 			USED: customizeport2
+
 -- <cÿøÜ>Player Lounge</c> --
 	Placeables:
 		ZEP_CI_CHR_001
@@ -115,10 +117,12 @@
 			USED: zep_use_chair
 		ZEP_CHAIR004
 			USED: zep_use_chair
+
 -- <cÿøÜ>The Underdark: Illithid Arena</c> --
 	Doors:
 		CastleDoor
 			DEATH: x2_door_death
+
 -- <cÿøÜ>Welcome to Dark Hour: Epilogue</c> --
 	Doors:
 		StartingDoor
@@ -163,12 +167,24 @@
 			USED: nw_02_onoff
 		InvisChair
 			USED: zep_use_chair
+	Triggers:
+		GenericTrigger
+			ENTER: enter_doall
+			EXIT: takespellfailure
+		GenericTrigger
+			ENTER: dhnewplayerport
+		GenericTrigger
+			ENTER: dhnewplayerport
+
 <c þ >The Fugue Plane</c>
+
 <c-)¤>Zombie Spawner 101 (TEST)
 	Doors:
 		MineExit
 			DEATH: x2_door_death
+
 <cþÙP>---Character Editor---</c>
+
 <cþÙP>Annedhel: State Building (Secureable)</c>
 	Doors:
 		LockedVariousAnnedhel
@@ -203,6 +219,7 @@
 			USED: nw_02_onoff
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+
 <cþÙP>Baraban Farmhouse (Securable)</c>
 	Doors:
 		Farmhouse1ToBar
@@ -239,6 +256,10 @@
 			OPEN: commchestopen
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 <cþÙP>Eledhreth Barracks (Securable)</c>
 	Doors:
 		NormalDoor
@@ -257,6 +278,10 @@
 		ele_pchest
 			CLOSE: commchestclose
 			OPEN: commchestopen
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 <cþÙP>Faeloth Inn (Securable)</c>
 	Doors:
 		x3_door_wood001
@@ -454,6 +479,7 @@
 			USED: zep_use_chair
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+
 <cþÙP>Imithril Temple (Securable)</c>
 	Doors:
 		ImtempToImrithil
@@ -474,6 +500,7 @@
 			HEARTBEAT: zep_torchspawn
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+
 <cþÙP>Kalaram (Boarded Home)</c>
 	Doors:
 		BoardedHome2ToKalaram
@@ -575,6 +602,7 @@
 			OPEN: commchestopen
 		Chair
 			USED: zep_use_chair
+
 <cþÙP>Kalaram (Guard Tower - Second Floor)</c>
 	Doors:
 		x3_door_met003
@@ -632,6 +660,7 @@
 			HEARTBEAT: ccfood
 		TrashBarrel
 			DISTURBED: trash
+
 <cþÙP>Kalaram (Guard Tower - Third Floor)</c>
 	Doors:
 		OhGodWhy
@@ -678,6 +707,7 @@
 		ZEP_SCONCE002
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+
 <cþÙP>Kalaram (Seven Oaks -  Securable)</c>
 	Placeables:
 		ZEP_OCHNDLER001
@@ -690,6 +720,7 @@
 			DEATH: x2_o2_dead
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+
 <cþÙP>Ludor - State Building (Securable)</c>
 	Doors:
 		x3_door_wood004
@@ -808,6 +839,13 @@
 			OPEN: x2_02_low
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 <cþÙP>Sundered Desolation - Downstairs Storage</c>
 	Placeables:
 		x3_plc_barrel3
@@ -1342,6 +1380,10 @@
 		ZEP_CANDLE001
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 <cþÙP>Sundered Desolation - Saferoom</c>
 	Doors:
 		sundsafromdown
@@ -1426,6 +1468,7 @@
 			USED: zep_use_chair
 		InvisChair
 			USED: zep_use_chair
+
 <cþÙP>Sundered Desolation - Upstairs</c>
 	Doors:
 		SunDesBed1
@@ -1519,6 +1562,7 @@
 		ZEP_CANDLE002
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+
 <cþÙP>Sundered Desolation</c>
 	Doors:
 		SunDexExit2
@@ -1689,6 +1733,10 @@
 			USED: zep_use_chair
 		ladderup231
 			USED: dh_laddertry3
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 <cþÙP>Tel'kara Temple (Securable)</c>
 	Placeables:
 		Stool
@@ -1698,6 +1746,10 @@
 		Corpse2
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+	Triggers:
+		Telkara2
+			ENTER: tel2popup
+
 <cþÙP>The Darkglade Forest (Ranger's Lodge)</c>
 	Doors:
 		RangersLodge1
@@ -1742,6 +1794,7 @@
 		FlameMedium
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+
 <cþÙP>The Forsaken Inn (Securable)</c>
 	Doors:
 		godoooownnnyo
@@ -1827,6 +1880,10 @@
 			OPEN: nw_o2_classlow
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 <cþÙP>The Rusty Tankard (Securable) </c>
 	Doors:
 		FancyDoor
@@ -1860,6 +1917,17 @@
 			DEATH: x2_o2_dead
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+	Triggers:
+		GenericTrigger
+			ENTER: takemagic
+		GenericTrigger
+			ENTER: takecraft
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Ancient Crypt (Catacombs Lower)
 	Doors:
 		StoneDoor
@@ -1876,6 +1944,7 @@ Ancient Crypt (Catacombs Lower)
 			DEATH: x2_door_death
 		BridgeDoor
 			DEATH: x2_door_death
+
 Annedhel: Catacomb Passage
 	Doors:
 		CataEToAnn
@@ -1889,6 +1958,7 @@ Annedhel: Catacomb Passage
 			USED: nw_02_onoff
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+
 Annedhel: Desert Catacombs
 	Doors:
 		StoneDoor
@@ -1912,6 +1982,7 @@ Annedhel: Desert Catacombs
 	Placeables:
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+
 Annedhel: Inner City
 	Doors:
 		LockedVariousAnnedhel
@@ -2157,6 +2228,10 @@ Annedhel: Inner City
 			HEARTBEAT: junk_modifier
 		SJUNK
 			HEARTBEAT: junk_modifier
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Annedhel: Outskirts
 	Doors:
 		LockedVariousAnnedhel
@@ -2172,6 +2247,12 @@ Annedhel: Outskirts
 			HEARTBEAT: zep_torchspawn
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		Annedhel123
+			ENTER: popuptext279
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Annedhel: Vault
 	Doors:
 		Vault4ToCatabombs
@@ -2199,6 +2280,10 @@ Annedhel: Vault
 			DISTURBED: trash
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Annedhel: Waterfront
 	Doors:
 		EnterVaultAnnedhels
@@ -2228,28 +2313,37 @@ Annedhel: Waterfront
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert
 	Placeables:
 		NW_PL_SKELETON
 			HEARTBEAT: nw_o2_skeleton
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		Annedhel12
+			ENTER: popuptext278
+
 Annedhellian Desert
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert
 	Placeables:
 		X2_PLC_STATUE_H
@@ -2260,10 +2354,12 @@ Annedhellian Desert
 			USED: nw_02_onoff
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert: Kallino Alchemy Shop
 	Doors:
 		MagicToAnn
@@ -2288,6 +2384,7 @@ Annedhellian Desert: Kallino Alchemy Shop
 		X2_PLC_STUBE
 			USED: x2_plc_used_act
 			DEATH: x2_o2_dead
+
 Annedhellian Desert: Kallino Homes
 	Doors:
 		NormalDoor
@@ -2310,6 +2407,7 @@ Annedhellian Desert: Kallino Homes
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert: Kallino Housing
 	Doors:
 		annedhouseint3up
@@ -2438,6 +2536,7 @@ Annedhellian Desert: Kallino Housing
 		ZEP_OCHNDLER001
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+
 Annedhellian Desert: Kallino Militia Building
 	Doors:
 		anned_upint
@@ -2460,6 +2559,10 @@ Annedhellian Desert: Kallino Militia Building
 		Barrel
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Annedhellian Desert: Kallino Pantry
 	Doors:
 		CryptExit
@@ -2477,10 +2580,12 @@ Annedhellian Desert: Kallino Pantry
 			DEATH: x2_o2_dead
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Annedhellian Desert: Kallino Temple
 	Placeables:
 		SJUNK
 			HEARTBEAT: junk_modifier
+
 Annedhellian Desert: Kallino Village
 	Doors:
 		AnnToGuardhouse
@@ -2504,10 +2609,18 @@ Annedhellian Desert: Kallino Village
 			HEARTBEAT: zombiecreator7
 		SJUNK
 			HEARTBEAT: junk_modifier
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Annedhellian Desert: Passage
 	Doors:
 		CaveExit
 			DEATH: x2_door_death
+
 Annedhellian Desert: Taros
 	Doors:
 		WallDoor
@@ -2575,6 +2688,7 @@ Annedhellian Desert: Taros
 			USED: zep_openclose
 			DEATH: zep_doorkill
 			HEARTBEAT: zep_doorspawn
+
 Annedhellian Desert: Taros Guardhouse
 	Doors:
 		GuardhouseToAnn
@@ -2594,12 +2708,19 @@ Annedhellian Desert: Taros Guardhouse
 		ann_pchest
 			CLOSE: commchestclose
 			OPEN: commchestopen
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Annedhellian Desert: The Scorching Sands
+
 Annedhellian Desert: The Scorching Sands
+
 Annedhellian Desert: The Scorching Sands
 	Doors:
 		DesertExit
 			DEATH: x2_door_death
+
 Ashby Manor
 	Doors:
 		FancyDoor
@@ -2630,6 +2751,7 @@ Ashby Manor
 			USED: ashbylock
 		X2_PLC_BBOOKCASE
 			DEATH: x2_o2_dead
+
 Baraban
 	Doors:
 		BarToRWN
@@ -2673,6 +2795,20 @@ Baraban
 			HEARTBEAT: ccfood
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		AWARD
+			ENTER: awardbaraban
+		BadgeTrigger
+			ENTER: badge_onenter
+		BadgeTrigger
+			ENTER: badge_onenter
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+
 Baraban Library
 	Doors:
 		TempleToBar
@@ -2686,6 +2822,7 @@ Baraban Library
 			HEARTBEAT: zombiecreator7
 		SJUNK
 			HEARTBEAT: junk_modifier
+
 Baraban Vault
 	Doors:
 		VaultDoor2
@@ -2715,6 +2852,10 @@ Baraban Vault
 			DISTURBED: trash
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Baraban Village
 	Doors:
 		UpInTheHizzay
@@ -2832,10 +2973,28 @@ Baraban Village
 		LootBag6
 			DEATH: nw_o2_classhig
 			OPEN: nw_o2_classhig
+	Triggers:
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+
 Baraban: Shaded Woods
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
+	Triggers:
+		GenericTrigger
+			ENTER: falsechurch
+
 Baraban: Shaded Woods
 	Doors:
 		ShadedToVault2
@@ -2843,6 +3002,12 @@ Baraban: Shaded Woods
 	Placeables:
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Baraban: Small Clearing
 	Doors:
 		Wall1Gate
@@ -2850,6 +3015,7 @@ Baraban: Small Clearing
 	Placeables:
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+
 Baraban: The Sturdy Oxen
 	Doors:
 		Tavern1ToBar
@@ -2861,6 +3027,7 @@ Baraban: The Sturdy Oxen
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Barbed Clover Inn
 	Doors:
 		BH_LD3
@@ -2942,6 +3109,7 @@ Barbed Clover Inn
 			OPEN: nw_o2_generallow
 		unspokengrate
 			USED: x0_o2_use_tdoor
+
 Blackwood Jungle
 	Placeables:
 		X2_PLC_MUSHRM_B
@@ -2950,18 +3118,21 @@ Blackwood Jungle
 			DEATH: x2_o2_dead
 		X2_PLC_MUSHRM_B
 			DEATH: x2_o2_dead
+
 Blackwood Jungle
 	Doors:
 		LABYEXITLEFT
 			DEATH: x2_door_death
 		LABYEXITRIGHT
 			DEATH: x2_door_death
+
 Blackwood Jungle: Camp
 	Placeables:
 		ThroneEvil
 			USED: use_chair
 		X2_PLC_TABLERND
 			DEATH: x2_o2_dead
+
 Blackwood Jungle: Camp
 	Doors:
 		ForestExit
@@ -2989,12 +3160,14 @@ Blackwood Jungle: Camp
 			USED: use_chair
 		InvisibleChair
 			USED: use_chair
+
 Blackwood Jungle: Cave
 	Doors:
 		MineExit
 			DEATH: x2_door_death
 		JCAVE
 			DEATH: x2_door_death
+
 Castle Siranda
 	Doors:
 		WallDoor
@@ -3031,6 +3204,7 @@ Castle Siranda
 			DEATH: x2_o2_dead
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+
 Castle Siranda -- Armory
 	Doors:
 		RustedDoor
@@ -3044,6 +3218,7 @@ Castle Siranda -- Armory
 			DISTURBED: trash
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+
 Castle Siranda -- Dungeon
 	Doors:
 		Portcullis
@@ -3081,6 +3256,10 @@ Castle Siranda -- Dungeon
 			DISTURBED: trash
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Castle Siranda: Throne
 	Doors:
 		RustedDoor
@@ -3106,6 +3285,10 @@ Castle Siranda: Throne
 	Placeables:
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Crumbling Interior
 	Doors:
 		crumintd2
@@ -3115,6 +3298,7 @@ Crumbling Interior
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator6
+
 Cult of Everdark Compound
 	Doors:
 		sourcetocultd
@@ -3226,6 +3410,7 @@ Cult of Everdark Compound
 			USED: zep_use_chair
 		ZEP_CI_CHR_005
 			USED: zep_use_chair
+
 Cult of The Everdark
 	Doors:
 		DoubleDoors
@@ -3263,6 +3448,7 @@ Cult of The Everdark
 			USED: zep_stocksuse
 		ZEP_TE_PRS_002
 			USED: zep_stocksuse
+
 Cult of The Everdark (Execution Chamber)
 	Doors:
 		grinder2
@@ -3295,17 +3481,29 @@ Cult of The Everdark (Execution Chamber)
 			OPEN: nw_o2_generallow
 		ZEP_GUILLOTIN001
 			USED: zep_onoff
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 DMFI Custom Encounter Region
+
 Dark Stairwell
 	Doors:
 		Portcullis
 			DEATH: x2_door_death
 		OUT
 			DEATH: x2_door_death
+	Triggers:
+		slammer2
+			ENTER: slammer2
+		NEWTRIGGER
+			ENTER: cutsceneghost
+
 Desert Cave
 	Doors:
 		DesertExit
 			DEATH: x2_door_death
+
 Dusty Mines
 	Doors:
 		CaveDoor
@@ -3326,7 +3524,12 @@ Dusty Mines
 	Placeables:
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 East Anneh Desert
+
 Eledhreth - City Gate
 	Doors:
 		x3_door_wood003
@@ -3371,6 +3574,7 @@ Eledhreth - City Gate
 			OPEN: nw_o2_generallow
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Eledhreth - Docks
 	Doors:
 		StoneDoor
@@ -3448,6 +3652,10 @@ Eledhreth - Docks
 			HEARTBEAT: zep_torchspawn
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Eledhreth - Old Church
 	Doors:
 		eled_f_church_ext
@@ -3650,6 +3858,7 @@ Eledhreth - Old Church
 			USED: zep_torch
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Eledhreth - Old Farmlands
 	Doors:
 		eled_farmlandexit
@@ -3680,6 +3889,7 @@ Eledhreth - Old Farmlands
 			OPEN: nw_o2_generallow
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Eledhreth Docks - Shop
 	Doors:
 		x3_door_wood003
@@ -3691,6 +3901,7 @@ Eledhreth Docks - Shop
 			USED: zep_use_chair
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Eledhreth Shop
 	Doors:
 		EShopToEled
@@ -3716,6 +3927,10 @@ Eledhreth Shop
 			USED: x2_plc_used_sit
 		X2_PLC_CHAIRDROW
 			USED: x2_plc_used_sit
+	Triggers:
+		GenericTrigger
+			ENTER: drow_shopsecret
+
 Eledhreth Temple
 	Doors:
 		TempleToEled
@@ -3725,6 +3940,7 @@ Eledhreth Temple
 			HEARTBEAT: junk_modifier
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+
 Eledhreth Vault
 	Doors:
 		VaultDoor1
@@ -3754,6 +3970,10 @@ Eledhreth Vault
 			DISTURBED: trash
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Eledhreth: Hermit's Hut
 	Doors:
 		outhermithome
@@ -3782,6 +4002,7 @@ Eledhreth: Hermit's Hut
 			DEATH: x2_o2_dead
 		ZEP_CI_CHR_001
 			USED: zep_use_chair
+
 Eledhreth: Hidden Glade
 	Doors:
 		RuralExit
@@ -3814,6 +4035,7 @@ Eledhreth: Hidden Glade
 			DEATH: x2_o2_dead
 		X2_PLC_TENT_B
 			DEATH: x2_o2_dead
+
 Faeloth - Supplies Building
 	Placeables:
 		BoxCrate4
@@ -3912,6 +4134,7 @@ Faeloth - Supplies Building
 			USED: zep_onoff
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Faeloth - Supplies Building
 	Placeables:
 		ZEP_CHAIRS002
@@ -3924,6 +4147,7 @@ Faeloth - Supplies Building
 			DEATH: x2_o2_dead
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Faeloth Cave
 	Placeables:
 		X2_PLC_CRYSTAL
@@ -4004,6 +4228,7 @@ Faeloth Cave
 		X2_PLC_CRYSTAL
 			USED: x2_plc_used_act
 			DEATH: x2_o2_dead
+
 Faeloth Cave
 	Doors:
 		faelothentcave_to_city
@@ -4011,6 +4236,7 @@ Faeloth Cave
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Faeloth Interior
 	Doors:
 		faelothint_to_city
@@ -4032,6 +4258,7 @@ Faeloth Interior
 			USED: zep_use_chair
 		ZEP_CHAIR017
 			USED: zep_use_chair
+
 Faeloth Village
 	Doors:
 		Wall2Gate
@@ -4130,6 +4357,7 @@ Faeloth Village
 			OPEN: nw_o2_generallow
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Fort Tilarm
 	Doors:
 		TILARMIN
@@ -4146,6 +4374,24 @@ Fort Tilarm
 			DEATH: x2_o2_dead
 		ZEP_SCALE001
 			USED: zep_onoff
+	Triggers:
+		GenericTrigger
+			ENTER: killknights
+		Crafting
+			ENTER: givecraft
+			EXIT: takecraft
+		Magic
+			ENTER: givemagic
+			EXIT: takemagic
+		GenericTrigger
+			ENTER: takecraft
+		GenericTrigger
+			ENTER: takecraft
+		GenericTrigger
+			ENTER: takemagic
+		GenericTrigger
+			ENTER: takemagic
+
 Fort Tilarm (Basement)
 	Doors:
 		RustedDoor
@@ -4162,6 +4408,7 @@ Fort Tilarm (Basement)
 			DEATH: x2_door_death
 		DoorUp2
 			DEATH: x2_door_death
+
 Fort Tilarm 2nd Floor
 	Doors:
 		DoorDown1
@@ -4285,6 +4532,7 @@ Fort Tilarm 2nd Floor
 			USED: zep_use_chair
 		ZEP_BENCH001
 			USED: zep_use_chair
+
 Freezing Vault
 	Doors:
 		WyvVaultDoor
@@ -4314,6 +4562,10 @@ Freezing Vault
 			DISTURBED: trash
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Fyn Island
 	Doors:
 		AestusOutHoleCorrA
@@ -4341,6 +4593,12 @@ Fyn Island
 			USED: zep_onoff
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+	Triggers:
+		FynMessage
+			ENTER: fynmessage
+		FynMessage2
+			ENTER: fynmessage2
+
 Fyn Island: Bridge
 	Placeables:
 		ZEP_OSTNLNTRN002
@@ -4375,6 +4633,10 @@ Fyn Island: Bridge
 			HEARTBEAT: zep_torchspawn
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		FynMessage23
+			ENTER: fynmessage3
+
 Fyn Island: Royal Gates
 	Doors:
 		WallDoor
@@ -4386,6 +4648,7 @@ Fyn Island: Royal Gates
 	Placeables:
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+
 Hidden Shrine
 	Doors:
 		KShedSecret2
@@ -4401,6 +4664,7 @@ Hidden Shrine
 			USED: zep_onoff
 		ZEP_GUILLOTIN001
 			USED: zep_onoff
+
 Holy Fountain
 	Doors:
 		FountainToOldCavern
@@ -4410,6 +4674,10 @@ Holy Fountain
 			HEARTBEAT: junk_modifier
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Homestead
 	Doors:
 		HomsteadToEled
@@ -4425,6 +4693,7 @@ Homestead
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Imithril: Bazaar
 	Doors:
 		XBazaar
@@ -4471,6 +4740,7 @@ Imithril: Bazaar
 			DEATH: x2_o2_dead
 		x0_librarydesk
 			USED: talktopc
+
 Imithril: Temple District
 	Doors:
 		ImrithilToSacr
@@ -4550,6 +4820,10 @@ Imithril: Temple District
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		ImithrilEnter
+			ENTER: imithrilpopup
+
 Imithril: Treasury
 	Doors:
 		StoneDoor
@@ -4581,6 +4855,7 @@ Imithril: Treasury
 			DEATH: x2_o2_dead
 		X2_PLC_DDRESSER2
 			DEATH: x2_o2_dead
+
 Imithril: Treasury District
 	Doors:
 		Breach
@@ -4597,6 +4872,7 @@ Imithril: Treasury District
 			DEATH: x2_door_death
 		LockedVariousDoor1
 			DEATH: x2_door_death
+
 Imrithil: Sacrificial Chamber
 	Doors:
 		SacrToImrithil
@@ -4618,6 +4894,7 @@ Imrithil: Sacrificial Chamber
 			HEARTBEAT: zep_torchspawn
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Ismail
 	Doors:
 		IsmailEnter
@@ -4639,8 +4916,30 @@ Ismail
 	Placeables:
 		ZEP_SCALE001
 			USED: zep_onoff
+	Triggers:
+		BlackDepths7
+			ENTER: gorondepthshoho5
+		BlackDepths9
+			ENTER: gorondepthsh5435
+		BadgeTrigger
+			ENTER: badge_onenter
+		BlackDepths8
+			ENTER: gorondepthshoh9
+
 Ismail: Inner City
+
 Ismail: Palace
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		BlackDepths10
+			ENTER: gorondept2332141
+		BlackDepths11
+			ENTER: gorondept2332123
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram - Reclaimed Home - Second Floor
 	Doors:
 		x3_door_wood003
@@ -4698,6 +4997,7 @@ Kalaram - Reclaimed Home - Second Floor
 			DEATH: x2_o2_dead
 		Candelabra
 			USED: nw_02_onoff
+
 Kalaram - Reclaimed Home - Sewing Room
 	Doors:
 		mau_sewing_to_safeh
@@ -4710,6 +5010,7 @@ Kalaram - Reclaimed Home - Sewing Room
 			DEATH: x2_o2_dead
 		Chair
 			USED: zep_use_chair
+
 Kalaram Sewer
 	Doors:
 		RustedDoor
@@ -4732,6 +5033,7 @@ Kalaram Sewer
 	Placeables:
 		ZOMBIESPAWNER3
 			HEARTBEAT: zombiecreator3
+
 Kalaram Vault
 	Doors:
 		VaultDoor3
@@ -4764,10 +5066,18 @@ Kalaram Vault
 		ZEP_OFIREBOWL001
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Kalaram: Abandoned Home
 	Placeables:
 		ZEP_CHAIRS007
 			USED: zep_use_chair
+	Triggers:
+		kalaram12231
+			ENTER: popuptext40053
+
 Kalaram: Abandoned Home Hallways
 	Doors:
 		Old_Home2
@@ -4779,6 +5089,7 @@ Kalaram: Abandoned Home Hallways
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Kalaram: Academy
 	Doors:
 		CorridorExit
@@ -4820,6 +5131,10 @@ Kalaram: Academy
 			USED: zep_onoff
 		ZEP_BUCKET001
 			USED: zep_onoff
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Kalaram: Back Alley
 	Doors:
 		LockedVariousDoorLudor
@@ -4835,6 +5150,7 @@ Kalaram: Back Alley
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Kalaram: Barn
 	Doors:
 		Barn2Door
@@ -4849,10 +5165,18 @@ Kalaram: Barn
 			DEATH: x2_door_death
 		KBARN2
 			DEATH: x2_door_death
+	Triggers:
+		Crafting
+			ENTER: givecraft
+			EXIT: takecraft
+		GenericTrigger
+			ENTER: takecraft
+
 Kalaram: Bridge
 	Doors:
 		BridgeDoor
 			DEATH: x2_door_death
+
 Kalaram: Dark Alleyway
 	Placeables:
 		ZEP_DOORS011
@@ -4862,6 +5186,16 @@ Kalaram: Dark Alleyway
 		ZEP_CE_BDR_008
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+	Triggers:
+		KDA1
+			ENTER: popuptext2
+		KDA2
+			ENTER: popuptext3
+		KDA3
+			ENTER: popuptext4
+		startpewpewpew
+			ENTER: abrahgalghg
+
 Kalaram: Dark Alleyway
 	Placeables:
 		ZEP_DOORS011
@@ -4871,6 +5205,16 @@ Kalaram: Dark Alleyway
 		ZEP_CE_BDR_008
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+	Triggers:
+		KDA1
+			ENTER: popuptext2
+		KDA2
+			ENTER: popuptext3
+		KDA3
+			ENTER: popuptext4
+		startpewpewpew
+			ENTER: abrahgalghg
+
 Kalaram: Dark Alleyway
 	Placeables:
 		ZEP_DOORS011
@@ -4880,10 +5224,21 @@ Kalaram: Dark Alleyway
 		ZEP_CE_BDR_008
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+	Triggers:
+		KDA1
+			ENTER: popuptext2
+		KDA2
+			ENTER: popuptext3
+		KDA3
+			ENTER: popuptext4
+		startpewpewpew
+			ENTER: abrahgalghg
+
 Kalaram: Destroyed House
 	Doors:
 		KBreachHome2
 			DEATH: x2_door_death
+
 Kalaram: Destroyed Lab
 	Doors:
 		kala_destroyedlabexit
@@ -4892,6 +5247,17 @@ Kalaram: Destroyed Lab
 		ZEP_OFIREBOWL001
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		AcidFog
+			ENTER: dmx_acidfogent
+			EXIT: dmx_acidfogext
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Docks
 	Doors:
 		Ship1Door
@@ -4950,10 +5316,16 @@ Kalaram: Docks
 			USED: zep_use_chair
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Graveyard
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Kalaram: Guard Tower - First Floor
 	Doors:
 		GuardTowerToKalaram
@@ -4976,6 +5348,7 @@ Kalaram: Guard Tower - First Floor
 		X2_PLC_CHAIRMIND
 			USED: x2_plc_used_sit
 			DEATH: x2_o2_dead
+
 Kalaram: Interiors
 	Doors:
 		upcellar
@@ -5130,6 +5503,26 @@ Kalaram: Interiors
 			USED: talktopc
 		SJUNK
 			HEARTBEAT: junk_modifier
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Interiors
 	Doors:
 		letsdothis3
@@ -5159,6 +5552,18 @@ Kalaram: Interiors
 		x2_easy_Barrel
 			DEATH: x2_02_low
 			OPEN: x2_02_low
+	Triggers:
+		K13
+			ENTER: popuptext578
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Market District
 	Doors:
 		KalaramToBoardedHome1
@@ -5270,6 +5675,38 @@ Kalaram: Market District
 			HEARTBEAT: zombiecreator7
 		x0_woodgrate
 			USED: dh_ladderdown
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		AWARD
+			ENTER: awardkalaram
+		KM1
+			ENTER: popuptext5
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Morbid Pass
 	Doors:
 		RuralExit
@@ -5290,6 +5727,7 @@ Kalaram: Morbid Pass
 			HEARTBEAT: zep_torchspawn
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Kalaram: Old Hideout
 	Doors:
 		FancyDoor
@@ -5304,6 +5742,7 @@ Kalaram: Old Hideout
 			DEATH: x2_o2_dead
 		NW_PL_HIDDENDR01
 			USED: nw_o2_trapdoor
+
 Kalaram: Old Home
 	Doors:
 		WeakDoor
@@ -5390,6 +5829,7 @@ Kalaram: Old Home
 			CLICK: oldhomeclicktrap
 		ZEP_OCANDLE099
 			USED: nw_02_onoff
+
 Kalaram: Old Home - Basement
 	Doors:
 		OldHome_Downstairs
@@ -5418,6 +5858,7 @@ Kalaram: Old Home - Basement
 		ZEP_CE_BDR_001
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+
 Kalaram: Old Home - Second Floor
 	Doors:
 		OldHome_Second1
@@ -5434,6 +5875,7 @@ Kalaram: Old Home - Second Floor
 		ZEP_CE_BDR_001
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+
 Kalaram: Outskirts
 	Doors:
 		KBARNOUT2
@@ -5495,6 +5937,19 @@ Kalaram: Outskirts
 		ZEP_CE_BDR_001
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+	Triggers:
+		HellYee
+			ENTER: highfivewonders
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+
 Kalaram: Plaza
 	Doors:
 		LUCKYCOIN
@@ -5507,6 +5962,17 @@ Kalaram: Plaza
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator6
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Prison
 	Doors:
 		Breach
@@ -5517,6 +5983,7 @@ Kalaram: Prison
 		goreddoor
 			DEATH: x2_door_death
 			FAIL_TO_OPEN: faction_gorehome
+
 Kalaram: Seven Oaks Asylum
 	Doors:
 		Barn1Door
@@ -5653,6 +6120,19 @@ Kalaram: Seven Oaks Asylum
 			DEATH: x2_o2_dead
 		X2_PLC_BCRATE2
 			DEATH: x2_o2_dead
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Kalaram: Slums
 	Doors:
 		EnterSlumsTemple
@@ -5717,6 +6197,28 @@ Kalaram: Slums
 			USED: zep_torch
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		dmxfarmabilitytrig
+			ENTER: dmx_farmskillent
+			EXIT: dmx_farmskillext
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Kalaram: Slums - Interiors
 	Doors:
 		KSlum_D1_exit
@@ -6305,6 +6807,42 @@ Kalaram: Slums - Interiors
 			OPEN: nw_o2_generallow
 		ZOMBIESPAWNER2
 			HEARTBEAT: zombiecreator2
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		BadgeTrigger
+			ENTER: badge_onenter
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		BadgeTrigger
+			ENTER: badge_onenter
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Small Den
 	Doors:
 		outskirtden
@@ -6315,6 +6853,12 @@ Kalaram: Small Den
 		NW_PL_HIDDENDR03
 			USED: trapdoorboxused
 			CLICK: trapdoorbox
+	Triggers:
+		GenericTrigger
+			ENTER: secrettrapdoor1
+		GenericTrigger
+			ENTER: secrettrapdoor2
+
 Kalaram: Small Shed
 	Doors:
 		KStoragedown
@@ -6323,6 +6867,10 @@ Kalaram: Small Shed
 			DEATH: x2_door_death
 		Kstorage2
 			DEATH: x2_door_death
+	Triggers:
+		GenericTrigger
+			ENTER: kalaramshed2
+
 Kalaram: Soup Kitchen
 	Doors:
 		FancyDoor
@@ -6348,6 +6896,10 @@ Kalaram: Soup Kitchen
 		ZEP_SCONCE002
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Kalaram: The Death Pit
 	Doors:
 		EvilStoneDoor
@@ -6369,6 +6921,13 @@ Kalaram: The Death Pit
 	Placeables:
 		x0_librarydesk
 			USED: talktopc
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Kalaram: Viper's Hideout
 	Doors:
 		GuildDoor
@@ -6446,6 +7005,10 @@ Kalaram: Viper's Hideout
 			USED: zep_use_chair
 		ZEP_CHAIR017
 			USED: zep_use_chair
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Kalaram: Waterfront
 	Doors:
 		x3_door_wood002
@@ -6463,6 +7026,20 @@ Kalaram: Waterfront
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+	Triggers:
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Labyrinth
 	Doors:
 		LABYENTERLEFT
@@ -6474,24 +7051,11 @@ Labyrinth
 			CLICK: labyrinth_enterc
 		ZEP_CHAIR017
 			USED: labyrinthenterq
+
 Labyrinth
+
 Labyrinth
-Labyrinth
-	Doors:
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-Labyrinth
-Labyrinth
+
 Labyrinth
 	Doors:
 		EvilStoneDoor
@@ -6506,10 +7070,11 @@ Labyrinth
 			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
+
 Labyrinth
+
 Labyrinth
-Labyrinth
-Labyrinth
+
 Labyrinth
 	Doors:
 		EvilStoneDoor
@@ -6524,28 +7089,15 @@ Labyrinth
 			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
+
 Labyrinth
+
 Labyrinth
+
 Labyrinth
+
 Labyrinth
+
 Labyrinth
 	Doors:
 		EvilStoneDoor
@@ -6578,12 +7130,54 @@ Labyrinth
 			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
+
+Labyrinth
+
+Labyrinth
+
+Labyrinth
+
+Labyrinth
+
+Labyrinth
+	Doors:
 		EvilStoneDoor
 			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+
 Labyrinth
 	Doors:
 		LabyrinthDoor
@@ -6716,11 +7310,14 @@ Labyrinth
 		X0_TRES_ANYUNIQ
 			DEATH: x0_o2_anyuniq
 			OPEN: x0_o2_anyuniq
+
 Labyrinth
 	Placeables:
 		nw_plc_portal2
 			USED: labyrinthportal
+
 Lost Souls Room
+
 Ludor
 	Doors:
 		ELudorLibrary
@@ -6750,6 +7347,10 @@ Ludor
 		ZEP_STNLNTRN005
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Ludor Library
 	Doors:
 		XLibrary
@@ -6820,6 +7421,10 @@ Ludor Library
 			HEARTBEAT: junk_modifier
 		SJUNK
 			HEARTBEAT: junk_modifier
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Ludor Shop
 	Doors:
 		LShopToLudor
@@ -6833,6 +7438,7 @@ Ludor Shop
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Ludor Shop (Adventure Necessities)
 	Doors:
 		Door
@@ -6849,6 +7455,7 @@ Ludor Shop (Adventure Necessities)
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Mine Entrance
 	Doors:
 		MineEToEled
@@ -6858,6 +7465,7 @@ Mine Entrance
 	Placeables:
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+
 Morbid Grotto (Bandit Camp)
 	Doors:
 		MineExit
@@ -6888,6 +7496,7 @@ Morbid Grotto (Bandit Camp)
 			OPEN: nw_o2_generallow
 		PullRopeChain
 			USED: servicechain
+
 Mount Faeloth
 	Doors:
 		FaelothToVillage
@@ -6903,17 +7512,28 @@ Mount Faeloth
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Mount Faeloth (Forests)
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
+
 Mount Faeloth (Ice Pass)
+
 Mount Faeloth (Stonepeaks)
+
 Mount Faeloth (Summit)
 	Doors:
 		TILARMOUT
 			DEATH: x2_door_death
+
 Mount Faeloth (Tundra)
+	Triggers:
+		GenericTrigger
+			ENTER: slow_tundra
+		GenericTrigger
+			ENTER: slow_tundra
+
 Mountain Tunnels
 	Doors:
 		Tunnels2ToFaeloth
@@ -6937,12 +7557,14 @@ Mountain Tunnels
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Old Cavern
 	Doors:
 		OldCavernToRWE
 			DEATH: x2_door_death
 		OldCavernToFountain
 			OPEN: dooropen
+
 Old Mines
 	Doors:
 		MININGWELL2
@@ -6955,6 +7577,10 @@ Old Mines
 			DEATH: x2_door_death
 		MINEMEETING
 			DEATH: x2_door_death
+	Triggers:
+		GenericTrigger
+			ENTER: secrettrapdoor3
+
 Passageways
 	Placeables:
 		X2_PLC_STUBE
@@ -6968,6 +7594,10 @@ Passageways
 			USED: sei_sit
 		ZEP_THRONE002
 			USED: zep_use_chair
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Passageways
 	Doors:
 		TINN
@@ -7023,6 +7653,7 @@ Passageways
 			USED: nw_02_onoff
 		FreestandingTorchBracket
 			USED: nw_02_onoff
+
 Passageways (East)
 	Doors:
 		StoneDoor
@@ -7035,6 +7666,7 @@ Passageways (East)
 		StoneDoor
 			DEATH: x2_door_death
 			OPEN: shutlock
+
 Ranger's Lodge (Basement)
 	Placeables:
 		Brazier
@@ -7045,6 +7677,7 @@ Ranger's Lodge (Basement)
 			HEARTBEAT: junksearch002
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Realm of Corruption
 	Doors:
 		SpireofSorrow
@@ -7058,6 +7691,7 @@ Realm of Corruption
 			USED: zep_torch
 		ZEP_IRONMAID001
 			USED: zep_openclose
+
 Realm of Corruption
 	Doors:
 		Mirror
@@ -7079,6 +7713,7 @@ Realm of Corruption
 			DEATH: x2_o2_dead
 		ZEP_MIRROR
 			USED: mirrorofvor3
+
 Rebuilt Church
 	Doors:
 		RebuiltChurchSW1
@@ -7094,16 +7729,19 @@ Rebuilt Church
 	Placeables:
 		AltarShrineNeutral
 			USED: steamport1
+
 Red Tower (Interior 2)
 	Doors:
 		red2out
 			DEATH: x2_door_death
 		red2in
 			DEATH: x2_door_death
+
 Red Tower (Interior 3)
 	Doors:
 		red3in
 			DEATH: x2_door_death
+
 Sand's End Cliffside
 	Doors:
 		ToBadlandsfromCliffside
@@ -7117,6 +7755,7 @@ Sand's End Cliffside
 			HEARTBEAT: nw_o2_skeleton
 		NW_PL_SKELETON
 			HEARTBEAT: nw_o2_skeleton
+
 Sazzan Plains
 	Placeables:
 		X2_PLC_STATUE_LA
@@ -7125,6 +7764,12 @@ Sazzan Plains
 			DEATH: x2_o2_dead
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		Sazzanmessage
+			ENTER: popuptext
+
 Sazzan Plains: East
 	Doors:
 		tehforsakein
@@ -7134,6 +7779,7 @@ Sazzan Plains: East
 			USED: zep_use_chair
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Sazzan Plains: South
 	Placeables:
 		ZEP_GNTCROSSBOW
@@ -7144,10 +7790,20 @@ Sazzan Plains: South
 			USED: zep_onoff
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		Annedhel1
+			ENTER: popuptext272
+
 Sazzan Plains: West
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		Annedhel1234
+			ENTER: popuptext280
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Sewer Entrance
 	Doors:
 		SewerEToKSewer
@@ -7158,6 +7814,7 @@ Sewer Entrance
 	Placeables:
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+
 Shed
 	Doors:
 		ShedToBar
@@ -7167,6 +7824,7 @@ Shed
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Silo
 	Doors:
 		SiloToAnn
@@ -7176,6 +7834,7 @@ Silo
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Sinking Peninsula
 	Doors:
 		thereisnotagonthisobjectfool
@@ -7184,12 +7843,14 @@ Sinking Peninsula
 			DEATH: x2_door_death
 		SinkingPeninsula1
 			DEATH: x2_door_death
+
 Sinking Peninsula (Cave)
 	Doors:
 		MineExit
 			DEATH: x2_door_death
 		desert_underwater2
 			DEATH: x2_door_death
+
 Sinking Peninsula (Cottage)
 	Doors:
 		SinkingPeninsulaInside2
@@ -7249,6 +7910,7 @@ Sinking Peninsula (Cottage)
 			DEATH: x2_o2_dead
 		ZEP_HOURGLASS001
 			USED: zep_onoff
+
 Sinking Peninsula (Sunken Ship Lower)
 	Doors:
 		Sinkingshipdoorwest2
@@ -7257,6 +7919,7 @@ Sinking Peninsula (Sunken Ship Lower)
 			DEATH: x2_door_death
 		WeakDoor
 			DEATH: x2_door_death
+
 Sinking Peninsula (Sunken Ship)
 	Doors:
 		ShiptoSmithy
@@ -7280,10 +7943,12 @@ Sinking Peninsula (Sunken Ship)
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator8
+
 Sinking Pensinsula (Underwater Passages)
 	Doors:
 		desert_underwater1
 			DEATH: x2_door_death
+
 Sispara: Town Center
 	Doors:
 		Wall2Gate
@@ -7341,6 +8006,7 @@ Sispara: Town Center
 			OPEN: nw_o2_generallow
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 Sispara: Vault
 	Doors:
 		JeweledDoor
@@ -7375,10 +8041,18 @@ Sispara: Vault
 			DEATH: x2_o2_dead
 		EscapePortal2
 			USED: islayvaultpaderp
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+		ScavengerTrigger
+			ENTER: dh_scavonenter
+			EXIT: dh_scavonexit
+
 Small Cave
 	Doors:
 		MineExit
 			DEATH: x2_door_death
+
 Southern Badlands
 	Doors:
 		WallDoor
@@ -7400,12 +8074,14 @@ Southern Badlands
 			DEATH: x2_o2_dead
 		X2_PLC_BUNKBED
 			DEATH: x2_o2_dead
+
 Spire of Sorrow
 	Placeables:
 		ZEP_CRYSTAL001
 			USED: zep_onoff
 		ZEP_CRYSTAL001
 			USED: zep_onoff
+
 Stormglass Coastline (North)
 	Doors:
 		RuralExit
@@ -7420,6 +8096,7 @@ Stormglass Coastline (North)
 		X2_PLC_CRYSTAL
 			USED: x2_plc_used_act
 			DEATH: x2_o2_dead
+
 Stormglass Coastline (South)
 	Placeables:
 		X2_PLC_STATUE_LA
@@ -7465,7 +8142,15 @@ Stormglass Coastline (South)
 			HEARTBEAT: zombiecreator7
 		SJUNK
 			HEARTBEAT: junk_modifier
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Tel'Kara Swamp
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Tel'kara Swamp
 	Placeables:
 		X2_PLC_MUSHRM_B
@@ -7481,6 +8166,10 @@ Tel'kara Swamp
 			OPEN: nw_o2_generalhig
 		X2_PLC_MFDCONT1
 			USED: x2_plc_used_act
+	Triggers:
+		Telkara
+			ENTER: telkarapopup
+
 Tel'kara Swamp
 	Doors:
 		gogogogoogo
@@ -7528,16 +8217,22 @@ Tel'kara Swamp
 		TreasureSmall
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+
 Tel'kara Swamp
 	Placeables:
 		ZEP_Lizardfolk_Door_1
 			USED: lollizrds
 		ZOMBIESPAWNERLIZARDS
 			HEARTBEAT: zombiecreatorliz
+
 Tel'kara Swamp: Unknown Ruins
 	Doors:
 		Epicman
 			DEATH: x2_door_death
+	Triggers:
+		BlackDepths6
+			ENTER: gorondepthshoho3
+
 The Black Depths Lower
 	Doors:
 		blackdepthsupwego
@@ -7546,10 +8241,19 @@ The Black Depths Lower
 		saddlebag
 			CLOSE: sfps_on_close
 			OPEN: sfps_on_open
+	Triggers:
+		BlackDepths2
+			ENTER: blackdepthsawe2
+		BlackDepths33
+			ENTER: blackdepthsawe23
+		BadgeTrigger
+			ENTER: badge_onenter
+
 The Black Depths Upper
 	Doors:
 		niggagoesdownwards
 			DEATH: x2_door_death
+
 The Black Depths: Elevator
 	Doors:
 		RockinItHoh
@@ -7560,6 +8264,12 @@ The Black Depths: Elevator
 		X2_PLC_MINEWELLB
 			USED: x2_plc_used_opn
 			DEATH: x2_o2_dead
+	Triggers:
+		BlackDepths4
+			ENTER: blackdepthsawe24
+		BlackDepths5
+			ENTER: gorondepthshoho2
+
 The Darkglade Forest
 	Doors:
 		NormalDoor
@@ -7571,6 +8281,7 @@ The Darkglade Forest
 			HEARTBEAT: junk_modifier
 		ExtraFrenzy
 			HEARTBEAT: extrafrenzy
+
 The Darkglade Forest
 	Doors:
 		RWEToOldCavern
@@ -7584,6 +8295,10 @@ The Darkglade Forest
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		GenericTrigger
+			ENTER: forestenter
+
 The Darkglade Forest
 	Doors:
 		Lodge1ToLodge2
@@ -7595,6 +8310,7 @@ The Darkglade Forest
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 The Darkglade Forest
 	Doors:
 		RWNToCabin
@@ -7606,10 +8322,12 @@ The Darkglade Forest
 			HEARTBEAT: zombiecreator7
 		X2_PLC_MUSHRM_B
 			DEATH: x2_o2_dead
+
 The Darkglade Forest
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 The Darkglade Forest
 	Placeables:
 		ZOMBIESPAWNER
@@ -7624,20 +8342,27 @@ The Darkglade Forest
 		ZEP_CE_BDR_011
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+
 The Darkglade Forest
 	Placeables:
 		SJUNK
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 The Darkglade Forest
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 The Darkglade Forest
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 The Darkglade Forest
 	Doors:
 		RWWToTower1
@@ -7645,6 +8370,10 @@ The Darkglade Forest
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 The Darkglade Forest
 	Doors:
 		ForestExit
@@ -7656,11 +8385,13 @@ The Darkglade Forest
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zomb_extremehunt
+
 The Darkglade Forest
 	Placeables:
 		X2_PLC_CRYSTAL
 			USED: x2_plc_used_act
 			DEATH: x2_o2_dead
+
 The Darkglade Forest
 	Placeables:
 		ZEP_CI_CHR_001
@@ -7671,6 +8402,10 @@ The Darkglade Forest
 			USED: zep_use_chair
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+	Triggers:
+		DarkgladeMessage
+			ENTER: darkglademessage
+
 The Darkglade Forest 
 	Doors:
 		ForestExit
@@ -7678,6 +8413,7 @@ The Darkglade Forest
 		RangersLodgeEntrance
 			CLOSE: shutlock
 			DEATH: x2_door_death
+
 The Darkglade Forest (Cliff Cave)
 	Doors:
 		MineExit
@@ -7688,6 +8424,7 @@ The Darkglade Forest (Cliff Cave)
 			CLOSE: shutlock
 			DEATH: x2_door_death
 			OPEN: shutlock
+
 The Darkglade Forest (Darkglade Cabin)
 	Doors:
 		CabinToRWN
@@ -7704,6 +8441,12 @@ The Darkglade Forest (Darkglade Cabin)
 		X2_PLC_CRYSTAL
 			USED: x2_plc_used_act
 			DEATH: x2_o2_dead
+	Triggers:
+		GenericTrigger
+			ENTER: cabin
+		BadgeTrigger
+			ENTER: badge_onenter
+
 The Darkglade Forest: Druid's Retreat
 	Placeables:
 		ZEP_CI_CHR_002
@@ -7723,6 +8466,7 @@ The Darkglade Forest: Druid's Retreat
 			DEATH: x2_o2_dead
 		ZEP_CHKING_003
 			USED: zep_use_chair
+
 The Holy City of Siranda: Docks
 	Doors:
 		DockDoor
@@ -7791,6 +8535,7 @@ The Holy City of Siranda: Docks
 			DEATH: x2_o2_dead
 		X2_PLC_STATUE_LA
 			DEATH: x2_o2_dead
+
 The Holy City of Siranda: Docks - Interior
 	Doors:
 		hcs_lighthouseexit
@@ -7866,6 +8611,7 @@ The Holy City of Siranda: Docks - Interior
 			DEATH: x2_o2_dead
 		X2_PLC_STATUE_LA
 			DEATH: x2_o2_dead
+
 The Holy City of Siranda: Grand Temple
 	Doors:
 		gogogogogoloool
@@ -7921,6 +8667,10 @@ The Holy City of Siranda: Grand Temple
 		ZEP_OFIREBOWL001
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		HCW4
+			ENTER: popuptext27
+
 The Holy City of Siranda: Lathander's Throne
 	Doors:
 		WallDoor
@@ -7986,6 +8736,10 @@ The Holy City of Siranda: Lathander's Throne
 			DEATH: x2_o2_dead
 		X2_PLC_STATUE_LA
 			DEATH: x2_o2_dead
+	Triggers:
+		HCW3
+			ENTER: popuptext23
+
 The Holy City of Siranda: Market District
 	Doors:
 		ZCSlums4
@@ -8041,6 +8795,7 @@ The Holy City of Siranda: Market District
 			DEATH: x2_o2_dead
 		X2_PLC_STATUE_LA
 			DEATH: x2_o2_dead
+
 The Holy City of Siranda: Market Interiors
 	Doors:
 		ZCSlumsInterior1
@@ -8142,14 +8897,22 @@ The Holy City of Siranda: Market Interiors
 			OPEN: nw_o2_generallow
 		SJUNK
 			HEARTBEAT: junk_modifier
+
 The Holy City of Siranda: Sewers
 	Placeables:
 		ZEP_LOGSIT001
 			USED: zep_use_chair
+	Triggers:
+		HCW1
+			ENTER: popuptext21
+		HCW2
+			ENTER: popuptext22
+
 The Holy City of Siranda: Southern Outskirts
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 The Holy City of Siranda: The Owl's Perch
 	Doors:
 		leaveowlsperch
@@ -8170,6 +8933,7 @@ The Holy City of Siranda: The Owl's Perch
 		ZEP_CE_BDR_005
 			DEATH: nw_o2_generallow
 			OPEN: nw_o2_generallow
+
 The Holy City of Siranda: Trade Guild's Headquarters
 	Doors:
 		EHouseSiranda
@@ -8180,12 +8944,14 @@ The Holy City of Siranda: Trade Guild's Headquarters
 			DEATH: x2_door_death
 		XHouseSiranda
 			DEATH: x2_door_death
+
 The Holy City of Siranda: Under the City
 	Doors:
 		ExitUndercity
 			DEATH: x2_door_death
 		XUndercity
 			DEATH: x2_door_death
+
 The Holy City of Siranda: West
 	Doors:
 		LockedVariousDoor
@@ -8386,6 +9152,10 @@ The Holy City of Siranda: West
 		ZEP_OSTNLNTRN005
 			USED: zep_torch
 			HEARTBEAT: zep_torchspawn
+	Triggers:
+		HC1
+			ENTER: holycity1
+
 The Holy City of Siranda: Western Outskirts
 	Doors:
 		LockedVariousDoor
@@ -8444,6 +9214,7 @@ The Holy City of Siranda: Western Outskirts
 			OPEN: nw_o2_generallow
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
+
 The Inn
 	Doors:
 		RustyTankard
@@ -8484,6 +9255,10 @@ The Inn
 			DEATH: x2_door_death
 		WeakDoor
 			DEATH: x2_door_death
+	Triggers:
+		GenericTrigger
+			ENTER: _scarepcinn
+
 The Inn (Basement)
 	Doors:
 		Innc
@@ -8500,6 +9275,7 @@ The Inn (Basement)
 			DEATH: x2_door_death
 		Subcellar
 			DEATH: x2_door_death
+
 The Inn (Foundation)
 	Doors:
 		Catacombdoor
@@ -8545,6 +9321,10 @@ The Inn (Foundation)
 		Corpse - 4
 			DEATH: nw_o2_generalhig
 			OPEN: nw_o2_generalhig
+	Triggers:
+		GenericTrigger
+			ENTER: curse
+
 The Inn (Second Floor)
 	Doors:
 		RoomDoor
@@ -8586,29 +9366,60 @@ The Inn (Second Floor)
 	Placeables:
 		FloorLever1
 			USED: openspecial
+	Triggers:
+		GenericTrigger
+			ENTER: noticesouthwall
+
 The Lowerdark
 	Placeables:
 		x3_plc_brazier
 			USED: nw_02_onoff
 		x3_plc_brazier
 			USED: nw_02_onoff
+	Triggers:
+		BlackDepths1
+			ENTER: blackdepthsawe1
+		BadgeTrigger
+			ENTER: badge_onenter
+
 The Red Tower (Interior 1)
 	Doors:
 		redt1in
 			DEATH: x2_door_death
 		red1out
 			DEATH: x2_door_death
+
 The Red Tower (Outside)
+
 The Room
 	Placeables:
 		ZEP_MANCHAINS
 			USED: zep_stocksuse
+
 The Searing Sands
 	Doors:
 		crumintd1
 			DEATH: x2_door_death
 		TTFD1
 			DEATH: x2_door_death
+	Triggers:
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+		Searing_Spawn
+			ENTER: searingspawn
+
 The Spire -- Outside
 	Doors:
 		SpireOutToSpire1
@@ -8616,12 +9427,14 @@ The Spire -- Outside
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 The Tar Marsh
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
 		RuralExit
 			DEATH: x2_door_death
+
 The Underdark
 	Doors:
 		ExitUnderdark
@@ -8630,6 +9443,16 @@ The Underdark
 			DEATH: x2_door_death
 		RWNEToImrithil1
 			DEATH: x2_door_death
+	Triggers:
+		underdarkmessage3
+			ENTER: floatingtextscr3
+		underdarkmessage4
+			ENTER: floatingtextscr4
+		BadgeTrigger
+			ENTER: badge_onenter
+		BadgeTrigger
+			ENTER: badge_onenter
+
 The Upperdark
 	Doors:
 		Exittheunderdark
@@ -8640,10 +9463,18 @@ The Upperdark
 			DEATH: x2_door_death
 		ExitUpperdark2
 			DEATH: x2_door_death
+	Triggers:
+		underdarkmessage2
+			ENTER: floatingtextscr2
+
 The Upperdark
 	Doors:
 		EnterUnderdark
 			DEATH: x2_door_death
+	Triggers:
+		underdarkmessage
+			ENTER: floatingtextscri
+
 The Wayward Inn
 	Doors:
 		WaywardInnUP
@@ -8658,6 +9489,7 @@ The Wayward Inn
 			DEATH: x2_door_death
 		StrongDoor
 			DEATH: x2_door_death
+
 Tower -- Floor 1
 	Doors:
 		Tower1ToRWW
@@ -8667,6 +9499,7 @@ Tower -- Floor 1
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+
 Tower -- Floor 2
 	Doors:
 		Tower2ToTower1
@@ -8676,6 +9509,10 @@ Tower -- Floor 2
 			HEARTBEAT: junk_modifier
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator
+	Triggers:
+		BadgeTrigger
+			ENTER: badge_onenter
+
 Unknown
 	Doors:
 		Chaos1
@@ -8685,6 +9522,7 @@ Unknown
 			HEARTBEAT: sourceofevil
 		ZEP_MIRROR
 			USED: mirrorofvor
+
 Vesteel - General Store
 	Doors:
 		CorridorExit
@@ -8785,6 +9623,7 @@ Vesteel - General Store
 			OPEN: nw_o2_generallow
 		ZEP_BUCKET001
 			USED: zep_onoff
+
 Vesteel - Royal Archives
 	Doors:
 		CastleExit
@@ -8818,17 +9657,21 @@ Vesteel - Royal Archives
 			USED: zep_use_chair
 		ZEP_CUSHION001
 			USED: zep_use_chair
+
 West Anneh Desert
 	Doors:
 		DoubleDoors
 			DEATH: x2_door_death
+
 Western Badlands
+
 eled_mmaindist
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
 		RuralExit
 			DEATH: x2_door_death
+
 lud_generalstore
 	Doors:
 		CorridorExit
@@ -8929,3 +9772,4 @@ lud_generalstore
 			OPEN: nw_o2_generallow
 		ZEP_BUCKET001
 			USED: zep_onoff
+
