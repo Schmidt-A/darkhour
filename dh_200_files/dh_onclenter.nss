@@ -3,6 +3,7 @@
 // onEnterModule if you wish to automatically give the scavenger object to
 // each player as they enter the module.
 //
+#include "_incl_location"
 #include "disease_inc"
 #include "x3_inc_horse"
 
@@ -133,55 +134,14 @@ void main()
         oCheckDisease = GetNextItemInInventory(oPC);
     }
     if (nDisease >= 10)
+        DelayCommand(0.5, PortToWaypoint(oPC, "lostsoularrive"));
+
+    // TODO: Get rid of needing both.
+    if (GetItemPossessedBy(oPC, "DeathToken") != OBJECT_INVALID ||
+    	GetItemPossessedBy(oPC, "ReaperToken") != OBJECT_INVALID)
     {
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(GetLocation(GetWaypointByTag("lostsoularrive")))));
+    	DelayCommand(0.5, PortToWaypoint(oPC, "GoToFugue"));
     }
-
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken"))
-    {
-//      effect eDeath = EffectDeath();
-//      ApplyEffectToObject(DURATION_TYPE_INSTANT,eDeath,oPC);
-
-        int nAlign = GetAlignmentGoodEvil(oPC);
-        location lLoc;
-        if (nAlign == ALIGNMENT_EVIL)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else if (nAlign == ALIGNMENT_GOOD)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
-    }
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
-    {
-//      effect eDeath = EffectDeath();
-//      ApplyEffectToObject(DURATION_TYPE_INSTANT,eDeath,oPC);
-
-        int nAlign = GetAlignmentGoodEvil(oPC);
-        location lLoc;
-        if (nAlign == ALIGNMENT_EVIL)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else if (nAlign == ALIGNMENT_GOOD)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
-    }
-
-
-
 
     // If the entering object happens to be a DM and they don't have a PC list item,
     // give one to them.
