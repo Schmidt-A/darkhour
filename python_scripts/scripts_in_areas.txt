@@ -1,4 +1,6 @@
 -- <cÿøÜ>Hall Of Fame</c> --
+	Area Scripts:
+		ENTER: areaenter
 	Doors:
 		CryptExit
 			DEATH: x2_door_death
@@ -51,6 +53,9 @@
 			USED: zep_use_chair
 
 -- <cÿøÜ>New Player Start</c> --
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		TrashBarrel
 			DISTURBED: trash
@@ -70,6 +75,8 @@
 			USED: customizeport2
 
 -- <cÿøÜ>Player Lounge</c> --
+	Area Scripts:
+		ENTER: loungeenter
 	Placeables:
 		ZEP_CI_CHR_001
 			USED: zep_use_chair
@@ -124,6 +131,9 @@
 			DEATH: x2_door_death
 
 -- <cÿøÜ>Welcome to Dark Hour: Epilogue</c> --
+	Area Scripts:
+		ENTER: enteroocarea
+		HEARTBEAT: clearfood
 	Doors:
 		StartingDoor
 			DEATH: x2_door_death
@@ -177,6 +187,8 @@
 			ENTER: dhnewplayerport
 
 <c þ >The Fugue Plane</c>
+	Area Scripts:
+		ENTER: fugueenter
 
 <c-)¤>Zombie Spawner 101 (TEST)
 	Doors:
@@ -184,6 +196,8 @@
 			DEATH: x2_door_death
 
 <cþÙP>---Character Editor---</c>
+	Area Scripts:
+		ENTER: creatureequip
 
 <cþÙP>Annedhel: State Building (Secureable)</c>
 	Doors:
@@ -221,6 +235,9 @@
 			HEARTBEAT: zombiecreator2
 
 <cþÙP>Baraban Farmhouse (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Farmhouse1ToBar
 			OPEN: dooropen
@@ -261,6 +278,9 @@
 			ENTER: badge_onenter
 
 <cþÙP>Eledhreth Barracks (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		NormalDoor
 			OPEN: dooropen
@@ -283,6 +303,9 @@
 			ENTER: badge_onenter
 
 <cþÙP>Faeloth Inn (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		x3_door_wood001
 			DEATH: x2_door_death
@@ -481,6 +504,9 @@
 			HEARTBEAT: zombiecreator2
 
 <cþÙP>Imithril Temple (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ImtempToImrithil
 			DEATH: x2_door_death
@@ -502,6 +528,9 @@
 			HEARTBEAT: zombiecreator2
 
 <cþÙP>Kalaram (Boarded Home)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		BoardedHome2ToKalaram
 			OPEN: dooropen
@@ -604,6 +633,9 @@
 			USED: zep_use_chair
 
 <cþÙP>Kalaram (Guard Tower - Second Floor)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		x3_door_met003
 			DEATH: x2_door_death
@@ -662,6 +694,9 @@
 			DISTURBED: trash
 
 <cþÙP>Kalaram (Guard Tower - Third Floor)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		OhGodWhy
 			DEATH: x2_door_death
@@ -709,6 +744,8 @@
 			HEARTBEAT: zep_torchspawn
 
 <cþÙP>Kalaram (Seven Oaks -  Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
 	Placeables:
 		ZEP_OCHNDLER001
 			USED: zep_torch
@@ -722,6 +759,8 @@
 			HEARTBEAT: zombiecreator2
 
 <cþÙP>Ludor - State Building (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
 	Doors:
 		x3_door_wood004
 			DEATH: x2_door_death
@@ -1564,6 +1603,10 @@
 			HEARTBEAT: zep_torchspawn
 
 <cþÙP>Sundered Desolation</c>
+	Area Scripts:
+		ENTER: areaenter
+		EXIT: areaexit
+		HEARTBEAT: clearfood
 	Doors:
 		SunDexExit2
 			DEATH: x2_door_death
@@ -1738,6 +1781,9 @@
 			ENTER: badge_onenter
 
 <cþÙP>Tel'kara Temple (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		Stool
 			USED: sei_sit
@@ -1796,6 +1842,9 @@
 			HEARTBEAT: zep_torchspawn
 
 <cþÙP>The Forsaken Inn (Securable)</c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		godoooownnnyo
 			DEATH: x2_door_death
@@ -1885,6 +1934,9 @@
 			ENTER: badge_onenter
 
 <cþÙP>The Rusty Tankard (Securable) </c>
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		FancyDoor
 			DEATH: x2_door_death
@@ -1929,6 +1981,9 @@
 			EXIT: dh_scavonexit
 
 Ancient Crypt (Catacombs Lower)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		StoneDoor
 			DEATH: x2_door_death
@@ -1946,6 +2001,9 @@ Ancient Crypt (Catacombs Lower)
 			DEATH: x2_door_death
 
 Annedhel: Catacomb Passage
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CataEToAnn
 			DEATH: x2_door_death
@@ -1960,6 +2018,9 @@ Annedhel: Catacomb Passage
 			HEARTBEAT: extrafrenzy
 
 Annedhel: Desert Catacombs
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		StoneDoor
 			OPEN: dooropen
@@ -1984,6 +2045,9 @@ Annedhel: Desert Catacombs
 			HEARTBEAT: zombiecreator3
 
 Annedhel: Inner City
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LockedVariousAnnedhel
 			DEATH: x2_door_death
@@ -2254,6 +2318,10 @@ Annedhel: Outskirts
 			ENTER: badge_onenter
 
 Annedhel: Vault
+	Area Scripts:
+		ENTER: buffonenter
+		EXIT: debuffonexit
+		HEARTBEAT: clearfood2
 	Doors:
 		Vault4ToCatabombs
 			OPEN: dooropen
@@ -2285,6 +2353,9 @@ Annedhel: Vault
 			ENTER: badge_onenter
 
 Annedhel: Waterfront
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EnterVaultAnnedhels
 			DEATH: x2_door_death
@@ -2315,6 +2386,9 @@ Annedhel: Waterfront
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		NW_PL_SKELETON
 			HEARTBEAT: nw_o2_skeleton
@@ -2322,6 +2396,9 @@ Annedhellian Desert
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
@@ -2330,21 +2407,33 @@ Annedhellian Desert
 			ENTER: popuptext278
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		X2_PLC_STATUE_H
 			DEATH: x2_o2_dead
@@ -2356,11 +2445,17 @@ Annedhellian Desert
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert: Kallino Alchemy Shop
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MagicToAnn
 			OPEN: dooropen
@@ -2386,6 +2481,9 @@ Annedhellian Desert: Kallino Alchemy Shop
 			DEATH: x2_o2_dead
 
 Annedhellian Desert: Kallino Homes
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		NormalDoor
 			OPEN: dooropen
@@ -2409,6 +2507,9 @@ Annedhellian Desert: Kallino Homes
 			HEARTBEAT: zombiecreator7
 
 Annedhellian Desert: Kallino Housing
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		annedhouseint3up
 			DEATH: x2_door_death
@@ -2538,6 +2639,9 @@ Annedhellian Desert: Kallino Housing
 			HEARTBEAT: zep_torchspawn
 
 Annedhellian Desert: Kallino Militia Building
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		anned_upint
 			DEATH: x2_door_death
@@ -2564,6 +2668,9 @@ Annedhellian Desert: Kallino Militia Building
 			ENTER: badge_onenter
 
 Annedhellian Desert: Kallino Pantry
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CryptExit
 			DEATH: x2_door_death
@@ -2587,6 +2694,9 @@ Annedhellian Desert: Kallino Temple
 			HEARTBEAT: junk_modifier
 
 Annedhellian Desert: Kallino Village
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		AnnToGuardhouse
 			OPEN: dooropen
@@ -2617,11 +2727,17 @@ Annedhellian Desert: Kallino Village
 			EXIT: dh_scavonexit
 
 Annedhellian Desert: Passage
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CaveExit
 			DEATH: x2_door_death
 
 Annedhellian Desert: Taros
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		WallDoor
 			DEATH: x2_door_death
@@ -2690,6 +2806,9 @@ Annedhellian Desert: Taros
 			HEARTBEAT: zep_doorspawn
 
 Annedhellian Desert: Taros Guardhouse
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		GuardhouseToAnn
 			OPEN: dooropen
@@ -2713,15 +2832,27 @@ Annedhellian Desert: Taros Guardhouse
 			ENTER: badge_onenter
 
 Annedhellian Desert: The Scorching Sands
+	Area Scripts:
+		ENTER: areaenter_fire
+		HEARTBEAT: heartbeat_fire
 
 Annedhellian Desert: The Scorching Sands
+	Area Scripts:
+		ENTER: areaenter_fire
+		HEARTBEAT: heartbeat_fire
 
 Annedhellian Desert: The Scorching Sands
+	Area Scripts:
+		ENTER: areaenter_fire
+		HEARTBEAT: heartbeat_fire
 	Doors:
 		DesertExit
 			DEATH: x2_door_death
 
 Ashby Manor
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		FancyDoor
 			DEATH: x2_door_death
@@ -2753,6 +2884,9 @@ Ashby Manor
 			DEATH: x2_o2_dead
 
 Baraban
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		BarToRWN
 			DEATH: x2_door_death
@@ -2810,6 +2944,9 @@ Baraban
 			EXIT: dmx_farmskillext
 
 Baraban Library
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		TempleToBar
 			OPEN: dooropen
@@ -2824,6 +2961,10 @@ Baraban Library
 			HEARTBEAT: junk_modifier
 
 Baraban Vault
+	Area Scripts:
+		ENTER: buffonenter
+		EXIT: debuffonexit
+		HEARTBEAT: clearfood2
 	Doors:
 		VaultDoor2
 			OPEN: dooropen2
@@ -2857,6 +2998,9 @@ Baraban Vault
 			ENTER: badge_onenter
 
 Baraban Village
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		UpInTheHizzay
 			DEATH: x2_door_death
@@ -2988,6 +3132,9 @@ Baraban Village
 			EXIT: dmx_farmskillext
 
 Baraban: Shaded Woods
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
@@ -2996,6 +3143,9 @@ Baraban: Shaded Woods
 			ENTER: falsechurch
 
 Baraban: Shaded Woods
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ShadedToVault2
 			OPEN: dooropen
@@ -3009,6 +3159,9 @@ Baraban: Shaded Woods
 			ENTER: badge_onenter
 
 Baraban: Small Clearing
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Wall1Gate
 			DEATH: x2_door_death
@@ -3017,6 +3170,9 @@ Baraban: Small Clearing
 			HEARTBEAT: extrafrenzy
 
 Baraban: The Sturdy Oxen
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Tavern1ToBar
 			OPEN: dooropen
@@ -3029,6 +3185,9 @@ Baraban: The Sturdy Oxen
 			HEARTBEAT: zombiecreator7
 
 Barbed Clover Inn
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: bh_lockcheck
 	Doors:
 		BH_LD3
 			OPEN: dooropen
@@ -3111,6 +3270,9 @@ Barbed Clover Inn
 			USED: x0_o2_use_tdoor
 
 Blackwood Jungle
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		X2_PLC_MUSHRM_B
 			DEATH: x2_o2_dead
@@ -3120,6 +3282,9 @@ Blackwood Jungle
 			DEATH: x2_o2_dead
 
 Blackwood Jungle
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LABYEXITLEFT
 			DEATH: x2_door_death
@@ -3127,6 +3292,9 @@ Blackwood Jungle
 			DEATH: x2_door_death
 
 Blackwood Jungle: Camp
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ThroneEvil
 			USED: use_chair
@@ -3134,6 +3302,9 @@ Blackwood Jungle: Camp
 			DEATH: x2_o2_dead
 
 Blackwood Jungle: Camp
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ForestExit
 			DEATH: x2_door_death
@@ -3162,6 +3333,9 @@ Blackwood Jungle: Camp
 			USED: use_chair
 
 Blackwood Jungle: Cave
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MineExit
 			DEATH: x2_door_death
@@ -3169,6 +3343,9 @@ Blackwood Jungle: Cave
 			DEATH: x2_door_death
 
 Castle Siranda
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		WallDoor
 			DEATH: x2_door_death
@@ -3206,6 +3383,9 @@ Castle Siranda
 			HEARTBEAT: zombiecreator3
 
 Castle Siranda -- Armory
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RustedDoor
 			OPEN: dooropen
@@ -3220,6 +3400,9 @@ Castle Siranda -- Armory
 			HEARTBEAT: zombiecreator3
 
 Castle Siranda -- Dungeon
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Portcullis
 			DEATH: x2_door_death
@@ -3261,6 +3444,9 @@ Castle Siranda -- Dungeon
 			ENTER: badge_onenter
 
 Castle Siranda: Throne
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RustedDoor
 			OPEN: dooropen
@@ -3300,6 +3486,9 @@ Crumbling Interior
 			HEARTBEAT: zombiecreator6
 
 Cult of Everdark Compound
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		sourcetocultd
 			DEATH: x2_door_death
@@ -3412,6 +3601,9 @@ Cult of Everdark Compound
 			USED: zep_use_chair
 
 Cult of The Everdark
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		DoubleDoors
 			DEATH: x2_door_death
@@ -3450,6 +3642,9 @@ Cult of The Everdark
 			USED: zep_stocksuse
 
 Cult of The Everdark (Execution Chamber)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		grinder2
 			DEATH: x2_door_death
@@ -3488,6 +3683,9 @@ Cult of The Everdark (Execution Chamber)
 DMFI Custom Encounter Region
 
 Dark Stairwell
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Portcullis
 			DEATH: x2_door_death
@@ -3500,11 +3698,17 @@ Dark Stairwell
 			ENTER: cutsceneghost
 
 Desert Cave
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		DesertExit
 			DEATH: x2_door_death
 
 Dusty Mines
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CaveDoor
 			DEATH: x2_door_death
@@ -3529,8 +3733,14 @@ Dusty Mines
 			ENTER: badge_onenter
 
 East Anneh Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Eledhreth - City Gate
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		x3_door_wood003
 			DEATH: x2_door_death
@@ -3576,6 +3786,9 @@ Eledhreth - City Gate
 			HEARTBEAT: zombiecreator7
 
 Eledhreth - Docks
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		StoneDoor
 			DEATH: x2_door_death
@@ -3657,6 +3870,9 @@ Eledhreth - Docks
 			ENTER: badge_onenter
 
 Eledhreth - Old Church
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		eled_f_church_ext
 			DEATH: x2_door_death
@@ -3860,6 +4076,9 @@ Eledhreth - Old Church
 			HEARTBEAT: zombiecreator7
 
 Eledhreth - Old Farmlands
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		eled_farmlandexit
 			DEATH: x2_door_death
@@ -3891,6 +4110,9 @@ Eledhreth - Old Farmlands
 			HEARTBEAT: zombiecreator7
 
 Eledhreth Docks - Shop
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		x3_door_wood003
 			DEATH: x2_door_death
@@ -3903,6 +4125,9 @@ Eledhreth Docks - Shop
 			HEARTBEAT: zombiecreator7
 
 Eledhreth Shop
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EShopToEled
 			OPEN: dooropen
@@ -3932,6 +4157,9 @@ Eledhreth Shop
 			ENTER: drow_shopsecret
 
 Eledhreth Temple
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		TempleToEled
 			OPEN: dooropen
@@ -3942,6 +4170,10 @@ Eledhreth Temple
 			HEARTBEAT: extrafrenzy
 
 Eledhreth Vault
+	Area Scripts:
+		ENTER: buffonenter
+		EXIT: debuffonexit
+		HEARTBEAT: clearfood2
 	Doors:
 		VaultDoor1
 			OPEN: dooropen2
@@ -3975,6 +4207,9 @@ Eledhreth Vault
 			ENTER: badge_onenter
 
 Eledhreth: Hermit's Hut
+	Area Scripts:
+		ENTER: sosonentrh213123
+		HEARTBEAT: clearfood
 	Doors:
 		outhermithome
 			DEATH: x2_door_death
@@ -4004,6 +4239,8 @@ Eledhreth: Hermit's Hut
 			USED: zep_use_chair
 
 Eledhreth: Hidden Glade
+	Area Scripts:
+		ENTER: sos_onentmsg1223
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
@@ -4037,6 +4274,9 @@ Eledhreth: Hidden Glade
 			DEATH: x2_o2_dead
 
 Faeloth - Supplies Building
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		BoxCrate4
 			DEATH: nw_o2_generalhig
@@ -4136,6 +4376,9 @@ Faeloth - Supplies Building
 			HEARTBEAT: zombiecreator7
 
 Faeloth - Supplies Building
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_CHAIRS002
 			USED: zep_use_chair
@@ -4149,6 +4392,9 @@ Faeloth - Supplies Building
 			HEARTBEAT: zombiecreator7
 
 Faeloth Cave
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		X2_PLC_CRYSTAL
 			USED: x2_plc_used_act
@@ -4230,6 +4476,9 @@ Faeloth Cave
 			DEATH: x2_o2_dead
 
 Faeloth Cave
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		faelothentcave_to_city
 			DEATH: x2_door_death
@@ -4238,6 +4487,9 @@ Faeloth Cave
 			HEARTBEAT: zombiecreator7
 
 Faeloth Interior
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		faelothint_to_city
 			DEATH: x2_door_death
@@ -4260,6 +4512,9 @@ Faeloth Interior
 			USED: zep_use_chair
 
 Faeloth Village
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Wall2Gate
 			DEATH: x2_door_death
@@ -4359,6 +4614,9 @@ Faeloth Village
 			HEARTBEAT: zombiecreator7
 
 Fort Tilarm
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		TILARMIN
 			DEATH: x2_door_death
@@ -4393,6 +4651,9 @@ Fort Tilarm
 			ENTER: takemagic
 
 Fort Tilarm (Basement)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RustedDoor
 			DEATH: x2_door_death
@@ -4410,6 +4671,9 @@ Fort Tilarm (Basement)
 			DEATH: x2_door_death
 
 Fort Tilarm 2nd Floor
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		DoorDown1
 			DEATH: x2_door_death
@@ -4534,6 +4798,10 @@ Fort Tilarm 2nd Floor
 			USED: zep_use_chair
 
 Freezing Vault
+	Area Scripts:
+		ENTER: buffonenter
+		EXIT: debuffonexit
+		HEARTBEAT: clearfood2
 	Doors:
 		WyvVaultDoor
 			OPEN: dooropen2
@@ -4567,6 +4835,9 @@ Freezing Vault
 			ENTER: badge_onenter
 
 Fyn Island
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		AestusOutHoleCorrA
 			DEATH: x2_door_death
@@ -4600,6 +4871,9 @@ Fyn Island
 			ENTER: fynmessage2
 
 Fyn Island: Bridge
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_OSTNLNTRN002
 			USED: zep_torch
@@ -4638,6 +4912,9 @@ Fyn Island: Bridge
 			ENTER: fynmessage3
 
 Fyn Island: Royal Gates
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		WallDoor
 			DEATH: x2_door_death
@@ -4650,6 +4927,9 @@ Fyn Island: Royal Gates
 			HEARTBEAT: zombiecreator3
 
 Hidden Shrine
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		KShedSecret2
 			DEATH: x2_door_death
@@ -4666,6 +4946,9 @@ Hidden Shrine
 			USED: zep_onoff
 
 Holy Fountain
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		FountainToOldCavern
 			OPEN: dooropen
@@ -4679,6 +4962,9 @@ Holy Fountain
 			ENTER: badge_onenter
 
 Homestead
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		HomsteadToEled
 			OPEN: dooropen
@@ -4695,6 +4981,9 @@ Homestead
 			HEARTBEAT: zombiecreator
 
 Imithril: Bazaar
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		XBazaar
 			DEATH: x2_door_death
@@ -4742,6 +5031,9 @@ Imithril: Bazaar
 			USED: talktopc
 
 Imithril: Temple District
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ImrithilToSacr
 			OPEN: dooropen
@@ -4825,6 +5117,9 @@ Imithril: Temple District
 			ENTER: imithrilpopup
 
 Imithril: Treasury
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		StoneDoor
 			DEATH: x2_door_death
@@ -4857,6 +5152,9 @@ Imithril: Treasury
 			DEATH: x2_o2_dead
 
 Imithril: Treasury District
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Breach
 			DEATH: x2_door_death
@@ -4874,6 +5172,9 @@ Imithril: Treasury District
 			DEATH: x2_door_death
 
 Imrithil: Sacrificial Chamber
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		SacrToImrithil
 			OPEN: dooropen
@@ -4896,6 +5197,9 @@ Imrithil: Sacrificial Chamber
 			HEARTBEAT: zombiecreator
 
 Ismail
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		IsmailEnter
 			DEATH: x2_door_death
@@ -4927,8 +5231,14 @@ Ismail
 			ENTER: gorondepthshoh9
 
 Ismail: Inner City
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Ismail: Palace
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Triggers:
 		BadgeTrigger
 			ENTER: badge_onenter
@@ -5012,6 +5322,9 @@ Kalaram - Reclaimed Home - Sewing Room
 			USED: zep_use_chair
 
 Kalaram Sewer
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RustedDoor
 			OPEN: dooropen
@@ -5035,6 +5348,10 @@ Kalaram Sewer
 			HEARTBEAT: zombiecreator3
 
 Kalaram Vault
+	Area Scripts:
+		ENTER: buffonenter
+		EXIT: debuffonexit
+		HEARTBEAT: clearfood2
 	Doors:
 		VaultDoor3
 			OPEN: dooropen2
@@ -5071,6 +5388,9 @@ Kalaram Vault
 			ENTER: badge_onenter
 
 Kalaram: Abandoned Home
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_CHAIRS007
 			USED: zep_use_chair
@@ -5079,6 +5399,9 @@ Kalaram: Abandoned Home
 			ENTER: popuptext40053
 
 Kalaram: Abandoned Home Hallways
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Old_Home2
 			DEATH: x2_door_death
@@ -5091,6 +5414,9 @@ Kalaram: Abandoned Home Hallways
 			HEARTBEAT: zombiecreator
 
 Kalaram: Academy
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CorridorExit
 			DEATH: x2_door_death
@@ -5136,6 +5462,9 @@ Kalaram: Academy
 			ENTER: badge_onenter
 
 Kalaram: Back Alley
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LockedVariousDoorLudor
 			DEATH: x2_door_death
@@ -5173,11 +5502,16 @@ Kalaram: Barn
 			ENTER: takecraft
 
 Kalaram: Bridge
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		BridgeDoor
 			DEATH: x2_door_death
 
 Kalaram: Dark Alleyway
+	Area Scripts:
+		ENTER: starterpewpew
 	Placeables:
 		ZEP_DOORS011
 			USED: pewpewf31
@@ -5197,6 +5531,8 @@ Kalaram: Dark Alleyway
 			ENTER: abrahgalghg
 
 Kalaram: Dark Alleyway
+	Area Scripts:
+		ENTER: starterpewpew
 	Placeables:
 		ZEP_DOORS011
 			USED: pewpewf4
@@ -5216,6 +5552,8 @@ Kalaram: Dark Alleyway
 			ENTER: abrahgalghg
 
 Kalaram: Dark Alleyway
+	Area Scripts:
+		ENTER: starterpewpew
 	Placeables:
 		ZEP_DOORS011
 			USED: pewpewf3
@@ -5235,11 +5573,17 @@ Kalaram: Dark Alleyway
 			ENTER: abrahgalghg
 
 Kalaram: Destroyed House
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		KBreachHome2
 			DEATH: x2_door_death
 
 Kalaram: Destroyed Lab
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		kala_destroyedlabexit
 			DEATH: x2_door_death
@@ -5259,6 +5603,8 @@ Kalaram: Destroyed Lab
 			EXIT: dh_scavonexit
 
 Kalaram: Docks
+	Area Scripts:
+		ENTER: areaenter
 	Doors:
 		Ship1Door
 			DEATH: x2_door_death
@@ -5322,11 +5668,17 @@ Kalaram: Docks
 			EXIT: dh_scavonexit
 
 Kalaram: Graveyard
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 Kalaram: Guard Tower - First Floor
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		GuardTowerToKalaram
 			OPEN: dooropen
@@ -5350,6 +5702,9 @@ Kalaram: Guard Tower - First Floor
 			DEATH: x2_o2_dead
 
 Kalaram: Interiors
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		upcellar
 			DEATH: x2_door_death
@@ -5565,6 +5920,9 @@ Kalaram: Interiors
 			EXIT: dh_scavonexit
 
 Kalaram: Market District
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		KalaramToBoardedHome1
 			OPEN: dooropen
@@ -5708,6 +6066,9 @@ Kalaram: Market District
 			EXIT: dh_scavonexit
 
 Kalaram: Morbid Pass
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
@@ -5729,6 +6090,9 @@ Kalaram: Morbid Pass
 			HEARTBEAT: zombiecreator7
 
 Kalaram: Old Hideout
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		FancyDoor
 			DEATH: x2_door_death
@@ -5744,6 +6108,9 @@ Kalaram: Old Hideout
 			USED: nw_o2_trapdoor
 
 Kalaram: Old Home
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: ccfood
 	Doors:
 		WeakDoor
 			DEATH: x2_door_death
@@ -5831,6 +6198,9 @@ Kalaram: Old Home
 			USED: nw_02_onoff
 
 Kalaram: Old Home - Basement
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		OldHome_Downstairs
 			DEATH: x2_door_death
@@ -5860,6 +6230,9 @@ Kalaram: Old Home - Basement
 			OPEN: nw_o2_generallow
 
 Kalaram: Old Home - Second Floor
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		OldHome_Second1
 			DEATH: x2_door_death
@@ -5877,6 +6250,9 @@ Kalaram: Old Home - Second Floor
 			OPEN: nw_o2_generallow
 
 Kalaram: Outskirts
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		KBARNOUT2
 			DEATH: x2_door_death
@@ -5951,6 +6327,9 @@ Kalaram: Outskirts
 			EXIT: dmx_farmskillext
 
 Kalaram: Plaza
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LUCKYCOIN
 			DEATH: x2_door_death
@@ -5974,6 +6353,9 @@ Kalaram: Plaza
 			EXIT: dh_scavonexit
 
 Kalaram: Prison
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Breach
 			DEATH: x2_door_death
@@ -6134,6 +6516,8 @@ Kalaram: Seven Oaks Asylum
 			ENTER: badge_onenter
 
 Kalaram: Slums
+	Area Scripts:
+		ENTER: areaenter
 	Doors:
 		EnterSlumsTemple
 			DEATH: x2_door_death
@@ -6844,6 +7228,9 @@ Kalaram: Slums - Interiors
 			EXIT: dh_scavonexit
 
 Kalaram: Small Den
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		outskirtden
 			DEATH: x2_door_death
@@ -6860,6 +7247,9 @@ Kalaram: Small Den
 			ENTER: secrettrapdoor2
 
 Kalaram: Small Shed
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		KStoragedown
 			DEATH: x2_door_death
@@ -6872,6 +7262,9 @@ Kalaram: Small Shed
 			ENTER: kalaramshed2
 
 Kalaram: Soup Kitchen
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		FancyDoor
 			DEATH: x2_door_death
@@ -6901,6 +7294,9 @@ Kalaram: Soup Kitchen
 			ENTER: badge_onenter
 
 Kalaram: The Death Pit
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EvilStoneDoor
 			DEATH: x2_door_death
@@ -6929,6 +7325,9 @@ Kalaram: The Death Pit
 			EXIT: dh_scavonexit
 
 Kalaram: Viper's Hideout
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		GuildDoor
 			DEATH: x2_door_death
@@ -7010,6 +7409,9 @@ Kalaram: Viper's Hideout
 			ENTER: badge_onenter
 
 Kalaram: Waterfront
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		x3_door_wood002
 			DEATH: x2_door_death
@@ -7041,6 +7443,9 @@ Kalaram: Waterfront
 			EXIT: dh_scavonexit
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LABYENTERLEFT
 			DEATH: x2_door_death
@@ -7053,10 +7458,19 @@ Labyrinth
 			USED: labyrinthenterq
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EvilStoneDoor
 			DEATH: x2_door_death
@@ -7072,10 +7486,19 @@ Labyrinth
 			DEATH: x2_door_death
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EvilStoneDoor
 			DEATH: x2_door_death
@@ -7091,55 +7514,29 @@ Labyrinth
 			DEATH: x2_door_death
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 Labyrinth
-	Doors:
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-		EvilStoneDoor
-			DEATH: x2_door_death
-
-Labyrinth
-
-Labyrinth
-
-Labyrinth
-
-Labyrinth
-
-Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EvilStoneDoor
 			DEATH: x2_door_death
@@ -7171,6 +7568,62 @@ Labyrinth
 			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
+
+Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
+
+Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
+
+Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
+
+Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
+
+Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
+	Doors:
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
+		EvilStoneDoor
+			DEATH: x2_door_death
 		EvilStoneDoor
 			DEATH: x2_door_death
 		EvilStoneDoor
@@ -7179,6 +7632,9 @@ Labyrinth
 			DEATH: x2_door_death
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LabyrinthDoor
 			DEATH: x2_door_death
@@ -7312,13 +7768,22 @@ Labyrinth
 			OPEN: x0_o2_anyuniq
 
 Labyrinth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		nw_plc_portal2
 			USED: labyrinthportal
 
 Lost Souls Room
+	Area Scripts:
+		ENTER: areaenter3
+		HEARTBEAT: clearfood
 
 Ludor
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ELudorLibrary
 			DEATH: x2_door_death
@@ -7352,6 +7817,9 @@ Ludor
 			ENTER: badge_onenter
 
 Ludor Library
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		XLibrary
 			DEATH: x2_door_death
@@ -7426,6 +7894,9 @@ Ludor Library
 			ENTER: badge_onenter
 
 Ludor Shop
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LShopToLudor
 			OPEN: dooropen
@@ -7440,6 +7911,9 @@ Ludor Shop
 			HEARTBEAT: zombiecreator7
 
 Ludor Shop (Adventure Necessities)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Door
 			DEATH: x2_door_death
@@ -7457,6 +7931,9 @@ Ludor Shop (Adventure Necessities)
 			HEARTBEAT: zombiecreator7
 
 Mine Entrance
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MineEToEled
 			DEATH: x2_door_death
@@ -7467,6 +7944,9 @@ Mine Entrance
 			HEARTBEAT: extrafrenzy
 
 Morbid Grotto (Bandit Camp)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MineExit
 			DEATH: x2_door_death
@@ -7498,6 +7978,9 @@ Morbid Grotto (Bandit Camp)
 			USED: servicechain
 
 Mount Faeloth
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		FaelothToVillage
 			OPEN: dooropen
@@ -7514,20 +7997,36 @@ Mount Faeloth
 			HEARTBEAT: zombiecreator7
 
 Mount Faeloth (Forests)
+	Area Scripts:
+		ENTER: areaenter_cold
+		HEARTBEAT: heartbeat_cold
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
 
 Mount Faeloth (Ice Pass)
+	Area Scripts:
+		ENTER: areaenter_cold
+		HEARTBEAT: heartbeat_cold
 
 Mount Faeloth (Stonepeaks)
+	Area Scripts:
+		ENTER: areaenter_cold
+		HEARTBEAT: heartbeat_cold
 
 Mount Faeloth (Summit)
+	Area Scripts:
+		ENTER: areaenter_cold
+		HEARTBEAT: heartbeat_cold
 	Doors:
 		TILARMOUT
 			DEATH: x2_door_death
 
 Mount Faeloth (Tundra)
+	Area Scripts:
+		ENTER: areaenter_cold
+		EXIT: slow_tundra_exit
+		HEARTBEAT: heartbeat_cold
 	Triggers:
 		GenericTrigger
 			ENTER: slow_tundra
@@ -7535,6 +8034,9 @@ Mount Faeloth (Tundra)
 			ENTER: slow_tundra
 
 Mountain Tunnels
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Tunnels2ToFaeloth
 			DEATH: x2_door_death
@@ -7559,6 +8061,9 @@ Mountain Tunnels
 			HEARTBEAT: zombiecreator7
 
 Old Cavern
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		OldCavernToRWE
 			DEATH: x2_door_death
@@ -7566,6 +8071,9 @@ Old Cavern
 			OPEN: dooropen
 
 Old Mines
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MININGWELL2
 			DEATH: x2_door_death
@@ -7582,6 +8090,9 @@ Old Mines
 			ENTER: secrettrapdoor3
 
 Passageways
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		X2_PLC_STUBE
 			USED: x2_plc_used_act
@@ -7599,6 +8110,9 @@ Passageways
 			ENTER: badge_onenter
 
 Passageways
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		TINN
 			DEATH: x2_door_death
@@ -7668,6 +8182,9 @@ Passageways (East)
 			OPEN: shutlock
 
 Ranger's Lodge (Basement)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		Brazier
 			USED: nw_02_onoff
@@ -7679,6 +8196,10 @@ Ranger's Lodge (Basement)
 			HEARTBEAT: zombiecreator
 
 Realm of Corruption
+	Area Scripts:
+		ENTER: enter_nomagic
+		EXIT: exit_nomagic
+		HEARTBEAT: clearfood
 	Doors:
 		SpireofSorrow
 			DEATH: x2_door_death
@@ -7693,6 +8214,10 @@ Realm of Corruption
 			USED: zep_openclose
 
 Realm of Corruption
+	Area Scripts:
+		ENTER: enter_nomagic
+		EXIT: exit_nomagic
+		HEARTBEAT: clearfood
 	Doors:
 		Mirror
 			DEATH: x2_door_death
@@ -7715,6 +8240,9 @@ Realm of Corruption
 			USED: mirrorofvor3
 
 Rebuilt Church
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RebuiltChurchSW1
 			DEATH: x2_door_death
@@ -7743,6 +8271,9 @@ Red Tower (Interior 3)
 			DEATH: x2_door_death
 
 Sand's End Cliffside
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ToBadlandsfromCliffside
 			DEATH: x2_door_death
@@ -7757,6 +8288,9 @@ Sand's End Cliffside
 			HEARTBEAT: nw_o2_skeleton
 
 Sazzan Plains
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		X2_PLC_STATUE_LA
 			DEATH: x2_o2_dead
@@ -7771,6 +8305,9 @@ Sazzan Plains
 			ENTER: popuptext
 
 Sazzan Plains: East
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		tehforsakein
 			DEATH: x2_door_death
@@ -7781,6 +8318,9 @@ Sazzan Plains: East
 			HEARTBEAT: zombiecreator7
 
 Sazzan Plains: South
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_GNTCROSSBOW
 			USED: zep_onoff
@@ -7795,6 +8335,9 @@ Sazzan Plains: South
 			ENTER: popuptext272
 
 Sazzan Plains: West
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
@@ -7805,6 +8348,9 @@ Sazzan Plains: West
 			ENTER: badge_onenter
 
 Sewer Entrance
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		SewerEToKSewer
 			OPEN: dooropen
@@ -7816,6 +8362,9 @@ Sewer Entrance
 			HEARTBEAT: extrafrenzy
 
 Shed
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ShedToBar
 			OPEN: dooropen
@@ -7826,6 +8375,9 @@ Shed
 			HEARTBEAT: zombiecreator
 
 Silo
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		SiloToAnn
 			OPEN: dooropen
@@ -7836,6 +8388,9 @@ Silo
 			HEARTBEAT: zombiecreator
 
 Sinking Peninsula
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		thereisnotagonthisobjectfool
 			DEATH: x2_door_death
@@ -7912,6 +8467,9 @@ Sinking Peninsula (Cottage)
 			USED: zep_onoff
 
 Sinking Peninsula (Sunken Ship Lower)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Sinkingshipdoorwest2
 			DEATH: x2_door_death
@@ -7921,6 +8479,9 @@ Sinking Peninsula (Sunken Ship Lower)
 			DEATH: x2_door_death
 
 Sinking Peninsula (Sunken Ship)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ShiptoSmithy
 			DEATH: x2_door_death
@@ -7945,11 +8506,17 @@ Sinking Peninsula (Sunken Ship)
 			HEARTBEAT: zombiecreator8
 
 Sinking Pensinsula (Underwater Passages)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		desert_underwater1
 			DEATH: x2_door_death
 
 Sispara: Town Center
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Wall2Gate
 			DEATH: x2_door_death
@@ -8008,6 +8575,9 @@ Sispara: Town Center
 			HEARTBEAT: zombiecreator7
 
 Sispara: Vault
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		JeweledDoor
 			DEATH: x2_door_death
@@ -8049,11 +8619,17 @@ Sispara: Vault
 			EXIT: dh_scavonexit
 
 Small Cave
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MineExit
 			DEATH: x2_door_death
 
 Southern Badlands
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		WallDoor
 			DEATH: x2_door_death
@@ -8076,6 +8652,10 @@ Southern Badlands
 			DEATH: x2_o2_dead
 
 Spire of Sorrow
+	Area Scripts:
+		ENTER: enter_nomagic
+		EXIT: exit_nomagic
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_CRYSTAL001
 			USED: zep_onoff
@@ -8083,6 +8663,9 @@ Spire of Sorrow
 			USED: zep_onoff
 
 Stormglass Coastline (North)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
@@ -8147,11 +8730,17 @@ Stormglass Coastline (South)
 			ENTER: badge_onenter
 
 Tel'Kara Swamp
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Triggers:
 		BadgeTrigger
 			ENTER: badge_onenter
 
 Tel'kara Swamp
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		X2_PLC_MUSHRM_B
 			DEATH: x2_o2_dead
@@ -8171,6 +8760,9 @@ Tel'kara Swamp
 			ENTER: telkarapopup
 
 Tel'kara Swamp
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		gogogogoogo
 			DEATH: x2_door_death
@@ -8219,6 +8811,9 @@ Tel'kara Swamp
 			OPEN: nw_o2_generallow
 
 Tel'kara Swamp
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_Lizardfolk_Door_1
 			USED: lollizrds
@@ -8226,6 +8821,9 @@ Tel'kara Swamp
 			HEARTBEAT: zombiecreatorliz
 
 Tel'kara Swamp: Unknown Ruins
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Epicman
 			DEATH: x2_door_death
@@ -8234,6 +8832,9 @@ Tel'kara Swamp: Unknown Ruins
 			ENTER: gorondepthshoho3
 
 The Black Depths Lower
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		blackdepthsupwego
 			DEATH: x2_door_death
@@ -8250,11 +8851,17 @@ The Black Depths Lower
 			ENTER: badge_onenter
 
 The Black Depths Upper
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		niggagoesdownwards
 			DEATH: x2_door_death
 
 The Black Depths: Elevator
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RockinItHoh
 			DEATH: x2_door_death
@@ -8271,6 +8878,9 @@ The Black Depths: Elevator
 			ENTER: gorondepthshoho2
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		NormalDoor
 			OPEN: dooropen
@@ -8283,6 +8893,9 @@ The Darkglade Forest
 			HEARTBEAT: extrafrenzy
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RWEToOldCavern
 			DEATH: x2_door_death
@@ -8300,6 +8913,9 @@ The Darkglade Forest
 			ENTER: forestenter
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Lodge1ToLodge2
 			OPEN: dooropen
@@ -8312,6 +8928,9 @@ The Darkglade Forest
 			HEARTBEAT: zombiecreator
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RWNToCabin
 			OPEN: dooropen
@@ -8324,11 +8943,17 @@ The Darkglade Forest
 			DEATH: x2_o2_dead
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
@@ -8344,6 +8969,9 @@ The Darkglade Forest
 			OPEN: nw_o2_generallow
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		SJUNK
 			HEARTBEAT: junk_modifier
@@ -8354,16 +8982,25 @@ The Darkglade Forest
 			ENTER: badge_onenter
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RWWToTower1
 			OPEN: dooropen
@@ -8375,6 +9012,9 @@ The Darkglade Forest
 			ENTER: badge_onenter
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ForestExit
 			DEATH: x2_door_death
@@ -8387,6 +9027,8 @@ The Darkglade Forest
 			HEARTBEAT: zomb_extremehunt
 
 The Darkglade Forest
+	Area Scripts:
+		ENTER: areaenter
 	Placeables:
 		X2_PLC_CRYSTAL
 			USED: x2_plc_used_act
@@ -8407,6 +9049,9 @@ The Darkglade Forest
 			ENTER: darkglademessage
 
 The Darkglade Forest 
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ForestExit
 			DEATH: x2_door_death
@@ -8415,6 +9060,9 @@ The Darkglade Forest
 			DEATH: x2_door_death
 
 The Darkglade Forest (Cliff Cave)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		MineExit
 			DEATH: x2_door_death
@@ -8426,6 +9074,9 @@ The Darkglade Forest (Cliff Cave)
 			OPEN: shutlock
 
 The Darkglade Forest (Darkglade Cabin)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CabinToRWN
 			OPEN: dooropen
@@ -8468,6 +9119,9 @@ The Darkglade Forest: Druid's Retreat
 			USED: zep_use_chair
 
 The Holy City of Siranda: Docks
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		DockDoor
 			DEATH: x2_door_death
@@ -8537,6 +9191,9 @@ The Holy City of Siranda: Docks
 			DEATH: x2_o2_dead
 
 The Holy City of Siranda: Docks - Interior
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		hcs_lighthouseexit
 			DEATH: x2_door_death
@@ -8613,6 +9270,9 @@ The Holy City of Siranda: Docks - Interior
 			DEATH: x2_o2_dead
 
 The Holy City of Siranda: Grand Temple
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		gogogogogoloool
 			DEATH: x2_door_death
@@ -8672,6 +9332,9 @@ The Holy City of Siranda: Grand Temple
 			ENTER: popuptext27
 
 The Holy City of Siranda: Lathander's Throne
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		WallDoor
 			DEATH: x2_door_death
@@ -8741,6 +9404,9 @@ The Holy City of Siranda: Lathander's Throne
 			ENTER: popuptext23
 
 The Holy City of Siranda: Market District
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ZCSlums4
 			DEATH: x2_door_death
@@ -8797,6 +9463,9 @@ The Holy City of Siranda: Market District
 			DEATH: x2_o2_dead
 
 The Holy City of Siranda: Market Interiors
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ZCSlumsInterior1
 			DEATH: x2_door_death
@@ -8899,6 +9568,9 @@ The Holy City of Siranda: Market Interiors
 			HEARTBEAT: junk_modifier
 
 The Holy City of Siranda: Sewers
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_LOGSIT001
 			USED: zep_use_chair
@@ -8909,11 +9581,17 @@ The Holy City of Siranda: Sewers
 			ENTER: popuptext22
 
 The Holy City of Siranda: Southern Outskirts
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZOMBIESPAWNER
 			HEARTBEAT: zombiecreator7
 
 The Holy City of Siranda: The Owl's Perch
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		leaveowlsperch
 			DEATH: x2_door_death
@@ -8935,6 +9613,9 @@ The Holy City of Siranda: The Owl's Perch
 			OPEN: nw_o2_generallow
 
 The Holy City of Siranda: Trade Guild's Headquarters
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EHouseSiranda
 			DEATH: x2_door_death
@@ -8946,6 +9627,9 @@ The Holy City of Siranda: Trade Guild's Headquarters
 			DEATH: x2_door_death
 
 The Holy City of Siranda: Under the City
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ExitUndercity
 			DEATH: x2_door_death
@@ -8953,6 +9637,9 @@ The Holy City of Siranda: Under the City
 			DEATH: x2_door_death
 
 The Holy City of Siranda: West
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LockedVariousDoor
 			DEATH: x2_door_death
@@ -9157,6 +9844,9 @@ The Holy City of Siranda: West
 			ENTER: holycity1
 
 The Holy City of Siranda: Western Outskirts
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		LockedVariousDoor
 			DEATH: x2_door_death
@@ -9216,6 +9906,9 @@ The Holy City of Siranda: Western Outskirts
 			HEARTBEAT: zombiecreator7
 
 The Inn
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RustyTankard
 			DEATH: x2_door_death
@@ -9260,6 +9953,9 @@ The Inn
 			ENTER: _scarepcinn
 
 The Inn (Basement)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Innc
 			DEATH: x2_door_death
@@ -9277,6 +9973,9 @@ The Inn (Basement)
 			DEATH: x2_door_death
 
 The Inn (Foundation)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Catacombdoor
 			DEATH: x2_door_death
@@ -9326,6 +10025,9 @@ The Inn (Foundation)
 			ENTER: curse
 
 The Inn (Second Floor)
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RoomDoor
 			DEATH: x2_door_death
@@ -9371,6 +10073,9 @@ The Inn (Second Floor)
 			ENTER: noticesouthwall
 
 The Lowerdark
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		x3_plc_brazier
 			USED: nw_02_onoff
@@ -9392,11 +10097,17 @@ The Red Tower (Interior 1)
 The Red Tower (Outside)
 
 The Room
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Placeables:
 		ZEP_MANCHAINS
 			USED: zep_stocksuse
 
 The Searing Sands
+	Area Scripts:
+		ENTER: areaenter_fire
+		HEARTBEAT: heartbeat_fire
 	Doors:
 		crumintd1
 			DEATH: x2_door_death
@@ -9421,6 +10132,9 @@ The Searing Sands
 			ENTER: searingspawn
 
 The Spire -- Outside
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		SpireOutToSpire1
 			DEATH: x2_door_death
@@ -9429,6 +10143,9 @@ The Spire -- Outside
 			HEARTBEAT: zombiecreator
 
 The Tar Marsh
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RuralExit
 			DEATH: x2_door_death
@@ -9436,6 +10153,9 @@ The Tar Marsh
 			DEATH: x2_door_death
 
 The Underdark
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		ExitUnderdark
 			DEATH: x2_door_death
@@ -9454,6 +10174,9 @@ The Underdark
 			ENTER: badge_onenter
 
 The Upperdark
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Exittheunderdark
 			DEATH: x2_door_death
@@ -9468,6 +10191,9 @@ The Upperdark
 			ENTER: floatingtextscr2
 
 The Upperdark
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		EnterUnderdark
 			DEATH: x2_door_death
@@ -9476,6 +10202,9 @@ The Upperdark
 			ENTER: floatingtextscri
 
 The Wayward Inn
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		WaywardInnUP
 			DEATH: x2_door_death
@@ -9491,6 +10220,9 @@ The Wayward Inn
 			DEATH: x2_door_death
 
 Tower -- Floor 1
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Tower1ToRWW
 			OPEN: dooropen
@@ -9501,6 +10233,9 @@ Tower -- Floor 1
 			HEARTBEAT: zombiecreator
 
 Tower -- Floor 2
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		Tower2ToTower1
 			OPEN: dooropen
@@ -9514,6 +10249,10 @@ Tower -- Floor 2
 			ENTER: badge_onenter
 
 Unknown
+	Area Scripts:
+		ENTER: enter_nomagic
+		EXIT: exit_nomagic
+		HEARTBEAT: clearfood
 	Doors:
 		Chaos1
 			DEATH: x2_door_death
@@ -9524,6 +10263,9 @@ Unknown
 			USED: mirrorofvor
 
 Vesteel - General Store
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CorridorExit
 			DEATH: x2_door_death
@@ -9625,6 +10367,9 @@ Vesteel - General Store
 			USED: zep_onoff
 
 Vesteel - Royal Archives
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		CastleExit
 			DEATH: x2_door_death
@@ -9659,13 +10404,22 @@ Vesteel - Royal Archives
 			USED: zep_use_chair
 
 West Anneh Desert
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		DoubleDoors
 			DEATH: x2_door_death
 
 Western Badlands
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 
 eled_mmaindist
+	Area Scripts:
+		ENTER: areaenter
+		HEARTBEAT: clearfood
 	Doors:
 		RuralExit
 			DEATH: x2_door_death

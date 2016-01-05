@@ -9,9 +9,15 @@ def output_data(areas):
 
     for area in sorted_areas:
         print(area['name'])
+        scripts = area['scripts']
         doors = area['doors']
         placeables = area['placeables']
         triggers = area['triggers']
+
+        if len(scripts) > 0:
+            print('\tArea Scripts:')
+            for event, script in scripts:
+                print('\t\t' + event + ": " + script)
 
         if len(doors) > 0:
             print('\tDoors:')
@@ -68,10 +74,17 @@ def main():
         a_name = area.are['Name'].to_dict()['value']['0']
         a_dict = {
                 'name': a_name,
+                'scripts': [],
                 'doors': [],
                 'placeables': [],
                 'triggers': []
                 }
+
+        s_list = area.scripts.all()
+        for s in s_list:
+            event = dir(Event)[s[0]]
+            s_name = s[1]
+            a_dict['scripts'].append((event, s_name))
 
         for d in area.doors:
             d_data = get_data(d)
