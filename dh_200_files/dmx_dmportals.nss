@@ -1,7 +1,7 @@
+#include "_incl_location"
+
 void main()
 {
-object oPC = GetLastUsedBy();
-location lPort = GetLocalLocation(OBJECT_SELF,"PORTAL");
-AssignCommand(oPC,ClearAllActions(TRUE));
-DelayCommand(0.5f,AssignCommand(oPC,ActionJumpToLocation(lPort)));
+    object oPC = GetLastUsedBy();
+    DelayCommand(0.5, PortToWaypoint(oPC, "PORTAL");
 }

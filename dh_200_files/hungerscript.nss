@@ -18,8 +18,9 @@
  *           0.01 is good for quick testing.
 
 **********************************************************************/
-//#include "nw_i0_tool"
 #include "disease_inc"
+#include "_incl_location"
+
 int nIsHungry;
 //int nRestTimer = 0;
 int nLostCon;
@@ -304,7 +305,7 @@ void main()
                     {
                         CreateItemOnObject("deathtoken",oPC);
                         ExecuteScript("zombieclone",oPC);
-                        AssignCommand(oPC,ActionJumpToLocation(GetLocation(GetWaypointByTag("lostsoularrive"))));
+			PortToWaypoint(oPC, "lostsoularrive");
                         DelayCommand(0.3,FloatingTextStringOnCreature("Your body has become a zombie.",oPC,FALSE));
                         DelayCommand(0.5,FloatingTextStringOnCreature("You are now a lost soul.",oPC,FALSE));
                     }
