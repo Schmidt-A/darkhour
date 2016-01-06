@@ -46,15 +46,42 @@ void main()
     }
 
     object oDoor = GetObjectByTag(GetLocalString(OBJECT_SELF, "sTargetTag"));
+    object oUsed = OBJECT_INVALID;
+
     if(oDoor == OBJECT_INVALID)
         oDoor = OBJECT_SELF
+    else
+        object oUsed = OBJECT_SELF
 
     int bLockBehind = GetLocalInt(oDoor, "bLockBehind");
     float fLockDelay = GetLocalFloat(oDoor, "fLockDelay");
+
     int bClose = GetLocalInt(oDoor, "bClose");
     float fCloseDelay = GetLocalFloat(oDoor, "fCloseDelay");
+
     int bOpen = GetLocalInt(oDoor, "bOpen");
     float fOpenDelay = GetLocalFloat(oDoor, "fOpenDelay");
+
+    int bAnimation = FALSE;
+    int bToggle = GetLocalInt(oDoor, "bToggle");
+
+    if(oUsed != OBJECT_INVALID)
+        bAnimation = GetLocalInt(oUsed, "bAniamtion");
+
+    if(bAnimation)
+    {
+        AssignCommand(oUsed, ACTION_PLACEABLE_ACTIVATE);
+        AssignCommand(oUsed, ACTION_PLACEABLE_DEACTIVATE);
+    }
+
+    if(bToggle)
+    {
+        if(GetLocked(oDoor))
+            SetLocked(oDoor, FALSE);
+        else
+            SetLocked(oDoor, TRUE);
+        return;
+    }
 
     if(bLockBehind)
     {
