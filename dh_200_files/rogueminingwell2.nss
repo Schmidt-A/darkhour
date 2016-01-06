@@ -1,35 +1,30 @@
+#include "_incl_location"
+
 void main()
 {
+    object oPC = GetLastUsedBy();
 
-object oPC = GetLastUsedBy();
-if (!GetIsPC(oPC)) return;
+    // * note that nActive == 1 does  not necessarily mean the placeable is active
+    // * that depends on the initial state of the object
+    int nActive = GetLocalInt (OBJECT_SELF,"X2_L_PLC_OPEN_STATE");
+    // * Play Appropriate Animation
+    if (!nActive)
+      ActionPlayAnimation(ANIMATION_PLACEABLE_OPEN);
+    else
+    {
+        if (!GetIsPC(oPC)) return;
 
-object oTarget;
-oTarget = GetObjectByTag("miningwellrogue4");
+        object oTarget = GetObjectByTag("miningwellrogue4");
+        SoundObjectPlay(oTarget);
 
-SoundObjectPlay(oTarget);
+        oTarget = GetWaypointByTag("miningwellrogue3");
+        location lTarget = GetLocation(oTarget);
 
-location lTarget;
-oTarget = GetWaypointByTag("miningwellrogue3");
+        PortToWaypoint(oPC, lTarget);
 
-lTarget = GetLocation(oTarget);
-
-//only do the jump if the location is valid.
-//though not flawless, we just check if it is in a valid area.
-//the script will stop if the location isn't valid - meaning that
-//nothing put after the teleport will fire either.
-//the current location won't be stored, either
-
-if (GetAreaFromLocation(lTarget)==OBJECT_INVALID) return;
-
-AssignCommand(oPC, ClearAllActions());
-
-AssignCommand(oPC, ActionJumpToLocation(lTarget));
-
-oTarget = GetObjectByTag("miningwellrogue4");
-
-SoundObjectStop(oTarget);
-      ActionPlayAnimation(ANIMATION_PLACEABLE_CLOSE);
-      DelayCommand(5.0, ActionPlayAnimation(ANIMATION_PLACEABLE_OPEN));
+        oTarget = GetObjectByTag("miningwellrogue4");
+        SoundObjectStop(oTarget);
+        ActionPlayAnimation(ANIMATION_PLACEABLE_CLOSE);
+        DelayCommand(5.0, ActionPlayAnimation(ANIMATION_PLACEABLE_OPEN));
+    }
 }
-

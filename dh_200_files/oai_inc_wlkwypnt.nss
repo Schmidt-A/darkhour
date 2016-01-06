@@ -41,9 +41,7 @@ string GetStringPrefix(string sPrefix, object oWalker = OBJECT_SELF);
 void WalkWayPoints(int nRun = FALSE, float fPause = 1.0)  //Run first circuit
 {
     if(CheckWayPoints())
-    {
       ClearAllActions();
-    }
 
     string NightWayString;
     string NightPostString;
@@ -75,16 +73,13 @@ void WalkWayPoints(int nRun = FALSE, float fPause = 1.0)  //Run first circuit
     //I have now determined what the prefixs for the current walkways and postings are and will use them instead
     // of POST_ and WP_
 
+    // Will hide all the time, when they walk
     if(GetSpawnInCondition(NW_FLAG_STEALTH))
-    {
-      // Will hide all the time, when they walk
       ActionUseSkill(SKILL_HIDE, OBJECT_SELF);
-    }
+
+    // Will search all the time, when they walk, or if we are not going to move.
     else if(GetSpawnInCondition(NW_FLAG_SEARCH))
-    {
-      // Will search all the time, when they walk, or if we are not going to move.
       ActionUseSkill(SKILL_SEARCH, OBJECT_SELF);
-    }
 
     //Test if OBJECT_SELF has waypoints to walk
     string sWayTag = GetTag(OBJECT_SELF);
@@ -92,9 +87,7 @@ void WalkWayPoints(int nRun = FALSE, float fPause = 1.0)  //Run first circuit
     object oWay1 = GetNearestObjectByTag(sWayTag);
     // Get the object, if nearest (IE in area one) is not valid.
     if(!GetIsObjectValid(oWay1))
-    {
       oWay1 = GetObjectByTag(sWayTag);
-    }
 
     if(GetIsObjectValid(oWay1))
     {

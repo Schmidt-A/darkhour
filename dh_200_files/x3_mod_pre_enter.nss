@@ -169,6 +169,7 @@ void main()
     {
         object oWRing = CreateItemOnObject("warriorring",oPC);
     }
+
     if (GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
         SubraceLogin(oPC, TRUE);
 
@@ -183,62 +184,19 @@ void main()
         oCheckDisease = GetNextItemInInventory(oPC);
     }
     if (nDisease >= 10)
+        DelayCommand(0.5, PortToWaypoint(oPC, "lostsoularrive"));
+
+    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
+        OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
     {
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(GetLocation(GetWaypointByTag("lostsoularrive")))));
+        DelayCommand(0.5, PortToWaypoint(oPC, "GoToFugue"));
     }
 
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken"))
-    {
-//      effect eDeath = EffectDeath();
-//      ApplyEffectToObject(DURATION_TYPE_INSTANT,eDeath,oPC);
-
-        int nAlign = GetAlignmentGoodEvil(oPC);
-        location lLoc;
-        if (nAlign == ALIGNMENT_EVIL)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else if (nAlign == ALIGNMENT_GOOD)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
-    }
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
-    {
-//      effect eDeath = EffectDeath();
-//      ApplyEffectToObject(DURATION_TYPE_INSTANT,eDeath,oPC);
-
-        int nAlign = GetAlignmentGoodEvil(oPC);
-        location lLoc;
-        if (nAlign == ALIGNMENT_EVIL)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else if (nAlign == ALIGNMENT_GOOD)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
-    }
-
-
-
-
-    // If the entering object happens to be a DM and they don't have a PC list item,
-    // give one to them.
     if (GetIsDM(oPC) && GetItemPossessedBy(oPC, "PC_LIST") == OBJECT_INVALID)
-    {CreateItemOnObject("pc_list", oPC, 1);}
+        CreateItemOnObject("pc_list", oPC, 1);
 
     ExecuteScript("window_mod_enter", OBJECT_SELF);
+
     //DISEASE ADDITION - DEMON X
     if(GetItemPossessedBy(oPC,"ZombieDisease") != OBJECT_INVALID && GetLocalInt(oPC,"DiseaseApplied") != TRUE)
     {
