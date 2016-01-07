@@ -1,6 +1,16 @@
-// Wrapper for the Dark Hour module <-thanks
-
 // Cleaned up by some fag Zunath on July 26, 2007    <- Think you're old yet?
+
+// Since we want to keep our activate scripts organized, we'll preface them
+// all with "ac_". Since script resource names can only be 16 characters,
+// if we have an item tag that is > 13 characters we'll have to truncate it.
+string GetActivateScript(string sItemTag)
+{
+    if(GetStringLength(sItemTag) > 13)
+        sItemTag = GetStringLeft(sItemTag, 13);
+    sItemTag = GetStringLowerCase(sItemTag);
+
+    return sItemTag;
+}
 
 void main()
 {
@@ -11,90 +21,17 @@ void main()
     string sItemTag = GetTag(oItem);
     string sItemResRef = GetResRef(GetItemActivated());
     object oTarget2;
+
     // DEMON X ADD -- holy, didn't know you guys weren't using Tag based Scripting... Much more Useful!
     // Vision -- What is this, the stone age? ;)
     // Naiatis -- YOU'RE BOTH GAY
-    ExecuteScript("ac_"+sItemTag, oPC);
-    // DM Item Modifier
-    // Thanks Vision
-    if(sItemTag == "DM_Item_Manipulator")
+    // Tweek -- putting an end to this madness.
+    ExecuteScript(GetActivateScript(sItemTag), OBJECT_SELF);
+    else if(sItemTag == "scavenger" || sItemTag == "ExtraScavenger")
     {
-        if(GetIsObjectValid(oTarget) == TRUE && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
-        {
-            SetLocalObject(oPC, "TARGETED_ITEM", oTarget);
-            AssignCommand(oPC, ActionStartConversation(oPC, "dm_wand_item", TRUE, FALSE));
-            return;
-        }
-        else
-            SendMessageToPC(oPC, "That is not a valid item");
-
-        return;
-    }
-
-//  ExecuteScript("dmfi_activate", GetItemActivator());
-    if(sItemTag == "td_it_quillpen")
-        {
-        ExecuteScript("td_it_quillpen", oPC);
-        return;
-        }
-    else if(sItemTag == "dmfi_pc_follow")
-        {
-            if (GetIsObjectValid(oTarget))
-            {
-                FloatingTextStringOnCreature("Now following "+ GetName(oTarget),oPC, FALSE);
-                DelayCommand(2.0f, AssignCommand(oPC, ActionForceFollowObject(oTarget, 2.0f)));
-            }
-            return;
-        }
-    else if(sItemTag == "stag_horns")
-    {
-        effect eEffect = EffectRegenerate(3, 2.0f);
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 12.0f);
-    }
-    else if(sItemTag == "scavenger")
-        {
         ExecuteScript("use_scavenger", oPC);
         return;
-        }
-    else if(sItemTag == "ExtraScavenger")
-        {
-        ExecuteScript("use_scavenger", oPC);
-        return;
-        }
-    else if(GetStringLeft(sItemResRef, 13) == "artifactpiece")
-        {
-        ExecuteScript("artifact_join", oPC);
-        return;
-        }
-    else if(GetStringLeft(sItemTag, 13) == "tradeablecraf")
-        {
-        object oCrafting = GetItemPossessedBy(oPC, "craftingitem");
-        int iAmount = GetLocalInt(oCrafting, "crafting");
-        if(GetStringRight(sItemTag, 3) == "100")
-            {
-            SetLocalInt(oCrafting, "crafting", iAmount + 100);
-            iAmount = GetLocalInt(oCrafting, "crafting");
-            SendMessageToPC(oPC, "You now have " + IntToString(iAmount) + " crafting points.");
-            return;
-            }
-        else if(GetStringRight(sItemTag, 3) == "200")
-            {
-            SetLocalInt(oCrafting, "crafting", iAmount + 200);
-            iAmount = GetLocalInt(oCrafting, "crafting");
-            SendMessageToPC(oPC, "You now have " + IntToString(iAmount) + " crafting points.");
-            return;
-            }
-        else if(GetStringRight(sItemTag, 3) == "500")
-            {
-            SetLocalInt(oCrafting, "crafting", iAmount + 500);
-            iAmount = GetLocalInt(oCrafting, "crafting");
-            SendMessageToPC(oPC, "You now have " + IntToString(iAmount) + " crafting points.");
-            return;
-            }
-        }
-    ExecuteScript("create_candle", oPC);
-    ExecuteScript("create_wbread", oPC);
-    ExecuteScript("disease_clear", oPC);
+    }
     ExecuteScript("tanto_seppuku", oPC);
     ExecuteScript("purify_spoils", oPC);
     ExecuteScript("forage_remedy", oPC);
