@@ -2,9 +2,9 @@
 
 void DoSunDesPort(object oPC)
 {
-    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDispelMagicAll(40), oUser);
+    ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDispelMagicAll(40), oPC);
     effect eVanish = EffectVisualEffect(VFX_FNF_PWSTUN);
-    ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVanish, GetLocation(oUser));
+    ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVanish, GetLocation(oPC));
     DelayCommand(1.0, PortToWaypoint(oPC, "ZHOBUSSTART"));
 }
 
