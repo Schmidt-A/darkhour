@@ -1,9 +1,0 @@
-#include "inc_bs_module"
-#include "aw_include"
-int StartingConditional()
-{
-    int iResult;
-    object oPC = GetPCSpeaker();
-    iResult = (GetLocalInt(oPC, "MapVote") == 0 || GetIsDMAW(oPC));
-    return iResult;
-}
