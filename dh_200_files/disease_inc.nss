@@ -1,24 +1,26 @@
+// Tweek: Hooooly moly does this one need some revisiting.
+
 /* ChronusH: Modified routines to use a standard applier to more accurately
     remove effect and apply them. */
 void RemoveDiseasedEffects(object oPC)
 {         /*
-AssignCommand(oPC, ClearAllActions());
-int iHP = GetMaxHitPoints(oPC) - GetCurrentHitPoints(oPC);
-if(iHP > 0)
+             AssignCommand(oPC, ClearAllActions());
+             int iHP = GetMaxHitPoints(oPC) - GetCurrentHitPoints(oPC);
+             if(iHP > 0)
+             {
+             DelayCommand(0.2, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(iHP), oPC));
+             }
+             AssignCommand(oPC, ActionCastSpellAtObject(SPELL_GREATER_RESTORATION, OBJECT_SELF, METAMAGIC_ANY, TRUE, 0 ,PROJECTILE_PATH_TYPE_DEFAULT, TRUE));
+           */
+    object oApplier = GetObjectByTag("Disease_Applier");
+    effect eEffect = GetFirstEffect(oPC);
+    while(GetIsEffectValid(eEffect))
     {
-    DelayCommand(0.2, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(iHP), oPC));
-    }
-AssignCommand(oPC, ActionCastSpellAtObject(SPELL_GREATER_RESTORATION, OBJECT_SELF, METAMAGIC_ANY, TRUE, 0 ,PROJECTILE_PATH_TYPE_DEFAULT, TRUE));
-*/
-object oApplier = GetObjectByTag("Disease_Applier");
-effect eEffect = GetFirstEffect(oPC);
-while(GetIsEffectValid(eEffect))
-    {
-    if(GetEffectCreator(eEffect) == oApplier)
-    {
-        RemoveEffect(oPC,eEffect);
-    }
-    eEffect = GetNextEffect(oPC);
+        if(GetEffectCreator(eEffect) == oApplier)
+        {
+            RemoveEffect(oPC,eEffect);
+        }
+        eEffect = GetNextEffect(oPC);
     }
 }
 void RemoveDiseaseEffects(object oPC)
