@@ -1,5 +1,12 @@
 void main()
 {
-    object oPC = GetItemActivator();
-    AssignCommand(oPC, ActionStartConversation(oPC, "barricadecreatio", TRUE));
+    object oPC = GetPCSpeaker();
+    oItem = GetItemPossessedBy(oPC, "rotd_wood");
+
+    if(oItem != OBJECT_INVALID)
+    {
+        DestroyObject(oItem);
+        CreateItemOnObject("barricadesupplie", oPC);
+    }
 }
+
