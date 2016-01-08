@@ -27,14 +27,15 @@ void main()
 
     ExecuteScript(GetActivateScript(sItemTag), OBJECT_SELF);
 
-    // This is here for now until we refactor the scavenger.
+    // Ideally we can get rid of this but for now we have to keep these
+    // two extra cases.
     if(sItemTag == "scavenger" || sItemTag == "ExtraScavenger")
     {
         ExecuteScript("use_scavenger", oPC);
         return;
     }
 
-    // NOT using some massive switch statement or if string for this.
+    // NOT using some massive if string for this.
     string sInstruments = "ZEP_PIPES2 ZEP_TAMBOURINE2 ZEP_LUTE2 ZEP_FLUTE2 " +
                          "ZEP_HARP2 ZEP_DRUMS2";
     if(FindSubstring(sInstruments, sItemTag) > -1)
@@ -44,24 +45,4 @@ void main()
         AssignCommand(oPC, ActionStartConversation(oPC, sConvo));
         return;
     }
-
-    else if (sItemTag == "professionpc") AssignCommand(oPC, ActionStartConversation(oPC, "profession", TRUE));
-    else if (sItemTag == "alchbook001")
-        {
-        if (GetItemPossessedBy(oPC, "CraftingNecklace") != OBJECT_INVALID)
-            {
-            return;
-            }
-        AssignCommand(oPC, ActionStartConversation(oPC, "newalchemy", TRUE));
-        }
-    else if (sItemTag == "BarricadeCreator") AssignCommand(oPC, ActionStartConversation(oPC, "barricadecreatio", TRUE));
-    else if (sItemTag == "DyeKit") AssignCommand(oPC, ActionStartConversation(oPC, "dye_dyekit", TRUE));
-    else if (sItemTag == "telestone")
-        {
-        AssignCommand(oPC, ActionStartConversation(oPC, "telestoneconvers", TRUE));
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectDispelMagicAll(40), oPC);
-        }
-     if(GetTag(GetItemActivated())=="SubdualModeTog")
-        AssignCommand(GetItemActivator(),ActionStartConversation(GetItemActivator(),"subdualconv",TRUE));
-
 }
