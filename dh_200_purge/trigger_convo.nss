@@ -6,5 +6,5 @@ void main()
         return;
 
     string sConversation = GetLocalString(OBJECT_SELF, "sConversation");
-    ActionStartConversation(oPC, sConversation);
+    AssignCommand(oPC, ActionStartConversation(oPC, sConversation));
 }

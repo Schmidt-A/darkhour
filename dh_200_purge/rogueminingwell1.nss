@@ -33,7 +33,8 @@ void main()
       ActionPlayAnimation(ANIMATION_PLACEABLE_OPEN);
     else
     {
-        if (!GetIsPC(oPC)) return;
+        if (!GetIsPC(oPC))
+            return;
 
         object oTarget = GetObjectByTag("miningwellrogue");
         SoundObjectPlay(oTarget);
