@@ -1,5 +1,42 @@
 #include "x2_i0_spells"
 
+/* Make sure the bard can at LEAST cast the lowest tier bardsong
+ * before boosting. */
+int CanBoost(object oBardtoken, string sBoost, int nPerform);
+
+/* Add a boost to the bard's token so long as its within their limit */
+void SetupBoost(object oBardToken, string sBoost);
+
+/* This gets called every time a level up happens. We need to see if a bard
+ * has gained access to a new boost (that they don't already have of course). */
+void SetBardBoosts(object oPC, object oBardToken);
+
+/* This gets called every time a level up happens. We need to see if a bard
+ * has gained access to a new boost (that they don't already have of course). */
+void SetBardBoosts(object oPC, object oBardToken);
+
+/* Called the first time a bard logs in. Bards with less than 14 charisma will
+ * not receive any boosts since they are inelligible. */
+void SetupNewBard(object oPC);
+
+/* Returns the amount of HP that a healing-boost bardsong should restore. */
+int GetHealValue(object oPC);
+
+/* Returns the duration of the speed increase granted by the Artist boost. */
+int GetHasteDuration(object oPC);
+
+/* This is essentially just the Bioware implementation. Added so that we can
+ * preserve feat uses if the bard has the Lingering boost, and also up its
+ * damage if they have the Curse boost. */
+void DoCurseSong(int bDecrementUses);
+
+int CanBoost(object oBardtoken, string sBoost, int nPerform)
+{
+    if(GetLocalInt(oBardtoken, sBoost)&& nPerform >= 3)
+        return TRUE;
+    return FALSE;
+}
+
 void SetupBoost(object oBardToken, string sBoost)
 {
     int iActiveBoosts = GetLocalInt(oBardToken, "iBoosts");
@@ -47,21 +84,12 @@ void SetupNewBard(object oPC)
     else
         SetLocalInt(oBardToken, "iMaxBoosts", 1);
 
-    // Bard boosts are restricted to those who have a base cha of 14
     if(GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) < 14)
         SetLocalInt(oBardToken, "iMaxBoosts", 0);
 
     SetLocalInt(oBardToken, "iBardLevel", 1);
 
     SetBardBoosts(oPC, oBardToken);
-}
-
-// Make sure the bard can at LEAST cast the lowest tier bardsong before boosting.
-int CanBoost(object oBardtoken, string sBoost, int nPerform)
-{
-    if(GetLocalInt(oBardtoken, sBoost)&& nPerform >= 3)
-        return TRUE;
-    return FALSE;
 }
 
 int GetHealValue(object oPC)
@@ -239,6 +267,7 @@ void DoCurseSong(int bDecrementUses)
                 }
                 // Bards with lingering song can re-apply their damage
                 // (if they have SF:Necromancy)
+                // TODO: Dimishing damage returns if it was reused
                 else if(CanBoost(oBardToken, "bLingering", nPerform))
                     DelayCommand(0.01, ApplyEffectToObject(DURATION_TYPE_INSTANT, eHP, oTarget));
             }

@@ -3,12 +3,14 @@
 
 void main()
 {
+    // Tweek TODO: Put most of this in _incl_bard
     object oPC = GetPCLevellingUp();
     object oBardToken = GetItemPossessedBy(oPC, "bard_boosts");
     int iLastBardLevels = GetLocalInt(oBardToken, "iBardLevel");
     int iBardLevels = GetLevelByClass(CLASS_TYPE_BARD, oPC);
 
     // Not a bard level, don't care
+    // TODO: Need to call refactored include function if it IS rather than isn't a bard level
     if(iBardLevels < 1 || iBardLevels == iLastBardLevels)
     {
         SendMessageToPC(oPC, "Wasn't a bard level");
@@ -30,7 +32,8 @@ void main()
                     IntToString(GetLocalInt(oBardToken, "iMaxBoosts")));
     }
 
-    if(iBardLevels == 2)
+    // TODO: probably need a way to provide this later if they increase their cha
+    if(iBardLevels == 2 && GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 14)
     {
         AddKnownFeat(oPC, FEAT_CURSE_SONG, 2);
         AddKnownFeat(oPC, FEAT_EXTRA_MUSIC, 2);
