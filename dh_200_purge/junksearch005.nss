@@ -111,9 +111,7 @@ void main()
     {
        sWhat = "craftingpoints";
     }
-    int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
-    if(DEBUG)
-        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
+
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 

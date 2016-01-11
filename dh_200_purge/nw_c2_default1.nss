@@ -17,86 +17,111 @@
 //:: Created On: 12/22/2002
 //:://////////////////////////////////////////////////
 
+/*
+  Refactored by Tweek Jan 2016
+  Note: I got rid of all the "SunDesGate" related door-attacking. That's
+  not even the tag that is used for SunDes entrances so I don't think it's
+  doing anything. Also removed DM-triggered frenzies for now because it needs
+  better implementation.
+*/
+
 #include "nw_i0_generic"
+
+void ApplyFrenzy(object oSkin)
+{
+    itemproperty ipLoop = GetFirstItemProperty(oSkin);
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
+                        ExtraordinaryEffect(EffectHaste()),OBJECT_SELF);
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
+                        ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_PARALYZED)),OBJECT_SELF);
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
+                        ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_STRENGTH,d4(1))),OBJECT_SELF);
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
+                        ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_CONSTITUTION,d4(1))),OBJECT_SELF);
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
+                        ExtraordinaryEffect(EffectSeeInvisible()),OBJECT_SELF);
+
+    while (GetIsItemPropertyValid(ipLoop))
+    {
+        //If ipLoop is a true seeing property, remove it
+        if (GetItemPropertyType(ipLoop) == ITEM_PROPERTY_SPECIAL_WALK)
+        RemoveItemProperty(oSkin, ipLoop);
+        ipLoop = GetNextItemProperty(oSkin);
+    }
+}
+
+void RemoveFrenzy(object oSkin)
+{
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySpecialWalk(), oSkin);
+
+    effect eLoop = GetFirstEffect(OBJECT_SELF);
+    while (GetIsEffectValid(eLoop))
+    {
+        if (GetEffectType(eLoop) == EFFECT_TYPE_ABILITY_INCREASE ||
+            GetEffectType(eLoop) == EFFECT_TYPE_HASTE ||
+            GetEffectType(eLoop) == EFFECT_TYPE_VISUALEFFECT ||
+            GetEffectType(eLoop) == EFFECT_TYPE_SEEINVISIBLE)
+        {
+            RemoveEffect(OBJECT_SELF, eLoop);
+        }
+        eLoop=GetNextEffect(OBJECT_SELF);
+    }
+}
+
+void BehemothEndRampage()
+{
+    SetLocalInt(OBJECT_SELF, "rampaging", FALSE);
+
+    effect eLoop = GetFirstEffect(OBJECT_SELF);
+    while (GetIsEffectValid(eLoop))
+    {
+        if (GetEffectType(eLoop) == EFFECT_TYPE_VISUALEFFECT ||
+            GetEffectType(eLoop) == EFFECT_TYPE_MOVEMENT_SPEED_INCREASE)
+        {
+            RemoveEffect(OBJECT_SELF, eLoop);
+        }
+        eLoop=GetNextEffect(OBJECT_SELF);
+    }
+    SpeakString("With the worst of its injuries having renegerated, the hulking " +
+            "beast seems placated... For now.", TALKVOLUME_TALK);
+}
 
 void main()
 {
-    if(GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR, PLAYER_CHAR_IS_PC) == OBJECT_INVALID)
-        {
+    // Bail if we're not a zombie or there're no PCs around.
+    if(GetRacialType(OBJECT_SELF) != RACIAL_TYPE_UNDEAD ||
+       GetNearestCreature(CREATURE_TYPE_PLAYER_CHAR,
+                          PLAYER_CHAR_IS_PC) == OBJECT_INVALID)
         return;
-        }
-    if(GetTag(OBJECT_SELF) == "huggles")
-        {
-        return;
-        }
-    object oBadToken = GetItemPossessedBy(OBJECT_SELF,"DeathToken");
-    int nMove = GetLocalInt(OBJECT_SELF,"MovementSpeed");
-    object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR);
+
+    int nMove        = GetLocalInt(OBJECT_SELF, "MovementSpeed");
+    int nTime        = GetTimeHour();
+    object oSkin     = GetItemInSlot(INVENTORY_SLOT_CARMOUR);
+    object oBadToken = GetItemPossessedBy(OBJECT_SELF, "DeathToken");
+
+    // I'm not sure why we're doing this.
     if (oBadToken != OBJECT_INVALID)
-    {
         DestroyObject(oBadToken);
-    }
-    int nDMFrenzy = GetLocalInt(OBJECT_SELF,"DM_Frenzy");
-    int nDMMove = GetLocalInt(OBJECT_SELF,"DM_MovementSpeed");
-    int nTime = GetTimeHour();
+
     if(nTime==0 && nMove != 1)
     {
-    SetLocalInt(OBJECT_SELF,"MovementSpeed",1);
-    itemproperty ipLoop=GetFirstItemProperty(oSkin);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectHaste()),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_PARALYZED)),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_STRENGTH,d4(1))),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_CONSTITUTION,d4(1))),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectSeeInvisible()),OBJECT_SELF);
-    //Loop for as long as the ipLoop variable is valid
-    while (GetIsItemPropertyValid(ipLoop))
-        {
-        //If ipLoop is a true seeing property, remove it
-        if (GetItemPropertyType(ipLoop)==ITEM_PROPERTY_SPECIAL_WALK)
-        RemoveItemProperty(oSkin, ipLoop);
-
-        //Next itemproperty on the list...
-        ipLoop=GetNextItemProperty(oSkin);
-        }
+        SetLocalInt(OBJECT_SELF,"MovementSpeed", 1);
+        ApplyFrenzy(oSkin);
     }
-    else if(nTime!=0 && nMove ==1)
+    else if(nTime != 0 && nMove == 1)
     {
-    SetLocalInt(OBJECT_SELF,"MovementSpeed",0);
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySpecialWalk(),oSkin);
-    effect eLoop=GetFirstEffect(OBJECT_SELF);
-    while (GetIsEffectValid(eLoop))
-        {
-            if (GetEffectType(eLoop)==EFFECT_TYPE_ABILITY_INCREASE || GetEffectType(eLoop)==EFFECT_TYPE_HASTE || GetEffectType(eLoop)==EFFECT_TYPE_VISUALEFFECT || GetEffectType(eLoop)==EFFECT_TYPE_SEEINVISIBLE)
-            {RemoveEffect(OBJECT_SELF, eLoop);}
-            eLoop=GetNextEffect(OBJECT_SELF);
-        }
+        SetLocalInt(OBJECT_SELF,"MovementSpeed", 0);
+        RemoveFrenzy(oSkin);
     }
-
-    if(nDMFrenzy==TRUE && nDMMove != 1)
+    // If we're a behemoth, see if we should stop rampaging.
+    if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB" && GetLocalInt(OBJECT_SELF, "rampaging"))
     {
-    SetLocalInt(OBJECT_SELF,"DM_MovementSpeed",1);
-    itemproperty ipLoop=GetFirstItemProperty(oSkin);
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY,ExtraordinaryEffect(EffectHaste()),OBJECT_SELF,120.0);
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY,ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_PARALYZED)),OBJECT_SELF,120.0);
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY,ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_STRENGTH,d4(1))),OBJECT_SELF,120.0);
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY,ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_CONSTITUTION,d4(1))),OBJECT_SELF,120.0);
-    //Loop for as long as the ipLoop variable is valid
-    while (GetIsItemPropertyValid(ipLoop))
-        {
-        //If ipLoop is a true seeing property, remove it
-        if (GetItemPropertyType(ipLoop)==ITEM_PROPERTY_SPECIAL_WALK)
-        RemoveItemProperty(oSkin, ipLoop);
-
-        //Next itemproperty on the list...
-        ipLoop=GetNextItemProperty(oSkin);
-        }
+        if(GetPercentageHPLoss(OBJECT_SELF) > 64)
+            BehemothEndRampage();
     }
-    else if(nDMFrenzy==FALSE && nDMMove ==1)
-    {
-    SetLocalInt(OBJECT_SELF,"DM_MovementSpeed",0);
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySpecialWalk(),oSkin);
-    }
-    if ((GetCurrentAction() == ACTION_INVALID) && (GetLocalInt(OBJECT_SELF,"feeding") == 0) && (GetTag(OBJECT_SELF) != "ZN_ZOMBIEL"))
+    if (GetCurrentAction() == ACTION_INVALID &&
+        GetLocalInt(OBJECT_SELF,"feeding") == 0 &&
+        GetTag(OBJECT_SELF) != "ZN_ZOMBIEL")
     {
         ClearAllActions();
         ActionRandomWalk();
@@ -123,63 +148,7 @@ void main()
         }
     }
 
-
-    if(GetHasEffect(EFFECT_TYPE_SLEEP))
-    {
-        // If we're asleep and this is the result of sleeping
-        // at night, apply the floating 'z's visual effect
-        // every so often
-
-        if(GetSpawnInCondition(NW_FLAG_SLEEPING_AT_NIGHT))
-        {
-            effect eVis = EffectVisualEffect(VFX_IMP_SLEEP);
-            if(d10() > 6)
-            {
-                ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, OBJECT_SELF);
-            }
-        }
-    }
-
-    // If we have the 'constant' waypoints flag set, walk to the next
-    // waypoint.
-//    else if ( GetWalkCondition(NW_WALK_FLAG_CONSTANT) )
-//    {
-//        WalkWayPoints();
-//    }
-
-    // Check to see if we should be playing default animations
-    // - make sure we don't have any current targets
-//  else if ( !GetIsObjectValid(GetAttemptedAttackTarget())
-//        && !GetIsObjectValid(GetAttemptedSpellTarget())
-//        // && !GetIsPostOrWalking())
-//        && !GetIsObjectValid(GetNearestSeenEnemy()))
-//  {
-//      if (GetBehaviorState(NW_FLAG_BEHAVIOR_SPECIAL) || GetBehaviorState(NW_FLAG_BEHAVIOR_OMNIVORE) ||
-//          GetBehaviorState(NW_FLAG_BEHAVIOR_HERBIVORE))
-//      {
-            // This handles special attacking/fleeing behavior
-            // for omnivores & herbivores.
-//          DetermineSpecialBehavior();
-//      }
-//      else if (!IsInConversation(OBJECT_SELF))
-//      {
-//          if (GetSpawnInCondition(NW_FLAG_AMBIENT_ANIMATIONS)
-//              || GetSpawnInCondition(NW_FLAG_AMBIENT_ANIMATIONS_AVIAN)
-//              || GetIsEncounterCreature())
-//          {
-//              PlayMobileAmbientAnimations();
-//          }
-//          else if (GetSpawnInCondition(NW_FLAG_IMMOBILE_AMBIENT_ANIMATIONS))
-//          {
-//              PlayImmobileAmbientAnimations();
-//          }
-//      }
-//  }
-
     // Send the user-defined event signal if specified
     if(GetSpawnInCondition(NW_FLAG_HEARTBEAT_EVENT))
-    {
         SignalEvent(OBJECT_SELF, EventUserDefined(EVENT_HEARTBEAT));
-    }
 }
-

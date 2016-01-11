@@ -50,18 +50,14 @@ void main()
         sWhat = "rotd_wood";
 
     }
+    else if (nFound < 41)
+    {    //Club
+        sWhat = "nw_wblcl001";
+    }
     else if (nFound < 42)
     {
         sWhat = "x1_wmgrenade002";
     }
-    else
-    {    //Club
-        sWhat = "nw_wblcl001";
-    }
-    int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
-    if(DEBUG)
-        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
-    /*
     else
     {
         int nBookNum = Random(10) + 1;
@@ -74,7 +70,6 @@ void main()
             sWhat = "zn_book0" + IntToString(nBookNum);
         }
     }
-    */
 
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.

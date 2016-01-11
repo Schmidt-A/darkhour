@@ -1,205 +1,76 @@
-//
-// enter_script -- This script, or the code from it, may be added to
-// onEnterModule if you wish to automatically give the scavenger object to
-// each player as they enter the module.
-//
-#include "_incl_location"
-#include "disease_inc"
-#include "x3_inc_horse"
+//::///////////////////////////////////////////////
+//:: Default On Enter for Module
+//:: x3_mod_def_enter
+//:: Copyright (c) 2008 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     This script adds the horse menus to the PCs.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Deva B. Winblood
+//:: Created On: Dec 30th, 2007
+//:: Last Update: April 21th, 2008
+//:://////////////////////////////////////////////
 
-void DMX_ITEMFIXES(object oPC)
-{
-if(GetItemPossessedBy(oPC,"pickrocks")==OBJECT_INVALID)
-    CreateItemOnObject("dmx_pickrocks",oPC);
-}
+#include "x3_inc_horse"
+#include "_incl_subrace"
+#include "nwnx_chat"
+
+// TODO: Move this to module variable
+string AUTH_DB_NAME = "AUTH";
+string FORUM_URL = "http://dhepilogue.boards.net/";
+
+void Authenticate(object oPC);
 
 void main()
 {
+    object oPC=GetEnteringObject();
 
-    object oPC = GetEnteringObject();
-    if(GetIsPC(oPC))
-    {
-        DMX_ITEMFIXES(oPC);
-    }
-    string sModName = GetName(GetModule());
-    if(GetHasFeat(FEAT_HORSE_MENU, oPC) == FALSE)
-    {
-    HorseAddHorseMenu(oPC);
-    }
-    if(GetCampaignInt(GetPCPlayerName(oPC)+"_BANNED",GetPCPlayerName(oPC))==TRUE)
-    {
-        BootPC(oPC);
-    }
-    else if(GetCampaignInt(GetPCIPAddress(oPC)+"_BANNED",GetPCIPAddress(oPC))==TRUE)
-    {
-        BootPC(oPC);
-    }
-    else if(GetCampaignInt(GetPCPublicCDKey(oPC)+"_BANNED",GetPCPublicCDKey(oPC))==TRUE)
-    {
-        BootPC(oPC);
-    }
-    string sName = GetName(oPC);
-    int nHitpoints = GetLocalInt(GetModule(),sName);
-    //Demon X6
-    if (GetPCPlayerName(oPC)=="ThisIsAFakeAccountNameLawl")
-    {
-        SendMessageToAllDMs (GetName(oPC) + " has entered the game.");
-        PrintString(GetName(oPC) + " has entered the game.");
-    }
-    else
-    {
-        SendMessageToAllDMs (GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
-        PrintString(GetName(oPC) + " is entering the game from: " + GetPCPublicCDKey(oPC) + " IP ADDRESS: " + GetPCIPAddress(oPC));
-    }
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
-    {
-        BootPC(oPC);
-    }
-    if (nHitpoints > 0)
-    {
-        int nLessHP = GetMaxHitPoints(oPC) - nHitpoints;
-        if (nLessHP > 0)
-        {
-            ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nLessHP),oPC);
-        }
-    }
-    AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
-    AddJournalQuestEntry("RULES2",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
-    AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
-    AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
-    AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
+    // nwnx_chat
+    dmb_PCin(oPC);
 
-    DelayCommand(12.0,SetLocalInt(oPC,"ingame",1));
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "scavenger")) && (GetIsDM(oPC) == FALSE))
-    {
-        ExecuteScript("setupnewstuff",oPC);
-    }
+    ExecuteScript("x3_mod_pre_enter",OBJECT_SELF); // Override for other skin systems
 
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "craftingitem")))
-     {
+    if ((GetIsPC(oPC)||GetIsDM(oPC))&&!GetHasFeat(FEAT_HORSE_MENU,oPC))
+    { // add horse menu
+        HorseAddHorseMenu(oPC);
+        if (GetLocalInt(GetModule(),"X3_ENABLE_MOUNT_DB"))
+        { // restore PC horse status from database
+            DelayCommand(2.0,HorseReloadFromDatabase(oPC,X3_HORSE_DATABASE));
+        } // restore PC horse status from database
+    } // add horse menu
+    if (GetIsPC(oPC))
+    { // more details
+        // restore appearance in case you export your character in mounted form, etc.
+        //if (!GetSkinInt(oPC,"bX3_IS_MOUNTED")) HorseIfNotDefaultAppearanceChange(oPC);
+        // pre-cache horse animations for player as attaching a tail to the model
 
-        object oCraft = CreateItemOnObject("craftingitem",oPC);
-     }
+        // Format : PC_ENTER:[pc name]
+        // Example: PC_ENTER:My PC
+        string sLog = "PC_ENTER:" + GetPCPlayerName(oPC) + " | " +
+                      GetName(oPC);
+        WriteTimestampedLogEntry(sLog);
 
-
-
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ROMM")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oMMRod = CreateItemOnObject("rodofmagicmissil",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ArcaneCloak")) && (GetIsDM(oPC) == FALSE) && ((GetLevelByClass(CLASS_TYPE_WIZARD,oPC)) + (GetLevelByClass(CLASS_TYPE_SORCERER,oPC)) > 0))
-    {
-        object oArCloak = CreateItemOnObject("arcanecloak",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "SheetMusic")) && (GetLevelByClass(CLASS_TYPE_BARD,oPC) > 0))
-    {
-        object oMuzak = CreateItemOnObject("sheetmusic",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "ExtraScavenger")) && (GetLevelByClass(CLASS_TYPE_ROGUE,oPC) > 0))
-    {
-            object oXtraScav = CreateItemOnObject("extrascavenger",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "FoodPurifier")) && (GetLevelByClass(CLASS_TYPE_DRUID,oPC) > 0))
-    {
-        object oFoodPure = CreateItemOnObject("foodpurifier",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "HerbalForager")) && (GetLevelByClass(CLASS_TYPE_DRUID,oPC) > 0))
-    {
-        object oHerbForage = CreateItemOnObject("herbalforager",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "Forager")) && (GetLevelByClass(CLASS_TYPE_RANGER,oPC) > 0))
-    {
-        object oForager = CreateItemOnObject("forager",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "MonkBoots")) && (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_BOOTS,oPC)) && (GetLevelByClass(CLASS_TYPE_MONK,oPC) > 0))
-    {
-        object oMBoots = CreateItemOnObject("monkboots",oPC);
-    }
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "WarriorRing")) && (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_RIGHTRING,oPC)) + (OBJECT_INVALID == GetItemInSlot(INVENTORY_SLOT_LEFTRING,oPC)) && ((GetLevelByClass(CLASS_TYPE_FIGHTER,oPC)) + (GetLevelByClass(CLASS_TYPE_BARBARIAN,oPC)) > 0) && GetItemPossessedBy(oPC, "w_telepring") == OBJECT_INVALID && GetCampaignInt(GetName(GetModule()), "Has_WRing", oPC) == 0)
-    {
-        SetCampaignInt(GetName(GetModule()), "Has_WRing", 1, oPC);
-        object oWRing = CreateItemOnObject("warriorring",oPC);
-    }
-
-    int nDisease = 0;
-    object oCheckDisease = GetFirstItemInInventory(oPC);
-    while (oCheckDisease != OBJECT_INVALID)
-    {
-        if (GetTag(oCheckDisease) == "ZombieDisease")
-        {
-            nDisease += 1;
-        }
-        oCheckDisease = GetNextItemInInventory(oPC);
-    }
-    if (nDisease >= 10)
-        DelayCommand(0.5, PortToWaypoint(oPC, "lostsoularrive"));
-
-    // TODO: Get rid of needing both.
-    if (GetItemPossessedBy(oPC, "DeathToken") != OBJECT_INVALID ||
-    	GetItemPossessedBy(oPC, "ReaperToken") != OBJECT_INVALID)
-    {
-    	DelayCommand(0.5, PortToWaypoint(oPC, "GoToFugue"));
-    }
-
-    // If the entering object happens to be a DM and they don't have a PC list item,
-    // give one to them.
-    if (GetIsDM(oPC) && GetItemPossessedBy(oPC, "PC_LIST") == OBJECT_INVALID)
-    {CreateItemOnObject("pc_list", oPC, 1);}
-
-    ExecuteScript("window_mod_enter", OBJECT_SELF);
-    //DISEASE ADDITION - DEMON X
-    if(GetItemPossessedBy(oPC,"ZombieDisease") != OBJECT_INVALID && GetLocalInt(oPC,"DiseaseApplied") != TRUE)
-    {
-    nDisease = 0;
-    oCheckDisease = GetFirstItemInInventory(oPC);
-    while (oCheckDisease != OBJECT_INVALID)
-    {
-        if (GetTag(oCheckDisease) == "ZombieDisease")
-        {
-            nDisease += 1;
-                if(nDisease == 2)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
-                    SetLocalInt(oPC,"DiseaseApplied",TRUE);
-                }
-                else if(nDisease == 3)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
-                }
-                else if(nDisease == 4)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
-                }
-                else if(nDisease == 5)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_INTELLIGENCE,2)),oPC);
-                }
-                else if(nDisease == 6)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_WISDOM,2)),oPC);
-                }
-                else if(nDisease == 7)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CHARISMA,2)),oPC);
-                }
-                else if(nDisease == 8)
-                {
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oPC);
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oPC);
-                    ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oPC);
-                }
-                else if(nDisease == 9)
-                {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectConfused(),oPC,IntToFloat(Random(60)+1));
-                }
-        }
-        oCheckDisease = GetNextItemInInventory(oPC);
-    }
+        HorsePreloadAnimations(oPC);
+        DelayCommand(3.0,HorseRestoreHenchmenLocations(oPC));
+        Authenticate(oPC);
+    } // more details
 }
 
+// Homebrew CD Key Authentication
+void Authenticate(object oPC)
+{
+    string sPlayerName = GetPCPlayerName(oPC);
+    string sKey        = GetPCPublicCDKey(oPC);
+    string sKeyVarName = "KEY_" + sPlayerName;
+    string sStoredKey  = GetCampaignString(AUTH_DB_NAME, sKeyVarName);
 
-     if(!GetIsObjectValid(GetItemPossessedBy(GetEnteringObject(),"SubdualModeTog")))
-       CreateItemOnObject("subdualmodetog",GetEnteringObject());
+    // First time this player has logged in
+    if(sStoredKey == "")
+        SetCampaignString(AUTH_DB_NAME, sKeyVarName, sKey);
+    else if(sStoredKey != sKey)
+    {
+        SendMessageToPC(oPC, "YOU HAVE LOGGED IN TO AN ACCOUNT BOUND TO ANOTHER CD KEY. IF THIS IS A MISTAKE AND YOU ARE THE REAL OWNER OF THIS ACCOUNT, CONTACT THE ADMINS AT " + FORUM_URL);
+        DelayCommand(15.0, BootPC(oPC)); // GTFO if your key is invalid
+    }
 }

@@ -34,12 +34,12 @@ void main()
     }
     else if (nFound < 6)
     {
-       sWhat = "bellale";
+       sWhat = "nw_wamar001";
        nAmount = Random(15) + 1;
     }
     else if (nFound < 9)
     {
-       sWhat = "nw_it_mpotion001";
+       sWhat = "nw_wambo001";
        nAmount = Random(15) + 1;
     }
     else if (nFound < 12)
@@ -52,68 +52,66 @@ void main()
     }
     else if (nFound < 18)
     {
-       sWhat = "tradebolts";
+       sWhat = "nw_wswsc001";
     }
     else if (nFound < 24)
     {
-       sWhat = "healersbeads";
+       sWhat = "nw_wblfl001";
     }
     else if (nFound < 27)
     {
-       sWhat = "performerschain";
+       sWhat = "nw_wdbqs001";
     }
     else if (nFound < 29)
     {
-       sWhat = "warriortrinket";
+       sWhat = "nw_wbwsh001";
     }
     else if (nFound < 31)
     {
-       sWhat = "sirandianroyal";
+       sWhat = "nw_wbwxl001";
     }
     else if (nFound < 33)
     {
-       sWhat = "tradegsword";
+       sWhat = "nw_wplss001";
     }
     else if (nFound < 35)
     {
-       sWhat = "ironclawbullets";
+       sWhat = "nw_wswls001";
     }
     else if (nFound < 37)
     {
-       sWhat = "halflingmilitary";
+       sWhat = "nw_waxbt001";
     }
     else if (nFound < 39)
     {
-       sWhat = "tradelongsword";
+       sWhat = "nw_wblml001";
     }
     else if (nFound < 40)
     {
-       sWhat = "hellianarrows";
+       sWhat = "nw_wbwxh001";
     }
     else if (nFound < 41)
     {
-       sWhat = "annedhellianbone";
+       sWhat = "nw_ashsw001";
     }
     else if (nFound < 42)
     {
-       sWhat = "tarosfurs";
+       sWhat = "nw_ashlw001";
     }
     else if (nFound < 43)
     {
-       sWhat = "cloth_anned2";
+       sWhat = "zep_chakram";
        nAmount = Random(15) + 1;
     }
     else if (nFound < 44)
     {
-       sWhat = "zep_tambourine";
+       sWhat = "zep_falchion";
     }
     else
     {
-       sWhat = "item011";
+       sWhat = "nw_wblml001";
     }
-                  int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
-    if(DEBUG)
-        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
+
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 

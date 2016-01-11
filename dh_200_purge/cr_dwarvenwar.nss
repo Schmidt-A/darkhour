@@ -2,5 +2,5 @@
 
 void main()
 {
-    Craft("cr_dwarvenwar", "mw_dwarvenwar", 450, FALSE);   
+    Craft("cr_dwarvenwaraxe", "mw_dwarvenwaraxe", 450, FALSE);   
 }

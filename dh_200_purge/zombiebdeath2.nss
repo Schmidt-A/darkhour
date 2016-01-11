@@ -15,6 +15,7 @@
 
 #include "x2_inc_compon"
 #include "x0_i0_spawncond"
+#include "_incl_xp"
 
 void main()
 {
@@ -62,7 +63,7 @@ void main()
 
     if (GetItemPossessedBy(oKiller, "badge26")== OBJECT_INVALID)
    {
-   GiveXPToCreature(oKiller, 100);
+   GiveXPToCreatureDH(oKiller, 100);
    FloatingTextStringOnCreature("You received a new badge!", oDamager, FALSE);
    CreateItemOnObject("badge026",oKiller);
 

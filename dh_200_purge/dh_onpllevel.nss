@@ -2,5 +2,5 @@
 
 void main()
 {
-    ExecuteScript("levelrestriction", OBJECT_SELF);
+    // Placeholder for now. We'll add bard stuff here.
 }

@@ -10,33 +10,6 @@
 //:: Created On: 07-20-2008
 //:://////////////////////////////////////////////
 
-void DMCommands(object oDM, string sCommand)
-{
-    if(GetSubString(sCommand,0,5) == "/help")
-    {
-        SendMessageToPC(oDM,"To use renaming and redescription functions, target someone with the Renamer Tool.");
-        SendMessageToPC(oDM,"Type /name NAME_HERE to rename");
-        SendMessageToPC(oDM,"Type /desc DESCRIPTION to change description");
-        SetPCChatMessage();
-    }
-    object oTarget = GetLocalObject(oDM,"RENAMER_OBJECT");
-    if(oTarget != OBJECT_INVALID)
-    {
-    if(GetSubString(sCommand,0,5) == "/name")
-        {
-            string sName = GetSubString(sCommand,6,GetStringLength(sCommand));
-            SetName(oTarget,sName);
-            SetPCChatMessage();
-        }
-    else if(GetSubString(sCommand,0,5) == "/desc")
-        {
-            string sDesc = GetSubString(sCommand,6,GetStringLength(sCommand));
-            SetDescription(oTarget,sDesc,TRUE);
-            SetPCChatMessage();
-        }
-    }
-}
-
 void main()
 {
     // find last player to speak a chat message.
@@ -45,9 +18,11 @@ void main()
     string sLastChat = GetPCChatMessage();
     // get volume of last chat messaage.
     int iVolume = GetPCChatVolume();
+    int iType = GetLocalInt(oPC, "DHDMTOOL");
+    int iType2 = GetLocalInt(oPC, "DHDMTOOL2");
     // dertemine if last chat was a talk.
     //
-    if (iVolume == TALKVOLUME_TALK)
+    if (iVolume == TALKVOLUME_TALK && iType == 0)
     {
         if ((GetStringLeft(sLastChat, 5)=="name-") || (GetStringLeft(sLastChat, 6)=="write-"))
             {
@@ -57,6 +32,38 @@ void main()
             DelayCommand(0.5,SetLocalString(oPC,"TD_QUILLCHAT", sLastChat));
             }
     }
-    if(GetIsDM(oPC))
-        DMCommands(oPC,sLastChat);
+    if(iType == 2)
+        {
+        DelayCommand(0.5, SetLocalString(oPC, "DHDMDESC", GetLocalString(oPC, "DHDMDESC") + sLastChat));
+        }
+    if(iType == 4)
+        {
+        DelayCommand(0.5, SetLocalString(oPC, "DHDMTAG", sLastChat));
+        }
+    if(iType == 5 || iType == 7)
+        {
+        DelayCommand(0.5, SetLocalInt(oPC, "DHDMAMNT", StringToInt(sLastChat)));
+        }
+    if(iType2 == 1 && GetStringLowerCase(sLastChat) == "ban")
+        {
+        string sCDK = GetLocalString(oPC, "DHDMCDK");
+        SetCampaignInt(sCDK + "_BANNED", sCDK, TRUE);
+        DeleteLocalInt(oPC, "DHDMTOOL2");
+        DeleteLocalString(oPC, "DHDMCDK");
+        SendMessageToPC(oPC, "This CDKey has been banned.");
+        }
+    if(GetStringLeft(GetName(oPC), 7) == "Unebril" && sLastChat == "/zack")
+        {
+        SetPCChatMessage("");
+        SendMessageToPC(oPC, "You are now going to set Zack's description. The next message you type will be the desciption.");
+        SetLocalInt(oPC, "settingzack", 1);
+        }
+    if(GetLocalInt(oPC, "settingzack") == 1)
+        {
+        SetPCChatMessage("");
+        SendMessageToPC(oPC, "You have set Zack's description to " + sLastChat);
+        DeleteLocalInt(oPC, "settingzack");
+        SetCampaignString(GetName(GetModule()), "ZACKDESC", sLastChat);
+        SetDescription(GetObjectByTag("Zack_Dog"), sLastChat);
+        }
 }

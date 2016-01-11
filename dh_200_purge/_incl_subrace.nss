@@ -1,22 +1,30 @@
-void SubraceLogin(object oPC, int bFirstLogin=FALSE);
-void SetupNextECLLevel(object oPC, object oItem);
+void SubraceLogin(object oPC);
+void SetupNextECLLevel(object oPC);
 
 int     GetLA(string sRace);
 string  GetSubraceSkinName(string sRace);
+string  GetDBVarName(object oPC);
 int     GetSubraceXP(int iLA);
 
-void SubraceLogin(object oPC, int bFirstLogin=FALSE)
+string GetDBVarName(object oPC)
 {
+    return GetSubString(GetPCPlayerName(oPC), 0, 8) + GetSubString(GetName(oPC), 0, 8);
+}
+
+void SubraceLogin(object oPC)
+{
+    string sPre = GetDBVarName(oPC);
+    // Don't do anything unless this is the first time logging in.
+    if(GetCampaignInt("SUBRACE", sPre+"enabled") == TRUE)
+        return;
+
     string sRace = GetStringLowerCase(GetSubRace(oPC));
     int iLA = GetLA(sRace);
 
-    // Equip subrace skin properties if it's the first login
-    if(bFirstLogin == TRUE)
-    {
-        object oSkin = CreateItemOnObject(GetSubraceSkinName(sRace), oPC);
-        AssignCommand(oPC, ActionEquipItem(oSkin, INVENTORY_SLOT_CARMOUR));
-    }
+    object oSkin = CreateItemOnObject(GetSubraceSkinName(sRace), oPC);
+    AssignCommand(oPC, ActionEquipItem(oSkin, INVENTORY_SLOT_CARMOUR));
 
+    SetCampaignInt("SUBRACE", sPre+"enabled", TRUE);
     // Don't need any more setup for a no-ECL subrace
     if(iLA < 1)
         return;
@@ -27,14 +35,15 @@ void SubraceLogin(object oPC, int bFirstLogin=FALSE)
         oItem = CreateItemOnObject("ecl_token", oPC);
 }
 
-void SetupNextECLLevel(object oPC, object oItem)
+void SetupNextECLLevel(object oPC)
 {
     int iBaseLevel = GetHitDice(oPC)+1;
-    int iECL = iBaseLevel + GetLocalInt(oItem, "iLA");
+    string sPre = GetDBVarName(oPC);
+    int iECL = iBaseLevel + GetCampaignInt("SUBRACE", sPre+"iLA");
 
-    SetLocalInt(oItem, "iECL", iECL);
-    SetLocalInt(oItem, "iRealXP", GetSubraceXP(iBaseLevel));
-    SetLocalInt(oItem, "iXPNeeded", GetSubraceXP(iECL));
+    SetCampaignInt("SUBRACE", sPre+"iECL", iECL);
+    SetCampaignInt("SUBRACE", sPre+"iRealXP", GetSubraceXP(iBaseLevel));
+    SetCampaignInt("SUBRACE", sPre+"iXPNeeded", GetSubraceXP(iECL));
 }
 
 int GetLA(string sRace)
@@ -72,7 +81,7 @@ string GetSubraceSkinName(string sRace)
         return "subracefiregenas";
     if(sRace == "gold dwarf")
         return "subracegolddwarf";
-    if(sRace == "grey elf")
+    if(sRace == "grey elf" || sRace == "gray elf")
         return "subracegrayelf";
     if(sRace == "steam genasi")
         return "subracesgenasi";

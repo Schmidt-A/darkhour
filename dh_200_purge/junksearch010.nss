@@ -45,6 +45,226 @@ void main()
        sWhat = "nw_it_gold001";
        nAmount = Random(20) + 10;
     }
+    else if (nFound < 21)
+    {
+       sWhat = "x2_it_dyec23";
+    }
+    else if (nFound < 22)
+    {
+       sWhat = "x2_it_dyec00";
+    }
+    else if (nFound < 23)
+    {
+       sWhat = "x2_it_dyec02";
+    }
+    else if (nFound < 24)
+    {
+       sWhat = "x2_it_dyec25";
+    }
+    else if (nFound < 25)
+    {
+       sWhat = "x2_it_dyec48";
+    }
+    else if (nFound < 26)
+    {
+       sWhat = "x2_it_dyec44";
+    }
+    else if (nFound < 27)
+    {
+       sWhat = "x2_it_dyec35";
+    }
+    else if (nFound < 28)
+    {
+       sWhat = "x2_it_dyec37";
+    }
+    else if (nFound < 29)
+    {
+       sWhat = "x2_it_dyec29";
+    }
+    else if (nFound < 30)
+    {
+       sWhat = "x2_it_dyec33";
+    }
+    else if (nFound < 31)
+    {
+       sWhat = "x2_it_dyec26";
+    }
+    else if (nFound < 32)
+    {
+       sWhat = "x2_it_dyec31";
+    }
+    else if (nFound < 33)
+    {
+       sWhat = "x2_it_dyec20";
+    }
+    else if (nFound < 34)
+    {
+       sWhat = "x2_it_dyec34";
+    }
+    else if (nFound < 35)
+    {
+       sWhat = "x2_it_dyec36";
+    }
+    else if (nFound < 36)
+    {
+       sWhat = "x2_it_dyec28";
+    }
+    else if (nFound < 37)
+    {
+       sWhat = "x2_it_dyec39";
+    }
+    else if (nFound < 38)
+    {
+       sWhat = "x2_it_dyec41";
+    }
+    else if (nFound < 39)
+    {
+       sWhat = "x2_it_dyec32";
+    }
+    else if (nFound < 40)
+    {
+       sWhat = "x2_it_dyel23";
+    }
+    else if (nFound < 41)
+    {
+       sWhat = "x2_it_dyel00";
+    }
+    else if (nFound < 42)
+    {
+       sWhat = "x2_it_dyel25";
+    }
+    else if (nFound < 43)
+    {
+       sWhat = "x2_it_dyel02";
+    }
+    else if (nFound < 44)
+    {
+       sWhat = "x2_it_dyel48";
+    }
+    else if (nFound < 45)
+    {
+       sWhat = "x2_it_dyel44";
+    }
+    else if (nFound < 46)
+    {
+       sWhat = "x2_it_dyel35";
+    }
+    else if (nFound < 47)
+    {
+       sWhat = "x2_it_dyel37";
+    }
+    else if (nFound < 48)
+    {
+       sWhat = "x2_it_dyel29";
+    }
+    else if (nFound < 49)
+    {
+       sWhat = "x2_it_dyel33";
+    }
+    else if (nFound < 50)
+    {
+       sWhat = "x2_it_dyel26";
+    }
+    else if (nFound < 51)
+    {
+       sWhat = "x2_it_dyel31";
+    }
+    else if (nFound < 52)
+    {
+       sWhat = "x2_it_dyel20";
+    }
+    else if (nFound < 53)
+    {
+       sWhat = "x2_it_dyel34";
+    }
+    else if (nFound < 54)
+    {
+       sWhat = "x2_it_dyel36";
+    }
+    else if (nFound < 55)
+    {
+       sWhat = "x2_it_dyel28";
+    }
+    else if (nFound < 56)
+    {
+       sWhat = "x2_it_dyel39";
+    }
+    else if (nFound < 57)
+    {
+       sWhat = "x2_it_dyel41";
+    }
+    else if (nFound < 58)
+    {
+       sWhat = "x2_it_dyel32";
+    }
+    else if (nFound < 59)
+    {
+       sWhat = "x2_it_dyem03";
+    }
+    else if (nFound < 60)
+    {
+       sWhat = "x2_it_dyem00";
+    }
+    else if (nFound < 61)
+    {
+       sWhat = "x2_it_dyem31";
+    }
+    else if (nFound < 62)
+    {
+       sWhat = "x2_it_dyem16";
+    }
+    else if (nFound < 63)
+    {
+       sWhat = "x2_it_dyem40";
+    }
+    else if (nFound < 64)
+    {
+       sWhat = "x2_it_dyem28";
+    }
+    else if (nFound < 65)
+    {
+       sWhat = "x2_it_dyem24";
+    }
+    else if (nFound < 66)
+    {
+       sWhat = "x2_it_dyem32";
+    }
+    else if (nFound < 67)
+    {
+       sWhat = "x2_it_dyem18";
+    }
+    else if (nFound < 68)
+    {
+       sWhat = "x2_it_dyem10";
+    }
+    else if (nFound < 69)
+    {
+       sWhat = "x2_it_dyem42";
+    }
+    else if (nFound < 70)
+    {
+       sWhat = "x2_it_dyem02";
+    }
+    else if (nFound < 71)
+    {
+       sWhat = "x2_it_dyem25";
+    }
+    else if (nFound < 72)
+    {
+       sWhat = "x2_it_dyem37";
+    }
+    else if (nFound < 73)
+    {
+       sWhat = "x2_it_dyem08";
+    }
+    else if (nFound < 74)
+    {
+       sWhat = "x2_it_dyem36";
+    }
+    else if (nFound < 75)
+    {
+       sWhat = "x2_it_dyem48";
+    }
     else if (nFound < 85)
     {
        sWhat = "craftingpoints";
@@ -53,9 +273,7 @@ void main()
     {
        sWhat = "craftingpoints";
     }
-    int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
-    if(DEBUG)
-        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
+
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 

@@ -48,9 +48,9 @@ void main()
 
             //Apply Buffs
             object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR,oZomb);
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(3)),oSkin);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(4)),oSkin);
             AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,d2(3)),oSkin);
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(3)),oSkin);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(4)),oSkin);
 
             location lGetOut = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
             AssignCommand( oZomb, ActionMoveToLocation(lGetOut) );

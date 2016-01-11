@@ -2,5 +2,5 @@
 
 void main()
 {
-    Craft("cr_hcrossbow", "mw_hcrossbow", 325, FALSE);   
+    Craft("cr_hxbow", "mw_hxbow", 325, FALSE);   
 }

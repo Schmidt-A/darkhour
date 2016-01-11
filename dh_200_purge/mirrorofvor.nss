@@ -5,7 +5,6 @@ For download info, please visit:
 http://nwvault.ign.com/View.php?view=Other.Detail&id=4683&id=625    */
 
 //Put this script OnUsed
-// Tweek - need to add a conditional to the trigger convo script
 void main()
 {
 

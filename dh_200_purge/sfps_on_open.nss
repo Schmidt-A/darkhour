@@ -1,15 +1,25 @@
+//------------------------------------------------------------------
+//             Spiffy Fox Persistent Storage system v2
+//
+// original version by Spiffy Fox
+// recode (v2) by Malishara
+//
+// sfps_open      OnOpen event for persistent storage containers
+//
+//------------------------------------------------------------------
+
+#include "sfps_inc"
+
+
 void main()
-{
-int iCount = 0;
-string sIPS = GetStringRight(GetTag(OBJECT_SELF), 5);
-object oItem;
-if(GetFirstItemInInventory() == OBJECT_INVALID && GetLocalInt(OBJECT_SELF, "BeenChecked") != 1)
-    {
-        while(iCount < 51)
-        {
-            oItem = RetrieveCampaignObject("Annakolia_PS_"+GetTag(OBJECT_SELF), "PS_in_"+GetTag(OBJECT_SELF)+"_item_"+IntToString(iCount), GetLocation(OBJECT_SELF), OBJECT_SELF);
-            iCount++;
-        }
-    }
-SetLocalInt(OBJECT_SELF, "BeenChecked", 1);
+{   int iAmtLoaded;
+    string sPrefix = GetLocalString(OBJECT_SELF, "sSFPS_Prefix");
+    if (sPrefix == "")
+    { sPrefix = "PS_"; }
+
+    int iVersion = GetCampaignInt(sPrefix + GetStringLeft(GetTag(OBJECT_SELF), 29), "PS_iVersion");
+    if (iVersion == 2)
+    { iAmtLoaded = ReadPS(OBJECT_SELF, GetStringLeft(GetTag(OBJECT_SELF), 29), sPrefix); }
+    else
+    { iAmtLoaded = ReadPS(OBJECT_SELF, GetStringLeft(GetTag(OBJECT_SELF), 19), "ANNAKOLIA_PS_", 1); }
 }
