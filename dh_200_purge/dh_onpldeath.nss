@@ -57,59 +57,21 @@ void Raise(object oPlayer)
 
 void main()
 {
-object oSaveMe = GetLastPlayerDied();
-SetLocalInt(oSaveMe, "raiseattempts", 0);
-if(GetTag(GetArea(oSaveMe)) == "UnknownArea")
+object oPC = GetLastPlayerDied();
+object oKiller = GetLastHostileActor(oPC);
+SetLocalInt(oPC, "raiseattempts", 0);
+if(GetTag(GetArea(oPC)) == "UnknownArea")
     {
-    Raise(oSaveMe);
-    DelayCommand(10.0, Raise(oSaveMe));
-    ExecuteScript("amalgkill", oSaveMe);
+    Raise(oPC);
+    DelayCommand(10.0, Raise(oPC));
+    ExecuteScript("amalgkill", oPC);
     return;
     }
-if (CheckSubdual(GetLastPlayerDied())) return;
+   if (CheckSubdual(GetLastPlayerDied())) return;
 
     object oPlayer = GetLastPlayerDied();
     // * increment global tracking number of times that I died
     SetLocalInt(oPlayer, "NW_L_PLAYER_DIED", GetLocalInt(oPlayer, "NW_L_PLAYER_DIED") + 1);
-
-    // * BK: Automation Control. Autopcs ignore death
-    if (GetLocalInt(oPlayer, "NW_L_AUTOMATION") == 10)
-    {
-        Raise(oPlayer);
-        DelayCommand(1.0, ExecuteScript("crawl", OBJECT_SELF));
-        return; // Raise and return
-    }
-
-
-    // * Handle Spirit of the Wood Death
-     string sArea = GetTag(GetArea(oPlayer));
-/*
-    if (sArea == "MAP_M2Q2F2" && GetDistanceBetweenLocations(GetLocation(GetObjectByTag("M2Q2F2_M2Q2G")), GetLocation(oPlayer)) < 5.0 && GetLocalInt(GetModule(),"NW_M2Q2E_WoodsFreed") == 0)
-    {
-        int bValid;
-
-        Raise(oPlayer);
-        string sDestTag = "WP_M2Q2GtoM2Q2F";
-        object oSpawnPoint = GetObjectByTag(sDestTag);
-        AssignCommand(oPlayer,JumpToLocation(GetLocation(oSpawnPoint)));
-        return;
-
-    }
-*/
-    // * in last level of the Sourcestone, move the player to the beginning of the area
-    // * May 16 2002: or the main area of the Snowglobe (to prevent plot logic problems).
-    // * May 21 2002: or Castle Never
-    if (sArea == "M4Q1D2" || sArea == "M3Q3C" || sArea == "MAP_M1Q6A")
-    {
-
-        //Raise(oPlayer);
-        //string sDestTag = "M4QD07_ENTER";
-        //object oSpawnPoint = GetObjectByTag(sDestTag);
-//        AssignCommand(oPlayer, DelayCommand(1.0, JumpToLocation(GetLocation(oSpawnPoint))));
-// * MAY 2002: Just popup the YOU ARE DEAD panel at this point
-        DelayCommand(2.5, PopUpDeathGUIPanel(oPlayer,FALSE, TRUE, 66487));
-        return;
-    }
 
     // * make friendly to Each of the 3 common factions
     AssignCommand(oPlayer, ClearAllActions());
@@ -127,11 +89,9 @@ if (CheckSubdual(GetLastPlayerDied())) return;
         SetStandardFactionReputation(STANDARD_FACTION_DEFENDER, 80, oPlayer);
     }
 
-//  DelayCommand(2.5, PopUpGUIPanel(oPlayer,GUI_PANEL_PLAYER_DEATH));
     if (OBJECT_INVALID != GetItemPossessedBy(oPlayer, "DeathToken"))
-    {
         DestroyObject(GetItemPossessedBy(oPlayer, "DeathToken"));
-    }
+
     location lDeathSpot = GetLocation(oPlayer);
     object oCorpse = CreateObject(OBJECT_TYPE_PLACEABLE,"playercorpse",lDeathSpot);
 
@@ -165,7 +125,14 @@ if (CheckSubdual(GetLastPlayerDied())) return;
     SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPlayer));
     SetName(oCorpse,GetName(oPlayer)+"'s Corpse");
     SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPlayer));
-    CreateItemOnObject("deathtoken",oPlayer);
-    CreateItemOnObject("reapertoken",oPlayer);
+    if(GetItemPossessedBy(oPlayer,"DeathToken")==OBJECT_INVALID)
+        CreateItemOnObject("deathtoken",oPlayer);
+    object oReaperToken = CreateItemOnObject("reapertoken",oPlayer);
+    if(GetRacialType(oKiller)==RACIAL_TYPE_UNDEAD)
+        {
+        SetLocalInt(oReaperToken,"ZOMBIEDEATH",TRUE);
+        //SendMessageToPC(oPlayer,"UNDEAD! ZOMBIE DEATH VARIABLE IS "+IntToString(GetLocalInt(oReaperToken,"ZOMBIEDEATH")));
+        }
+
     ExportSingleCharacter(oPlayer);
 }

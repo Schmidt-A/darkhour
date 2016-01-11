@@ -42,15 +42,12 @@ void main()
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_RAISE_DEAD, FALSE));
     if(GetIsDead(oTarget))
     {
-        SetLocalInt(oTarget, "raiseattempts", 0);
         //Apply raise dead effect and VFX impact
         ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eRaise, oTarget);
-        object oItem;
-oItem = GetItemPossessedBy(oTarget, "ReaperToken");
+        DestroyObject(GetItemPossessedBy(oTarget,"deathtoken"));
+        DestroyObject(GetItemPossessedBy(oTarget,"ReaperToken"));
 
-if (GetIsObjectValid(oItem))
-   DestroyObject(oItem);
     }
 }
 
