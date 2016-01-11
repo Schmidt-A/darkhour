@@ -1,4 +1,4 @@
-#include "_incl_bard"
+#include "_cls_bard"
 
 void main()
 {

@@ -1,4 +1,7 @@
+/* See conv_pos_1 for more info about how this is working. */
+
 #include "_incl_conv"
+
 void main()
 {
     object oPC = GetPCSpeaker();
