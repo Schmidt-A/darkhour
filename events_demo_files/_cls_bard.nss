@@ -1,4 +1,8 @@
 #include "x2_i0_spells"
+#include "nwnx_funcs"
+
+/* Called from the module OnLevel event. Handles granting our bard buffs. */
+void BardLevel(object oPC, object oBardToken, int iBardLevels);
 
 /* Make sure the bard can at LEAST cast the lowest tier bardsong
  * before boosting. */
@@ -29,6 +33,52 @@ int GetHasteDuration(object oPC);
  * preserve feat uses if the bard has the Lingering boost, and also up its
  * damage if they have the Curse boost. */
 void DoCurseSong(int bDecrementUses);
+
+
+void BardLevel(object oPC, object oBardToken, int iBardLevels)
+{
+    // New multiclass bard
+    if(iBardLevels == 1 && oBardToken == OBJECT_INVALID)
+        oBardToken = CreateItemOnObject("bard_boosts", oPC);
+
+    int iLastBardLevels = GetLocalInt(oBardToken, "iBardLevel");
+    SetLocalInt(oBardToken, "iBardLevel", iBardLevels);
+
+    if(iBardLevels == 3 || iBardLevels == 6 ||
+       (iLastBardLevels == 0 && iBardLevels == 1))
+    {
+        SetLocalInt(oBardToken, "iMaxBoosts",
+                    GetLocalInt(oBardToken, "iMaxBoosts")+1);
+    }
+
+    // TODO: probably need a way to provide this later if they increase their cha
+    if(iBardLevels == 2 && GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 14)
+    {
+        AddKnownFeat(oPC, FEAT_CURSE_SONG, 2);
+        AddKnownFeat(oPC, FEAT_EXTRA_MUSIC, 2);
+    }
+
+    // Increment the bard's level 4 boosted skill (if they have one)
+    if(iBardLevels > 4)
+    {
+        int iSkillBoosted = GetLocalInt(oBardToken, "iSkillID");
+        int iSkillPoints = GetPCSkillPoints(oPC);
+        // Only increment if they saved a point for it
+        if(iSkillBoosted && iSkillPoints > 0)
+        {
+            ModifySkillRank(oPC, iSkillBoosted, 1);
+            SetPCSkillPoints(oPC, iSkillPoints-1);
+        }
+    }
+
+    SetBardBoosts(oPC, oBardToken);
+
+    if(iBardLevels == 4 || iBardLevels == 8)
+    {
+        SetLocalString(oPC, "sConvScript", "conv_bardskills");
+        AssignCommand(oPC, ActionStartConversation(oPC, "bard_skills", FALSE));
+    }
+}
 
 int CanBoost(object oBardtoken, string sBoost, int nPerform)
 {

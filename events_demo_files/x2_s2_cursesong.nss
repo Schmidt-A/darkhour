@@ -20,7 +20,8 @@ Updated Dec 2015 for Dark Hour by Tweek.
 - duration increased;
 - buffs dependent on feats.
 */
-#include "_incl_bard"
+
+#include "_cls_bard"
 
 void main()
 {
