@@ -2,6 +2,6 @@
 
 void main()
 {
-    oPC = GetLastUsedBy();
+    object oPC = GetLastUsedBy();
     UniversalDoor(oPC, OBJECT_SELF);
 }

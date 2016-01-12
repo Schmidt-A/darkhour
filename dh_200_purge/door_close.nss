@@ -2,6 +2,6 @@
 
 void main()
 {
-    oPC = GetLastClosedBy();
+    object oPC = GetLastClosedBy();
     UniversalDoor(oPC);
 }

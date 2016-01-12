@@ -3,14 +3,14 @@ void main()
     object oPC = GetItemActivator();
     object oItem = GetItemPossessedBy(oPC, "FoodRaw");
 
-    if (GetItemPosseossedBy(oPC, "FoodRaw") != OBJECT_INVALID)
+    if (GetItemPossessedBy(oPC, "FoodRaw") != OBJECT_INVALID)
     {
         DestroyObject(oItem);
         CreateItemOnObject("cookedfood", oPC);
     }
     else if(GetItemPossessedBy(oPC, "preparedmeats") != OBJECT_INVALID)
     {
-        DestroyItem(GetItemPossessedBy(oPC, "preparedmeats"));
+        DestroyObject(GetItemPossessedBy(oPC, "preparedmeats"));
         CreateItemOnObject("cookedfood", oPC);
     }
     else

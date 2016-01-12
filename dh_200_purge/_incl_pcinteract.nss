@@ -1,7 +1,7 @@
 /* Driver for various door events that expects variables to cause desired
    behaviour.
 
- int bLockBehind   - usually goes OnOpen or OnClose. If set to TRUE will cause 
+ int bLockBehind   - usually goes OnOpen or OnClose. If set to TRUE will cause
                      door to lock behind the PC.
  float fLockDelay  - if the door should be locked but not right away, add a
                      number for this.
@@ -23,7 +23,7 @@ void UniversalDoor(object oPC, object oLever=OBJECT_INVALID)
 {
     if(oPC == OBJECT_INVALID)
     {
-        WriteTimestampedLogEntry("ERROR: Door " + GetTag(OBJECT_SELF) + 
+        WriteTimestampedLogEntry("ERROR: Door " + GetTag(OBJECT_SELF) +
                 " could not find its user.");
         return;
     }
@@ -53,8 +53,8 @@ void UniversalDoor(object oPC, object oLever=OBJECT_INVALID)
 
     if(bAnimation)
     {
-        AssignCommand(oLever, ACTION_PLACEABLE_ACTIVATE);
-        AssignCommand(oLever, ACTION_PLACEABLE_DEACTIVATE);
+        AssignCommand(oLever, ActionPlayAnimation(ANIMATION_PLACEABLE_ACTIVATE));
+        AssignCommand(oLever, ActionPlayAnimation(ANIMATION_PLACEABLE_DEACTIVATE));
     }
 
     if(bToggle)

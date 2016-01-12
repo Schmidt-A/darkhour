@@ -1,6 +1,6 @@
 /*
  Some notes as we proceed:
-    - forage_remedy is gone. If we're keeping that for rangers/druids, 
+    - forage_remedy is gone. If we're keeping that for rangers/druids,
     we need to think about that.
     - I also don't think the soul_banisher is every used. Removed.
 
@@ -38,9 +38,9 @@ void main()
     // NOT using some massive if string for this.
     string sInstruments = "ZEP_PIPES2 ZEP_TAMBOURINE2 ZEP_LUTE2 ZEP_FLUTE2 " +
                          "ZEP_HARP2 ZEP_DRUMS2";
-    if(FindSubstring(sInstruments, sItemTag) > -1)
+    if(FindSubString(sInstruments, sItemTag) > -1)
     {
-        string sConvo = GetSubstring(sItemTag, 4, GetStringLength(sItemTag)-5);
+        string sConvo = GetSubString(sItemTag, 4, (GetStringLength(sItemTag)-5));
         sConvo = GetStringLowerCase(sConvo);
         AssignCommand(oPC, ActionStartConversation(oPC, sConvo));
         return;

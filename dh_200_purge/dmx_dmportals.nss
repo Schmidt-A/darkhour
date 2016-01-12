@@ -3,5 +3,5 @@
 void main()
 {
     object oPC = GetLastUsedBy();
-    DelayCommand(0.5, PortToWaypoint(oPC, "PORTAL");
+    DelayCommand(0.5, PortToWaypoint(oPC, "PORTAL"));
 }
