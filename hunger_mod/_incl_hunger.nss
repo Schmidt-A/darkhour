@@ -16,20 +16,26 @@ float DEATHS_DOOR = 10.0;
 float DISLIKE_MODIFIER = 0.75;
 float LIKE_MODIDIFER   = 1.5;
 
-string DBHungerCategory(string sSatisfaction)
-{
-    string sDBCategory = "";
-    SQLExecDirect("SELECT level FROM hunger_const " +
-                  "WHERE " + sSatisfaction + " BETWEEN min AND max;");
-    if(SQLFetch == SQL_SUCCESS)
-        sDBCategory = SQLGetData(1);
-    else
-    {
-        WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
-                                 "hunger_const"); 
-    }
-    return sDBCategory;
-}
+/*-------------- Helper Functions ---------------*/
+object  ChestLoop(object oChest, object oPC);
+float   EatRaw(object oPC, object oFood);
+int     FreshnessPercentage(object oFood);
+
+/*-------------- Palate Functions ---------------*/
+object GeneralFood(object oPC);
+object SurvivalistFood(object oPC);
+object PickyFood(object oPC);
+object SpecificFood(oPC, iPalate, iDisliked);
+
+/*-------------- System Functions ---------------*/
+string DBHungerCategory(string sSatisfaction);
+float  DBGetLossRate(string sLevel);
+object EatBestFoodCandidate(object oPC, float fSatisfaction, 
+                            int iPalate, int iDisliked);
+
+/*-------------- Driver Function ----------------*/
+void DBUpdateHunger(object oPC);
+
 
 object ChestLoop(object oChest, object oPC)
 {
@@ -45,7 +51,24 @@ object ChestLoop(object oChest, object oPC)
     return oFood;
 }
 
-object GeneralFood(object oPC, bGlutton=FALSE)
+float EatRaw(object oPC, object oFood)
+{
+    float fFoodSatisfaction = 3.33;
+    SendMessageToPC(oPC, "Eating your " + GetName(oFood) + " has allowed you" +
+                         " to hang on just a little longer."
+    DestroyObject(oFood);
+    return fFoodSatisfaction
+}
+
+int FreshnessPercentage(object oFood)
+{
+    int iFreshness = GetLocalInt(oFood, "iFreshness");
+    int iMaxFresness = GetLocalInt(oFood, "iMaxFreshness");
+
+    return (iFreshness / iMaxFreshness) * 100;
+}
+
+object GeneralFood(object oPC)
 {
     object oFood = OBJECT_INVALID;
     object oChest = GetObjectByTag(FOOD_CHEST_ALL);
@@ -140,14 +163,6 @@ object SurvivalistFood(object oPC)
     return oFood;
 }
 
-int FreshnessPercentage(object oFood)
-{
-    int iFreshness = GetLocalInt(oFood, "iFreshness");
-    int iMaxFresness = GetLocalInt(oFood, "iMaxFreshness");
-
-    return (iFreshness / iMaxFreshness) * 100;
-}
-
 object PickyFood(object oPC)
 {
     object oItem = GetFirstItemInInventory();
@@ -178,13 +193,34 @@ object PickyFood(object oPC)
     return ChestLoop(oChest, oPC);
 }
 
-float EatRaw(object oPC, object oFood)
+string DBHungerCategory(string sSatisfaction)
 {
-    float fFoodSatisfaction = 3.33;
-    SendMessageToPC(oPC, "Eating your " + GetName(oFood) + " has allowed you" +
-                         " to hang on just a little longer."
-    DestroyObject(oFood);
-    return fFoodSatisfaction
+    string sDBCategory = "";
+    SQLExecDirect("SELECT level FROM hunger_const " +
+                  "WHERE " + sSatisfaction + " BETWEEN min AND max;");
+    if(SQLFetch == SQL_SUCCESS)
+        sDBCategory = SQLGetData(1);
+    else
+    {
+        WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
+                                 "hunger_const (level)"); 
+    }
+    return sDBCategory;
+}
+
+float DBGetLossRate(string sLevel)
+{
+    float fLossRate = 0.0;
+    SQLExecDirect("SELECT loss_rate FROM hunger_const " +
+                  "WHERE level = " + sLevel + ";");
+    if(SQLFetch == SQL_SUCCESS)
+        sDBCategory = SQLGetData(1);
+    else
+    {
+        WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
+                                 "hunger_const (loss_rate)"); 
+    }
+    return fLossRate;
 }
 
 object EatBestFoodCandidate(object oPC, float fSatisfaction, 
@@ -333,20 +369,6 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
     return fNewSatisfaction;
 }
 
-float TryEating(object oPC, float fSatisfaction, int iPalate, int iDisliked)
-{
-    string sName = GetName(oPC);
-
-    if(oFood != OBJECT_INVALID)
-    {
-        // need raw check here
-        float fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction");
-        SendMessageToPC(sName + " ate their [eaten item].");
-        fSatisfaction += fFoodSatisfaction;
-    }
-    return fSatisfaction;
-}
-
 void DBUpdateHunger(object oPC)
 {
     object oPCToken = GetItemPossessedBy(oPC, "token_pc");
@@ -386,8 +408,8 @@ void DBUpdateHunger(object oPC)
         // TODO: HandleStarvation()
         // TODO: Set level local vars to mark that we've applied penalties
         // for a given category
-        SetLocalFloat(oPCToken, "fLossRate", fLossRate);
         SetLocalFloat(oPCToken, "sHungerLevel", sNewLevel);
+        SetLocalFloat(oPCToken, "fLossRate", GetLossRate(sNewLevel));
     }
     SetLocalFloat(oPCToken, "fSatisfaction", fNewSatisfaction);
 }
