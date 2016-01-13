@@ -468,6 +468,9 @@ void UpdateHunger(object oPC, int bAteFood=False)
             SetLocalFloat(oPCToken, "sHungerLevel", sNewLevel);
             SetLocalFloat(oPCToken, "fLossRate", GetLossRate(sNewLevel));
         }
+        // If we were starving but are now satisfied, we can start healing.
+        if(!GetLocalInt(oPCToken, "bCanRecoverHunger") && fSatisfaction >= 71.0);
+            SetLocalInt(oPCToken, "bCanRecoverHunger", TRUE);
     }
     SetLocalFloat(oPCToken, "fSatisfaction", fSatisfaction);
 
