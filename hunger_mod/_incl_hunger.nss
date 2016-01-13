@@ -13,6 +13,9 @@ int FOOD_RAW = 4;
 float RAVENOUS = 30.0;
 float DEATHS_DOOR = 10.0;
 
+float DISLIKE_MODIFIER = 0.75;
+float LIKE_MODIDIFER   = 1.5;
+
 string DBHungerCategory(string sSatisfaction)
 {
     string sDBCategory = "";
@@ -222,7 +225,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                 else
                 {
                     // Gluttons love eeeeverything
-                    fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * 1.5;
+                    fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * LIKE_MODIFIER;
                     DestroyObject(oFood);
                     SendMessageToPC(oPC, sName + " eats their " +
                         GetName(oFood) + ". Mmmm food.";
@@ -254,7 +257,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                     if(FreshnessPercentage(oFood) < 50 &&
                         fSatisfaction <= RAVENOUS)
                     {
-                        fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * 0.75;
+                        fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * DISLIKE_MODIFIER;
                         DestroyObject(oFood);
                         SendMessageToPC(oPC, sName + " grudgingly chokes" + 
                             " down their spoiling " + GetName(oFood) " and feels" +
@@ -268,7 +271,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                     }
                     else
                     {
-                        fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * 1.5;
+                        fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * LIKE_MODIFIER;
                         DestroyObject(oFood);
                         SendMessageToPC(oPC, sName + " eats their " +
                             GetName(oFood) + ". Delicious!";
@@ -292,7 +295,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                         if(fSatisfaction < DEATHS_DOOR)
                         {
                             fFoodSatisfaction = GetLocalFloat(oFood,
-                                "fSatisfaction") * 0.75;
+                                "fSatisfaction") * DISLIKE_MODIFIER;
                             SendMessageToPC(oPC, sName + " cannot stand their " +
                                 GetName(oFood) + " but forces it down, leaving " +
                                 "them feeling sickened.";
@@ -308,7 +311,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                     else if(GetLocalInt(oFood, "iType") == iPalate)
                     {
                         fFoodSatisfaction = GetLocalFloat(oFood,
-                            "fSatisfaction") * 1.5;
+                            "fSatisfaction") * LIKE_MODIFIER;
                         SendMessageToPC(oPC, sName + " eats their " +
                             GetName(oFood) + ", thoroughly enjoying it.");
                             DestroyObject(oFood);
