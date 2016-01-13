@@ -30,11 +30,13 @@ object SpecificFood(oPC, iPalate, iDisliked);
 /*-------------- System Functions ---------------*/
 string DBHungerCategory(string sSatisfaction);
 float  DBGetLossRate(string sLevel);
+int    DBGetLevel(string sLevel);
 object EatBestFoodCandidate(object oPC, float fSatisfaction, 
                             int iPalate, int iDisliked);
+void HandleStarvation(object oPC, object oPCToken, string sLevel);
 
 /*-------------- Driver Function ----------------*/
-void DBUpdateHunger(object oPC);
+void UpdateHunger(object oPC);
 
 
 object ChestLoop(object oChest, object oPC)
@@ -223,6 +225,21 @@ float DBGetLossRate(string sLevel)
     return fLossRate;
 }
 
+int DBGetLevelID(string sLevel)
+{
+    int iID = 0;
+    SQLExecDirect("SELECT id FROM hunger_const " +
+                  "WHERE level = " + sLevel + ";");
+    if(SQLFetch == SQL_SUCCESS)
+        sDBCategory = SQLGetData(1);
+    else
+    {
+        WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
+                                 "hunger_const (id)"); 
+    }
+    return iID;
+}
+
 object EatBestFoodCandidate(object oPC, float fSatisfaction, 
                             int iPalate, int iDisliked)
 {
@@ -369,7 +386,39 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
     return fNewSatisfaction;
 }
 
-void DBUpdateHunger(object oPC)
+void HandleStarvation(object oPC, object oPCToken, string sLevel)
+{
+   int iID = DBGetLevelID(sLevel); 
+
+   switch(iID)
+   {
+        case 7: // Ravenous
+            if(GetLocalInt(oPCToken, "bRavenous") == FALSE)
+            {
+                SetLocalInt(oPCToken, "bRavenous", TRUE);
+                // TODO: Apply penalties
+                SetLocalInt(oPCToken, "bCanRecoverHunger", FALSE);
+            }
+            break;
+        case 8: // Starving
+            if(GetLocalInt(oPCToken, "bStarving") == FALSE)
+            {
+                SetLocalInt(oPCToken, "bStarving", TRUE);
+                // TODO: Apply penalties
+                SetLocalInt(oPCToken, "bCanRecoverHunger", FALSE);
+            }
+        case 9: // Death's Door
+            if(GetLocalInt(oPCToken, "bDeathsDoor") == FALSE)
+            {
+                SetLocalInt(oPCToken, "bDeathsDoor", TRUE);
+                // TODO: Apply penalties
+                SetLocalInt(oPCToken, "bCanRecoverHunger", FALSE);
+                SetLocalInt(oPCToken, "bCanHeal", FALSE);
+            }
+   }
+}
+
+void UpdateHunger(object oPC, int bAteFood=False)
 {
     object oPCToken = GetItemPossessedBy(oPC, "token_pc");
 
@@ -377,11 +426,14 @@ void DBUpdateHunger(object oPC)
     float fLossRate = GetLocalFloat(oPCToken, "fLossRate");
     string sHungerLevel = GetLocalString(oPCToken, "sHungerLevel");
 
-    float fSatisfaction = fSatisfaction - fLossRate;
-    string sNewLevel = DBHungerCategory(FloatToString(fSatisfaction));
+    if(!bAteFood)
+    {
+        float fSatisfaction = fSatisfaction - fLossRate;
+        string sNewLevel = DBHungerCategory(FloatToString(fSatisfaction));
+    }
 
     // We might need to eat here.
-    if(sHungerLevel != sNewLevel)
+    if(sHungerLevel != sNewLevel || bAteFood)
     {
         int iPalate = GetLocalInt(oPCToken, "iPalate");
 
@@ -399,17 +451,25 @@ void DBUpdateHunger(object oPC)
             if(fEatenSatisfaction > fSatisfaction)
             {
                 fSatisfaction = fEatenSatisfaction;
+                // Can't go over 100.0
+                if(fSatisfaction > 100.0)
+                    fSatisfaction = 100.0;
                 sNewLevel = DBHungerCategory(FloatToString(fSatisfaction));
             }
         }
         SendMessageToPC(oPC, GetName(oPC) + " is now " + sNewLevel + ".");
         
-        // We also might have starvation penalties to apply
-        // TODO: HandleStarvation()
-        // TODO: Set level local vars to mark that we've applied penalties
-        // for a given category
-        SetLocalFloat(oPCToken, "sHungerLevel", sNewLevel);
-        SetLocalFloat(oPCToken, "fLossRate", GetLossRate(sNewLevel));
+        if(!bAteFood)
+        {
+            // We also might have starvation penalties to apply
+            if(fSatisfaction <= RAVENOUS)
+                HandleStarvation(oPC, oPCToken);
+
+            SetLocalFloat(oPCToken, "sHungerLevel", sNewLevel);
+            SetLocalFloat(oPCToken, "fLossRate", GetLossRate(sNewLevel));
+        }
     }
-    SetLocalFloat(oPCToken, "fSatisfaction", fNewSatisfaction);
+    SetLocalFloat(oPCToken, "fSatisfaction", fSatisfaction);
+
+    // TODO: Death case, fSatisfaction <= 0
 }

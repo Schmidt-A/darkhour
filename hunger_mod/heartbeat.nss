@@ -12,7 +12,7 @@ void main()
     {
         // Check if we need to do an hourly hunger pulse
         if(iHourCounter == 1)
-            DBUpdateHunger(oPC);
+            UpdateHunger(oPC);
     }
     iHourCounter = 0;
 }
