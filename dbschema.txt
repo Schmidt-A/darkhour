@@ -1,0 +1,75 @@
+
+
+CREATE TABLE `char_list` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `player_id` int(11) NOT NULL DEFAULT '0',
+  `char_name` varchar(64) NOT NULL DEFAULT ' ',
+  `exp` int(11) DEFAULT '0',
+  `lvl_adj` int(11) DEFAULT '0',
+  `profession` varchar(64) DEFAULT 'laborer',
+  `prof_lvl` int(11) DEFAULT '0',
+  `faction` varchar(64) DEFAULT ' ',
+  `palate_id` int(11) DEFAULT '0',
+  `class_choice` varchar(64) DEFAULT ' ',
+  `hunger` float DEFAULT '100.0',
+  `survive_time` float DEFAULT '132.2'
+  `health` int(11) DEFAULT '0',
+  `dead` varchar(64) DEFAULT 'alive',
+  `disease_cnt` int(11) DEFAULT '0',
+  `area` varchar(64) DEFAULT ' ',
+  `location` varchar(64) DEFAULT ' ',
+  PRIMARY KEY (`id`)
+  FOREIGN KEY (`player_id`) REFERENCES player_list(`id`)
+  FOREIGN KEY (`palate_id`) REFERENCES palate_table(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `player_list` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `player_name` varchar(64) NOT NULL DEFAULT ' ',
+  `cdkey` varchar(64) DEFAULT ' ',
+  `banned` datetime DEFAULT '1000-01-01 00:00:00',
+  `staff` varchar(64) DEFAULT 'player',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
+
+
+CREATE TABLE `hunger_const` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE
+  `level` varchar(64) NOT NULL DEFAULT 'Stuffed',
+  `max` int(11) NOT NULL DEFAULT '100',
+  `min` int(11) NOT NULL DEFAULT '91',
+  `loss_rate` float NOT NULL DEFAULT '3.33',
+  `penalties` varchar(64) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
+
+CREATE TABLE `food_table` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE
+  `name` varchar(64) NOT NULL DEFAULT ' ',
+  `tag` varchar(64) NOT NULL DEFAULT ' ',
+  `resref` varchar(64) NOT NULL DEFAULT ' ',
+  `type` varchar(64) NOT NULL DEFAULT 'RAW',
+  `satisfaction` int(11) DEFAULT '0',
+  `max_freshness` int(11) DEFAULT '5',
+  `description` varchar (255) DEFAULT ' ',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+	
+	
+CREATE TABLE `palate_table` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE
+  `name` varchar(64) NOT NULL DEFAULT 'Generalist',
+  `good_food` varchar(255) DEFAULT ' ',
+  `bonus` varchar(255) DEFAULT ' ',
+  `bad_food` varchar(255) DEFAULT ' ',
+  `penalty` varchar(255) DEFAULT ' ',
+  `priority` varchar(64) DEFAULT ' ',
+  `satis_inc` int(11) DEFAULT '0',
+  `satis_dec` int(11) DEFAULT '0',
+  `duration` float DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
