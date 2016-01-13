@@ -5,11 +5,14 @@ int iHourCounter = 0;
 
 void main()
 {
-    // Check if we need to do an hourly hunger pulse
     iHourCounter++;
-    if(iHourCounter == 1)
+    object oPC = GetFirstPC();
+
+    while(oPC != OBJECT_INVALID)
     {
-        iHourCounter = 0;
-        DBUpdateHunger();
+        // Check if we need to do an hourly hunger pulse
+        if(iHourCounter == 1)
+            DBUpdateHunger(oPC);
     }
+    iHourCounter = 0;
 }
