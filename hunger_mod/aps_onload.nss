@@ -6,32 +6,12 @@
 // This file is licensed under the terms of the
 // GNU GENERAL PUBLIC LICENSE (GPL) Version 2
 
-#include "aps_include"
-#include "_incl_globvars"
-#include "hashset_nwnx"
+#include "nwnx_odbc"
+#include "nwnx_hashset"
 
 void main()
 {
     // Init placeholders for ODBC gateway
     SQLInit();
-
-    // Initialize globals.
-    HashSetCreate(GetModule(), "EATING_HASHSET", 50);
-    HashSetCreate(GetModule(), "PENALTIES_HASHSET", 50);
-
-    SQLExecDirect("SELECT max FROM hunger_const WHERE level = 'Peckish';");
-    if(SQLFetch() == SQL_SUCCESS)
-        HUNGRY_AT = StringToFloat(SQLGetData(1));
-    else
-        // This shouldn't have happened...
-        HUNGRY_AT = 60.0;
-    HUNGRY_AT = 60.0;
-
-    SQLExecDirect("SELECT max FROM hunger_const WHERE level = 'Ravenous';");
-    if(SQLFetch() == SQL_SUCCESS)
-        RAVENOUS_AT = StringToFloat(SQLGetData(1));
-    else
-        // This shouldn't have happened...
-        RAVENOUS_AT = 30.0;
 }
 

@@ -1,5 +1,5 @@
-#include "aps_include"
-#include "hashset_nwnx"
+#include "nwnx_odbc"
+#include "nwnx_hashset"
 #include "_incl_session"
 #include "_incl_globvars"
 

@@ -1,4 +1,4 @@
-#include "aps_include"
+#include "nwnx_odbc"
 
 void DBLogin(object oPC);
 void DBLogout(object oPC);

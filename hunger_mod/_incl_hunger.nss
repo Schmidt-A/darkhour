@@ -14,7 +14,7 @@ float RAVENOUS = 30.0;
 float DEATHS_DOOR = 10.0;
 
 float DISLIKE_MODIFIER = 0.75;
-float LIKE_MODIDIFER   = 1.5;
+float LIKE_MODIFIER   = 1.5;
 
 /*-------------- Helper Functions ---------------*/
 object  ChestLoop(object oChest, object oPC);
@@ -25,18 +25,18 @@ int     FreshnessPercentage(object oFood);
 object GeneralFood(object oPC);
 object SurvivalistFood(object oPC);
 object PickyFood(object oPC);
-object SpecificFood(oPC, iPalate, iDisliked);
+object SpecificFood(object oPC, int iPalate, int iDisliked);
 
 /*-------------- System Functions ---------------*/
 string DBHungerCategory(string sSatisfaction);
 float  DBGetLossRate(string sLevel);
 int    DBGetLevel(string sLevel);
-object EatBestFoodCandidate(object oPC, float fSatisfaction, 
+float EatBestFoodCandidate(object oPC, float fSatisfaction,
                             int iPalate, int iDisliked);
 void HandleStarvation(object oPC, object oPCToken, string sLevel);
 
 /*-------------- Driver Function ----------------*/
-void UpdateHunger(object oPC);
+void UpdateHunger(object oPC, int bAteFood=FALSE);
 
 
 object ChestLoop(object oChest, object oPC)
@@ -57,15 +57,15 @@ float EatRaw(object oPC, object oFood)
 {
     float fFoodSatisfaction = 3.33;
     SendMessageToPC(oPC, "Eating your " + GetName(oFood) + " has allowed you" +
-                         " to hang on just a little longer."
+                         " to hang on just a little longer.");
     DestroyObject(oFood);
-    return fFoodSatisfaction
+    return fFoodSatisfaction;
 }
 
 int FreshnessPercentage(object oFood)
 {
     int iFreshness = GetLocalInt(oFood, "iFreshness");
-    int iMaxFresness = GetLocalInt(oFood, "iMaxFreshness");
+    int iMaxFreshness = GetLocalInt(oFood, "iMaxFreshness");
 
     return (iFreshness / iMaxFreshness) * 100;
 }
@@ -90,11 +90,10 @@ object GeneralFood(object oPC)
         return oFood;
 
     // Most desperate - if we're on death's door we can try to eat raw food
-    oChest = GetObjectByTag(FOOD_CHEST_RAW)
-    return ChestLoop(oChest, oPC);
+    return ChestLoop(GetObjectByTag(FOOD_CHEST_RAW), oPC);
 }
 
-object SpecificFood(oPC, iPalate, iDisliked)
+object SpecificFood(object oPC, int iPalate, int iDisliked)
 {
     object oChest = GetObjectByTag("fc_" + IntToString(iPalate));
     int i;
@@ -113,7 +112,7 @@ object SpecificFood(oPC, iPalate, iDisliked)
         if(i == iPalate || i == iDisliked)
             continue;
 
-        oChest = GetObjectByTag("fc_" + IntToString(i))
+        oChest = GetObjectByTag("fc_" + IntToString(i));
         oFood = ChestLoop(oChest, oPC);
     }
     // Found something to eat - eat it
@@ -128,8 +127,7 @@ object SpecificFood(oPC, iPalate, iDisliked)
         return oFood;
 
     // Most desperate - if we're on death's door we can try to eat raw food
-    oChest = GetObjectByTag(FOOD_CHEST_RAW)
-    return ChestLoop(oChest, oPC);
+    return ChestLoop(GetObjectByTag(FOOD_CHEST_RAW), oPC);
 }
 
 object SurvivalistFood(object oPC)
@@ -138,19 +136,20 @@ object SurvivalistFood(object oPC)
     object oFood = OBJECT_INVALID;
     object oSpoiled = OBJECT_INVALID;
     int iLowestFreshness = 100;
+    int iFreshness = 0;
 
     // Survivalists get rid of the most stale food first
     while(oItem != OBJECT_INVALID)
     {
         iFreshness = GetLocalInt(oItem, "iFreshness");
         // Not a food, don't care
-        if(iFressness == 0)
+        if(iFreshness == 0)
             continue;
 
         if(iFreshness < iLowestFreshness)
         {
            oFood = oItem;
-           iLowestFreshness = iFressness;
+           iLowestFreshness = iFreshness;
         }
         // Save this in case this is our second best option
         if(oSpoiled == OBJECT_INVALID && GetTag(oItem) == "food_spoiled")
@@ -170,13 +169,14 @@ object PickyFood(object oPC)
     object oItem = GetFirstItemInInventory();
     object oFood = OBJECT_INVALID;
     int iHighestFreshness = 0;
+    int iFreshness = 0;
 
     // Picky eaters eat the freshest food first
     while(oItem != OBJECT_INVALID)
     {
         iFreshness = GetLocalInt(oItem, "iFreshness");
         // Not a food, don't care
-        if(iFressness == 0)
+        if(iFreshness == 0)
             continue;
 
         if(iFreshness > iHighestFreshness)
@@ -191,8 +191,7 @@ object PickyFood(object oPC)
         return oFood;
 
     // Most desperate - if we're on death's door we can try to eat raw food
-    oChest = GetObjectByTag(FOOD_CHEST_RAW)
-    return ChestLoop(oChest, oPC);
+    return ChestLoop(GetObjectByTag(FOOD_CHEST_RAW), oPC);
 }
 
 string DBHungerCategory(string sSatisfaction)
@@ -200,12 +199,12 @@ string DBHungerCategory(string sSatisfaction)
     string sDBCategory = "";
     SQLExecDirect("SELECT level FROM hunger_const " +
                   "WHERE " + sSatisfaction + " BETWEEN min AND max;");
-    if(SQLFetch == SQL_SUCCESS)
+    if(SQLFetch() == SQL_SUCCESS)
         sDBCategory = SQLGetData(1);
     else
     {
         WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
-                                 "hunger_const (level)"); 
+                                 "hunger_const (level)");
     }
     return sDBCategory;
 }
@@ -215,12 +214,12 @@ float DBGetLossRate(string sLevel)
     float fLossRate = 0.0;
     SQLExecDirect("SELECT loss_rate FROM hunger_const " +
                   "WHERE level = " + sLevel + ";");
-    if(SQLFetch == SQL_SUCCESS)
-        sDBCategory = SQLGetData(1);
+    if(SQLFetch() == SQL_SUCCESS)
+        fLossRate = StringToFloat(SQLGetData(1));
     else
     {
         WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
-                                 "hunger_const (loss_rate)"); 
+                                 "hunger_const (loss_rate)");
     }
     return fLossRate;
 }
@@ -230,17 +229,17 @@ int DBGetLevelID(string sLevel)
     int iID = 0;
     SQLExecDirect("SELECT id FROM hunger_const " +
                   "WHERE level = " + sLevel + ";");
-    if(SQLFetch == SQL_SUCCESS)
-        sDBCategory = SQLGetData(1);
+    if(SQLFetch() == SQL_SUCCESS)
+        iID = StringToInt(SQLGetData(1));
     else
     {
         WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
-                                 "hunger_const (id)"); 
+                                 "hunger_const (id)");
     }
     return iID;
 }
 
-object EatBestFoodCandidate(object oPC, float fSatisfaction, 
+float EatBestFoodCandidate(object oPC, float fSatisfaction,
                             int iPalate, int iDisliked)
 {
     string sName = GetName(oPC);
@@ -260,10 +259,10 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                     fFoodSatisfaction = EatRaw(oPC, oFood);
                 else
                 {
-                    fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction")
+                    fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction");
                     DestroyObject(oFood);
                     SendMessageToPC(oPC, sName + " eats their " +
-                        GetName(oFood) + ".";
+                        GetName(oFood) + ".");
                 }
             }
             break;
@@ -281,7 +280,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                     fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * LIKE_MODIFIER;
                     DestroyObject(oFood);
                     SendMessageToPC(oPC, sName + " eats their " +
-                        GetName(oFood) + ". Mmmm food.";
+                        GetName(oFood) + ". Mmmm food.");
                 }
             }
             break;
@@ -292,7 +291,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
             {
                 fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction");
                 DestroyObject(oFood);
-                SendMessageToPC(oPC, sName + " eats their " + GetName(oFood) + ".";
+                SendMessageToPC(oPC, sName + " eats their " + GetName(oFood) + ".");
                 // TODO: Apply -1 to fort save
             }
             break;
@@ -312,22 +311,22 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                     {
                         fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * DISLIKE_MODIFIER;
                         DestroyObject(oFood);
-                        SendMessageToPC(oPC, sName + " grudgingly chokes" + 
-                            " down their spoiling " + GetName(oFood) " and feels" +
+                        SendMessageToPC(oPC, sName + " grudgingly chokes" +
+                            " down their spoiling " + GetName(oFood) + " and feels" +
                             " nausiated for it.");
                         // TODO: penalty here
                     }
                     else if (FreshnessPercentage(oFood) < 50)
                     {
                         SendMessageToPC(oPC, sName + " is hungry but can't " +
-                            "bring themselves to eat any of their spoiling food.";
+                            "bring themselves to eat any of their spoiling food.");
                     }
                     else
                     {
                         fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction") * LIKE_MODIFIER;
                         DestroyObject(oFood);
                         SendMessageToPC(oPC, sName + " eats their " +
-                            GetName(oFood) + ". Delicious!";
+                            GetName(oFood) + ". Delicious!");
                         // TODO: buff
                     }
                 }
@@ -351,7 +350,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
                                 "fSatisfaction") * DISLIKE_MODIFIER;
                             SendMessageToPC(oPC, sName + " cannot stand their " +
                                 GetName(oFood) + " but forces it down, leaving " +
-                                "them feeling sickened.";
+                                "them feeling sickened.");
                             DestroyObject(oFood);
                             // TODO: penalties
                         }
@@ -388,7 +387,7 @@ object EatBestFoodCandidate(object oPC, float fSatisfaction,
 
 void HandleStarvation(object oPC, object oPCToken, string sLevel)
 {
-   int iID = DBGetLevelID(sLevel); 
+   int iID = DBGetLevelID(sLevel);
 
    switch(iID)
    {
@@ -418,18 +417,19 @@ void HandleStarvation(object oPC, object oPCToken, string sLevel)
    }
 }
 
-void UpdateHunger(object oPC, int bAteFood=False)
+void UpdateHunger(object oPC, int bAteFood=FALSE)
 {
     object oPCToken = GetItemPossessedBy(oPC, "token_pc");
 
     float fSatisfaction = GetLocalFloat(oPCToken, "fSatisfaction");
     float fLossRate = GetLocalFloat(oPCToken, "fLossRate");
     string sHungerLevel = GetLocalString(oPCToken, "sHungerLevel");
+    string sNewLevel = sHungerLevel;
 
     if(!bAteFood)
     {
-        float fSatisfaction = fSatisfaction - fLossRate;
-        string sNewLevel = DBHungerCategory(FloatToString(fSatisfaction));
+        fSatisfaction = fSatisfaction - fLossRate;
+        sNewLevel = DBHungerCategory(FloatToString(fSatisfaction));
     }
 
     // We might need to eat here.
@@ -442,7 +442,7 @@ void UpdateHunger(object oPC, int bAteFood=False)
         if(iPalate == 4)
             fEatAt = 80.0;
 
-        if(fNewSatisfaction <= fEatAt)
+        if(fSatisfaction <= fEatAt || bAteFood)
         {
             int iDisliked = GetLocalInt(oPCToken, "iDisliked");
             float fEatenSatisfaction = EatBestFoodCandidate(oPC, fSatisfaction,
@@ -458,15 +458,15 @@ void UpdateHunger(object oPC, int bAteFood=False)
             }
         }
         SendMessageToPC(oPC, GetName(oPC) + " is now " + sNewLevel + ".");
-        
+
         if(!bAteFood)
         {
             // We also might have starvation penalties to apply
             if(fSatisfaction <= RAVENOUS)
-                HandleStarvation(oPC, oPCToken);
+                HandleStarvation(oPC, oPCToken, sNewLevel);
 
-            SetLocalFloat(oPCToken, "sHungerLevel", sNewLevel);
-            SetLocalFloat(oPCToken, "fLossRate", GetLossRate(sNewLevel));
+            SetLocalString(oPCToken, "sHungerLevel", sNewLevel);
+            SetLocalFloat(oPCToken, "fLossRate", DBGetLossRate(sNewLevel));
         }
         // If we were starving but are now satisfied, we can start healing.
         if(!GetLocalInt(oPCToken, "bCanRecoverHunger") && fSatisfaction >= 71.0);
