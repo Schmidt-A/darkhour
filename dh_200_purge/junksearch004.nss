@@ -5,7 +5,7 @@
 
 void main()
 {
-    int nFound = Random(60);
+    int nFound = Random(600);
     string sWhat = "";
     int nAmount = 1;
     if(GetLocalInt(GetObjectByTag("debuglever"), "debug") == 1)
@@ -27,112 +27,112 @@ void main()
     //  is informed that they found something, and also to create the item
     //  they found on them.
 
-    if (nFound < 4)
+    if (nFound < 40)
     {
        sWhat = "x1_it_sparscr002";
     }
-    else if (nFound < 8)
+    else if (nFound < 80)
     {
        sWhat = "x1_it_sparscr003";
     }
-    else if (nFound < 12)
+    else if (nFound < 120)
     {
        sWhat = "x1_it_sparscr001";
     }
-    else if (nFound < 16)
+    else if (nFound < 160)
     {
        sWhat = "nw_it_sparscr004";
     }
-    else if (nFound < 20)
+    else if (nFound < 200)
     {
        sWhat = "nw_it_sparscr002";
     }
-    else if (nFound < 22)
+    else if (nFound < 220)
     {
        sWhat = "nw_it_sparscr112";
     }
-    else if (nFound < 24)
+    else if (nFound < 240)
     {
        sWhat = "x1_it_sparscr101";
     }
-    else if (nFound < 26)
+    else if (nFound < 260)
     {
        sWhat = "nw_it_sparscr103";
     }
-    else if (nFound < 28)
+    else if (nFound < 280)
     {
        sWhat = "nw_it_sparscr106";
     }
-    else if (nFound < 30)
+    else if (nFound < 300)
     {
        sWhat = "nw_it_sparscr104";
     }
-    else if (nFound < 32)
+    else if (nFound < 320)
     {
        sWhat = "nw_it_sparscr109";
     }
-    else if (nFound < 34)
+    else if (nFound < 340)
     {
        sWhat = "nw_it_sparscr210";
     }
-    else if (nFound < 36)
+    else if (nFound < 360)
     {
        sWhat = "nw_it_sparscr105";
     }
-    else if (nFound < 38)
+    else if (nFound < 380)
     {
        sWhat = "x1_it_sparscr104";
     }
-    else if (nFound < 39)
+    else if (nFound < 390)
     {
        sWhat = "nw_it_sparscr212";
     }
-    else if (nFound < 40)
+    else if (nFound < 400)
     {
        sWhat = "nw_it_sparscr213";
     }
-    else if (nFound < 41)
+    else if (nFound < 410)
     {
        sWhat = "nw_it_sparscr219";
     }
-    else if (nFound < 42)
+    else if (nFound < 420)
     {
        sWhat = "nw_it_sparscr215";
     }
-    else if (nFound < 43)
+    else if (nFound < 430)
     {
        sWhat = "nw_it_sparscr220";
     }
-    else if (nFound < 44)
+    else if (nFound < 440)
     {
        sWhat = "nw_it_sparscr208";
     }
-    else if (nFound < 45)
+    else if (nFound < 450)
     {
        sWhat = "nw_it_sparscr207";
     }
-    else if (nFound < 46)
+    else if (nFound < 460)
     {
        sWhat = "nw_it_sparscr202";
     }
-    else if (nFound < 47)
+    else if (nFound < 470)
     {
        sWhat = "nw_it_sparscr221";
     }
-    else if (nFound < 48)
+    else if (nFound < 480)
     {
        sWhat = "nw_it_sparscr203";
     }
-    else if (nFound < 49)
+    else if (nFound < 490)
     {
        sWhat = "nw_it_sparscr204";
     }
-    else if (nFound < 50)
+    else if (nFound < 491)
     {
-       sWhat = "nw_it_spdvscr501";
+       sWhat = "nw_it_sparscr309";
     }
 
-    else if (nFound < 60)
+    else if (nFound < 600)
     {
        sWhat = "craftingpoints";
     }
@@ -148,7 +148,9 @@ void main()
             sWhat = "zn_book0" + IntToString(nBookNum);
         }
     }
-
+    int DEBUG = GetLocalInt(GetModule(),"DEBUG_MODE");
+    if(DEBUG)
+        FloatingTextStringOnCreature("RESREF: "+sWhat,OBJECT_SELF,TRUE);
     //  Did the player find something?  If so, let them know and create it.
     //  If not, tell them they found nothing.
 
