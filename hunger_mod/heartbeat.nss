@@ -7,12 +7,17 @@ void main()
 {
     iHourCounter++;
     object oPC = GetFirstPC();
+    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
 
     while(oPC != OBJECT_INVALID)
     {
         // Check if we need to do an hourly hunger pulse
-        if(iHourCounter == 1)
+        if(iHourCounter == 1 && GetLocalInt(oPCToken, "iPalate") < 10)
+        {
             UpdateHunger(oPC);
+        }
+        oPC = GetNextPC();
+        oPCToken = GetItemPossessedBy(oPC, "token_pc");
     }
     iHourCounter = 0;
 }

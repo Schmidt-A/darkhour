@@ -8,7 +8,11 @@ string FOOD_CHEST_GENERAL   = "fc_3";
 string FOOD_CHEST_RAW       = "fc_raw";
 string FOOD_CHEST_SPOILED   = "fc_spoiled";
 
-int FOOD_RAW = 4;
+int FOOD_ORGANIC = 0;
+int FOOD_SWEET   = 1;
+int FOOD_MEAT    = 2;
+int FOOD_GENERAL = 3;
+int FOOD_RAW     = 4;
 
 float RAVENOUS = 30.0;
 float DEATHS_DOOR = 10.0;
@@ -27,6 +31,9 @@ object SurvivalistFood(object oPC);
 object PickyFood(object oPC);
 object SpecificFood(object oPC, int iPalate, int iDisliked);
 
+/*-------------- Food Functions -----------------*/
+void DBInitFood();
+
 /*-------------- System Functions ---------------*/
 string DBHungerCategory(string sSatisfaction);
 float  DBGetLossRate(string sLevel);
@@ -36,7 +43,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
 void HandleStarvation(object oPC, object oPCToken, string sLevel);
 
 /*-------------- Driver Function ----------------*/
-void UpdateHunger(object oPC, int bAteFood=FALSE);
+void UpdateHunger(object oPC, int bAcquire=FALSE);
 
 
 object ChestLoop(object oChest, object oPC)
@@ -194,17 +201,46 @@ object PickyFood(object oPC)
     return ChestLoop(GetObjectByTag(FOOD_CHEST_RAW), oPC);
 }
 
+void DBInitChest(object oChest)
+{
+    while(SQLFetch() == SQL_SUCCESS)
+    {
+        string sRef = SQLGetData(1);
+        object oFood = CreateItemOnObject(sRef, oChest, 1, SQLGetData(5));
+        SetLocalInt(oFood, "iType", StringToInt(SQLGetData(2)));
+        SetLocalFloat(oFood, "fSatisfaction", StringToFloat(SQLGetData(3)));
+        SetLocalInt(oFood, "iMaxFreshness", StringToInt(SQLGetData(4)));
+        // Todo: OnAcquire, set food freshness
+    }
+}
+
+void DBInitFood()
+{
+    // All chest
+    object oChest = GetObjectByTag(FOOD_CHEST_ALL);
+    SQLExecDirect("SELECT resref, type, satisfaction, max_freshness, tag FROM food;");
+    DBInitChest(oChest);
+
+    // Organic chest
+    oChest = GetObjectByTag(FOOD_CHEST_ORGANIC);
+    SQLExecDirect("SELECT resref, type, satisfaction, max_freshness, tag FROM food " +
+                  "WHERE type = " + IntToString(FOOD_ORGANIC) + ";");
+    DBInitChest(oChest);
+}
+
 string DBHungerCategory(string sSatisfaction)
 {
     string sDBCategory = "";
     SQLExecDirect("SELECT level FROM hunger_const " +
-                  "WHERE " + sSatisfaction + " BETWEEN min AND max;");
+                  "WHERE " + sSatisfaction + " <= max order by max asc limit 1;");
     if(SQLFetch() == SQL_SUCCESS)
         sDBCategory = SQLGetData(1);
     else
     {
         WriteTimestampedLogEntry("ERROR: Failed to SELECT from table " +
                                  "hunger_const (level)");
+        WriteTimestampedLogEntry("SELECT level FROM hunger_const " +
+                  "WHERE " + sSatisfaction + " BETWEEN min AND max;");
     }
     return sDBCategory;
 }
@@ -213,7 +249,7 @@ float DBGetLossRate(string sLevel)
 {
     float fLossRate = 0.0;
     SQLExecDirect("SELECT loss_rate FROM hunger_const " +
-                  "WHERE level = " + sLevel + ";");
+                  "WHERE level = '" + sLevel + "';");
     if(SQLFetch() == SQL_SUCCESS)
         fLossRate = StringToFloat(SQLGetData(1));
     else
@@ -228,7 +264,7 @@ int DBGetLevelID(string sLevel)
 {
     int iID = 0;
     SQLExecDirect("SELECT id FROM hunger_const " +
-                  "WHERE level = " + sLevel + ";");
+                  "WHERE level = '" + sLevel + "';");
     if(SQLFetch() == SQL_SUCCESS)
         iID = StringToInt(SQLGetData(1));
     else
@@ -251,6 +287,8 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
     {
         case 3: // Generalist
             oFood = GeneralFood(oPC);
+            SendMessageToPC(oPC, "Generalist case");
+            SendMessageToPC(oPC, "food = " + GetTag(oFood));
             if(oFood != OBJECT_INVALID)
             {
                 // Only willing to eat this if we're at death's door
@@ -417,7 +455,7 @@ void HandleStarvation(object oPC, object oPCToken, string sLevel)
    }
 }
 
-void UpdateHunger(object oPC, int bAteFood=FALSE)
+void UpdateHunger(object oPC, int bAcquire=FALSE)
 {
     object oPCToken = GetItemPossessedBy(oPC, "token_pc");
 
@@ -426,23 +464,25 @@ void UpdateHunger(object oPC, int bAteFood=FALSE)
     string sHungerLevel = GetLocalString(oPCToken, "sHungerLevel");
     string sNewLevel = sHungerLevel;
 
-    if(!bAteFood)
+    if(!bAcquire)
     {
         fSatisfaction = fSatisfaction - fLossRate;
         sNewLevel = DBHungerCategory(FloatToString(fSatisfaction));
     }
 
+    SendMessageToPC(oPC, "Satisfaction: " + FloatToString(fSatisfaction));
     // We might need to eat here.
-    if(sHungerLevel != sNewLevel || bAteFood)
+    if((sHungerLevel != sNewLevel) || bAcquire)
     {
         int iPalate = GetLocalInt(oPCToken, "iPalate");
+        SendMessageToPC(oPC, "Palate = " + IntToString(iPalate));
 
         float fEatAt = 60.0;
         // Gluttons eat at 80 instead of 60
         if(iPalate == 4)
             fEatAt = 80.0;
 
-        if(fSatisfaction <= fEatAt || bAteFood)
+        if(fSatisfaction <= fEatAt)
         {
             int iDisliked = GetLocalInt(oPCToken, "iDisliked");
             float fEatenSatisfaction = EatBestFoodCandidate(oPC, fSatisfaction,
@@ -459,7 +499,7 @@ void UpdateHunger(object oPC, int bAteFood=FALSE)
         }
         SendMessageToPC(oPC, GetName(oPC) + " is now " + sNewLevel + ".");
 
-        if(!bAteFood)
+        if(!bAcquire)
         {
             // We also might have starvation penalties to apply
             if(fSatisfaction <= RAVENOUS)
@@ -469,7 +509,7 @@ void UpdateHunger(object oPC, int bAteFood=FALSE)
             SetLocalFloat(oPCToken, "fLossRate", DBGetLossRate(sNewLevel));
         }
         // If we were starving but are now satisfied, we can start healing.
-        if(!GetLocalInt(oPCToken, "bCanRecoverHunger") && fSatisfaction >= 71.0);
+        if(!GetLocalInt(oPCToken, "bCanRecoverHunger") && fSatisfaction >= 71.0)
             SetLocalInt(oPCToken, "bCanRecoverHunger", TRUE);
     }
     SetLocalFloat(oPCToken, "fSatisfaction", fSatisfaction);
