@@ -7,31 +7,55 @@ const int BARABAN   = 3;
 const int ANNEDHEL  = 4;
 const int SISPARA   = 5;
 
+void VaultSaveFail(object oPC, int iSave)
+{
+    // We'll be nice and not keep infinitely reducing saves.
+    effect eLoop = GetFirstEffect(oPC);
+    int bFullFort = TRUE;
+    while(GetIsEffectValid(eLoop))
+    {
+       if(GetEffectType(eLoop) == EFFECT_TYPE_SAVING_THROW_DECREASE)
+           bFullFort = FALSE;
+       eLoop = GetNextEffect(oPC);
+    }
+    if(bFullFort)
+    {
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
+                EffectSavingThrowDecrease(iSave, 2), oPC, 120.0);
+
+    }
+}
+
+void FaelothVaultEffects(object oPC)
+{
+    if(ReflexSave(oPC, 12, SAVING_THROW_TYPE_NONE) < 1)
+    {
+        string sName = GetName(oPC);
+        SendMessageToPC(oPC, sName + " fails to keep their footing and slips." +
+                " Their joints ache for a short while after slamming into the " +
+                "unforgiving icy floor.");
+        VaultSaveFail(oPC, SAVING_THROW_REFLEX);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, 4.0);
+    }
+    if(FortitudeSave(oPC, 14, SAVING_THROW_TYPE_NONE) < 1)
+    {
+        SendMessageToPC(oPC, "The frigid air of this frozen passage chills blood " +
+                "and flesh alike.");
+        effect eDamage = EffectDamage(5, DAMAGE_TYPE_COLD, DAMAGE_POWER_NORMAL);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oPC);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT,
+                            EffectVisualEffect(VFX_IMP_FROST_S), oPC);
+    }
+}
 
 void VomitCheck(object oPC, string sMsg)
 {
     if(FortitudeSave(oPC, 14, SAVING_THROW_TYPE_NONE) < 1)
     {
         SendMessageToPC(oPC, sMsg);
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
-                EffectKnockdown(), oPC, 4.0);
+        VaultSaveFail(oPC, SAVING_THROW_FORT);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, 4.0);
 
-        /* We'll be nice and not keep infinitely reducing fort saves for
-         * future puking. */
-        effect eLoop = GetFirstEffect(oPC);
-        int bFullFort = TRUE;
-        while(GetIsEffectValid(eLoop))
-        {
-           if(GetEffectType(eLoop) == EFFECT_TYPE_SAVING_THROW_DECREASE)
-               bFullFort = FALSE;
-           eLoop = GetNextEffect(oPC);
-        }
-        if(bFullFort)
-        {
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
-                    EffectSavingThrowDecrease(SAVING_THROW_FORT, 2), oPC, 120.0);
-
-        }
         object oPuke = CreateObject(OBJECT_TYPE_PLACEABLE, "hazard_puke",
                                     GetLocation(oPC));
         /* Our own vomit won't make us puke, so we don't get stuck in some barf loop */
@@ -100,6 +124,11 @@ void main()
                     SetLocalInt(oObject, "iHazardsChecked", TRUE);
                     KalaramVaultEffects(oObject);
                     break;
+                case ELEDHRETH: // Need updated miners
+                    break;
+                case FAELOTH:
+                    FaelothVaultEffects(oObject);
+                    break;
             }
         }
         oObject = GetNextObjectInArea();
@@ -111,11 +140,14 @@ void main()
      * up really hard if you modify it in the middle of an iteration). That's
      * why that iHazardsChecked flag gets set. We have to un-set it here once
      * the loop is done though, so that the check can happen on the next interval. */
-    oObject = GetFirstObjectInArea();
-    while(GetIsObjectValid(oObject))
+    if(iVault == KALARAM)
     {
-         if(GetIsPC(oObject))
-            SetLocalInt(oObject, "iHazardsChecked", FALSE);
-         oObject = GetNextObjectInArea();
+        oObject = GetFirstObjectInArea();
+        while(GetIsObjectValid(oObject))
+        {
+             if(GetIsPC(oObject))
+                SetLocalInt(oObject, "iHazardsChecked", FALSE);
+             oObject = GetNextObjectInArea();
+        }
     }
 }
