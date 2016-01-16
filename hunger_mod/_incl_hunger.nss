@@ -35,6 +35,8 @@ object SpecificFood(object oPC, int iPalate, int iDisliked);
 void DBInitFood();
 
 /*-------------- System Functions ---------------*/
+void DBInitChest(object oChest);
+void DBInitFood();
 string DBHungerCategory(string sSatisfaction);
 float  DBGetLossRate(string sLevel);
 int    DBGetLevel(string sLevel);
