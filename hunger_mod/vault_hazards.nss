@@ -11,7 +11,7 @@ const int SISPARA   = 5;
 object CreateBoulder(int iWP)
 {
     string sWPTag = "eled_cave_in" + IntToString(iWP);
-    object oObj = CreateObject(OBJECT_TYPE_PLACEABLE, "cave_in_boulder",
+    object oObj = CreateObject(OBJECT_TYPE_PLACEABLE, "eled_boulder",
                  GetLocation(GetObjectByTag(sWPTag)));
     return oObj;
 }
@@ -32,7 +32,7 @@ void CleanUpCaveIn()
     object oObj = GetFirstObjectInArea();
     while(GetIsObjectValid(oObj))
     {
-        if(GetResRef(oObj) == "cave_in_boulder")
+        if(GetResRef(oObj) == "eled_boulder")
             DestroyObject(oObj);
         oObj = GetNextObjectInArea();
     }

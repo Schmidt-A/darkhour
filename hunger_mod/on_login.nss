@@ -17,7 +17,7 @@ void main()
 
         SetLocalString(oPC, "sConvScript", "conv_palate");
         SetLocalInt(oPCToken, "iPalate", 99); // Default because 0 = General
-        AssignCommand(oPC, ActionStartConversation(oPC, "palate_choose"));
+        //AssignCommand(oPC, ActionStartConversation(oPC, "palate_choose"));
     }
     //DBLogin(oPC);
 }
