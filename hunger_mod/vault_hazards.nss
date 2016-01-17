@@ -8,6 +8,12 @@ const int BARABAN   = 3;
 const int ANNEDHEL  = 4;
 const int SISPARA   = 5;
 
+/* Change these if you want different behavior. I can make it variable-based
+ * if that's prefered. */
+const int FORT_SAVE = 14;
+const int REFLEX_SAVE = 12;
+const float KD_DUR = 4.0;
+
 object CreateBoulder(int iWP)
 {
     string sWPTag = "eled_cave_in" + IntToString(iWP);
@@ -59,38 +65,38 @@ void VaultSaveFail(object oPC, int iSave)
 
 void BarabanVaultEffects(object oPC)
 {
-    if(ReflexSave(oPC, 12, SAVING_THROW_TYPE_NONE) < 1)
+    if(ReflexSave(oPC, REFLEX_SAVE, SAVING_THROW_TYPE_NONE) < 1)
     {
         string sName = GetName(oPC);
         SendMessageToPC(oPC, "Fueled by the darkness of Siranda, strange roots " +
                 "spring up from the ground and wrap around " + sName + "'s legs!" +
                 " They must stop to hack themselves free!");
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectEntangle(), oPC, 4.0);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectEntangle(), oPC, KD_DUR);
         ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
-                    EffectVisualEffect(VFX_DUR_ENTANGLE), oPC, 4.0);
+                    EffectVisualEffect(VFX_DUR_ENTANGLE), oPC, KD_DUR);
         int iChance = Random(10)+1;
         if(iChance == 1)
         {
             string sMsg = "Though eventually able to free themselves, it is not " +
                 "before the malign vines drag " + sName + " back to the entrance.";
-            DelayCommand(4.0, PortToWaypoint(oPC, "bar_vaultst"));
-            DelayCommand(4.0, SendMessageToPC(oPC, sMsg));
+            DelayCommand(KD_DUR, PortToWaypoint(oPC, "bar_vaultst"));
+            DelayCommand(KD_DUR, SendMessageToPC(oPC, sMsg));
         }
     }
 }
 
 void FaelothVaultEffects(object oPC)
 {
-    if(ReflexSave(oPC, 12, SAVING_THROW_TYPE_NONE) < 1)
+    if(ReflexSave(oPC, REFLEX_SAVE, SAVING_THROW_TYPE_NONE) < 1)
     {
         string sName = GetName(oPC);
         SendMessageToPC(oPC, sName + " fails to keep their footing and slips." +
                 " Their joints ache for a short while after slamming into the " +
                 "unforgiving icy floor.");
         VaultSaveFail(oPC, SAVING_THROW_REFLEX);
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, 4.0);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, KD_DUR);
     }
-    if(FortitudeSave(oPC, 14, SAVING_THROW_TYPE_NONE) < 1)
+    if(FortitudeSave(oPC, FORT_SAVE, SAVING_THROW_TYPE_NONE) < 1)
     {
         SendMessageToPC(oPC, "The frigid air of this frozen passage chills blood " +
                 "and flesh alike.");
@@ -103,11 +109,11 @@ void FaelothVaultEffects(object oPC)
 
 void VomitCheck(object oPC, string sMsg)
 {
-    if(FortitudeSave(oPC, 14, SAVING_THROW_TYPE_NONE) < 1)
+    if(FortitudeSave(oPC, FORT_SAVE, SAVING_THROW_TYPE_NONE) < 1)
     {
         SendMessageToPC(oPC, sMsg);
         VaultSaveFail(oPC, SAVING_THROW_FORT);
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, 4.0);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, KD_DUR);
 
         object oPuke = CreateObject(OBJECT_TYPE_PLACEABLE, "hazard_puke",
                                     GetLocation(oPC));

@@ -3,11 +3,11 @@
 void main()
 {
     int iPCCount = GetLocalInt(OBJECT_SELF, "iPCCount");
-    // Don't waste time on this if there are no PCs in the area.
+    // Don't waste time on this if there are no PCs in the area
     if(iPCCount < 1)
         return;
 
-    // Keep track of HB interval so we only apply effects when we want to.
+    // Keep track of HB interval so we only apply effects on the interval we want
     int iHBTicks = GetLocalInt(OBJECT_SELF, "iHBTicks");
     if(iHBTicks <= GetLocalInt(OBJECT_SELF, "iHBInterval"))
         SetLocalInt(OBJECT_SELF, "iHBTicks", iHBTicks+1);
@@ -25,6 +25,7 @@ void main()
             switch(iVault)
             {
                 case KALARAM:
+                    // Explained below
                     SetLocalInt(oObject, "iHazardsChecked", TRUE);
                     KalaramVaultEffects(oObject);
                     break;
