@@ -78,49 +78,7 @@ void main()
                 ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectACIncrease(nRoll),oPC,7.0);
             } // ac increase
         } // check for AC increase
-        int iZkten = GetLocalInt(oPC, "zombkill10");
-        int iZkhun = GetLocalInt(oPC, "zombkill100");
-        int iZktho = GetLocalInt(oPC, "zombkill1000");
-        int iZktto = GetLocalInt(oPC, "zombkill10k");
-        int iFkten = GetLocalInt(oPC, "frenzykill10");
-        int iFkhun = GetLocalInt(oPC, "frenzykill100");
-        int iFktho = GetLocalInt(oPC, "frenzykill1000");
-        if(iZkten > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("zombiekillx10", oPC, 1));
-            DeleteLocalInt(oPC, "zombkill10");
-            }
-        if(iZkhun > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("zombiekhundred", oPC, 1));
-            DeleteLocalInt(oPC, "zombkill100");
-            }
-        if(iZktho > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("zombiekthousand", oPC, 1));
-            DeleteLocalInt(oPC, "zombkill1000");
-            }
-        if(iZktto > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("zombiektenthous", oPC, 1));
-            DeleteLocalInt(oPC, "zombkill10k");
-            }
-        if(iFkten > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("frenzykillx10", oPC, 1));
-            DeleteLocalInt(oPC, "frenzykill10");
-            }
-        if(iFkhun > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("frenzykillhund", oPC, 1));
-            DeleteLocalInt(oPC, "frenzykill100");
-            }
-        if(iFktho > 0)
-            {
-            DelayCommand(3.0, DelayedCreateItemOnObject("frenzykillthous", oPC, 1));
-            DeleteLocalInt(oPC, "frenzykill1000");
-            }
-        DoCatalystSearch(oPC);
+        //DoCatalystSearch(oPC);
         oPC=GetNextPC();
     } // PC traversal
     ExecuteScript("hungerscript", OBJECT_SELF);

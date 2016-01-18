@@ -340,27 +340,11 @@ void main()
             AgeFood(oPC);
         }
 
-        // Grant experience to play for roleplay, or if they're doing poorly tell them
-        // they need to RP more!
         if (nIsHungry == nEightHours)
         {
+            // TODO: add to PCToken instead.
             CreateItemOnObject("survivaltime", oPC , 1);
-            if (GetItemPossessedBy(oPC, "noroleplay")!= OBJECT_INVALID)
-             {
-                FloatingTextStringOnCreature("You need to roleplay to recieve XP", oPC);
-             }
-             else if (GetItemPossessedBy(oPC, "poorroleplay")!= OBJECT_INVALID)
-             {
-                GiveXPToCreatureDH(oPC, 5);
-             }
-             else if (GetItemPossessedBy(oPC, "goodroleplay")!= OBJECT_INVALID)
-             {
-                GiveXPToCreatureDH(oPC, 6);
-             }
-             else if (GetItemPossessedBy(oPC, "greatroleplay")!= OBJECT_INVALID)
-             {
-                GiveXPToCreatureDH(oPC, 12);
-             }
+            GiveXPToCreatureDH(oPC, 12);
          }
 
         //  Check to see if the player is hungry and lost CON (8 hours)

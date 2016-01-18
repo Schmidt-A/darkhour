@@ -40,6 +40,7 @@ void main()
     if (GetTimeHour() == 0)
         CreateItemOnObject("frenzykill", oDamager, 1);
 
+    // Grant XP if we're under the kill-limit per day
     int iZombieKills = GetLocalInt(oDamager, "zkxpcount");
     if(iZombieKills < MAX_ZOMBIE_KILLS)
     {
