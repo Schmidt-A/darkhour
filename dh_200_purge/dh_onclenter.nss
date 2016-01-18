@@ -16,9 +16,7 @@
 #include "_incl_subrace"
 #include "nwnx_chat"
 
-// TODO: Move this to module variable
 string AUTH_DB_NAME = "AUTH";
-string FORUM_URL = "http://dhepilogue.boards.net/";
 
 void Authenticate(object oPC);
 

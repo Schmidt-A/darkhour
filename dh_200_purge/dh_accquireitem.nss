@@ -143,13 +143,4 @@ void main()
 
     if(sTag == "zkxthous")
         ExecuteScript("tenthouszk", oAcquirer);
-
-    if (sTag == "SurvivalTime")
-        ExecuteScript("survivaltimes", oAcquirer);
-
-    else if (sTag == "ZombieKill")
-        ExecuteScript("zombiekill", oAcquirer);
-
-    else if (sTag == "FrenzyKill")
-        ExecuteScript("frenzykill", oAcquirer);
 }

@@ -120,13 +120,6 @@ void main()
             DelayCommand(3.0, DelayedCreateItemOnObject("frenzykillthous", oPC, 1));
             DeleteLocalInt(oPC, "frenzykill1000");
             }
-//        object oZkone = GetItemPossessedBy(oPC, "ZombieKill");
-//        int iZkone = GetItemStackSize(oZkone)
-//        if(iZkone == 10)
-//            {
-//            CreateItemOnObject("zombiekillx10", oPC);
-//            DestroyObject(oZkone);
-//            }
         DoCatalystSearch(oPC);
         oPC=GetNextPC();
     } // PC traversal

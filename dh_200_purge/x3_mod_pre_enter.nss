@@ -4,6 +4,7 @@
 // each player as they enter the module.
 //
 #include "disease_inc"
+#include "_cls_bard"
 #include "_incl_xp"
 #include "_incl_versioning"
 
@@ -11,20 +12,10 @@ void main()
 {
     object oPC = GetEnteringObject();
 
-    if(GetCampaignInt(GetPCPlayerName(oPC)+"_BANNED",GetPCPlayerName(oPC))==TRUE)
-    {
-        BootPC(oPC);
-    }
-    else if(GetCampaignInt(GetPCIPAddress(oPC)+"_BANNED",GetPCIPAddress(oPC))==TRUE)
-    {
-        BootPC(oPC);
-    }
-    else if(GetCampaignInt(GetPCPublicCDKey(oPC)+"_BANNED",GetPCPublicCDKey(oPC))==TRUE)
-    {
-        BootPC(oPC);
-    }
-
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
+    if(GetCampaignInt(GetPCPlayerName(oPC)+"_BANNED", GetPCPlayerName(oPC)) == TRUE ||
+       GetCampaignInt(GetPCIPAddress(oPC)+"_BANNED",  GetPCIPAddress(oPC))  == TRUE ||
+       GetCampaignInt(GetPCPublicCDKey(oPC)+"_BANNED",GetPCPublicCDKey(oPC))== TRUE ||
+       OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
     {
         BootPC(oPC);
     }
@@ -38,13 +29,20 @@ void main()
 
     //set their xp vars
     if (GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
-    {
         SubraceLogin(oPC);
-    }
 
     if (GetIsPC(oPC))
-    {
         SetLocalInt(oPC, "Is_PC", 1);
+
+    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
+
+    // First login ever - there'll have to be lots of other setup stuff here.
+    if(oPCToken == OBJECT_INVALID)
+    {
+        oPCToken = CreateItemOnObject("token_pc", oPC);
+        // Setup for brand new bard
+        if(GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
+            SetupNewBard(oPC);
     }
 
     int nHitpoints = GetLocalInt(GetModule(),sName);
@@ -52,7 +50,7 @@ void main()
     {
         int nLessHP = GetMaxHitPoints(oPC) - nHitpoints;
         if (nLessHP > 0)
-        {
+    e   {
             ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nLessHP),oPC);
         }
     }
@@ -75,46 +73,14 @@ void main()
             break;
     }
 
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken"))
-    {
-//      effect eDeath = EffectDeath();
-//      ApplyEffectToObject(DURATION_TYPE_INSTANT,eDeath,oPC);
+    // clean up their tokens, if they have any
+    if(!GetLocalInt(oPCToken, "bTokensInit"))
+        TokensToVars(oPC);
 
-        int nAlign = GetAlignmentGoodEvil(oPC);
-        location lLoc;
-        if (nAlign == ALIGNMENT_EVIL)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else if (nAlign == ALIGNMENT_GOOD)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
-    }
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
+    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
+        OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
     {
-//      effect eDeath = EffectDeath();
-//      ApplyEffectToObject(DURATION_TYPE_INSTANT,eDeath,oPC);
-
-        int nAlign = GetAlignmentGoodEvil(oPC);
-        location lLoc;
-        if (nAlign == ALIGNMENT_EVIL)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else if (nAlign == ALIGNMENT_GOOD)
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
-        else
-        {
-            lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        }
+        lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
         DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
     }
 

@@ -35,7 +35,8 @@ void main()
     if(!GetIsPC(oDamager))
         return;
         
-    CreateItemOnObject("zombiekill", oDamager, 1);
+    SetLocalInt(oDamager, "iZombieKills", GetLocalInt(oDamager,"iZombieKills")+1);
+    // TODO: kill badges
     if (GetTimeHour() == 0)
         CreateItemOnObject("frenzykill", oDamager, 1);
 
