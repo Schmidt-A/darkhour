@@ -20,6 +20,9 @@ void main()
         ExploreAreaForPlayer(GetArea(oPC), oPC);
     }
 
+    int iPCCount = GetLocalInt(OBJECT_SELF, "iPCCount");                        
+    SetLocalInt(OBJECT_SELF, "iPCCount", iPCCount+1); 
+
     if (GetLocalInt(oPC,"finishcreate") == 1)
     {
         SetDroppableFlag(GetFirstItemInInventory(oPC),FALSE);
