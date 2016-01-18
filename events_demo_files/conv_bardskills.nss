@@ -4,7 +4,7 @@
 void main()
 {
     object oPC          = OBJECT_SELF;
-    object oBardToken   = GetItemPossessedBy(oPC, "bard_boosts");
+    object oPCToken   = GetItemPossessedBy(oPC, "bard_boosts");
     string sConvPos     = IntToString(GetLocalInt(oPC, "iConvPos"));
 
     /* This is a really simple table that just maps the conversational skill
@@ -18,6 +18,6 @@ void main()
         ModifySkillRank(oPC, iSkillID, 5);
         /* Keep track of what skill they chose to increase, since we may have
          * to increase it for them at later levels. */
-        SetLocalInt(oBardToken, "iSkillID", iSkillID);
+        SetLocalInt(oPCToken, "iSkillID", iSkillID);
     }
 }

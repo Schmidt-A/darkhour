@@ -66,7 +66,7 @@ void main()
     int nPerform = nRanks;
     int nDuration = 10 + (nChr * 3);
 
-    object oBardToken = GetItemPossessedBy(OBJECT_SELF, "bard_boosts");
+    object oPCToken = GetItemPossessedBy(OBJECT_SELF, "bard_boosts");
 
     effect eAttack;
     effect eDamage;
@@ -120,21 +120,21 @@ void main()
         nDamage = 1;
     }
 
-    if(CanBoost(oBardToken, "bOffense", nPerform))
+    if(CanBoost(oPCToken, "bOffense", nPerform))
     {
         nAttack += 2;
         nDamage += 2;
     }
-    if(CanBoost(oBardToken, "bDefense", nPerform))
+    if(CanBoost(oPCToken, "bDefense", nPerform))
     {
         nAC += 2;
         nFort += 2;
         nWill += 2;
         nReflex += 2;
     }
-    if(CanBoost(oBardToken, "bHeal", nPerform))
+    if(CanBoost(oPCToken, "bHeal", nPerform))
         nHeal = GetHealValue(OBJECT_SELF);
-    if(CanBoost(oBardToken, "bSkills", nPerform))
+    if(CanBoost(oPCToken, "bSkills", nPerform))
         nSkill += 5;
 
     effect eVis = EffectVisualEffect(VFX_DUR_BARD_SONG);
@@ -198,7 +198,7 @@ void main()
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLinkBard,
                                         oTarget, RoundsToSeconds(nDuration));
                     UnlinkedSongEffects(oTarget, nDuration, nHP, nHeal,
-                                        CanBoost(oBardToken, "bSpeed", nPerform));
+                                        CanBoost(oPCToken, "bSpeed", nPerform));
                 }
                 else if(!GetIsEnemy(oTarget))
                 {
@@ -206,19 +206,19 @@ void main()
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget,
                                         RoundsToSeconds(nDuration));
                     UnlinkedSongEffects(oTarget, nDuration, nHP, nHeal,
-                                        CanBoost(oBardToken, "bSpeed", nPerform));
+                                        CanBoost(oPCToken, "bSpeed", nPerform));
                 }
             }
         }
         // Bards with lingering song can re-apply their healing
         // (if they have SF:Heal)
-        else if(CanBoost(oBardToken, "bLingering", nPerform))
+        else if(CanBoost(oPCToken, "bLingering", nPerform))
             UnlinkedSongEffects(oTarget, 0, 0, nHeal, FALSE);
 
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL,
                                        GetLocation(OBJECT_SELF));
     }
-    if(CanBoost(oBardToken, "bBoth", nPerform))
+    if(CanBoost(oPCToken, "bBoth", nPerform))
         DoCurseSong(FALSE);
 }
 

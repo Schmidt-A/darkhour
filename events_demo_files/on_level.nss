@@ -5,9 +5,9 @@ void main()
     object oPC = GetPCLevellingUp();
     int iBardLevels = GetLevelByClass(CLASS_TYPE_BARD, oPC);
 
-    object oBardToken = GetItemPossessedBy(oPC, "bard_boosts");
-    int iLastBardLevels = GetLocalInt(oBardToken, "iBardLevel");
+    object oPCToken = GetItemPossessedBy(oPC, "bard_boosts");
+    int iLastBardLevels = GetLocalInt(oPCToken, "iBardLevel");
 
     if(iBardLevels > 0 && iBardLevels > iLastBardLevels)
-        BardLevel(oPC, oBardToken, iBardLevels);
+        BardLevel(oPC, oPCToken, iBardLevels);
 }

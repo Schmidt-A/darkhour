@@ -3,13 +3,14 @@
 void main()
 {
     object oPC = GetEnteringObject();
+    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
 
-    GiveXPToCreature(oPC, 15000);
-
-    // Setup for brand new bard
-    if(GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1 &&
-       GetItemPossessedBy(oPC, "bard_boosts") == OBJECT_INVALID)
+    // First login ever - there'll have to be lots of other setup stuff here.
+    if(oPCToken == OBJECT_INVALID)
     {
-        SetupNewBard(oPC);
+        oPCToken = CreateItemOnObject("token_pc", oPC);
+        // Setup for brand new bard
+        if(GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
+            SetupNewBard(oPC);
     }
 }
