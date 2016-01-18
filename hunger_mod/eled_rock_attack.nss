@@ -1,3 +1,6 @@
+/* This needs to be put on the OnDamaged of the Eledhreth cave-in rocks so that
+ * only miners can clear it. */
+
 void main()
 {
     object oPC = GetLastDamager();

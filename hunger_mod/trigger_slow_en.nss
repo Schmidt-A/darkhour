@@ -1,3 +1,8 @@
+/* Applies a dramatic slow effect to any player failing their reflex save
+ * upon entering the trigger. Needs three variables defined on the trigger:
+ *      int iDC     - Saving throw DC to beat
+ *      string sMsg - Message to be displayed to the PC if they fail the save. */
+
 void main()
 {
     object oPC = GetEnteringObject();

@@ -1,4 +1,5 @@
-/* These miserable-for-PCs vault additions written by Tweek 2016. */
+/* These miserable-for-PCs vault additions written by Tweek 2016.
+ * Info on how to use these is in vaultrun_hb. */
 #include "_incl_location"
 
 const int KALARAM   = 0;
@@ -8,64 +9,33 @@ const int BARABAN   = 3;
 const int ANNEDHEL  = 4;
 const int SISPARA   = 5;
 
-/* Change these if you want different behavior. I can make it variable-based
- * if that's prefered. */
-const int FORT_SAVE = 14;
-const int REFLEX_SAVE = 12;
-const float KD_DUR = 4.0;
+// Config options
+const int ELED_NO_CAVEINS = 3;
+const int FORT_DC     = 14;
+const int REFLEX_DC   = 12;
+const float KD_DUR    = 4.0;
 
-object CreateBoulder(int iWP)
-{
-    string sWPTag = "eled_cave_in" + IntToString(iWP);
-    object oObj = CreateObject(OBJECT_TYPE_PLACEABLE, "eled_boulder",
-                 GetLocation(GetObjectByTag(sWPTag)));
-    return oObj;
-}
+const string ROCK_PLACEABLE = "eled_boulder";
+const string PUKE_PLACEABLE = "hazard_puke";
+const string ELED_ROCK_WP   = "eled_cave_in";
 
-void CaveIn()
-{
-    int iWP1 = Random(3)+1;
-    int iWP2 = Random(3)+1;
-    while(iWP2 == iWP1)
-        iWP2 = Random(3)+1;
+/*-------------- Vault Handler Functions -----------*/
+void BarabanVaultEffects(object oPC);
+void FaelothVaultEffects(object oPC);
+void KalaramVaultEffects(object oPC);
+/*-------------- Eledhreth Functions ---------------*/
+void    CaveIn();
+void    CleanUpCaveIn();
+object  CreateBoulder(int iWP);
+/*-------------- Kalaram Functions -----------------*/
+void VomitCheck(object oPC, string sMsg);
+/*-------------- General Functions -----------------*/
+void VaultSaveFail(object oPC, int iSave);
 
-    CreateBoulder(iWP1);
-    CreateBoulder(iWP2);
-}
-
-void CleanUpCaveIn()
-{
-    object oObj = GetFirstObjectInArea();
-    while(GetIsObjectValid(oObj))
-    {
-        if(GetResRef(oObj) == "eled_boulder")
-            DestroyObject(oObj);
-        oObj = GetNextObjectInArea();
-    }
-}
-
-void VaultSaveFail(object oPC, int iSave)
-{
-    // We'll be nice and not keep infinitely reducing saves.
-    effect eLoop = GetFirstEffect(oPC);
-    int bFullFort = TRUE;
-    while(GetIsEffectValid(eLoop))
-    {
-       if(GetEffectType(eLoop) == EFFECT_TYPE_SAVING_THROW_DECREASE)
-           bFullFort = FALSE;
-       eLoop = GetNextEffect(oPC);
-    }
-    if(bFullFort)
-    {
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
-                EffectSavingThrowDecrease(iSave, 2), oPC, 120.0);
-
-    }
-}
 
 void BarabanVaultEffects(object oPC)
 {
-    if(ReflexSave(oPC, REFLEX_SAVE, SAVING_THROW_TYPE_NONE) < 1)
+    if(ReflexSave(oPC, REFLEX_DC, SAVING_THROW_TYPE_NONE) < 1)
     {
         string sName = GetName(oPC);
         SendMessageToPC(oPC, "Fueled by the darkness of Siranda, strange roots " +
@@ -87,7 +57,7 @@ void BarabanVaultEffects(object oPC)
 
 void FaelothVaultEffects(object oPC)
 {
-    if(ReflexSave(oPC, REFLEX_SAVE, SAVING_THROW_TYPE_NONE) < 1)
+    if(ReflexSave(oPC, REFLEX_DC, SAVING_THROW_TYPE_NONE) < 1)
     {
         string sName = GetName(oPC);
         SendMessageToPC(oPC, sName + " fails to keep their footing and slips." +
@@ -96,7 +66,7 @@ void FaelothVaultEffects(object oPC)
         VaultSaveFail(oPC, SAVING_THROW_REFLEX);
         ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, KD_DUR);
     }
-    if(FortitudeSave(oPC, FORT_SAVE, SAVING_THROW_TYPE_NONE) < 1)
+    if(FortitudeSave(oPC, FORT_DC, SAVING_THROW_TYPE_NONE) < 1)
     {
         SendMessageToPC(oPC, "The frigid air of this frozen passage chills blood " +
                 "and flesh alike.");
@@ -104,22 +74,6 @@ void FaelothVaultEffects(object oPC)
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oPC);
         ApplyEffectToObject(DURATION_TYPE_INSTANT,
                             EffectVisualEffect(VFX_IMP_FROST_S), oPC);
-    }
-}
-
-void VomitCheck(object oPC, string sMsg)
-{
-    if(FortitudeSave(oPC, FORT_SAVE, SAVING_THROW_TYPE_NONE) < 1)
-    {
-        SendMessageToPC(oPC, sMsg);
-        VaultSaveFail(oPC, SAVING_THROW_FORT);
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, KD_DUR);
-
-        object oPuke = CreateObject(OBJECT_TYPE_PLACEABLE, "hazard_puke",
-                                    GetLocation(oPC));
-        /* Our own vomit won't make us puke, so we don't get stuck in some barf loop */
-        SetLocalInt(oPuke, GetName(oPC), 1);
-        DelayCommand(120.0, DestroyObject(oPuke));
     }
 }
 
@@ -139,7 +93,7 @@ void KalaramVaultEffects(object oPC)
                                                         OBJECT_TYPE_PLACEABLE);
         while(GetIsObjectValid(oPuke))
         {
-            if(GetResRef(oPuke) == "hazard_puke")
+            if(GetResRef(oPuke) == PUKE_PLACEABLE)
             {
                 string sName = GetName(oPC);
                 if(!GetLocalInt(oPuke, sName))
@@ -152,5 +106,70 @@ void KalaramVaultEffects(object oPC)
             }
             oPuke = GetNextObjectInShape(SHAPE_SPHERE, 10.0, lLoc);
         }
+    }
+}
+
+void CaveIn()
+{
+    int iWP1 = Random(ELED_NO_CAVEINS)+1;
+    int iWP2 = Random(ELED_NO_CAVEINS)+1;
+    while(iWP2 == iWP1)
+        iWP2 = Random(ELED_NO_CAVEINS)+1;
+
+    CreateBoulder(iWP1);
+    CreateBoulder(iWP2);
+}
+
+void CleanUpCaveIn()
+{
+    object oObj = GetFirstObjectInArea();
+    while(GetIsObjectValid(oObj))
+    {
+        if(GetResRef(oObj) == ROCK_PLACEABLE)
+            DestroyObject(oObj);
+        oObj = GetNextObjectInArea();
+    }
+}
+
+object CreateBoulder(int iWP)
+{
+    string sWPTag = ELED_ROCK_WP + IntToString(iWP);
+    object oObj = CreateObject(OBJECT_TYPE_PLACEABLE, ROCK_PLACEABLE,
+                 GetLocation(GetObjectByTag(sWPTag)));
+    return oObj;
+}
+
+void VomitCheck(object oPC, string sMsg)
+{
+    if(FortitudeSave(oPC, FORT_DC, SAVING_THROW_TYPE_NONE) < 1)
+    {
+        SendMessageToPC(oPC, sMsg);
+        VaultSaveFail(oPC, SAVING_THROW_FORT);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectKnockdown(), oPC, KD_DUR);
+
+        object oPuke = CreateObject(OBJECT_TYPE_PLACEABLE, PUKE_PLACEABLE,
+                                    GetLocation(oPC));
+        /* Our own vomit won't make us puke, so we don't get stuck in some barf loop */
+        SetLocalInt(oPuke, GetName(oPC), 1);
+        DelayCommand(120.0, DestroyObject(oPuke));
+    }
+}
+
+void VaultSaveFail(object oPC, int iSave)
+{
+    // We'll be nice and not keep infinitely reducing saves.
+    effect eLoop = GetFirstEffect(oPC);
+    int bFullFort = TRUE;
+    while(GetIsEffectValid(eLoop))
+    {
+       if(GetEffectType(eLoop) == EFFECT_TYPE_SAVING_THROW_DECREASE)
+           bFullFort = FALSE;
+       eLoop = GetNextEffect(oPC);
+    }
+    if(bFullFort)
+    {
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
+                EffectSavingThrowDecrease(iSave, 2), oPC, 120.0);
+
     }
 }

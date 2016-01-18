@@ -1,3 +1,21 @@
+/* Put this script on the appropriate area heartbeat. It needs two variables
+ * set on the area:
+ * int iHBInterval - This is the interval at which you want players to have to
+ *      try to save against vault-run effects. Whatever you put gets multiplied
+ *      by 6 seconds since HB scripts run (roughly) every 6 seconds. So if you
+ *      want players to save every minute, set iHBInterval = 10. iHBInterval = 7
+ *      means the check will happen every 42 seconds, etc.
+ * int iVault - Control for which hazards trigger in an area. Laid out as follows:
+ *      KALARAM   = 0;
+ *      ELEDHRETH = 1;
+ *      FAELOTH   = 2;
+ *      BARABAN   = 3;
+ *      ANNEDHEL  = 4;
+ *      SISPARA   = 5;
+ * Detailed functions are in vault_hazards. Constants in vault_hazards can be
+ * changed to control area saving throw DCs, duration of effects, damage values,
+ * and placeable/waypoint resrefs that are used. */
+
 #include "vault_hazards"
 
 void main()
