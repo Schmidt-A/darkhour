@@ -252,6 +252,8 @@ void TokensToVars(object oPC, object oPCToken)
             iFrenzyKillTokens += 10 * iStackSize;
         else if (sTag == "FK100")
             iFrenzyKillTokens += 100 * iStackSize;
+
+        oItem = GetNextItemInInventory(oPC);
     }
 
     SetLocalInt(oPCToken, "iZombieKills", iZombieKillTokens);
@@ -273,5 +275,6 @@ void TokensToVars(object oPC, object oPCToken)
         {
             DestroyObject(oItem);
         }
+        oItem = GetNextItemInInventory(oPC);
     }
 }

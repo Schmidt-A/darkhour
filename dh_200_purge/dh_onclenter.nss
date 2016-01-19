@@ -16,10 +16,6 @@
 #include "_incl_subrace"
 #include "nwnx_chat"
 
-string AUTH_DB_NAME = "AUTH";
-
-void Authenticate(object oPC);
-
 void main()
 {
     object oPC=GetEnteringObject();
@@ -51,13 +47,14 @@ void main()
 
         HorsePreloadAnimations(oPC);
         DelayCommand(3.0,HorseRestoreHenchmenLocations(oPC));
-        Authenticate(oPC);
+        //Authenticate(oPC);
     } // more details
 }
 
 // Homebrew CD Key Authentication
 void Authenticate(object oPC)
 {
+    string AUTH_DB_NAME= "AUTH";
     string sPlayerName = GetPCPlayerName(oPC);
     string sKey        = GetPCPublicCDKey(oPC);
     string sKeyVarName = "KEY_" + sPlayerName;
