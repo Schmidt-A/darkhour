@@ -20,6 +20,7 @@
 
 #include "nw_i0_generic"
 #include "x3_inc_horse"
+#include "nwnx_funcs"
 
 void TryMountedDamageEvasion(object oDamager)
 {
@@ -114,8 +115,7 @@ void BehemothRampage()
             "the ground trembles. It then begins racing towards you!",
             TALKVOLUME_TALK);
 
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        EffectMovementSpeedIncrease(300), OBJECT_SELF);
+    SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_NORMAL);
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
                         EffectVisualEffect(VFX_FNF_HOWL_MIND), OBJECT_SELF);
     ApplyEffectToObject(DURATION_TYPE_PERMANENT,

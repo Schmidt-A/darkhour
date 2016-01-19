@@ -26,6 +26,7 @@
 */
 
 #include "nw_i0_generic"
+#include "nwnx_funcs"
 
 void ApplyFrenzy(object oSkin)
 {
@@ -72,14 +73,12 @@ void BehemothEndRampage()
 {
     SetLocalInt(OBJECT_SELF, "rampaging", FALSE);
 
+    SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_VERY_SLOW);
     effect eLoop = GetFirstEffect(OBJECT_SELF);
     while (GetIsEffectValid(eLoop))
     {
-        if (GetEffectType(eLoop) == EFFECT_TYPE_VISUALEFFECT ||
-            GetEffectType(eLoop) == EFFECT_TYPE_MOVEMENT_SPEED_INCREASE)
-        {
+        if (GetEffectType(eLoop) == EFFECT_TYPE_VISUALEFFECT)
             RemoveEffect(OBJECT_SELF, eLoop);
-        }
         eLoop=GetNextEffect(OBJECT_SELF);
     }
     SpeakString("With the worst of its injuries having renegerated, the hulking " +
