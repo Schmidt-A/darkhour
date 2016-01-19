@@ -1,3 +1,4 @@
+#include "_incl_xp"
 //:://////////////////////////////////////////////////
 //:: NW_C2_DEFAULT7
 /*
@@ -55,7 +56,7 @@ void main()
         {
             CreateItemOnObject("badge32",oDamager);
             FloatingTextStringOnCreature("You received a new badge!", oDamager, FALSE);
-            GiveXPToCreature(oDamager,100);
+            GiveXPToCreatureDH(oDamager,100);
         }
     }
 }

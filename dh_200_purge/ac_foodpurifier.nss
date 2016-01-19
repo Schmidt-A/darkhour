@@ -6,7 +6,7 @@ void main()
 
     if(GetTag(oTarget) != "Spoiled")
     {
-        SendMessageToPC(oUser,"You can only use the purifier on spoiled food.");
+        SendMessageToPC(oPC, "You can only use the purifier on spoiled food.");
         return;
     }
 

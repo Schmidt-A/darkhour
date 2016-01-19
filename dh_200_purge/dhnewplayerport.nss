@@ -9,5 +9,5 @@ void main()
     if (GetItemPossessedBy(oPC, "darkhourtoken")!= OBJECT_INVALID)
         return;
 
-    PortToWaypoint("newplayerwaypoint");
+    PortToWaypoint(oPC, "newplayerwaypoint");
 }

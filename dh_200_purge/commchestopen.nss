@@ -5,7 +5,11 @@ void main()
     // Variables
     object oPC = GetLastOpenedBy();
     object oChest = OBJECT_SELF;
-    if(GetFirstItemInInventory(OBJECT_SELF) != OBJECT_INVALID)
+    if(GetLocalInt(OBJECT_SELF, "LOADED") != 1)
+        {
+        SetLocalInt(OBJECT_SELF, "LOADED", 1);
+        }
+    else
         {
         return;
         }
@@ -21,8 +25,8 @@ void main()
     while (GetIsObjectValid(oItem))
     {
         // Copy the item into the chest
-        CopyItem(oItem, oChest, TRUE);
-
+        object oNew = CopyItem(oItem, oChest, TRUE);
+        SetDescription(oNew, GetLocalString(oItem, "DESC"), TRUE);
         // Destroy the original (we can recall it later)
         DestroyObject(oItem);
 

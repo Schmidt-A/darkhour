@@ -1,3 +1,4 @@
+// Tweek note - why do we have this in onload and called separately?
 void main()
 {
  int iHour = GetTimeHour();

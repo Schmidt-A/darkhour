@@ -1,7 +1,3 @@
-
-
-
-
 //::///////////////////////////////////////////////
 //:: Default: On Spawn In
 //:: NW_C2_DEFAULT9
@@ -20,8 +16,6 @@
 
 void main()
 {
-if(GetLocalInt(OBJECT_SELF,"DMX_SPAWNED"))
-    AssignCommand(OBJECT_SELF,ActionRandomWalk());
 // OPTIONAL BEHAVIORS (Comment In or Out to Activate ) ****************************************************************************
      //SetSpawnInCondition(NW_FLAG_SPECIAL_CONVERSATION);
      //SetSpawnInCondition(NW_FLAG_SPECIAL_COMBAT_CONVERSATION);

@@ -49,6 +49,9 @@ void main()
         if (GetIsDead(oTarget))
         {
             //Declare major variables
+            object oItem;
+            oItem = GetItemPossessedBy(oTarget, "ReaperToken");
+            DestroyObject(oItem);
             int nHealed = GetMaxHitPoints(oTarget);
             effect eRaise = EffectResurrection();
             effect eHeal = EffectHeal(nHealed + 10);
@@ -57,9 +60,6 @@ void main()
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eRaise, oTarget);
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eHeal, oTarget);
             ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
-            DestroyObject(GetItemPossessedBy(oTarget,"deathtoken"));
-            DestroyObject(GetItemPossessedBy(oTarget,"ReaperToken"));
-
         }
         else
         {
