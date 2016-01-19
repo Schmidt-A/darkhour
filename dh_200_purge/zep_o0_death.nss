@@ -19,6 +19,7 @@
 //:://////////////////////////////////////////////
 
 #include "x3_inc_horse"
+#include "zep_inc_phenos"
 #include "x2_inc_switches"
 
  /*
@@ -80,6 +81,7 @@ void main()
     //string sResRef = GetLocalString(oPlayer,"PONY_ID");
     if (GetLocalInt(oPlayer, "VAR_HORSEMOUNT")== 1)
    {
+        zep_Dismount (oPlayer, "horse_dismt");
         SetLocalInt(oPlayer,"bX3_IS_MOUNTED",FALSE);
         DeleteLocalString(oPlayer,"X3_HORSE_SCRIPT_DISMOUNT");
         SetLocalInt(oPlayer, "VAR_HORSEMOUNT", 0);//horselord class variable
@@ -200,7 +202,21 @@ void main()
     }
 
 
+    // * Handle Spirit of the Wood Death
      string sArea = GetTag(GetArea(oPlayer));
+/*
+    if (sArea == "MAP_M2Q2F2" && GetDistanceBetweenLocations(GetLocation(GetObjectByTag("M2Q2F2_M2Q2G")), GetLocation(oPlayer)) < 5.0 && GetLocalInt(GetModule(),"NW_M2Q2E_WoodsFreed") == 0)
+    {
+        int bValid;
+
+        Raise(oPlayer);
+        string sDestTag = "WP_M2Q2GtoM2Q2F";
+        object oSpawnPoint = GetObjectByTag(sDestTag);
+        AssignCommand(oPlayer,JumpToLocation(GetLocation(oSpawnPoint)));
+        return;
+
+    }
+*/
     // * in last level of the Sourcestone, move the player to the beginning of the area
     // * May 16 2002: or the main area of the Snowglobe (to prevent plot logic problems).
     // * May 21 2002: or Castle Never
@@ -210,6 +226,7 @@ void main()
         //Raise(oPlayer);
         //string sDestTag = "M4QD07_ENTER";
         //object oSpawnPoint = GetObjectByTag(sDestTag);
+//        AssignCommand(oPlayer, DelayCommand(1.0, JumpToLocation(GetLocation(oSpawnPoint))));
 // * MAY 2002: Just popup the YOU ARE DEAD panel at this point
         DelayCommand(2.5, PopUpDeathGUIPanel(oPlayer,FALSE, TRUE, 66487));
         return;

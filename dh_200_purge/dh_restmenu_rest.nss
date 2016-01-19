@@ -50,18 +50,11 @@ void main()
         {
             oItem = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oPC);
             if (GetTag(oItem) == "kishuriken")
-            {
                 DestroyObject(oItem);
-            }
-            oItem = GetFirstItemInInventory(oPC);
-            while (oItem != OBJECT_INVALID)
-            {
-                if ((GetTag(oItem) == "kishuriken") || (GetTag(oItem) == "ForagedRemedy"))
-                {
-                    DestroyObject(oItem);
-                }
-                oItem = GetNextItemInInventory(oPC);
-            }
+
+            oItem = GetItemPossessedBy(oPC, "kishuriken");
+            if(oItem != OBJECT_INVALID)
+                DestroyObject(oItem);
         }
 
         // Then at the end, if he is a monk create a new set of shurikens

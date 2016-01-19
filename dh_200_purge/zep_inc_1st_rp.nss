@@ -1862,8 +1862,12 @@ void A1st_SitInNearestChair(object oCreature, float fDist=10.0, string sPhrase =
         v2 = v2/VectorMagnitude(v2);
         v1=v1;//-0.02*v2;
         lChair=Location(GetArea(oChair),v1, 180.0+GetFacing(oChair));       //90.0+GetFacing(oChair));
+        //AssignCommand(oS, ActionJumpToLocation(lChair));
+        //AssignCommand(oS, ActionJumpToObject(oChair,FALSE)); //Doesn't work well at all.
         AssignCommand(oS, ActionUnequipItem(GetItemInSlot(INVENTORY_SLOT_LEFTHAND,oS)));
         AssignCommand(oS, ActionUnequipItem(GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oS)));
+        //AssignCommand(oS, SetFacing(GetFacing(oChair)));
+        //AssignCommand(oS, ActionPlayAnimation(ANIMATION_LOOPING_SIT_CHAIR,1.0,31415926535897.9));
       AssignCommand(oS,ActionSit(oChair));
    }
 }

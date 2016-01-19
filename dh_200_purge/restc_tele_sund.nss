@@ -1,6 +1,8 @@
 // This script will teleport the player to the OOC Player Lounge.
 // Created by Zunath on August 2, 2007
 
+#include "_incl_location"
+
 void main()
 {
     object oPC = GetPCSpeaker();
@@ -13,5 +15,5 @@ void main()
     location lWPLocation = GetLocalLocation(oPC,"ReturnToRestSpot");
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
             EffectVisualEffect(VFX_IMP_UNSUMMON, FALSE), oPC);
-    PortToWaypoint(oPC, lWPLocation);
+    PortToLocation(oPC, lWPLocation);
 }

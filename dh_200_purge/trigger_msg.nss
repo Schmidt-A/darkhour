@@ -6,7 +6,7 @@ void main()
         return;
 
     string sVarName = "seen_" + GetTag(OBJECT_SELF);
-    if(GetLocalInt(oPC, sVarName)
+    if(GetLocalInt(oPC, sVarName))
         return;
     SetLocalInt(oPC, sVarName, TRUE);
 

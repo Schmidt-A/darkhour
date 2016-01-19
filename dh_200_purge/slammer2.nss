@@ -15,7 +15,7 @@ void main()
     if (!GetIsPC(oPC))
         return;
 
-    DoSlam("slam1")
-    DoSlam("slam2")
+    DoSlam("slam1");
+    DoSlam("slam2");
 }
 

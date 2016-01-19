@@ -15,6 +15,7 @@
 
 #include "x2_inc_compon"
 #include "x0_i0_spawncond"
+#include "_incl_xp"
 
 void main()
 {
@@ -55,7 +56,7 @@ void main()
         {
             CreateItemOnObject("badge30",oDamager);
             FloatingTextStringOnCreature("You received a new badge!", oDamager, FALSE);
-            GiveXPToCreature(oDamager,100);
+            GiveXPToCreatureDH(oDamager,100);
         }
     }
 }

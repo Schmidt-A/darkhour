@@ -1,7 +1,7 @@
 void main()
 {
     object oPC = GetPCSpeaker();
-    oItem = GetItemPossessedBy(oPC, "rotd_wood");
+    object oItem = GetItemPossessedBy(oPC, "rotd_wood");
 
     if(oItem != OBJECT_INVALID)
     {

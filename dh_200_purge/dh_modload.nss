@@ -1,14 +1,33 @@
 // Wrapper for the Dark Hour module
 
+#include "nwnx_dmactions"
+#include "nwnx_events"
+#include "x2_inc_switches"
+#include "nwnx_chat"
+
 void main()
 {
- int iHour = GetTimeHour();
- int iMilli = GetTimeMillisecond();
- int iMinute = GetTimeMinute();
- int iSecond = GetTimeSecond();
- SetTime(iHour, iMinute, iSecond, iMilli);
- AssignCommand(OBJECT_SELF, DelayCommand(120.0, ExecuteScript("bm_setclock", OBJECT_SELF)));
-//0255 is not usable in scripts, use 0254, symbol þ
+    SetLocalString(GetModule(),"NWNX!INIT","1");
+    GetLocalObject(GetModule(), "NWNX!INIT");
+
+    SetDMActionScript(DM_ACTION_GIVE_XP, "_handler_dmact");
+    SetDMActionScript(DM_ACTION_GIVE_LEVEL, "_handler_dmact");
+    SetDMActionScript(DM_ACTION_GIVE_GOLD, "_handler_dmact");
+    SetDMActionScript(DM_ACTION_CREATE_ITEM_ON_OBJECT, "_handler_dmact");
+    SetDMActionScript(DM_ACTION_CREATE_ITEM_ON_AREA, "_handler_dmact");
+
+    SetGlobalEventHandler(EVENT_TYPE_PICKPOCKET, "_handler_event");
+
+    // init nwnx_chat
+    dmb_ChatInit();
+
+    int iHour = GetTimeHour();
+    int iMilli = GetTimeMillisecond();
+    int iMinute = GetTimeMinute();
+    int iSecond = GetTimeSecond();
+    SetTime(iHour, iMinute, iSecond, iMilli);
+    AssignCommand(OBJECT_SELF, DelayCommand(120.0, ExecuteScript("bm_setclock", OBJECT_SELF)));
+    //0255 is not usable in scripts, use 0254, symbol þ
 
     SetCustomToken(100, "</c>"); // CLOSE tag
     SetCustomToken(102, "<c þ >"); // green
@@ -47,4 +66,6 @@ void main()
     SetCustomToken(134, GetCampaignString("NPC_STORAGE_NAMES","10"));
     SetLocalInt(GetModule(), "X3_MOUNTS_EXTERNAL_ONLY", TRUE);
     SetLocalInt(GetModule(), "X3_MOUNT_NO_REST_DESPAWN", FALSE);
+
+    SetModuleOverrideSpellscript("dh_spellhook");
 }

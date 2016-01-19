@@ -39,10 +39,15 @@ void main()
         //if (!GetSkinInt(oPC,"bX3_IS_MOUNTED")) HorseIfNotDefaultAppearanceChange(oPC);
         // pre-cache horse animations for player as attaching a tail to the model
 
+        // Format : PC_ENTER:[pc name]
+        // Example: PC_ENTER:My PC
+        string sLog = "PC_ENTER:" + GetPCPlayerName(oPC) + " | " +
+                      GetName(oPC);
+        WriteTimestampedLogEntry(sLog);
+
         HorsePreloadAnimations(oPC);
         DelayCommand(3.0,HorseRestoreHenchmenLocations(oPC));
         Authenticate(oPC);
-        SubraceLogin(oPC);
     } // more details
 }
 

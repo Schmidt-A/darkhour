@@ -17,7 +17,13 @@ void main()
     int nZExpected = GetLocalInt(OBJECT_SELF,"noz");
     // MAX number of behemoths as indicated on the local int of this placeable
     int nBehemoth = GetLocalInt(OBJECT_SELF,"beh");
+    int nHunter = GetLocalInt(OBJECT_SELF,"hunt");
+    int nLeaper = GetLocalInt(OBJECT_SELF,"leap");
+    int nGLeaper = GetLocalInt(OBJECT_SELF, "leap2");
     int nBAT = FALSE;
+    int nHUN = FALSE;
+    int nLEP = FALSE;
+    int nLEP2 = FALSE;
 
     // Cycle through the area looking at all objects and if they are zombies, behemoths
     // or specified waypoints, take the following actions
@@ -35,6 +41,18 @@ void main()
             {
                 nBAT = TRUE;
             }
+            if (GetTag(oObj) == "dh_hunter")
+            {
+                nHUN = TRUE;
+            }
+            if (GetTag(oObj) == "dh_leaper")
+            {
+                nLEP = TRUE;
+            }
+            if (GetTag(oObj) == "dh_gleaper")
+                {
+                nLEP2 = TRUE;
+                }
         }
         // Otherwise if it's a waypoint with the same tag as indicated on this object's
         // variables, increase the current waypoints by 1
@@ -58,6 +76,18 @@ void main()
         if ((nBehemoth == 1) && (nBAT == FALSE) && (Random(60) == 1))
         {
             sType = "zn_zombie017";
+        }
+        else if ((nHunter == 1) && (nHUN == FALSE) && (Random(60) == 1))
+        {
+            sType = "dh_hunter1";
+        }
+        else if ((nLeaper == 1) && (nLEP == FALSE) && (Random(60) == 1))
+        {
+            sType = "dh_hunter004";
+        }
+        else if ((nGLeaper == 1) && (nLEP2 == FALSE) && (Random(60) == 1))
+        {
+            sType = "dh_hunter005";
         }
         else
         {
