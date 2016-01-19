@@ -342,8 +342,12 @@ void main()
 
         if (nIsHungry == nEightHours)
         {
-            // TODO: add to PCToken instead.
-            CreateItemOnObject("survivaltime", oPC , 1);
+            object oPCToken = GetItemPossessedBy(iPC, "token_pc");
+            int iOldSurvivalTimes = GetLocalInt(oPCToken, "iSurvivalTimes");
+            SetLocalInt(oPCToken, "iSurvivalTimes", iOldSurvivalTimes+1);
+            SendMessageToPC(oPC, "Regardless of the ravages to body and mind" +
+                    " brought on by this evil island, you slowly feel yourself" +
+                    " growing stronger from the experience.");
             GiveXPToCreatureDH(oPC, 12);
          }
 
