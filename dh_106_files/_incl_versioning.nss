@@ -125,15 +125,6 @@ void CullClassItems(object oPC, int iLaterClass)
 
 void ZeroToVersionOne(object oPC)
 {
-    AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff1_5",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff2",1,oPC,FALSE);
-    AddJournalQuestEntry("RULES2",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
-    AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
-    AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
-    AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
 
     DelayCommand(12.0,SetLocalInt(oPC,"ingame",1));
     if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "scavenger")) && (GetIsDM(oPC) == FALSE))

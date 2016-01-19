@@ -18,7 +18,7 @@ string GetBadgesFromDB(oPC)
 //Each badge is a separate tag, allowing each badge to collapse, but taking up lots of space in the main journal
 void AddBadgeJournal(string sBadgeTag, object oPC)
 {
-    AddJournalQuestEntry(sBadgeTag, );
+    AddJournalQuestEntry(sBadgeTag, 1, oPC, FALSE);
 }
 
 //Strategy two
@@ -27,10 +27,10 @@ void AddBadgeJournal(string sBadgeTag, object oPC)
 
 void AddBadgeToDB(string sBadgeTag, object oPC, int bHasXP, int bCustom)
 {
-
+    //Add the badge to the DB
 }
 
-void AddBadge(string sBadgeTag, string sBadgeName, int iExp, object oPC)
+void AddBadge(string sBadgeTag, object oPC, string sBadgeName, int iExp)
 {   
     FloatingTextStringOnCreature("You receieved a new badge, " + sBadgeName + "!", oPC, FALSE);
     GiveXPToCreatureDH(oPC, iExp, "XP_BADGE");

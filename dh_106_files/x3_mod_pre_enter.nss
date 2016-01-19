@@ -6,6 +6,7 @@
 #include "disease_inc"
 #include "_incl_xp"
 #include "_incl_versioning"
+#include "_incl_badges"
 
 void main()
 {
@@ -56,6 +57,16 @@ void main()
             ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nLessHP),oPC);
         }
     }
+
+    AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
+    AddJournalQuestEntry("RULES2",1,oPC,FALSE);
+    AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
+    AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
+    AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
+    AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
+    AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
+
+    //RefreshBadgeJournal(oPC);
 
     string sPre = GetDBVarName(oPC);
     int iVer = GetCampaignInt("VERSIONING", sPre+"Version");
