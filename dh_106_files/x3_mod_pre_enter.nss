@@ -66,7 +66,7 @@ void main()
     AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
     AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
 
-    //RefreshBadgeJournal(oPC);
+    //RefreshBadges(oPC);
 
     string sPre = GetDBVarName(oPC);
     int iVer = GetCampaignInt("VERSIONING", sPre+"Version");
