@@ -12,10 +12,11 @@
 
 void StartRestConversation(object oPC)
 {
-    object oPCToken = GetItemPossessedBy(oPC, "tokenpc");
+    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
 
     int iZombieKills    = GetLocalInt(oPCToken, "iZombieKills");
     int iSurvivalTime   = GetLocalInt(oPCToken, "iSurvivalTimes");
+    int iFrenzyKills    = GetLocalInt(oPCToken, "iFrenzyKills");
     int iCurrentHour    = GetTimeHour();
 
     // Apparently we get one survival time token every 8 hours
@@ -27,7 +28,7 @@ void StartRestConversation(object oPC)
         SetCustomToken(901, "<cþ  >DARK HOUR</c>");
     SetCustomToken(902, sSurvivalTime + " Hours");
     SetCustomToken(903, IntToString(iSurvivalTime));
-    SetCustomToken(904, "-");
+    SetCustomToken(904, IntToString(iFrenzyKills));
 
     AssignCommand(oPC, ClearAllActions());
     AssignCommand(oPC, ActionStartConversation(oPC, "dh_rest_convo", TRUE, FALSE));
@@ -48,7 +49,7 @@ void main()
 
     // The player is beyond 5m from a bed roll but is set to rest mode...
     // Tweek: wtf is rest mode
-    else if (GetDistanceBetween(oRestObject, oPC) > 5.0 && 
+    else if (GetDistanceBetween(oRestObject, oPC) > 5.0 &&
              GetLocalInt(oPC, "IS_RESTING") == 1)
     {
         //I cannot rest because I am beyond the range of a bedroll
