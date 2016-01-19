@@ -18,8 +18,8 @@ CREATE TABLE `char_list` (
   `disease_cnt` int(11) DEFAULT '0',
   `area` varchar(64) DEFAULT ' ',
   `location` varchar(64) DEFAULT ' ',
-  PRIMARY KEY (`id`)
-  FOREIGN KEY (`player_id`) REFERENCES player_list(`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`player_id`) REFERENCES player_list(`id`),
   FOREIGN KEY (`palate_id`) REFERENCES palate_table(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -36,7 +36,7 @@ CREATE TABLE `player_list` (
 
 
 CREATE TABLE `hunger_const` (
-  `id` int(11) NOT NULL DEFAULT '0' UNIQUE
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `level` varchar(64) NOT NULL DEFAULT 'Stuffed',
   `max` int(11) NOT NULL DEFAULT '100',
   `min` int(11) NOT NULL DEFAULT '91',
@@ -47,7 +47,7 @@ CREATE TABLE `hunger_const` (
 	
 
 CREATE TABLE `food_table` (
-  `id` int(11) NOT NULL DEFAULT '0' UNIQUE
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `name` varchar(64) NOT NULL DEFAULT ' ',
   `tag` varchar(64) NOT NULL DEFAULT ' ',
   `resref` varchar(64) NOT NULL DEFAULT ' ',
@@ -61,7 +61,7 @@ CREATE TABLE `food_table` (
 	
 	
 CREATE TABLE `palate_table` (
-  `id` int(11) NOT NULL DEFAULT '0' UNIQUE
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `name` varchar(64) NOT NULL DEFAULT 'Generalist',
   `good_food` varchar(255) DEFAULT ' ',
   `bonus` varchar(255) DEFAULT ' ',
@@ -73,3 +73,22 @@ CREATE TABLE `palate_table` (
   `duration` float DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `badge_table` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `name` varchar(64) NOT NULL DEFAULT ' ',
+  `tag` varchar(64) NOT NULL DEFAULT ' ',
+  `entry` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `char_badge_many`
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `char_id` int(11) NOT NULL DEFAULT '0',
+  `badge_id` int(11) NOT NULL DEFAULT '0',
+  `has_xp` int(2) NOT NULL DEFAULT '0',
+  FOREIGN KEY (`char_id`) REFERENCES char_list(`id`),
+  FOREIGN KEY (`badge_id`) REFERENCES badge_table(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
