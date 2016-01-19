@@ -4,15 +4,13 @@
 
 int GetIsDiseased(object oPC)
 {
-    if(GetItemPossessedBy(oPC, "ZombieDisease") != OBJECT_INVALID)
-        return TRUE;
-    return FALSE;
+    return GetItemPossessedBy(oPC, "ZombieDisease");
 }
 
-int DiseaseTokenCount(object oPC)
+int DiseaseTokenCount(oPC)
 {
     if(!GetIsDiseased(oPC))
-        return 0;
+        return;
 
     int iCount = 0;
     object oItem = GetFirstItemInInventory(oPC);
@@ -27,7 +25,7 @@ int DiseaseTokenCount(object oPC)
     return iCount;
 }
 
-void CureDisease(object oPC, int iHowMany=10)
+void CureDisease(oPC, int iHowMany=10)
 {
     if(!GetIsDiseased(oPC))
     {
@@ -38,7 +36,7 @@ void CureDisease(object oPC, int iHowMany=10)
     int iCount = 0;
     object oItem = GetFirstItemInInventory(oPC);
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
-                        EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oPC);
+            EffectVisualEffect(VFX_IMP_REMOVE_CONDITION, oPC)); 
     RemoveDiseaseEffects(oPC);
 
     while(oItem != OBJECT_INVALID && iCount < iHowMany)
@@ -46,7 +44,7 @@ void CureDisease(object oPC, int iHowMany=10)
         if(GetTag(oItem) == "ZombieDisease")
         {
             iCount++;
-            DestroyObject(oItem);
+            DesstroyObject(oItem);
         }
         oItem = GetNextItemInInventory(oPC);
     }

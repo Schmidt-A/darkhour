@@ -4,14 +4,6 @@ void main()
 {
     // Variables
     object oPC = GetLastClosedBy();
-    string sCDKey = GetPCPublicCDKey(oPC);
-    if(sCDKey == "")
-        {
-        sCDKey = GetPCPublicCDKey(oPC, TRUE);
-        }
-    string sPlayer = GetName(oPC);
-    SetLocalString(OBJECT_SELF, "PLAYER", sPlayer);
-    SetLocalString(OBJECT_SELF, "CDKEY", sCDKey);
     object oChest = OBJECT_SELF;
     location lLocation = GetLocation(oPC);
     string sModName = GetName(GetModule());
@@ -51,11 +43,9 @@ void main()
             return;
         }
         // Copy item to the Dummy NPC
-        string sDesc = GetDescription(oItem);
-        object oNew = CopyItem(oItem, oCommunitychest, TRUE);
-        SetLocalString(oNew, "DESC", sDesc);
+        CopyItem(oItem, oCommunitychest, TRUE);
         // Destroy original (we will recall it when the chest is opened)
-        //DestroyObject(oItem);
+        DestroyObject(oItem);
         // Next item
         oItem = GetNextItemInInventory(oChest);
     }

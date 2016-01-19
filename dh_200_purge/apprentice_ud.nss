@@ -56,12 +56,18 @@ void main()
                     }
                     if (oItem != OBJECT_INVALID && sHeard != "")
                     {
+                        SetLocalLocation(OBJECT_SELF, "ls_stored_loc", GetLocation(OBJECT_SELF));
+                        location lTarget;
+                        lTarget = GetLocalLocation(OBJECT_SELF, "ls_stored_loc");
+
+                        /////////////////////////////////
+
                         ActionMoveToObject(oWorkbench, TRUE);
                         ActionPlayAnimation(ANIMATION_LOOPING_GET_MID, 1.0, 3.0);
                         ActionDoCommand(SetName(oItem, sHeard));
                         ActionSpeakString("Finished!");
                         ActionWait(1.0);
-                        //ActionMoveToObject(oWP, TRUE);
+                        ActionMoveToLocation(lTarget, FALSE);
                         SetSpawnInCondition(NW_FLAG_ON_DIALOGUE_EVENT, FALSE);
                         return;
                     }

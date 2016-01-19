@@ -123,6 +123,30 @@ void RollDemBones(object oUser, int iBroadcast, int iMod = 0, string sAbility = 
     }
     sString = sString + " = Total: " + IntToString(iTotal);
 
+    //Perform appropriate animation
+    if (GetLocalInt(OBJECT_SELF, "dmfi_dice_no_animate")!=1)
+    {
+    switch(GetLocalInt(oUser, "dmfi_univ_int"))
+    {
+        case 71: AssignCommand(oUser, PlayAnimation(ANIMATION_LOOPING_TALK_PLEADING, 1.0, 5.0f)); break;
+        case 72: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_PAUSE_SCRATCH_HEAD, 1.0)); break;
+        case 73: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_TAUNT, 1.0)); break;
+        case 74: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_HEAD_TURN_LEFT, 1.0)); break;
+        case 78: AssignCommand(oUser, PlayAnimation(ANIMATION_LOOPING_GET_LOW, 1.0, 5.0f)); break;
+        case 81: AssignCommand(oUser, PlayAnimation(ANIMATION_LOOPING_CONJURE1, 1.0, 5.0f)); break;
+        case 82: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_DODGE_SIDE, 1.0)); break;
+        case 83: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_TAUNT, 1.0)); break;
+        case 84: AssignCommand(oUser, PlayAnimation(ANIMATION_LOOPING_LISTEN, 1.0, 5.0f)); break;
+        case 85: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_PAUSE_SCRATCH_HEAD, 1.0)); break;
+        case 89: AssignCommand(oUser, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectVisualEffect(VFX_DUR_BARD_SONG), oUser, 6.0f)); break;
+        case 91: AssignCommand(oUser, PlayAnimation(ANIMATION_LOOPING_TALK_PLEADING, 1.0, 5.0f)); break;
+        case 95: AssignCommand(oUser, PlayAnimation(ANIMATION_LOOPING_CONJURE2, 1.0, 5.0f)); break;
+        case 97: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_TAUNT, 1.0)); break;
+        case 98: AssignCommand(oUser, PlayAnimation(ANIMATION_FIREFORGET_DODGE_DUCK, 1.0)); break;
+        default: AssignCommand(oUser, PlayAnimation (ANIMATION_LOOPING_GET_MID, 1.0, 3.0)); break;
+    }
+    }
+
     sString = ColorText(sString, "cyan");
     //--------------------------------------------------------
     switch(iBroadcast)
@@ -1777,15 +1801,6 @@ void DoXPFunction(int iXP, object oUser)
         while (GetIsObjectValid(oPartyMember))
         {
             GiveXPToCreatureDH(oPartyMember, iReward);
-
-            //logging exp gains
-            string sLog = "XP_DM:" + GetName(oUser) + " | " +
-                        GetPCPlayerName(oPartyMember) + " | " +
-                        GetName(oPartyMember) + " | " +
-                        IntToString(iReward) + " | " +
-                        IntToString(GetXP(oPartyMember));
-            WriteTimestampedLogEntry(sLog);
-
             SetLocalInt(oPartyMember, "dmfi_XPGiven", GetLocalInt(oPartyMember, "dmfi_XPGiven") + iReward);
             FloatingTextStringOnCreature(sFloating + ": " + IntToString(iReward), oPartyMember, FALSE);
             oPartyMember = GetNextFactionMember(oTarget, TRUE);
@@ -1799,14 +1814,6 @@ void DoXPFunction(int iXP, object oUser)
             iReward = (GetHitDice(oTarget)*iPercent*10);
 
         GiveXPToCreatureDH(oTarget, iReward);
-
-        //logging exp gains
-        string sLog = "XP_DM:" + GetName(oUser) + " | " +
-                    GetPCPlayerName(oTarget) + " | " +
-                    GetName(oTarget) + " | " +
-                    IntToString(iReward) + " | " +
-                    IntToString(GetXP(oTarget));
-        WriteTimestampedLogEntry(sLog);
 
         SetLocalInt(oTarget, "dmfi_XPGiven", GetLocalInt(oTarget, "dmfi_XPGiven") + iReward);
         FloatingTextStringOnCreature(sFloating + ": " + IntToString(iReward), oTarget, FALSE);

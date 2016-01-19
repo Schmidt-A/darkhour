@@ -6,22 +6,9 @@ void PortToWaypoint(object oPC, string sWPTag)
     if(GetAreaFromLocation(lTarget) == OBJECT_INVALID)
     {
         WriteTimestampedLogEntry("ERROR: Waypoint " + sWPTag + " jump failed.");
-        return;
+	    return;
     }
 
     AssignCommand(oPC, ClearAllActions());
     AssignCommand(oPC, ActionJumpToLocation(lTarget));
-}
-
-void PortToLocation(object oPC, location lLocation)
-{
-    // Make sure we've got a valid port target.
-    if(GetAreaFromLocation(lLocation) == OBJECT_INVALID)
-    {
-        WriteTimestampedLogEntry("ERROR: lLocation jump failed.");
-        return;
-    }
-
-    AssignCommand(oPC, ClearAllActions());
-    AssignCommand(oPC, ActionJumpToLocation(lLocation));
 }

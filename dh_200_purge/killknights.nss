@@ -6,6 +6,7 @@ http://nwvault.ign.com/View.php?view=Other.Detail&id=4683&id=625    */
 
 //Put this script OnEnter
 //This script kills the two knights in the tomb area, their corpse decay is extremely long.
+// Tweek - ughgh
 void main()
 {
 

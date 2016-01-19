@@ -1,4 +1,7 @@
 //Camo Pit Trap Script
+// Tweek: Are we using this either?
+
+
 
 #include "zep_inc_scrptdlg"
 
@@ -389,6 +392,3 @@ void main()
 
 
 }
-
-
-

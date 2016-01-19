@@ -753,6 +753,7 @@ void ParseEmote(string sEmote, object oPC)
     DeleteLocalInt(oPC, "dmfi_univ_int");
     object oRightHand = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oPC);
     object oLeftHand =  GetItemInSlot(INVENTORY_SLOT_LEFTHAND,oPC);
+    //PrintString("<Conv>"+GetName(GetArea(oPC))+ " " + GetName(oPC) + ": " + sEmote + " </Conv>");
     if (!GetIsPC(oPC)) AssignCommand(oPC, SpeakString(sEmote));
 
     if (GetStringLeft(sEmote, 1) == "*")
@@ -3095,6 +3096,7 @@ void TranslateToLanguage(string sSaid, object oShouter)
                 }
         oEavesdrop = GetNextObjectInShape(SHAPE_SPHERE, 20.0f, GetLocation(oShouter), FALSE, OBJECT_TYPE_CREATURE);
     }
+    //PrintString("<Conv>"+GetName(GetArea(oShouter))+ " " + GetName(oShouter) + " says in " + sLanguageName + ": " + sSaid + " </Conv>");
 }
 
 
@@ -3165,6 +3167,8 @@ void main()
                 oTempPC = GetNextPC();
                 }
             }
+
+        PrintString("<Conv>"+GetName(GetArea(oShouter))+ " " + GetName(oShouter) + ": " + sSaid + " </Conv>");
         //if the phrase begins with .MyName, reparse the string as a voice throw
         if (GetStringLeft(sSaid, GetStringLength("." + GetName(OBJECT_SELF))) == "." + GetName(OBJECT_SELF) &&
             (GetLocalInt(GetModule(), "dmfi_Admin" + GetPCPublicCDKey(oShouter)) ||
@@ -3220,6 +3224,7 @@ void main()
                     }
 
              AssignCommand(oTarget, SpeakString(sSaid));
+             //PrintString("<Conv>"+GetName(GetArea(oTarget))+ " " + GetName(oTarget) + ": " + sSaid + " </Conv>");
              return;
             }
         return;
@@ -3260,6 +3265,7 @@ void main()
                     }
 
                 AssignCommand(oSummon, SpeakString(sSaid));
+                PrintString("<Conv>"+GetName(GetArea(oSummon))+ " " + GetName(oSummon) + ": " + sSaid + " </Conv>");
                 return;
             }
         return;
@@ -3297,6 +3303,7 @@ void main()
                     }
 
                 AssignCommand(oSummon, SpeakString(sSaid));
+                PrintString("<Conv>"+GetName(GetArea(oSummon))+ " " + GetName(oSummon) + ": " + sSaid + " </Conv>");
                 return;
             }
         return;
@@ -3325,6 +3332,7 @@ void main()
 
                 //This "throws" your voice to an object and properly dumps it into the log
                 AssignCommand(oControl, SpeakString(sSaid));
+                PrintString("<Conv>"+GetName(GetArea(oControl))+ " " + GetName(oControl) + ": " + sSaid + " </Conv>");
                 return;
         }
 

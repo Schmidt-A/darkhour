@@ -39,8 +39,12 @@ void main()
         object oTarget = GetObjectByTag("miningwellrogue");
         SoundObjectPlay(oTarget);
 
-        PortToWaypoint(oPC, "miningwellrogue2");
+        oTarget = GetWaypointByTag("miningwellrogue2");
+        location lTarget = GetLocation(oTarget);
 
+        PortToWaypoint(oPC, lTarget);
+
+        oTarget = GetObjectByTag("miningwellrogue");
         SoundObjectStop(oTarget);
         ActionPlayAnimation(ANIMATION_PLACEABLE_CLOSE);
     }

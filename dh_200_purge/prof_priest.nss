@@ -21,7 +21,7 @@ while (GetIsObjectValid(oItem))
    oItem = GetNextItemInInventory(oPC);
    }
 
-GiveXPToCreatureDH(oPC, 10, "XP_PROFESSION");
+RewardPartyXP(10, oPC, FALSE);
 
 CreateItemOnObject("priestprofhide", oPC);
 CreateItemOnObject("x1_wmgrenade005", oPC);
@@ -31,6 +31,19 @@ CreateItemOnObject("x1_wmgrenade005", oPC);
 CreateItemOnObject("x1_wmgrenade005", oPC);
 CreateItemOnObject("x1_wmgrenade005", oPC);
 CreateItemOnObject("x1_wmgrenade005", oPC);
+
+if (GetAlignmentGoodEvil(oPC) == ALIGNMENT_GOOD)
+    {
+        object oHolyS = CreateItemOnObject("holysymbol",oPC);
+    }
+else if (GetAlignmentGoodEvil(oPC) == ALIGNMENT_EVIL)
+    {
+        object oHolyS = CreateItemOnObject("holysymbol2",oPC);
+    }
+else
+    {
+        object oHolyS = CreateItemOnObject("holysymbol3",oPC);
+    }
 
 }
 

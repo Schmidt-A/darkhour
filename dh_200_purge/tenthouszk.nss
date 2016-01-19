@@ -1,4 +1,3 @@
-#include "_incl_xp"
 void main()
 {
 object oPC = OBJECT_SELF;
@@ -20,6 +19,6 @@ if(iStack == 1)
 if(GetItemPossessedBy(oPC, "badge51") == OBJECT_INVALID)
     {
     CreateItemOnObject("badge51", oPC);
-    GiveXPToCreatureDH(oPC, 100);
+    GiveXPToCreature(oPC, 100);
     }
 }

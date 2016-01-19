@@ -45,9 +45,9 @@ void main()
             object oZomb = CreateObject(OBJECT_TYPE_CREATURE,sType,lSpot);
             //Apply Buffs
             object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR,oZomb);
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(6)),oSkin);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(3)),oSkin);
             AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,d2(3)),oSkin);
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(6)),oSkin);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(3)),oSkin);
             location lGetOut = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
             AssignCommand( oZomb, ActionMoveToLocation(lGetOut) );
             DelayCommand(5.0, AssignCommand( oZomb, ActionRandomWalk()));

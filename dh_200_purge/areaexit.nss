@@ -5,7 +5,4 @@ void main()
 
     if(sTag == "carnival")
     {ExecuteScript("window_areaexit", OBJECT_SELF);}
-
-    int iPCCount = GetLocalInt(OBJECT_SELF, "iPCCount");                        
-    SetLocalInt(OBJECT_SELF, "iPCCount", iPCCount-1); 
 }

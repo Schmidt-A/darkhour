@@ -38,12 +38,6 @@ void main()
 
     }
 
-    // MHADLEY -- Abberations are destroyed
-    if (GetLevelByClass(CLASS_TYPE_ABERRATION) > 0)
-    {
-        DestroyObject(OBJECT_SELF);
-    }
-
 /*    if (GetAssociate(ASSOCIATE_TYPE_ANIMALCOMPANION, GetMaster()) == OBJECT_SELF  ||
         GetAssociate(ASSOCIATE_TYPE_DOMINATED, GetMaster()) == OBJECT_SELF  ||
         GetAssociate(ASSOCIATE_TYPE_FAMILIAR, GetMaster()) == OBJECT_SELF  ||

@@ -1,4 +1,4 @@
-void main()
+void main
 {
     object oPC = GetItemActivator();
 
