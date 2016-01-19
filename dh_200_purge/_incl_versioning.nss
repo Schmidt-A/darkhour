@@ -221,30 +221,30 @@ void TokensToVars(object oPC, object oPCToken)
 
     // First loop - count how many tokens we have
     object oItem = GetFirstItemInInventory(oPC);
-    while(GetIsObjectValid(oItem)
+    while(GetIsObjectValid(oItem))
     {
-        sTag = GetTag(oItem);                                   
-        iStackSize = GetItemStackSize(oInventory);                          
+        sTag = GetTag(oItem);
+        iStackSize = GetItemStackSize(oItem);
 
-        if (sTag == "ZombieKill")                                           
-            iZombieKillTokens += 1 * iStackSize;                   
-        else if (sTag == "ZK10")                                            
-            iZombieKillTokens += 10 * iStackSize;                  
-        else if (sTag == "ZKHUNDRED")                                       
-            iZombieKillTokens += 100 * iStackSize;                 
-        else if (sTag == "ZKTHOUSAND")                                      
-            iZombieKillTokens += 1000 * iStackSize;                
-        else if (sTag == "zkxthous")                                        
-            iZombieKillTokens += 10000 * iStackSize;               
+        if (sTag == "ZombieKill")
+            iZombieKillTokens += 1 * iStackSize;
+        else if (sTag == "ZK10")
+            iZombieKillTokens += 10 * iStackSize;
+        else if (sTag == "ZKHUNDRED")
+            iZombieKillTokens += 100 * iStackSize;
+        else if (sTag == "ZKTHOUSAND")
+            iZombieKillTokens += 1000 * iStackSize;
+        else if (sTag == "zkxthous")
+            iZombieKillTokens += 10000 * iStackSize;
 
-        else if (sTag == "SurvivalTime")                                    
-            iSurvivalTokens += 1 * iStackSize;                 
-        else if (sTag == "ST10")                                            
-            iSurvivalTokens += 10 * iStackSize;                
-        else if (sTag == "ST100")                                           
-            iSurvivalTokens += 100 * iStackSize;               
-        else if (sTag == "ST1000")                                          
-            iSurvivalTokens += 1000 * iStackSize;              
+        else if (sTag == "SurvivalTime")
+            iSurvivalTokens += 1 * iStackSize;
+        else if (sTag == "ST10")
+            iSurvivalTokens += 10 * iStackSize;
+        else if (sTag == "ST100")
+            iSurvivalTokens += 100 * iStackSize;
+        else if (sTag == "ST1000")
+            iSurvivalTokens += 1000 * iStackSize;
 
         else if (sTag == "FrenzyKill")
             iFrenzyKillTokens += 1 * iStackSize;
@@ -262,16 +262,16 @@ void TokensToVars(object oPC, object oPCToken)
      * one because lists get screwy if you add/remove while iterating over
      * them. */
     oItem = GetFirstItemInInventory(oPC);
-    while(GetIsObjectValid(oItem)
+    while(GetIsObjectValid(oItem))
     {
-        sTag = GetTag(oItem);                                   
+        sTag = GetTag(oItem);
 
         if(sTag == "ZombieKill" || sTag == "ZK10" || sTag == "ZKHUNDRED" ||
            sTag == "ZKTHOUSAND" || sTag == "zkxthous" || sTag == "SurvivalTime" ||
            sTag == "ST10" || sTag == "ST100" || sTag == "ST1000" ||
            sTag == "FrenzyKill" || sTag == "FK10" || sTag == "FK100")
         {
-            DestroyObject(oItem);            
+            DestroyObject(oItem);
         }
     }
 }

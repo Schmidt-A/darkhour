@@ -28,13 +28,13 @@ void main()
     if(!GetIsPC(oDamager))
     {
         while(GetIsObjectValid(GetMaster(oDamager)))
-            oDamager = GetMaster(oDamager);        
+            oDamager = GetMaster(oDamager);
     }
 
     // Couldn't find an owner for this creature - bail.
     if(!GetIsPC(oDamager))
         return;
-        
+
     SetLocalInt(oDamager, "iZombieKills", GetLocalInt(oDamager,"iZombieKills")+1);
     // TODO: kill badges
     if (GetTimeHour() == 0)
@@ -45,6 +45,6 @@ void main()
     if(iZombieKills < MAX_ZOMBIE_KILLS)
     {
         SetLocalInt(oDamager, "zkxpcount", iZombieKills+1);
-        GiveXPToCreatureDH(ZOMBIE_KILL_XP, oDamager);
+        GiveXPToCreatureDH(oDamager, ZOMBIE_KILL_XP);
     }
 }

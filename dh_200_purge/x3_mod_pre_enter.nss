@@ -50,9 +50,7 @@ void main()
     {
         int nLessHP = GetMaxHitPoints(oPC) - nHitpoints;
         if (nLessHP > 0)
-    e   {
             ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nLessHP),oPC);
-        }
     }
 
     string sPre = GetDBVarName(oPC);
@@ -75,12 +73,12 @@ void main()
 
     // clean up their tokens, if they have any
     if(!GetLocalInt(oPCToken, "bTokensInit"))
-        TokensToVars(oPC);
+        TokensToVars(oPC, oPCToken);
 
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
         OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
     {
-        lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
+        location lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
         DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
     }
 

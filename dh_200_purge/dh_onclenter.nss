@@ -68,7 +68,7 @@ void Authenticate(object oPC)
         SetCampaignString(AUTH_DB_NAME, sKeyVarName, sKey);
     else if(sStoredKey != sKey)
     {
-        SendMessageToPC(oPC, "YOU HAVE LOGGED IN TO AN ACCOUNT BOUND TO ANOTHER CD KEY. IF THIS IS A MISTAKE AND YOU ARE THE REAL OWNER OF THIS ACCOUNT, CONTACT THE ADMINS AT " + FORUM_URL);
+        SendMessageToPC(oPC, "YOU HAVE LOGGED IN TO AN ACCOUNT BOUND TO ANOTHER CD KEY. IF THIS IS A MISTAKE AND YOU ARE THE REAL OWNER OF THIS ACCOUNT, CONTACT THE ADMINS AT http://dhepilogue.boards.net/");
         DelayCommand(15.0, BootPC(oPC)); // GTFO if your key is invalid
     }
 }
