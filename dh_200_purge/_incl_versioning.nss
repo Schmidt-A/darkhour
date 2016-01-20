@@ -7,9 +7,6 @@ void CullClassItems(object oPC, int iPCClass);
 void ZeroToVersionOne(object oPC);
 void ZeroToVersionTwo(object oPC);
 
-/* Replace kill/survival time tokens with variables on the players' PC token. */
-void TokensToVars(object oPC, object oPCToken);
-
 void GiveClassItems(object oPC, int iPCClass)
 {
     switch(iPCClass)
@@ -36,6 +33,7 @@ void GiveClassItems(object oPC, int iPCClass)
             break;
         case CLASS_TYPE_MONK:
             CreateItemOnObject("monkboots",oPC);
+            CreateItemOnObject("kishuriken",OBJECT_SELF,20);
             break;
         case CLASS_TYPE_FIGHTER:
             CreateItemOnObject("warriorring",oPC);
@@ -92,6 +90,7 @@ void CullClassItems(object oPC, int iLaterClass)
             break;
         case CLASS_TYPE_MONK:
             DestroyObject(GetItemPossessedBy(oPC, "MonkBoots"), 0.0f);
+            DestroyObject(GetItemPossessedBy(oPC, "kishuriken"), 0.0f);
             break;
         case CLASS_TYPE_FIGHTER:
             //this int is never used
@@ -128,38 +127,48 @@ void CullClassItems(object oPC, int iLaterClass)
 
 void ZeroToVersionOne(object oPC)
 {
-    AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff1_5",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff2",1,oPC,FALSE);
-    AddJournalQuestEntry("RULES2",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
-    AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
-    AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
-    AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
-    AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
 
     DelayCommand(12.0,SetLocalInt(oPC,"ingame",1));
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "scavenger")) && (GetIsDM(oPC) == FALSE))
+    object oTemp;
+    oTemp = GetFirstItemInInventory();
+    while (GetIsObjectValid(oTemp))
     {
-        ExecuteScript("setupnewstuff",oPC);
+        DestroyObject(oTemp);
+        oTemp = GetNextItemInInventory();
     }
 
-    if ((OBJECT_INVALID == GetItemPossessedBy(oPC, "craftingitem")))
+    SubraceLogin(OBJECT_SELF);
+
+    CreateItemOnObject("dmfi_pc_emote",OBJECT_SELF);
+    CreateItemOnObject("greatroleplay",OBJECT_SELF);
+    CreateItemOnObject("dmfi_pc_dicebag",OBJECT_SELF);
+    CreateItemOnObject("scavenger",OBJECT_SELF);
+    CreateItemOnObject("professionpc",OBJECT_SELF);
+    CreateItemOnObject("langselect", OBJECT_SELF);
+    if ((GetHasFeat(FEAT_WEAPON_PROFICIENCY_DRUID)) || (GetHasFeat(FEAT_WEAPON_PROFICIENCY_MONK)) || (GetHasFeat(FEAT_WEAPON_PROFICIENCY_ROGUE)) || (GetHasFeat(FEAT_WEAPON_PROFICIENCY_SIMPLE)))
     {
-        object oCraft = CreateItemOnObject("craftingitem",oPC);
+        CreateItemOnObject("zn_sling",OBJECT_SELF);
+        CreateItemOnObject("zn_stones",OBJECT_SELF,99);
+        CreateItemOnObject("chairleg",OBJECT_SELF);
     }
+    else
+    {
+        CreateItemOnObject("zn_crossbow",OBJECT_SELF);
+        CreateItemOnObject("zn_bolts",OBJECT_SELF,50);
+        CreateItemOnObject("chairleg",OBJECT_SELF);
+    }
+    CreateItemOnObject("zn_medkit",OBJECT_SELF);
+    CreateItemOnObject("mil_dyekit002",OBJECT_SELF);
+    CreateItemOnObject("bread",OBJECT_SELF);
+    CreateItemOnObject("bread",OBJECT_SELF);
+    CreateItemOnObject("craftingitem",oPC);
+    CreateItemOnObject("subdualmodetog",GetEnteringObject());
 
     // If the entering object happens to be a DM and they don't have a PC list item,
     // give one to them.
     if (GetIsDM(oPC) && GetItemPossessedBy(oPC, "PC_LIST") == OBJECT_INVALID)
     {
         CreateItemOnObject("pc_list", oPC, 1);
-    }
-
-
-    if(!GetIsObjectValid(GetItemPossessedBy(GetEnteringObject(),"SubdualModeTog")))
-    {
-        CreateItemOnObject("subdualmodetog",GetEnteringObject());
     }
 
     string sPre = GetDBVarName(oPC);
@@ -207,74 +216,4 @@ void ZeroToVersionTwo(object oPC)
 
     string sPre = GetDBVarName(oPC);
     SetCampaignInt("VERSIONING", sPre+"Version", 2);
-}
-
-void TokensToVars(object oPC, object oPCToken)
-{
-    SetLocalInt(oPCToken, "bTokensInit", TRUE);
-
-    int iSurvivalTokens     = 0;
-    int iZombieKillTokens   = 0;
-    int iFrenzyKillTokens   = 0;
-    int iStackSize;
-    string sTag;
-
-    // First loop - count how many tokens we have
-    object oItem = GetFirstItemInInventory(oPC);
-    while(GetIsObjectValid(oItem))
-    {
-        sTag = GetTag(oItem);
-        iStackSize = GetItemStackSize(oItem);
-
-        if (sTag == "ZombieKill")
-            iZombieKillTokens += 1 * iStackSize;
-        else if (sTag == "ZK10")
-            iZombieKillTokens += 10 * iStackSize;
-        else if (sTag == "ZKHUNDRED")
-            iZombieKillTokens += 100 * iStackSize;
-        else if (sTag == "ZKTHOUSAND")
-            iZombieKillTokens += 1000 * iStackSize;
-        else if (sTag == "zkxthous")
-            iZombieKillTokens += 10000 * iStackSize;
-
-        else if (sTag == "SurvivalTime")
-            iSurvivalTokens += 1 * iStackSize;
-        else if (sTag == "ST10")
-            iSurvivalTokens += 10 * iStackSize;
-        else if (sTag == "ST100")
-            iSurvivalTokens += 100 * iStackSize;
-        else if (sTag == "ST1000")
-            iSurvivalTokens += 1000 * iStackSize;
-
-        else if (sTag == "FrenzyKill")
-            iFrenzyKillTokens += 1 * iStackSize;
-        else if (sTag == "FK10")
-            iFrenzyKillTokens += 10 * iStackSize;
-        else if (sTag == "FK100")
-            iFrenzyKillTokens += 100 * iStackSize;
-
-        oItem = GetNextItemInInventory(oPC);
-    }
-
-    SetLocalInt(oPCToken, "iZombieKills", iZombieKillTokens);
-    SetLocalInt(oPCToken, "iSurvivalTimes", iSurvivalTokens);
-    SetLocalInt(oPCToken, "iFrenzyKills", iFrenzyKillTokens);
-
-    /* Second loop - clean up the tokens. Doing it in two loops as opposed to
-     * one because lists get screwy if you add/remove while iterating over
-     * them. */
-    oItem = GetFirstItemInInventory(oPC);
-    while(GetIsObjectValid(oItem))
-    {
-        sTag = GetTag(oItem);
-
-        if(sTag == "ZombieKill" || sTag == "ZK10" || sTag == "ZKHUNDRED" ||
-           sTag == "ZKTHOUSAND" || sTag == "zkxthous" || sTag == "SurvivalTime" ||
-           sTag == "ST10" || sTag == "ST100" || sTag == "ST1000" ||
-           sTag == "FrenzyKill" || sTag == "FK10" || sTag == "FK100")
-        {
-            DestroyObject(oItem);
-        }
-        oItem = GetNextItemInInventory(oPC);
-    }
 }

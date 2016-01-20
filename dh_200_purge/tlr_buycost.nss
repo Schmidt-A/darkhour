@@ -22,7 +22,14 @@ int StartingConditional()
 
     int iAC = GetItemACValue(oItem);
 
-    int iModifier=GetLocalInt(OBJECT_SELF, "Cloth_Mod_Buy");
+    //A less hacky person wouldn't have done this
+    //I am not that person - Aez
+    //int iModifier=GetLocalInt(OBJECT_SELF, "Cloth_Mod_Buy");
+
+    //Set that price to zero
+    int iModifier = 0;
+
+
     int iValue=GetLocalInt(OBJECT_SELF, "Cloth_Value_Buy");
 
 
@@ -54,6 +61,10 @@ int StartingConditional()
       case 5: //Variable "Value" will be used to SET the price
            iCost = iValue;
            break;
+
+      case 6: //There is no price
+            iCost = 0;
+            break;
 
     }
 

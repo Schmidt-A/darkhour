@@ -4,6 +4,7 @@ CREATE TABLE `char_list` (
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `player_id` int(11) NOT NULL DEFAULT '0',
   `char_name` varchar(64) NOT NULL DEFAULT ' ',
+  `subrace_id` int(11) NOT NULL DEFAULT '0',
   `lvl_adj` int(11) DEFAULT '0',
   `palate_id` int(11) DEFAULT '0',
   `class_choice` varchar(64) DEFAULT ' ',
@@ -12,6 +13,7 @@ CREATE TABLE `char_list` (
   `prof_lvl` int(11) DEFAULT '0',
   `exp` int(11) DEFAULT '0',
   `hunger` float DEFAULT '100.0',
+  `version` int(11) DEFAULT '0',
   `has_bio` varchar(64) DEFAULT ' ',
   `survive_time` float DEFAULT '132.2'
   `health` int(11) DEFAULT '0',
@@ -22,6 +24,7 @@ CREATE TABLE `char_list` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`player_id`) REFERENCES player_list(`id`),
   FOREIGN KEY (`palate_id`) REFERENCES palate_table(`id`)
+  FOREIGN KEY (`subrace_id`) REFERENCES subrace_table(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
