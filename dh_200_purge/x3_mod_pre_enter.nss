@@ -28,10 +28,6 @@ void main()
     SendMessageToAllDMs(sMessage);
     PrintString(sMessage);
 
-    //set their xp vars
-    if (GetItemPossessedBy(oPC, "ecl_token") == OBJECT_INVALID)
-        SubraceLogin(oPC);
-
     if (GetIsPC(oPC))
         SetLocalInt(oPC, "Is_PC", 1);
 
@@ -44,7 +40,12 @@ void main()
         // Setup for brand new bard
         if(GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
             SetupNewBard(oPC);
+
     }
+
+    // clean up their tokens, if they have any
+    if(!GetLocalInt(oPCToken, "bTokensInit"))
+        TokensToVars(oPC, oPCToken);
 
     int nHitpoints = GetLocalInt(GetModule(),sName);
     if (nHitpoints > 0)
@@ -82,9 +83,7 @@ void main()
             break;
     }
 
-    // clean up their tokens, if they have any
-    if(!GetLocalInt(oPCToken, "bTokensInit"))
-        TokensToVars(oPC, oPCToken);
+    
 
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
         OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))

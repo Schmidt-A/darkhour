@@ -5,7 +5,6 @@ CREATE TABLE `char_list` (
   `player_id` int(11) NOT NULL DEFAULT '0',
   `char_name` varchar(64) NOT NULL DEFAULT ' ',
   `subrace_id` int(11) NOT NULL DEFAULT '0',
-  `lvl_adj` int(11) DEFAULT '0',
   `palate_id` int(11) DEFAULT '0',
   `class_choice` varchar(64) DEFAULT ' ',
   `faction` varchar(64) DEFAULT ' ',
@@ -75,6 +74,29 @@ CREATE TABLE `palate_table` (
   `satis_inc` int(11) DEFAULT '0',
   `satis_dec` int(11) DEFAULT '0',
   `duration` float DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE_TABLE `subrace_table` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `name` varchar(64) NOT NULL DEFAULT ' ',
+  `base_race` int(11) NOT NULL DEFAULT '30',
+  `lvl_adj` int(11) NOT NULL DEFAULT '0',
+  `stats_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`stats_id`) REFERENCES stats_table(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE_TABLE `eff_char_level_table` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `exp_req` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE_TABLE `stats_table` (
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

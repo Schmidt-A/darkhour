@@ -6,6 +6,8 @@ void GiveClassItems(object oPC, int iPCClass);
 void CullClassItems(object oPC, int iPCClass);
 void ZeroToVersionOne(object oPC);
 void ZeroToVersionTwo(object oPC);
+void TwoToVersionThree(object oPC);
+void FindVersion(object oPC);
 
 void GiveClassItems(object oPC, int iPCClass)
 {
@@ -125,7 +127,7 @@ void CullClassItems(object oPC, int iLaterClass)
     }
 }
 
-void ZeroToVersionOne(object oPC)
+void ZeroToVersionOne(object oPC, string sPre)
 {
 
     DelayCommand(12.0,SetLocalInt(oPC,"ingame",1));
@@ -171,12 +173,11 @@ void ZeroToVersionOne(object oPC)
         CreateItemOnObject("pc_list", oPC, 1);
     }
 
-    string sPre = GetDBVarName(oPC);
     SetCampaignInt("VERSIONING", sPre+"Version", 1);
 }
 
 
-void ZeroToVersionTwo(object oPC)
+void ZeroToVersionTwo(object oPC, string sPre)
 {
     int iPCClass = GetClassByPosition(1, oPC);
 
@@ -214,6 +215,32 @@ void ZeroToVersionTwo(object oPC)
         }
     }
 
-    string sPre = GetDBVarName(oPC);
     SetCampaignInt("VERSIONING", sPre+"Version", 2);
+}
+
+//Subrace update
+void TwoToVersionThree(object oPC, string sPre)
+{
+    
+
+    SetCampaignInt("VERSIONING", sPre+"Version", 3);   
+}
+
+void FindVersion(object oPC)
+{
+    string sPre = GetDBVarName(oPC);
+    int iVersion = GetCampaignInt("VERSIONING", sPre+"Version");
+
+    switch(iVersion)
+    {
+        case 2:
+            TwoToVersionThree(oPC, sPre);
+            break;
+        case 3:
+            break;
+        default:
+            ZeroToVersionTwo(oPC, sPre);
+            break;
+    }
+
 }

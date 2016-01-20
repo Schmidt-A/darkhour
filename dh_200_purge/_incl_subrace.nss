@@ -57,53 +57,6 @@ int GetLA(string sRace)
     return 0;
 }
 
-// This function is so gross it makes me want to claw my eyes out but SOMEONE gave me
-// inconstently-named resrefs to work with.
-string GetSubraceSkinName(string sRace)
-{
-    if(sRace == "aasimar")
-        return "subraceaasimar";
-    if(sRace == "air genasi")
-        return "subraceairgenasi";
-    if(sRace == "aquatic elf")
-        return "subraceaquaelf";
-    if(sRace == "deep dwarf")
-        return "subracedeepdwarf";
-    if(sRace == "deep halfling")
-        return "subracedeephalf";
-    if(sRace == "drow")
-        return "subracedarkelf";
-    if(sRace == "Duegar")
-        return "subraceduergar";
-    if(sRace == "earth genasi")
-        return "subraceeganasi";
-    if(sRace == "fire genasi")
-        return "subracefiregenas";
-    if(sRace == "gold dwarf")
-        return "subracegolddwarf";
-    if(sRace == "grey elf" || sRace == "gray elf")
-        return "subracegrayelf";
-    if(sRace == "steam genasi")
-        return "subracesgenasi";
-    if(sRace == "svirfneblin")
-        return "subracesvirf";
-    if(sRace == "sun elf")
-        return "subracesunelf";
-    if(sRace == "tiefling")
-        return "subracetiefling";
-    if(sRace == "water genasi")
-        return "subracewgenasi";
-    if(sRace == "wild elf")
-        return "subracewgenasi";
-    if(sRace == "fey'ri")
-        return "subracefeyri";
-    if(sRace == "kobold")
-        return "subracekobold";
-    if(sRace == "gobin")
-        return "subracegoblin";
-
-    return "";
-}
 
 int GetSubraceXP(int iEffectiveLevel)
 {
