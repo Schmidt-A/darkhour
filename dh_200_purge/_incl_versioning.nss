@@ -1,13 +1,16 @@
 //Versioning for each PC that enters the mod -Aez
 
+#include "_cls_bard"
 #include "_incl_subrace"
 
 void GiveClassItems(object oPC, int iPCClass);
 void CullClassItems(object oPC, int iPCClass);
+
 void ZeroToVersionOne(object oPC);
 void ZeroToVersionTwo(object oPC);
 void TwoToVersionThree(object oPC);
 void FindVersion(object oPC);
+
 
 void GiveClassItems(object oPC, int iPCClass)
 {
@@ -184,7 +187,7 @@ void ZeroToVersionTwo(object oPC, string sPre)
     //They are version 0
     if (GetItemPossessedBy(oPC, "scavenger") == OBJECT_INVALID)
     {
-        ZeroToVersionOne(oPC);
+        ZeroToVersionOne(oPC, sPre);
         if (GetIsDM(oPC) == FALSE)
         {
 
@@ -211,7 +214,6 @@ void ZeroToVersionTwo(object oPC, string sPre)
             {
                 CreateItemOnObject("BloodMagicBook",oPC);
             }
-
         }
     }
 
@@ -221,7 +223,21 @@ void ZeroToVersionTwo(object oPC, string sPre)
 //Subrace update
 void TwoToVersionThree(object oPC, string sPre)
 {
-    
+    //Remove the subrace skins people currently have
+    if(GetCampaignInt("SUBRACE", sPre+"enabled") == TRUE)
+        RemoveSkin(oPC);
+
+    object oPCToken = CreateItemOnObject("token_pc", oPC);
+        // Setup for brand new bard
+        if (GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
+            SetupNewBard(oPC);
+
+    }
+
+    // clean up their tokens, if they have any
+    //Dis needs done
+    if (!GetLocalInt(oPCToken, "bTokensInit"))
+        TokensToVars(oPC, oPCToken);
 
     SetCampaignInt("VERSIONING", sPre+"Version", 3);   
 }
@@ -237,6 +253,7 @@ void FindVersion(object oPC)
             TwoToVersionThree(oPC, sPre);
             break;
         case 3:
+            //They're up to date!
             break;
         default:
             ZeroToVersionTwo(oPC, sPre);

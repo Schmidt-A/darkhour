@@ -4,7 +4,6 @@
 // each player as they enter the module.
 //
 #include "disease_inc"
-#include "_cls_bard"
 #include "_incl_xp"
 #include "_incl_versioning"
 #include "_incl_badges"
@@ -31,22 +30,6 @@ void main()
     if (GetIsPC(oPC))
         SetLocalInt(oPC, "Is_PC", 1);
 
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
-
-    // First login ever - there'll have to be lots of other setup stuff here.
-    if(oPCToken == OBJECT_INVALID)
-    {
-        oPCToken = CreateItemOnObject("token_pc", oPC);
-        // Setup for brand new bard
-        if(GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
-            SetupNewBard(oPC);
-
-    }
-
-    // clean up their tokens, if they have any
-    if(!GetLocalInt(oPCToken, "bTokensInit"))
-        TokensToVars(oPC, oPCToken);
-
     int nHitpoints = GetLocalInt(GetModule(),sName);
     if (nHitpoints > 0)
     {
@@ -65,24 +48,8 @@ void main()
 
     //RefreshBadges(oPC);
 
-    string sPre = GetDBVarName(oPC);
-    int iVer = GetCampaignInt("VERSIONING", sPre+"Version");
-    switch(iVer)
-    {
-        case 0:
-            //All new PCs
-            ZeroToVersionTwo(oPC);
-            break;
-        case 1:
-            //There should be no pcs marked as v1, they predate this system
-            ZeroToVersionTwo(oPC);
-            break;
-        case 2:
-            break;
-        default:
-            break;
-    }
-
+    
+    
     
 
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||

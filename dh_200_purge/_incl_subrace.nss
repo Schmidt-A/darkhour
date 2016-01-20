@@ -1,3 +1,5 @@
+void RemoveSkin(object oPC);
+
 void SubraceLogin(object oPC);
 void SetupNextECLLevel(object oPC);
 
@@ -11,6 +13,26 @@ string GetDBVarName(object oPC)
     return GetSubString(GetPCPlayerName(oPC), 0, 8) + GetSubString(GetName(oPC), 0, 8);
 }
 
+void RemoveSkin(object oPC)
+{
+    string sRace = GetStringLowerCase(GetSubRace(oPC));
+    object oSkin = GetItemPossessedBy(oPC, GetSubraceSkinName(sRace));
+
+    //Delete their existing subrace skin
+    if (oSkin != OBJECT_INVALID)
+    {
+        DestroyObject(oSkin, 0.0f);
+
+        //Add an empty pc skin if they need one
+        if (GetItemInSlot(INVENTORY_SLOT_CARMOUR, oPC) == OBJECT_INVALID)
+        {
+            object oSkin = CreateItemOnObject("x2_it_emptyskin", oPC);
+            SetIdentified(oSkin, TRUE);
+            AssignCommand(oPC, ActionEquipItem(oSkin, INVENTORY_SLOT_CARMOUR));
+        }
+    }
+}
+
 void SubraceLogin(object oPC)
 {
     string sPre = GetDBVarName(oPC);
@@ -20,9 +42,6 @@ void SubraceLogin(object oPC)
 
     string sRace = GetStringLowerCase(GetSubRace(oPC));
     int iLA = GetLA(sRace);
-
-    object oSkin = CreateItemOnObject(GetSubraceSkinName(sRace), oPC);
-    AssignCommand(oPC, ActionEquipItem(oSkin, INVENTORY_SLOT_CARMOUR));
 
     SetCampaignInt("SUBRACE", sPre+"enabled", TRUE);
     // Don't need any more setup for a no-ECL subrace
@@ -55,6 +74,54 @@ int GetLA(string sRace)
     if(sRace == "svirfneblin")
         return 3;
     return 0;
+}
+
+// This function is so gross it makes me want to claw my eyes out but SOMEONE gave me
+// inconstently-named resrefs to work with.
+string GetSubraceSkinName(string sRace)
+{
+    if(sRace == "aasimar")
+        return "subraceaasimar";
+    if(sRace == "air genasi")
+        return "subraceairgenasi";
+    if(sRace == "aquatic elf")
+        return "subraceaquaelf";
+    if(sRace == "deep dwarf")
+        return "subracedeepdwarf";
+    if(sRace == "deep halfling")
+        return "subracedeephalf";
+    if(sRace == "drow")
+        return "subracedarkelf";
+    if(sRace == "Duegar")
+        return "subraceduergar";
+    if(sRace == "earth genasi")
+        return "subraceeganasi";
+    if(sRace == "fire genasi")
+        return "subracefiregenas";
+    if(sRace == "gold dwarf")
+        return "subracegolddwarf";
+    if(sRace == "grey elf" || sRace == "gray elf")
+        return "subracegrayelf";
+    if(sRace == "steam genasi")
+        return "subracesgenasi";
+    if(sRace == "svirfneblin")
+        return "subracesvirf";
+    if(sRace == "sun elf")
+        return "subracesunelf";
+    if(sRace == "tiefling")
+        return "subracetiefling";
+    if(sRace == "water genasi")
+        return "subracewgenasi";
+    if(sRace == "wild elf")
+        return "subracewgenasi";
+    if(sRace == "fey'ri" || sRace == "feyri")
+        return "subracefeyri";
+    if(sRace == "kobold")
+        return "subracekobold";
+    if(sRace == "gobin")
+        return "subracegoblin";
+
+    return "";
 }
 
 
