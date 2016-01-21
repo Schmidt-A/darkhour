@@ -342,7 +342,7 @@ void main()
 
         if (nIsHungry == nEightHours)
         {
-            object oPCToken = GetItemPossessedBy(iPC, "token_pc");
+            object oPCToken = GetItemPossessedBy(oPC, "token_pc");
             int iOldSurvivalTimes = GetLocalInt(oPCToken, "iSurvivalTimes");
             SetLocalInt(oPCToken, "iSurvivalTimes", iOldSurvivalTimes+1);
             SendMessageToPC(oPC, "Regardless of the ravages to body and mind" +
