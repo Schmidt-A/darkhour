@@ -1,5 +1,3 @@
-
-
 CREATE TABLE `char_list` (
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `player_id` int(11) NOT NULL DEFAULT '0',
@@ -35,7 +33,7 @@ CREATE TABLE `player_list` (
   `staff` varchar(64) DEFAULT 'player',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-	
+  
 
 
 CREATE TABLE `hunger_const` (
@@ -47,7 +45,7 @@ CREATE TABLE `hunger_const` (
   `penalties` varchar(64) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-	
+  
 
 CREATE TABLE `food_table` (
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
@@ -61,8 +59,8 @@ CREATE TABLE `food_table` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-	
-	
+  
+  
 CREATE TABLE `palate_table` (
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `name` varchar(64) NOT NULL DEFAULT 'Generalist',
