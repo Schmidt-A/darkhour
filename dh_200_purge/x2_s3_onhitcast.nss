@@ -40,7 +40,7 @@ void main()
     oSpellOrigin = OBJECT_SELF;
     oSpellTarget = GetSpellTargetObject();
     oItem        =  GetSpellCastItem();
-    if ((GetIsObjectValid(oItem)) && (GetIsPC(oSpellTarget)) && 
+    if ((GetIsObjectValid(oItem)) && (GetIsPC(oSpellTarget)) &&
             (GetIsPossessedFamiliar(oSpellTarget) == FALSE))
     {
         // Make sure we don't slow/disease if they're sanctuary'd
@@ -59,7 +59,7 @@ void main()
             {
                 if (FortitudeSave(oSpellTarget,9,SAVING_THROW_TYPE_DISEASE) == 0)
                 {
-                    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
+                    object oPCToken = GetItemPossessedBy(oSpellTarget, "token_pc");
                     ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_DISEASE_S),oSpellTarget);
                     SetLocalInt(oPCToken, "iDisease", GetLocalInt(oPCToken, "iDisease")+1);
                     FloatingTextStringOnCreature("You have been diseased!",oSpellTarget,FALSE);

@@ -20,7 +20,7 @@
 **********************************************************************/
 #include "_incl_disease"
 #include "_incl_xp"
-int nIsHungry;
+int iIsHungry;
 int nLostCon;
 float fScale = 2.0;  // Default scale is 1.
 
@@ -105,9 +105,16 @@ void EatFood(object oPC)
             SendMessageToPC(oPC,"You have eaten a meal.");
             //  Heal the PC if they need it
             if(nLostCon > 0)
+            {
+                effect eLostCon = EffectAbilityDecrease(ABILITY_CONSTITUTION, nLostCon);
+                effect eEffect = GetFirstEffect(oPC);
+                while(GetIsEffectValid(eEffect))
                 {
-                RemoveDiseasedEffects(oPC);
+                    if(eEffect == eLostCon)
+                        RemoveEffect(oPC, eEffect);
+                    eEffect = GetNextEffect(oPC);
                 }
+            }
             //  Otherwise turn off hunger flag
             else
                 iIsHungry = 0;
@@ -129,11 +136,11 @@ void PartyRingCheck(object oPC)
     string sRightRing   = "";
 
     if (oLeftRing != OBJECT_INVALID)
-      LeftRing = GetTag(oLeftRing);
+      sLeftRing = GetTag(oLeftRing);
     if (oRightRing != OBJECT_INVALID)
       sRightRing = GetTag(oRightRing);
-    
-    if((sLeftRing != "ROTL") && (sRightRing != "ROTL")&& 
+
+    if((sLeftRing != "ROTL") && (sRightRing != "ROTL")&&
     ((sLeftRing != "w_telepring") && (sRightRing != "w_telepring")))
     {
       RemoveFromParty(oPC);
@@ -154,7 +161,7 @@ void DarkHourBellCheck(object oPC)
     }
 }
 
-void CandleCheck(oPC)
+void CandleCheck(object oPC)
 {
     object oCandle = GetItemInSlot(INVENTORY_SLOT_LEFTHAND,oPC);
     if ((GetTag(oCandle) == "Candle") || (GetTag(oCandle) == "zn_torch"))
@@ -186,7 +193,7 @@ void main()
     object oJunk;
     object oCounter;
 
-    string sAreaTag;
+    string sArea;
     object oPCToken;
 
     while(GetIsObjectValid(oPC))
@@ -195,7 +202,7 @@ void main()
         PartyRingCheck(oPC);
         DarkHourBellCheck(oPC);
 
-        sArea = GetTag(GetArea(oPC));        
+        sArea = GetTag(GetArea(oPC));
         if(GetIsDM(oPC) || GetCurrentHitPoints(oPC) <= -11 ||
             sArea == "DMLounge" || sArea == "GoToFugue" ||
             sArea == "LostSoulsRoom" || sArea == "OOCStartingArea")
@@ -206,7 +213,7 @@ void main()
         CandleCheck(oPC);
         HBDiseaseCheck(oPC, oPCToken);
 
-        if (GetItemPossessedBy(oPC,"DeathToken") != OBJECT_INVALID  && 
+        if (GetItemPossessedBy(oPC,"DeathToken") != OBJECT_INVALID  &&
             GetCurrentHitPoints(oPC) > 0)
         {
             DestroyObject(GetItemPossessedBy(oPC,"DeathToken"));
@@ -258,7 +265,7 @@ void main()
         {
             //  Use Supernatural flag to prevent rest from curing.
             eDamage = SupernaturalEffect(eDamage);
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eDamage, oPC));
+            ApplyEffectToObject(DURATION_TYPE_PERMANENT, eDamage, oPC);
             nLostCon++;
             iIsHungry = nSpeedUpHunger;
             SendMessageToPC(oPC,"You are in desparate need of food!");

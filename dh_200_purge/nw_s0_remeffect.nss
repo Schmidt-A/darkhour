@@ -45,6 +45,8 @@ void main()
     int nEffect3;
     int bAreaOfEffect = FALSE;
 
+    string sMsg;
+
     effect eVis = EffectVisualEffect(VFX_IMP_REMOVE_CONDITION);
     //Check for which removal spell is being cast.
     if(nSpellID == SPELL_REMOVE_BLINDNESS_AND_DEAFNESS)

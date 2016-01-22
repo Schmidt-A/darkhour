@@ -16,7 +16,7 @@ void ReduceDiseaseEffects(object oPC, int iDisease)
     while(GetIsEffectValid(eEffect))
     {
         if(GetEffectCreator(eEffect) == oApplier)
-            RemoveEffect(eEffect);
+            RemoveEffect(oPC, eEffect);
         eEffect = GetNextEffect(oPC);
     }
 
@@ -39,7 +39,7 @@ void CureDisease(object oPC, int iHowMany=10)
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
                         EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oPC);
 
-    int iDisease = iDisease-iHowMany;
+    iDisease = iDisease-iHowMany;
     if(iDisease < 0)
         iDisease = 0;
 
@@ -49,11 +49,12 @@ void CureDisease(object oPC, int iHowMany=10)
 
 void ApplyDisease(object oPC)
 {
-    object oPCToken = GetObjectPossessedBy(oPC, "token_pc");
+    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
     object oApplier = GetObjectByTag(APPLIER_TAG);
     int iDisease = GetLocalInt(oPCToken, "iDisease");
     int iAbility;
     effect eEffect;
+    float fDuration;
 
     switch(iDisease)
     {
@@ -87,10 +88,10 @@ void ApplyDisease(object oPC)
             break;
         case 9:
             eEffect = EffectConfused();
-            int iDuration = IntToFloat(Random(60)+1);
-            AssignCommand(oApplier, 
+            fDuration = IntToFloat(Random(60)+1);
+            AssignCommand(oApplier,
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oPC,
-                    iDuration));
+                    fDuration));
             break;
         default:
             break;
@@ -117,7 +118,7 @@ void HBDiseaseCheck(object oPC, object oPCToken)
         if (nDisTimer >= 5)
         {
             nDisTimer = 0;
-            if (FortitudeSave(oPC,(7 + nTotalDisease),SAVING_THROW_TYPE_DISEASE) == 0)
+            if (FortitudeSave(oPC,(7 + iDisease),SAVING_THROW_TYPE_DISEASE) == 0)
             {
                 iDisease += 1;
                 if (iDisease >= 9)
@@ -150,15 +151,12 @@ void HBDiseaseCheck(object oPC, object oPCToken)
         if (nHelTimer >= 160)
         {
             nHelTimer = 0;
-            if (FortitudeSave(oPC,(7 + nTotalDisease), SAVING_THROW_TYPE_DISEASE) == 1)
+            if (FortitudeSave(oPC,(7 + iDisease), SAVING_THROW_TYPE_DISEASE) == 1)
             {
                 iDisease -= 1;
                 ReduceDiseaseEffects(oPC, iDisease);
-                if (nTotalDisease == 1)
-                {
-                    RemoveDiseaseEffects(oPC);
+                if (iDisease == 0)
                     sMsg = "The disease has completely passed.";
-                }
                 else
                     sMsg = "The disease fades a little.";
             }
