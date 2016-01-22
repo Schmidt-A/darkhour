@@ -12,57 +12,51 @@
 //:://////////////////////////////////////////////
 //:: VFX Pass By: Preston W, On: June 22, 2001
 
+#include "_incl_disease"
+
 void main()
 {
-    //Declare major variables
-    object oCaster = GetLastSpellCaster();
-    object oTarget = GetSpellTargetObject();
-    int nType;
-    int bValid = FALSE;
-    effect eParal = GetFirstEffect(oTarget);
-    effect eVis = EffectVisualEffect(VFX_IMP_REMOVE_CONDITION);
-    object oDiseaseToken = GetFirstItemInInventory(oTarget);
-    int nTotalDisease;
-    while(oDiseaseToken != OBJECT_INVALID)
-    {
-        if (GetTag(oDiseaseToken) == "ZombieDisease")
-        {
-          nTotalDisease = nTotalDisease+1;
-        }
-        oDiseaseToken = GetNextItemInInventory(oTarget);
-    }
-    if(GetIsSkillSuccessful(oCaster,SKILL_HEAL,10+nTotalDisease))
-    {
-        oDiseaseToken = GetFirstItemInInventory(oTarget);
-        while(oDiseaseToken != OBJECT_INVALID)
-        {
-        if (GetTag(oDiseaseToken) == "ZombieDisease")
-          {
-              DestroyObject(oDiseaseToken);
-          }
-          oDiseaseToken = GetNextItemInInventory(oTarget);
-        }
-    }
+    object oCaster  = GetLastSpellCaster();
+    object oTarget  = GetSpellTargetObject();
+    object oPCToken = GetItemPossessedBy(oTarget, "token_pc");
+
+    int iCasterLevel = GetCasterLevel(oCaster);
+    int iDisease     = GetLocalInt(oPCToken, "iDisease");
+    int bDoVFX       = FALSE;
+
+    string sMsg;
+
     //Fire cast spell at event for the specified target
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, SPELL_REMOVE_DISEASE, FALSE));
-    //Get the first effect on the target
 
+    // Zombie disease effects.
+    if(iCasterLevel >= iDisease)
+    {
+        CureDisease(oTarget, iDisease);
+        sMsg = "You manage to cleanse " + GetName(oTarget) + "'s plague.";
+        FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
+    }
+    else
+    {
+        sMsg = "Your divine magic is not potent enough to deal with " +
+            GetName(oTarget) + "'s disease, ill as they are.";
+        FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
+    }
+
+    // Normal disease effects.
+    effect eEffect = GetFirstEffect(oTarget);
     while(GetIsEffectValid(eParal))
     {
-        //Check if the current effect is of correct type
         if (GetEffectType(eParal) == EFFECT_TYPE_DISEASE)
         {
-            //Remove the effect
             RemoveEffect(oTarget, eParal);
-            bValid = TRUE;
+            bDoVFX = TRUE;
         }
-        //Get the next effect on the target
         GetNextEffect(oTarget);
     }
-    if (bValid)
+    if(bDoVFX)
     {
-        //Apply VFX Impact
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT,
+                EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oPC);
     }
 }
-

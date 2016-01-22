@@ -1,4 +1,3 @@
-#include "disease_inc"
 #include "_incl_disease"
 
 void main()
