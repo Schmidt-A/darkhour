@@ -34,7 +34,7 @@ void Bleed(int iBleedAmt)
     int iDCBase = 16; /* Decrease/increase this value to lower/raise the base DC. */
     iDC = iDCBase;
 
-    /* This is used to decrease the PC's chance to stabilize should they not 
+    /* This is used to decrease the PC's chance to stabilize should they not
        stabilize after iDCBase turns. Is really only effective when iDCBase < 10 */
     if(iDCC > iDCBase)
         iDC = iDCC;
@@ -88,7 +88,7 @@ void Bleed(int iBleedAmt)
         if(GetCurrentHitPoints() <= 0)
         {
             SetLocalInt(oDying, "iPCDCC", iDC);
-            DelayCommand(6.0,bleed(iBleedAmt)); /* do this again next round */
+            DelayCommand(6.0, Bleed(iBleedAmt)); /* do this again next round */
         }
     }
 }

@@ -45,11 +45,11 @@ void main()
 
     // Normal disease effects.
     effect eEffect = GetFirstEffect(oTarget);
-    while(GetIsEffectValid(eParal))
+    while(GetIsEffectValid(eEffect))
     {
-        if (GetEffectType(eParal) == EFFECT_TYPE_DISEASE)
+        if (GetEffectType(eEffect) == EFFECT_TYPE_DISEASE)
         {
-            RemoveEffect(oTarget, eParal);
+            RemoveEffect(oTarget, eEffect);
             bDoVFX = TRUE;
         }
         GetNextEffect(oTarget);
@@ -57,6 +57,6 @@ void main()
     if(bDoVFX)
     {
         ApplyEffectToObject(DURATION_TYPE_INSTANT,
-                EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oPC);
+                EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oTarget);
     }
 }

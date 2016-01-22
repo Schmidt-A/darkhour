@@ -1,10 +1,11 @@
-
-
 #include "_incl_xp"
+#include "nwnx_odbc"
 #include "x3_inc_string"
 #include "x0_i0_stringlib"
 
-string GetBadgeTagsFromDB(oPC)
+void RefreshBadges(object oPC);
+
+string GetBadgeTagsFromDB(object oPC)
 {
     //Get their DB char id
     object oPCToken = GetItemPossessedBy(oPC, "token_pc");
@@ -18,14 +19,14 @@ string GetBadgeTagsFromDB(oPC)
     while(SQLFetch() == SQL_SUCCESS)
     {
         string sTag = SQLGetData(1);
-        sBadgeList = sBadgeList + " " + sTag;    
+        sBadgeList = sBadgeList + " " + sTag;
     }
-    
+
     return sBadgeList;
 }
 
 
-string GetBadgeEntriesFromDB(oPC)
+string GetBadgeEntriesFromDB(object oPC)
 {
     //GET CHARACTER ID FROM oPC
     string sCharId;
@@ -36,9 +37,9 @@ string GetBadgeEntriesFromDB(oPC)
     while(SQLFetch() == SQL_SUCCESS)
     {
         string sEntry = SQLGetData(1);
-        string sBadgeList = sBadgeList + " " + sEntry;    
+        string sBadgeList = sBadgeList + " " + sEntry;
     }
-    
+
     return sBadgeList;
 }
 
@@ -49,7 +50,7 @@ void AddBadgeToDB(string sBadgeTag, object oPC, int bHasXP)
     {
         sHasXP = "TRUE";
     }
-    else 
+    else
     {
         sHasXP = "FALSE";
     }
@@ -58,8 +59,8 @@ void AddBadgeToDB(string sBadgeTag, object oPC, int bHasXP)
     string sCharId = GetLocalString(oPCToken, "char_id");
 
     SQLExecDirect("INSERT INTO char_badge_many (char_id, badge_id, has_xp) " +
-        "VALUES (" + sCharId + 
-            "(SELECT id FROM badge_table WHERE tag = " + sBadgeTag + ")" + 
+        "VALUES (" + sCharId +
+            "(SELECT id FROM badge_table WHERE tag = " + sBadgeTag + ")" +
         sHasXP + ");");
 
     if (SQLFetch() == SQL_FAILURE)
@@ -94,7 +95,7 @@ void HasBadge(string sBadgeTag, object oPC)
 void AddBadgeJournal(string sBadgeTag, object oPC)
 {
     //Strategy one
-    //Each badge is a separate tag, allowing each badge to collapse, 
+    //Each badge is a separate tag, allowing each badge to collapse,
     //  Takes up lots of space in the main journal
     AddJournalQuestEntry(sBadgeTag, 1, oPC, FALSE);
 
@@ -104,13 +105,13 @@ void AddBadgeJournal(string sBadgeTag, object oPC)
     //  Takes up less space in the main journal
     //  Harder to scroll through the badge list
     /*
-    
+
     AddJournalQuestEntry("BADGE", sEntry, oPC, FALSE);
     */
 }
 
 void AddBadge(string sBadgeTag, object oPC, string sBadgeName, int iExp)
-{   
+{
     //should it check has badge in here?
 
     FloatingTextStringOnCreature("You receieved a new badge, " + sBadgeName + "!", oPC, FALSE);
@@ -148,7 +149,7 @@ void RefreshBadges(object oPC)
     }
     else
     {
-        struct sBadgeTokens GetStringTokenizer(sBadgeList, " ");
+        struct sStringTokenizer sBadgeTokens = GetStringTokenizer(sBadgeList, " ");
         while (HasMoreTokens(sBadgeTokens))
         {
             string sTag = GetNextToken(sBadgeTokens);
@@ -157,7 +158,7 @@ void RefreshBadges(object oPC)
             sBadgeTokens = AdvanceToNextToken(sBadgeTokens);
         }
     }
-    
+
     SetLocalString(oPCToken, "sBadgeList", sBadgeList);
 }
 
