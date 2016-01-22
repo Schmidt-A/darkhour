@@ -2,6 +2,7 @@
 
 #include "_cls_bard"
 #include "_incl_subrace"
+#include "_incl_disease"
 
 void GiveClassItems(object oPC, int iPCClass);
 void CullClassItems(object oPC, int iPCClass);

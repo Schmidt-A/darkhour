@@ -12,7 +12,6 @@ Refactored by Tweek Dec 2015
       be more heavy refactoring
 *****************************************************/
 
-#include "disease_inc"
 #include "_incl_subrace"
 
 // Do ECL setup if they got a token for the first time
@@ -27,55 +26,6 @@ void AcquireECL(object oAcquirer)
         SetCampaignInt("SUBRACE", sPre + "iXPNeeded", GetSubraceXP(1+iLA));
         SetCampaignInt("SUBRACE", sPre + "iCumulativeXP", 0);
         SetCampaignInt("SUBRACE", sPre + "iRealXP", 1000);
-    }
-}
-
-// In the long run this will get moved somewhere else. For now it is item based.
-void AcquireDisease(object oAcquirer)
-{
-    int iDisease = 0;
-    object oApplier = GetObjectByTag("Disease_Applier");
-
-    // See how many disease tokens we already have
-    object oCheckDisease = GetFirstItemInInventory(oAcquirer);
-    while (oCheckDisease != OBJECT_INVALID)
-    {
-        if (GetTag(oCheckDisease) == "ZombieDisease")
-            iDisease += 1;
-        oCheckDisease = GetNextItemInInventory(oAcquirer);
-    }
-
-    switch(iDisease)
-    {
-        case 2:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oAcquirer));
-            SetLocalInt(oAcquirer,"DiseaseApplied",TRUE);
-            break;
-        case 3:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oAcquirer));
-            break;
-        case 4:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oAcquirer));
-            break;
-        case 5:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_INTELLIGENCE,2)),oAcquirer));
-            break;
-        case 6:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_WISDOM,2)),oAcquirer));
-            break;
-        case 7:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CHARISMA,2)),oAcquirer));
-            break;
-        case 8:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_CONSTITUTION,2)),oAcquirer));
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_DEXTERITY,2)),oAcquirer));
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectAbilityDecrease(ABILITY_STRENGTH,2)),oAcquirer));
-            break;
-        case 9:
-            AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_TEMPORARY,EffectConfused(),oAcquirer,IntToFloat(Random(60)+1)));
-            break;
-        default:
-            break;
     }
 }
 
@@ -118,9 +68,7 @@ void main()
     string sAreaName = GetName(oArea);
     string sAreaTag = GetTag(oArea);
     // Ignore these from logging because it's spammy as hell
-    if(GetSubString(sRef, 0, 10) != "zombiekill" && sRef != "zombiedisease" &&
-                    sTag != "SurvivalTime" && sAreaTag != "OOCPlayerLounge" &&
-                    sRef != "cr_arrows")
+    if(sAreaTag != "OOCPlayerLounge" && sRef != "cr_arrows")
     {
         // Format : ITEM_ACQUIRE:[pc name] | [account name] | [item resref] | [item name] | [area name]
         // Example: ITEM_ACQUIRE:Seth | Tweek | item001 | Test Item  | Sundered Desolation
@@ -134,9 +82,6 @@ void main()
 
     if(sTag == "ecl_token")
         AcquireECL(oAcquirer);
-
-    if(GetTag(oItem)=="ZombieDisease")
-        AcquireDisease(oAcquirer);
 
     if(GetIsPC(oAcquirer) && sTag == "craftingpoints")
         AcquireCrafting(oAcquirer, oItem);

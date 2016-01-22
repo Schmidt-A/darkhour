@@ -15,35 +15,31 @@
 //:: Created By: Preston Watamaniuk
 //:: Created On: Jan 8, 2002
 //:://////////////////////////////////////////////
-//#include "NW_I0_SPELLS"
-#include "X0_I0_SPELLS"
 
+#include "_incl_disease"
+#include "X0_I0_SPELLS"
 #include "x2_inc_spellhook"
 
 void main()
 {
+    /*
+      Spellcast Hook Code
+      Added 2003-06-20 by Georg
+      If you want to make changes to all spells,
+      check x2_inc_spellhook.nss to find out more
+    */
 
-/*
-  Spellcast Hook Code
-  Added 2003-06-20 by Georg
-  If you want to make changes to all spells,
-  check x2_inc_spellhook.nss to find out more
-
-*/
-
-    if (!X2PreSpellCastCode())
-    {
     // If code within the PreSpellCastHook (i.e. UMD) reports FALSE, do not run this spell
+    if (!X2PreSpellCastCode())
         return;
-    }
 
-// End of Spell Cast Hook
-
-
-    //Declare major variables
     int nSpellID = GetSpellId();
     object oTarget = GetSpellTargetObject();
     object oCaster = OBJECT_SELF;
+    object oPCToken = GetItemPossessedBy(oTarget, "token_pc");
+
+    int iCasterLevel = GetCasterLevel(oCaster);
+    int iDisease     = GetLocalInt(oPCToken, "iDisease");
     int nEffect1;
     int nEffect2;
     int nEffect3;
@@ -58,34 +54,23 @@ void main()
         bAreaOfEffect = TRUE;
     }
     else if(nSpellID == SPELL_REMOVE_CURSE)
-    {
         nEffect1 = EFFECT_TYPE_CURSE;
-    }
     else if(nSpellID == SPELL_REMOVE_DISEASE || nSpellID == SPELLABILITY_REMOVE_DISEASE)
     {
         nEffect1 = EFFECT_TYPE_DISEASE;
         nEffect2 = EFFECT_TYPE_ABILITY_DECREASE;
-        object oDiseaseToken = GetFirstItemInInventory(oTarget);
-        int nTotalDisease;
-        while(oDiseaseToken != OBJECT_INVALID)
+        // Zombie disease effects.
+        if(iCasterLevel >= iDisease)
         {
-            if (GetTag(oDiseaseToken) == "ZombieDisease")
-            {
-            nTotalDisease = nTotalDisease+1;
-            }
-        oDiseaseToken = GetNextItemInInventory(oTarget);
+            CureDisease(oTarget, iDisease);
+            sMsg = "You manage to cleanse " + GetName(oTarget) + "'s plague.";
+            FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
         }
-        if(GetIsSkillSuccessful(oCaster,SKILL_HEAL,10+nTotalDisease))
+        else
         {
-            oDiseaseToken = GetFirstItemInInventory(oTarget);
-            while(oDiseaseToken != OBJECT_INVALID)
-            {
-                if (GetTag(oDiseaseToken) == "ZombieDisease")
-                {
-                DestroyObject(oDiseaseToken);
-                }
-            oDiseaseToken = GetNextItemInInventory(oTarget);
-            }
+            sMsg = "Your divine magic is not potent enough to deal with " +
+                GetName(oTarget) + "'s disease, ill as they are.";
+            FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
         }
     }
     else if(nSpellID == SPELL_NEUTRALIZE_POISON)
@@ -94,7 +79,6 @@ void main()
         nEffect2 = EFFECT_TYPE_DISEASE;
         nEffect3 = EFFECT_TYPE_ABILITY_DECREASE;
     }
-
 
     // * March 2003. Remove blindness and deafness should be an area of effect spell
     if (bAreaOfEffect == TRUE)
@@ -108,18 +92,16 @@ void main()
             SPELL_TARGET_ALLALLIES, FALSE, TRUE, nEffect1, nEffect2);
         return;
     }
+
     //Fire cast spell at event for the specified target
     SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, nSpellID, FALSE));
+
     //Remove effects
     RemoveSpecificEffect(nEffect1, oTarget);
     if(nEffect2 != 0)
-    {
         RemoveSpecificEffect(nEffect2, oTarget);
-    }
     if(nEffect3 != 0)
-    {
         RemoveSpecificEffect(nEffect3, oTarget);
-    }
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
 }
 
