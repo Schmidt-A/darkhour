@@ -292,9 +292,8 @@ void DoCurseSong(int bDecrementUses)
     eLink = ExtraordinaryEffect(eLink);
 
     if(!GetHasFeatEffect(871, oTarget)&& !GetHasSpellEffect(GetSpellId(),oTarget))
-    {
         ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eDur2, OBJECT_SELF, RoundsToSeconds(nDuration));
-    }
+
     float fDelay;
     while(GetIsObjectValid(oTarget))
     {
@@ -305,6 +304,9 @@ void DoCurseSong(int bDecrementUses)
             {
                 if(!GetHasFeatEffect(871, oTarget)&& !GetHasSpellEffect(GetSpellId(),oTarget))
                 {
+                     // Reset the damage scaling if applicable.
+                    if(CanBoost(oPCToken, "bLingering", nPerform))
+                        SetLocalFloat(oTarget, "fBDamageScale", 1.0);
                     if (nHP > 0)
                     {
                         ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SONIC), oTarget);
@@ -319,14 +321,17 @@ void DoCurseSong(int bDecrementUses)
                 }
                 // Bards with lingering song can re-apply their damage
                 // (if they have SF:Necromancy)
-                // TODO: Dimishing damage returns if it was reused
                 else if(CanBoost(oPCToken, "bLingering", nPerform))
+                {
+                    float fDamageScale = GetLocalFloat(oTarget, "fBDamageScale");
+                    nHP = FloatToInt(IntToFloat(nHP) * fDamageScale);
+                    eHP = ExtraordinaryEffect(EffectDamage(nHP, DAMAGE_TYPE_SONIC, DAMAGE_POWER_NORMAL));
                     DelayCommand(0.01, ApplyEffectToObject(DURATION_TYPE_INSTANT, eHP, oTarget));
+                    SetLocalFloat(oTarget, "fBDamageScale", fDamageScale-0.15);
+                }
             }
             else
-            {
-                   ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget);
-            }
+                ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget);
         }
 
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, GetLocation(OBJECT_SELF));

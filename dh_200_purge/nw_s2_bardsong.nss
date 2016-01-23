@@ -193,6 +193,10 @@ void main()
             {
                 if(oTarget == OBJECT_SELF)
                 {
+                    // Reset the heal scaling if applicable.
+                    if(CanBoost(oPCToken, "bLingering", nPerform))
+                        SetLocalFloat(oPCToken, "fBHealScale", 1.0);
+
                     effect eLinkBard = EffectLinkEffects(eLink, eVis);
                     eLinkBard = ExtraordinaryEffect(eLinkBard);
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLinkBard,
@@ -210,10 +214,16 @@ void main()
                 }
             }
         }
-        // Bards with lingering song can re-apply their healing
-        // (if they have SF:Heal)
+        /* Bards with lingering song can re-apply their healing (if they have
+         * SF:Heal). Healing value is decreasingly effective over the course
+         * of a given song duration. */
         else if(CanBoost(oPCToken, "bLingering", nPerform))
+        {
+            float fHealScale = GetLocalFloat(oPCToken, "fBHealScale");
+            nHeal = FloatToInt(IntToFloat(nHeal) * fHealScale);
             UnlinkedSongEffects(oTarget, 0, 0, nHeal, FALSE);
+            SetLocalFloat(oPCToken, "fBHealScale", fHealScale-0.15);
+        }
 
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL,
                                        GetLocation(OBJECT_SELF));
