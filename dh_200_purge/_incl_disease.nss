@@ -1,12 +1,16 @@
+/* This overall probably needs more work. I still don't like the application/
+ * recovering scripts. */
+
 #include "_incl_location"
 
+// The actual DC ends up being BASE_DC + number of infection points
+int BASE_DC = 12;
 string APPLIER_TAG = "Disease_Applier";
 
 void ReduceDiseaseEffects(object oPC, int iDisease);
 void CureDisease(object oPC, int iHowMany=10);
 void ApplyDisease(object oPC);
 void HBDiseaseCheck(object oPC, object oPCToken);
-
 
 void ReduceDiseaseEffects(object oPC, int iDisease)
 {
@@ -110,6 +114,8 @@ void HBDiseaseCheck(object oPC, object oPCToken)
     if(iDisease < 1)
         return;
 
+    string sMsg;
+
     // We'll only ever gain more disease if we're injured.
     if(GetCurrentHitPoints(oPC) < GetMaxHitPoints(oPC))
     {
@@ -118,10 +124,10 @@ void HBDiseaseCheck(object oPC, object oPCToken)
         if (nDisTimer >= 5)
         {
             nDisTimer = 0;
-            if (FortitudeSave(oPC,(7 + iDisease),SAVING_THROW_TYPE_DISEASE) == 0)
+            if (FortitudeSave(oPC,(BASE_DC + iDisease),SAVING_THROW_TYPE_DISEASE) == 0)
             {
                 iDisease += 1;
-                if (iDisease >= 9)
+                if (iDisease > 9)
                 {
                     CreateItemOnObject("deathtoken",oPC);
                     ExecuteScript("zombieclone",oPC);
@@ -133,7 +139,35 @@ void HBDiseaseCheck(object oPC, object oPCToken)
                 {
                     ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_DISEASE_S),oPC);
                     ApplyDisease(oPC);
-                    FloatingTextStringOnCreature("The disease continues to spread...", oPC, FALSE);
+                    switch(iDisease)
+                    {
+                        case 2:
+                            sMsg = "A shudder runs down your spine as you " + 
+                                "realize that the unholy plague continues to spread.";
+                            break;
+                        case 5:
+                            sMsg = "Your limbs tremble, your vision begins " +
+                                "to blur and your head is on fire while the " +
+                                "plague continues to ravage your body.";
+                            break;
+                        case 8:
+                            sMsg = "You feel your very soul aching and burning" +
+                                " in response to the ongoing infection. It " +
+                                "cries out for respite.";
+                            break;
+                        case 9:
+                            sMsg = "Your consciousness teeters on the edge " +
+                                "of a dark abyss. When you look down you see " +
+                                "oblivion - thousands of souls who have met " +
+                                "the fate that now stares you down. You MUST " +
+                                "deal with this illness - it has nearly claimed " +
+                                "your soul to join the legions below.";
+                            break;
+                        default:
+                            sMsg = "The disease continues to spread.";
+
+                    }
+                    FloatingTextStringOnCreature(sMsg, oPC, FALSE);
                 }
                 SetLocalInt(oPCToken, "iDisease", iDisease);
             }
@@ -145,13 +179,12 @@ void HBDiseaseCheck(object oPC, object oPCToken)
     // Otherwise we can try to start healing from it.
     else if(GetCurrentHitPoints(oPC) >= GetMaxHitPoints(oPC))
     {
-        string sMsg = "";
         SetLocalInt(oPC, "distimer", 0);
         int nHelTimer = GetLocalInt(oPC,"heltimer") + 1;
         if (nHelTimer >= 160)
         {
             nHelTimer = 0;
-            if (FortitudeSave(oPC,(7 + iDisease), SAVING_THROW_TYPE_DISEASE) == 1)
+            if (FortitudeSave(oPC,(BASE_DC + iDisease), SAVING_THROW_TYPE_DISEASE) == 1)
             {
                 iDisease -= 1;
                 ReduceDiseaseEffects(oPC, iDisease);
