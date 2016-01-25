@@ -10,19 +10,23 @@ const int ANNEDHEL  = 4;
 const int SISPARA   = 5;
 
 // Config options
-const int ELED_NO_CAVEINS = 3;
-const int FORT_DC     = 14;
-const int REFLEX_DC   = 12;
-const float KD_DUR    = 4.0;
+const int ELED_NO_CAVEINS   = 3;
+const int BARA_NO_WPS       = 3;
+const int FORT_DC           = 14;
+const int REFLEX_DC         = 12;
+const float KD_DUR          = 4.0;
 
 const string ROCK_PLACEABLE = "eled_boulder";
 const string PUKE_PLACEABLE = "hazard_puke";
 const string ELED_ROCK_WP   = "eled_cave_in";
+const string BARA_PORT_WP   = "bar_vaultwp_";
 
 /*-------------- Vault Handler Functions -----------*/
 void BarabanVaultEffects(object oPC);
 void FaelothVaultEffects(object oPC);
 void KalaramVaultEffects(object oPC);
+/*-------------- Baraban Functions -----------------*/
+void VinesEffect(object oPC);
 /*-------------- Eledhreth Functions ---------------*/
 void    CaveIn();
 void    CleanUpCaveIn();
@@ -47,10 +51,7 @@ void BarabanVaultEffects(object oPC)
         int iChance = Random(10)+1;
         if(iChance == 1)
         {
-            string sMsg = "Though eventually able to free themselves, it is not " +
-                "before the malign vines drag " + sName + " back to the entrance.";
-            DelayCommand(KD_DUR, PortToWaypoint(oPC, "bar_vaultst"));
-            DelayCommand(KD_DUR, SendMessageToPC(oPC, sMsg));
+            VinesEffect(oPC);
         }
     }
 }
@@ -107,6 +108,17 @@ void KalaramVaultEffects(object oPC)
             oPuke = GetNextObjectInShape(SHAPE_SPHERE, 10.0, lLoc);
         }
     }
+}
+
+void VinesEffect(object oPC)
+{
+    int iWP = Random(BARA_NO_WPS)+1;
+    string sWPTag = BARA_PORT_WP + IntToString(iWP);
+
+    string sMsg = "Though eventually able to free themselves, it is not " +
+        "before the malign vines drag " + sName + " back to the entrance.";
+    DelayCommand(KD_DUR, PortToWaypoint(oPC, sWPTag));
+    DelayCommand(KD_DUR, SendMessageToPC(oPC, sMsg));
 }
 
 void CaveIn()
