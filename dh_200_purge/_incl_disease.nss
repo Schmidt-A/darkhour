@@ -165,6 +165,7 @@ void HBDiseaseCheck(object oPC, object oPCToken)
                             break;
                         default:
                             sMsg = "The disease continues to spread.";
+                            break;
 
                     }
                     FloatingTextStringOnCreature(sMsg, oPC, FALSE);
