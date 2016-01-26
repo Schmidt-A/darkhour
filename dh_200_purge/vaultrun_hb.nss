@@ -26,8 +26,10 @@ void main()
         return;
 
     // Keep track of HB interval so we only apply effects on the interval we want
-    int iHBTicks = GetLocalInt(OBJECT_SELF, "iHBTicks");
-    if(iHBTicks <= GetLocalInt(OBJECT_SELF, "iHBInterval"))
+    int iHBTicks    = GetLocalInt(OBJECT_SELF, "iHBTicks");
+    int iHBInterval = GetLocalInt(OBJECT_SELF, "iHBInterval");
+
+    if(iHBTicks <= iHBInterval)
         SetLocalInt(OBJECT_SELF, "iHBTicks", iHBTicks+1);
     else
         SetLocalInt(OBJECT_SELF, "iHBTicks", 1);
@@ -37,7 +39,6 @@ void main()
 
     while(GetIsObjectValid(oObject))
     {
-        WriteTimestampedLogEntry(GetTag(oObject));
         if(GetIsPC(oObject) && !GetLocalInt(oObject, "iHazardsChecked"))
         {
             switch(iVault)
@@ -45,13 +46,17 @@ void main()
                 case KALARAM:
                     // Explained below
                     SetLocalInt(oObject, "iHazardsChecked", TRUE);
+                    /* No interval check here because kalaram needs to check
+                     * for puke stuff every time. */
                     KalaramVaultEffects(oObject);
                     break;
                 case FAELOTH:
-                    FaelothVaultEffects(oObject);
+                    if(iHBTicks == iHBInterval)
+                        FaelothVaultEffects(oObject);
                     break;
                 case BARABAN:
-                    BarabanVaultEffects(oObject);
+                    if(iHBTicks == iHBInterval)
+                        BarabanVaultEffects(oObject);
                 default: // No HB effects for Eledhreth, Annedhel or Sispara
                     break;
             }
