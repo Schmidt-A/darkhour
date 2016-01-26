@@ -7,6 +7,24 @@
 int BASE_DC = 12;
 string APPLIER_TAG = "Disease_Applier";
 
+// Messages that will be displayed to the PC at varying stages of the disease.
+string MSG_2 = "The realization that the undead disease is spreading through " +
+    "your veins sends a shiver down your spine.";
+string MSG_5 = "Your limbs tremble. Your vision begins to blur. Your head feels " +
+    "as if it's on fire. The plague continues to ravage your body.";
+string MSG_8 = "You feel your very soul aching and burning in response to the " +
+    "progressing infection. It cries out for respite. Your skin has become pale " +
+    "and eerily translucent, allowing a glimpse at gangrenous blood coursing " +
+    "through your veins. Between your shuddering and profuse sweating, you " +
+    "begin to fear that the end is coming.";
+string MSG_9 = "Your conciousness teeters on the edge of a dark abyss. Looking " +
+    "below you see oblivion - thousands of souls that have met with the fate " +
+    "that now stares you down. They scream up to you, begging for help, for " +
+    "an end to their wretched half-life. You MUST deal with this sickness - it has nearly " +
+    "claimed your soul to join the legion below. With mind elsewhere, clouded " +
+    "eyes and fetid flesh, you are scarcely recognizeable from the walking " +
+    "corpses all around.";
+
 void ReduceDiseaseEffects(object oPC, int iDisease);
 void CureDisease(object oPC, int iHowMany=10);
 void ApplyDisease(object oPC);
@@ -142,26 +160,16 @@ void HBDiseaseCheck(object oPC, object oPCToken)
                     switch(iDisease)
                     {
                         case 2:
-                            sMsg = "A shudder runs down your spine as you " + 
-                                "realize that the unholy plague continues to spread.";
+                            sMsg = MSG_2;
                             break;
                         case 5:
-                            sMsg = "Your limbs tremble, your vision begins " +
-                                "to blur and your head is on fire while the " +
-                                "plague continues to ravage your body.";
+                            sMsg = MSG_5
                             break;
                         case 8:
-                            sMsg = "You feel your very soul aching and burning" +
-                                " in response to the ongoing infection. It " +
-                                "cries out for respite.";
+                            sMsg = MSG_8;
                             break;
                         case 9:
-                            sMsg = "Your consciousness teeters on the edge " +
-                                "of a dark abyss. When you look down you see " +
-                                "oblivion - thousands of souls who have met " +
-                                "the fate that now stares you down. You MUST " +
-                                "deal with this illness - it has nearly claimed " +
-                                "your soul to join the legions below.";
+                            sMsg = MSG_9;
                             break;
                         default:
                             sMsg = "The disease continues to spread.";
