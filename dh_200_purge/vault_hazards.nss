@@ -114,6 +114,7 @@ void VinesEffect(object oPC)
 {
     int iWP = Random(BARA_NO_WPS)+1;
     string sWPTag = BARA_PORT_WP + IntToString(iWP);
+    string sName = GetName(oPC);
 
     string sMsg = "Though eventually able to free themselves, it is not " +
         "before the malign vines drag " + sName + " back to the entrance.";
