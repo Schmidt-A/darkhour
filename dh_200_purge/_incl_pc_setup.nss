@@ -227,15 +227,14 @@ void ZeroToVersionTwo(object oPC, string sPre)
 //Subrace update
 void TwoToVersionThree(object oPC, string sPre)
 {
-    //Remove the subrace skins people currently have
-    if(GetCampaignInt("SUBRACE", sPre+"enabled") == TRUE)
-        RemoveSkin(oPC);
-
+    int iPCClass = GetClassByPosition(1, oPC);
     object oPCToken = CreateItemOnObject("token_pc", oPC);
         // Setup for brand new bard
-        if (GetClassByPosition(1, oPC) == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
+        if (iPCClass == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
             SetupNewBard(oPC);
-
+        //they are an old bard, break their toys
+        else if (iPCClass == CLASS_TYPE_BARD) 
+            DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
     }
 
     // clean up their tokens, if they have any
