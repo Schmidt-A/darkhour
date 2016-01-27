@@ -7,9 +7,9 @@
 void GiveClassItems(object oPC, int iPCClass);
 void CullClassItems(object oPC, int iPCClass);
 
-void ZeroToVersionOne(object oPC);
-void ZeroToVersionTwo(object oPC);
-void TwoToVersionThree(object oPC);
+void ZeroToVersionOne(object oPC, string sPre);
+void ZeroToVersionTwo(object oPC, string sPre);
+void TwoToVersionThree(object oPC, string sPre);
 void UpdatePC(object oPC);
 
 /* Replace kill/survival time tokens with variables on the players' PC token. */
@@ -224,7 +224,6 @@ void ZeroToVersionTwo(object oPC, string sPre)
     SetCampaignInt("VERSIONING", sPre+"Version", 2);
 }
 
-//Subrace update
 void TwoToVersionThree(object oPC, string sPre)
 {
     int iPCClass = GetClassByPosition(1, oPC);
@@ -235,7 +234,7 @@ void TwoToVersionThree(object oPC, string sPre)
         //they are an old bard, break their toys
         else if (iPCClass == CLASS_TYPE_BARD) 
             DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
-    }
+    
 
     // clean up their tokens, if they have any
     //Dis needs done
