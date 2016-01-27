@@ -8,22 +8,33 @@ string FOOD_CHEST_GENERAL   = "fc_3";
 string FOOD_CHEST_RAW       = "fc_raw";
 string FOOD_CHEST_SPOILED   = "fc_spoiled";
 
+string APPLIER_TAG = "Hunger_Applier";
+
 int FOOD_ORGANIC = 0;
 int FOOD_SWEET   = 1;
 int FOOD_MEAT    = 2;
 int FOOD_GENERAL = 3;
 int FOOD_RAW     = 4;
 
-float RAVENOUS = 30.0;
-float DEATHS_DOOR = 10.0;
+float RAVENOUS      = 30.0;
+float DEATHS_DOOR   = 10.0;
 
-float DISLIKE_MODIFIER = 0.75;
-float LIKE_MODIFIER   = 1.5;
+float DISLIKE_MODIFIER  = 0.75;
+float LIKE_MODIFIER     = 1.5;
+
+int EFFECT_SURVIVALIST      = 0;
+int EFFECT_PICKY_LIKE       = 1;
+int EFFECT_PICKY_DISLIKE    = 2;
+int EFFECT_LIKE             = 3;
+int EFFECT_DISLIKE          = 4;
+float EFFECT_DUR            = 120.0;
 
 /*-------------- Helper Functions ---------------*/
 object  ChestLoop(object oChest, object oPC);
 float   EatRaw(object oPC, object oFood);
 int     FreshnessPercentage(object oFood);
+void    DrainAllAbilities(object oPC, int iAmount, int iDurationType, object oApplier=OBJECT_INVALID);
+void    ApplyPalateEffect(object oPC, int iContext, int iPalate=4);
 
 /*-------------- Palate Functions ---------------*/
 object GeneralFood(object oPC);
@@ -32,17 +43,18 @@ object PickyFood(object oPC);
 object SpecificFood(object oPC, int iPalate, int iDisliked);
 
 /*-------------- Food Functions -----------------*/
-void DBInitFood();
+void   DBInitChest(object oChest);
+void   DBInitFood();
 
 /*-------------- System Functions ---------------*/
-void DBInitChest(object oChest);
-void DBInitFood();
 string DBHungerCategory(string sSatisfaction);
 float  DBGetLossRate(string sLevel);
 int    DBGetLevel(string sLevel);
-float EatBestFoodCandidate(object oPC, float fSatisfaction,
+float  EatBestFoodCandidate(object oPC, float fSatisfaction,
                             int iPalate, int iDisliked);
-void HandleStarvation(object oPC, object oPCToken, string sLevel);
+void   HandleStarvation(object oPC, object oPCToken, string sLevel);
+void   RemoveStarvationPenalties(object oPC, object oPCToken);
+
 
 /*-------------- Driver Function ----------------*/
 void UpdateHunger(object oPC, int bAcquire=FALSE);
@@ -77,6 +89,65 @@ int FreshnessPercentage(object oFood)
     int iMaxFreshness = GetLocalInt(oFood, "iMaxFreshness");
 
     return (iFreshness / iMaxFreshness) * 100;
+}
+
+void DrainAllAbilities(object oPC, int iAmount, int iDurationType, object oApplier=OBJECT_INVALID)
+{
+    effect eEffect;    
+    int iAbility;
+
+    // Hit all 6 ability scores
+    for(iAbility=0; iAbility<6; iAbility++)
+    {
+        eEffect = SupernaturalEffect(EffectAbilityDecrease(iAbility, iAmount));
+        if(oApplier == OBJECT_INVALID)
+            ApplyEffectToObject(iDurationType, eEffect, oPC, EFFECT_DUR);
+        else
+        {
+            AssignCommand(oApplier, ApplyEffectToObject(iDurationType, eEffect,
+                oPC));
+        }
+    }
+}
+
+void ApplyPalateEffect(object oPC, int iContext, int iPalate=4)
+{
+    effect eEffect;
+
+    switch(iContext)
+    {
+        case EFFECT_SURVIVALIST:
+            eEffect = EffectSavingThrowDecrease(SAVING_THROW_FORT, 1);
+            break;
+        case EFFECT_PICKY_LIKE:
+            eEffect = EffectTemporaryHitPoints(5);
+            break;
+        case EFFECT_PICKY_DISLIKE:
+            eEffect = EffectSavingThrowDecrease(SAVING_THROW_ALL, 1);
+            break;
+        case EFFECT_LIKE:
+            switch(iPalate)
+            {
+                case 0:
+                    eEffect = EffectSavingThrowIncrease(SAVING_THROW_WILL, 1);
+                    break;
+                case 1:
+                    eEffect = EffectSavingThrowIncrease(SAVING_THROW_FORT, 1);
+                    break;
+                case 2:
+                    eEffect = EffectSavingThrowIncrease(SAVING_THROW_REFLEX,1);
+                    break;
+            }
+            break;
+        case EFFECT_DISLIKE:
+            DrainAllAbilities(oPC, 2, DURATION_TYPE_TEMPORARY);
+            break;
+    }
+    if(iContext != EFFECT_DISLIKE)
+    {
+        eEffect = SupernaturalEffect(eEffect);
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oPC, EFFECT_DUR);
+    }
 }
 
 object GeneralFood(object oPC)
@@ -282,6 +353,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
 {
     string sName = GetName(oPC);
     object oFood = OBJECT_INVALID;
+    object oApplier = GetObjectByTag(APPLIER_TAG);
     float fNewSatisfaction = fSatisfaction;
     float fFoodSatisfaction = 0.00;
 
@@ -332,7 +404,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
                 fFoodSatisfaction = GetLocalFloat(oFood, "fSatisfaction");
                 DestroyObject(oFood);
                 SendMessageToPC(oPC, sName + " eats their " + GetName(oFood) + ".");
-                // TODO: Apply -1 to fort save
+                ApplyPalateEffect(oPC, EFFECT_SURVIVALIST);
             }
             break;
 
@@ -354,7 +426,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
                         SendMessageToPC(oPC, sName + " grudgingly chokes" +
                             " down their spoiling " + GetName(oFood) + " and feels" +
                             " nausiated for it.");
-                        // TODO: penalty here
+                        ApplyPalateEffect(oPC, EFFECT_PICKY_DISLIKE);
                     }
                     else if (FreshnessPercentage(oFood) < 50)
                     {
@@ -367,7 +439,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
                         DestroyObject(oFood);
                         SendMessageToPC(oPC, sName + " eats their " +
                             GetName(oFood) + ". Delicious!");
-                        // TODO: buff
+                        ApplyPalateEffect(oPC, EFFECT_PICKY_LIKE);
                     }
                 }
             }
@@ -392,7 +464,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
                                 GetName(oFood) + " but forces it down, leaving " +
                                 "them feeling sickened.");
                             DestroyObject(oFood);
-                            // TODO: penalties
+                            ApplyPalateEffect(oPC, EFFECT_DISLIKE, iPalate);
                         }
                         else
                         {
@@ -407,7 +479,7 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
                         SendMessageToPC(oPC, sName + " eats their " +
                             GetName(oFood) + ", thoroughly enjoying it.");
                             DestroyObject(oFood);
-                        // TODO: buffs
+                        ApplyPalateEffect(oPC, EFFECT_LIKE, iPalate);
                     }
                     else
                     {
@@ -428,6 +500,8 @@ float EatBestFoodCandidate(object oPC, float fSatisfaction,
 void HandleStarvation(object oPC, object oPCToken, string sLevel)
 {
    int iID = DBGetLevelID(sLevel);
+   object oApplier = GetObjectByTag(APPLIER_TAG);
+   effect eEffect;
 
    switch(iID)
    {
@@ -435,7 +509,24 @@ void HandleStarvation(object oPC, object oPCToken, string sLevel)
             if(GetLocalInt(oPCToken, "bRavenous") == FALSE)
             {
                 SetLocalInt(oPCToken, "bRavenous", TRUE);
-                // TODO: Apply penalties
+
+                // -2 to all ability scores
+                DrainAllAbilities(oPC, 2, DURATION_TYPE_PERMANENT, oApplier);
+
+                // -1 to all saves
+                eEffect = SupernaturalEffect(EffectSavingThrowDecrease(SAVING_THROW_ALL, 1));
+                AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oPC));
+
+                // -4 to Concentration, Discipline, Tumble
+                eEffect = SupernaturalEffect(EffectSkillDecrease(SKILL_CONCENTRATION, 4));
+                AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oPC));
+
+                eEffect = SupernaturalEffect(EffectSkillDecrease(SKILL_DISCIPLINE, 4));
+                AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oPC));
+
+                eEffect = SupernaturalEffecti(EffectSkillDecrease(SKILL_TUMBLE, 4));
+                AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oPC));
+
                 SetLocalInt(oPCToken, "bCanRecoverHunger", FALSE);
             }
             break;
@@ -443,23 +534,73 @@ void HandleStarvation(object oPC, object oPCToken, string sLevel)
             if(GetLocalInt(oPCToken, "bStarving") == FALSE)
             {
                 SetLocalInt(oPCToken, "bStarving", TRUE);
-                // TODO: Apply penalties
+
+                // -2 to all ability scores
+                DrainAllAbilities(oPC, 2, DURATION_TYPE_PERMANENT, oApplier);
+
+                // 10% spell failure
+                eEffect = SupernaturalEffect(EffectSpellFailure(10));
+                AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oPC));
+
+                // Used to apply 10% miss chance and scavenge failure chance
+                SetLocalInt(oPCToken, "bScavengeFailure", TRUE);
+                SetLocalInt(oPCToken, "bAttackFailure", TRUE);  
+                // TODO: How do we do this?
+
                 SetLocalInt(oPCToken, "bCanRecoverHunger", FALSE);
             }
+            break;
         case 9: // Death's Door
             if(GetLocalInt(oPCToken, "bDeathsDoor") == FALSE)
             {
                 SetLocalInt(oPCToken, "bDeathsDoor", TRUE);
-                // TODO: Apply penalties
+
+                // -2 to all ability scores
+                DrainAllAbilities(oPC, 2, DURATION_TYPE_PERMANENT, oApplier);
+
+                // Slow
+                eEffect = SupernaturalEffect(EffectSlow());
+                AssignCommand(oApplier, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oPC));
+
                 SetLocalInt(oPCToken, "bCanRecoverHunger", FALSE);
+
+                // TODO: use these to limit healing/resting
                 SetLocalInt(oPCToken, "bCanHeal", FALSE);
+                SetLocalInt(oPCToken, "bCanRest", FALSE);
             }
+            break;
    }
+}
+
+void RemoveStarvationPenalties(object oPC, object oPCToken)
+{
+    object oApplier = GetObjectByTag(APPLIER_TAG);                              
+    effect eEffect = GetFirstEffect(oPC);                                       
+     
+    // Get rid of stat effects
+    while(GetIsEffectValid(eEffect))                                            
+    {                                                                           
+        if(GetEffectCreator(eEffect) == oApplier)                               
+            RemoveEffect(oPC, eEffect);                                         
+        eEffect = GetNextEffect(oPC);                                           
+    }  
+
+    // Reset nasty variables
+    SetLocalInt(oPCToken, "bRavenous", FALSE);
+    SetLocalInt(oPCToken, "bStarving", FALSE);
+    SetLocalInt(oPCToken, "bDeathsDoor", FALSE);
+    SetLocalInt(oPCToken, "bCanHeal", TRUE);
+    SetLocalInt(oPCToken, "bCanRest", TRUE);
+    SetLocalInt(oPCToken, "bCanRecoverHunger", TRUE);
 }
 
 void UpdateHunger(object oPC, int bAcquire=FALSE)
 {
     object oPCToken = GetItemPossessedBy(oPC, "token_pc");
+
+    // We don't starve/eat if we're dead
+    if(GetLocalInt(oPCToken, "bDead"))
+        return;
 
     float fSatisfaction = GetLocalFloat(oPCToken, "fSatisfaction");
     float fLossRate = GetLocalFloat(oPCToken, "fLossRate");
@@ -510,11 +651,24 @@ void UpdateHunger(object oPC, int bAcquire=FALSE)
             SetLocalString(oPCToken, "sHungerLevel", sNewLevel);
             SetLocalFloat(oPCToken, "fLossRate", DBGetLossRate(sNewLevel));
         }
-        // If we were starving but are now satisfied, we can start healing.
+
+        /* If we were starving but are now satisfied, we can start healing.
+         * It takes 6 in-game hours to recover from starvation penalties.
+         * 4 minutes to an hour * 6 = (4*60) seconds * 6 = 1440 seconds. */
         if(!GetLocalInt(oPCToken, "bCanRecoverHunger") && fSatisfaction >= 71.0)
-            SetLocalInt(oPCToken, "bCanRecoverHunger", TRUE);
+            DelayCommand(1440.0, RemoveStarvationPenalties(oPC, oPCToken));
+
     }
     SetLocalFloat(oPCToken, "fSatisfaction", fSatisfaction);
 
-    // TODO: Death case, fSatisfaction <= 0
+    // we ded
+    if(fSatisfaction <= 0.00)
+    {
+        RemoveStarvationPenalties(oPC, oPCToken);
+        ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectDeath(), oPC);
+        SendMessageToPC(oPC, "Your starved body can go on no longer. You fall to " +
+            "your knees heavily, your last breath coming out in a rattle, " +
+            "before collapsing onto the ground.");
+        SetLocalInt(oPCToken, "bDead", TRUE);
+    }
 }
