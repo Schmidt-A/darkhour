@@ -10,7 +10,10 @@ void CullClassItems(object oPC, int iPCClass);
 void ZeroToVersionOne(object oPC);
 void ZeroToVersionTwo(object oPC);
 void TwoToVersionThree(object oPC);
-void FindVersion(object oPC);
+void UpdatePC(object oPC);
+
+/* Replace kill/survival time tokens with variables on the players' PC token. */
+void TokensToVars(object oPC, object oPCToken);
 
 
 void GiveClassItems(object oPC, int iPCClass)
@@ -243,7 +246,7 @@ void TwoToVersionThree(object oPC, string sPre)
     SetCampaignInt("VERSIONING", sPre+"Version", 3);   
 }
 
-void FindVersion(object oPC)
+void UpdatePC(object oPC)
 {
     string sPre = GetDBVarName(oPC);
     int iVersion = GetCampaignInt("VERSIONING", sPre+"Version");
@@ -261,4 +264,74 @@ void FindVersion(object oPC)
             break;
     }
 
+}
+
+void TokensToVars(object oPC, object oPCToken)
+{
+    SetLocalInt(oPCToken, "bTokensInit", TRUE);
+
+    int iSurvivalTokens     = 0;
+    int iZombieKillTokens   = 0;
+    int iFrenzyKillTokens   = 0;
+    int iStackSize;
+    string sTag;
+
+    // First loop - count how many tokens we have
+    object oItem = GetFirstItemInInventory(oPC);
+    while(GetIsObjectValid(oItem))
+    {
+        sTag = GetTag(oItem);
+        iStackSize = GetItemStackSize(oItem);
+
+        if (sTag == "ZombieKill")
+            iZombieKillTokens += 1 * iStackSize;
+        else if (sTag == "ZK10")
+            iZombieKillTokens += 10 * iStackSize;
+        else if (sTag == "ZKHUNDRED")
+            iZombieKillTokens += 100 * iStackSize;
+        else if (sTag == "ZKTHOUSAND")
+            iZombieKillTokens += 1000 * iStackSize;
+        else if (sTag == "zkxthous")
+            iZombieKillTokens += 10000 * iStackSize;
+
+        else if (sTag == "SurvivalTime")
+            iSurvivalTokens += 1 * iStackSize;
+        else if (sTag == "ST10")
+            iSurvivalTokens += 10 * iStackSize;
+        else if (sTag == "ST100")
+            iSurvivalTokens += 100 * iStackSize;
+        else if (sTag == "ST1000")
+            iSurvivalTokens += 1000 * iStackSize;
+
+        else if (sTag == "FrenzyKill")
+            iFrenzyKillTokens += 1 * iStackSize;
+        else if (sTag == "FK10")
+            iFrenzyKillTokens += 10 * iStackSize;
+        else if (sTag == "FK100")
+            iFrenzyKillTokens += 100 * iStackSize;
+
+        oItem = GetNextItemInInventory(oPC);
+    }
+
+    SetLocalInt(oPCToken, "iZombieKills", iZombieKillTokens);
+    SetLocalInt(oPCToken, "iSurvivalTimes", iSurvivalTokens);
+    SetLocalInt(oPCToken, "iFrenzyKills", iFrenzyKillTokens);
+
+    /* Second loop - clean up the tokens. Doing it in two loops as opposed to
+     * one because lists get screwy if you add/remove while iterating over
+     * them. */
+    oItem = GetFirstItemInInventory(oPC);
+    while(GetIsObjectValid(oItem))
+    {
+        sTag = GetTag(oItem);
+
+        if(sTag == "ZombieKill" || sTag == "ZK10" || sTag == "ZKHUNDRED" ||
+           sTag == "ZKTHOUSAND" || sTag == "zkxthous" || sTag == "SurvivalTime" ||
+           sTag == "ST10" || sTag == "ST100" || sTag == "ST1000" ||
+           sTag == "FrenzyKill" || sTag == "FK10" || sTag == "FK100")
+        {
+            DestroyObject(oItem);
+        }
+        oItem = GetNextItemInInventory(oPC);
+    }
 }

@@ -5,7 +5,7 @@
 //
 
 #include "_incl_xp"
-#include "_incl_versioning"
+#include "_incl_pc_setup"
 #include "_incl_disease"
 
 void main()
@@ -45,7 +45,9 @@ void main()
     AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
     AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
     AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
-    
+
+    //Give them all their items and shit
+    UpdatePC(oPC);
 
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
         OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
