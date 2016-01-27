@@ -207,6 +207,8 @@ void main()
             sArea == "DMLounge" || sArea == "GoToFugue" ||
             sArea == "LostSoulsRoom" || sArea == "OOCStartingArea")
         {
+            //return to the top of the while loop, we don't wanna run any of this shit
+            oPC = GetNextPC();
             continue;
         }
 
