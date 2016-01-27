@@ -4,6 +4,8 @@
  * on a zombie spawner placeable heartbeat.
  *
  * The following variables need to be set on the zombie spawner placeable:
+ * int    iMaxEnemies = numeric cap on how many enemies should spawn at a given
+ *                      time.
  * string sWPTag = tag of the waypoints that you want creatures to spawn at
  * string sBosResRef = if you have a boss baddie that you want to (sometimes)
  *                     spawn in your area, provide its RESREF (not tag) here
