@@ -49,6 +49,8 @@ void main()
     //Give them all their items and shit
     UpdatePC(oPC);
 
+    object oPCToken = CreateItemOnObject("token_pc", oPC);
+
     if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
         OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
     {
