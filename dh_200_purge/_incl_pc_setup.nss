@@ -138,41 +138,43 @@ void CullClassItems(object oPC, int iLaterClass)
 void ZeroToVersionOne(object oPC, string sPre)
 {
 
-    DelayCommand(12.0,SetLocalInt(oPC,"ingame",1));
     object oTemp;
-    oTemp = GetFirstItemInInventory();
+    oTemp = GetFirstItemInInventory(oPC);
     while (GetIsObjectValid(oTemp))
     {
         DestroyObject(oTemp);
-        oTemp = GetNextItemInInventory();
+        oTemp = GetNextItemInInventory(oPC);
     }
 
-    SubraceLogin(OBJECT_SELF);
+    SubraceLogin(oPC);
 
-    CreateItemOnObject("dmfi_pc_emote",OBJECT_SELF);
-    CreateItemOnObject("greatroleplay",OBJECT_SELF);
-    CreateItemOnObject("dmfi_pc_dicebag",OBJECT_SELF);
-    CreateItemOnObject("scavenger",OBJECT_SELF);
-    CreateItemOnObject("professionpc",OBJECT_SELF);
-    CreateItemOnObject("langselect", OBJECT_SELF);
-    if ((GetHasFeat(FEAT_WEAPON_PROFICIENCY_DRUID)) || (GetHasFeat(FEAT_WEAPON_PROFICIENCY_MONK)) || (GetHasFeat(FEAT_WEAPON_PROFICIENCY_ROGUE)) || (GetHasFeat(FEAT_WEAPON_PROFICIENCY_SIMPLE)))
+    CreateItemOnObject("dmfi_pc_emote",oPC);
+    CreateItemOnObject("greatroleplay",oPC);
+    CreateItemOnObject("dmfi_pc_dicebag",oPC);
+    CreateItemOnObject("scavenger",oPC);
+    CreateItemOnObject("professionpc",oPC);
+    CreateItemOnObject("langselect", oPC);
+    if (GetHasFeat(FEAT_WEAPON_PROFICIENCY_DRUID, oPC) || 
+        GetHasFeat(FEAT_WEAPON_PROFICIENCY_MONK, oPC) || 
+        GetHasFeat(FEAT_WEAPON_PROFICIENCY_ROGUE, oPC) || 
+        GetHasFeat(FEAT_WEAPON_PROFICIENCY_SIMPLE, oPC))
     {
-        CreateItemOnObject("zn_sling",OBJECT_SELF);
-        CreateItemOnObject("zn_stones",OBJECT_SELF,99);
-        CreateItemOnObject("chairleg",OBJECT_SELF);
+        CreateItemOnObject("zn_sling",oPC);
+        CreateItemOnObject("zn_stones",oPC,99);
+        CreateItemOnObject("chairleg",oPC);
     }
     else
     {
-        CreateItemOnObject("zn_crossbow",OBJECT_SELF);
-        CreateItemOnObject("zn_bolts",OBJECT_SELF,50);
-        CreateItemOnObject("chairleg",OBJECT_SELF);
+        CreateItemOnObject("zn_crossbow",oPC);
+        CreateItemOnObject("zn_bolts",oPC,50);
+        CreateItemOnObject("chairleg",oPC);
     }
-    CreateItemOnObject("zn_medkit",OBJECT_SELF);
-    CreateItemOnObject("mil_dyekit002",OBJECT_SELF);
-    CreateItemOnObject("bread",OBJECT_SELF);
-    CreateItemOnObject("bread",OBJECT_SELF);
+    CreateItemOnObject("zn_medkit",oPC);
+    CreateItemOnObject("mil_dyekit002",oPC);
+    CreateItemOnObject("bread",oPC);
+    CreateItemOnObject("bread",oPC);
     CreateItemOnObject("craftingitem",oPC);
-    CreateItemOnObject("subdualmodetog",GetEnteringObject());
+    CreateItemOnObject("subdualmodetog",oPC;
 
     SetCampaignInt("VERSIONING", sPre+"Version", 1);
 }
@@ -252,6 +254,7 @@ void UpdatePC(object oPC)
             break;
         default:
             ZeroToVersionTwo(oPC, sPre);
+            TwoToVersionThree(oPC, sPre);
             break;
     }
 
