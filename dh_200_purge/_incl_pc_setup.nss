@@ -43,7 +43,7 @@ void GiveClassItems(object oPC, int iPCClass)
             break;
         case CLASS_TYPE_MONK:
             CreateItemOnObject("monkboots",oPC);
-            CreateItemOnObject("kishuriken",OBJECT_SELF,20);
+            CreateItemOnObject("kishuriken",oPC,20);
             break;
         case CLASS_TYPE_FIGHTER:
             CreateItemOnObject("warriorring",oPC);
