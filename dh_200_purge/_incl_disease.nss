@@ -163,7 +163,7 @@ void HBDiseaseCheck(object oPC, object oPCToken)
                             sMsg = MSG_2;
                             break;
                         case 5:
-                            sMsg = MSG_5
+                            sMsg = MSG_5;
                             break;
                         case 8:
                             sMsg = MSG_8;
