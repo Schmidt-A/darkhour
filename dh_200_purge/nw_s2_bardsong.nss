@@ -24,7 +24,9 @@ Updated Dec 2015 for Dark Hour by Tweek.
 */
 
 #include "x0_i0_spells"
+
 #include "_cls_bard"
+#include "_incl_pc_data"
 
 void UnlinkedSongEffects(object oTarget, int nDuration, int nHP, int nHeal, int bCanHaste)
 {

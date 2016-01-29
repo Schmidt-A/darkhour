@@ -1,5 +1,6 @@
 #include "x2_i0_spells"
 #include "nwnx_funcs"
+#include "_incl_pc_data"
 
 /* Called from the module OnLevel event. Handles granting our bard buffs. */
 void BardLevel(object oPC, int iBardLevels);

@@ -16,9 +16,11 @@
 //:: Created On: Jan 8, 2002
 //:://////////////////////////////////////////////
 
-#include "_incl_disease"
 #include "X0_I0_SPELLS"
 #include "x2_inc_spellhook"
+
+#include "_incl_disease"
+#include "_incl_pc_data"
 
 void main()
 {

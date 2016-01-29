@@ -15,6 +15,7 @@
 #include "x3_inc_horse"
 
 #include "_incl_disease"
+#include "_incl_pc_data"
 #include "_incl_pc_setup"
 #include "_incl_subrace"
 #include "_incl_xp"
