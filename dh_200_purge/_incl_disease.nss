@@ -2,6 +2,7 @@
  * recovering scripts. */
 
 #include "_incl_location"
+#include "_incl_pc_data"
 
 // The actual DC ends up being BASE_DC + number of infection points
 int BASE_DC = 12;
@@ -28,7 +29,7 @@ string MSG_9 = "Your conciousness teeters on the edge of a dark abyss. Looking "
 void ReduceDiseaseEffects(object oPC, int iDisease);
 void CureDisease(object oPC, int iHowMany=10);
 void ApplyDisease(object oPC);
-void HBDiseaseCheck(object oPC, object oPCToken);
+void HBDiseaseCheck(object oPC);
 
 void ReduceDiseaseEffects(object oPC, int iDisease)
 {
@@ -50,9 +51,7 @@ void ReduceDiseaseEffects(object oPC, int iDisease)
 
 void CureDisease(object oPC, int iHowMany=10)
 {
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
-    int iDisease = GetLocalInt(oPCToken, "iDisease");
-    if(iDisease < 1)
+    if(!PCDIsDiseased(oPC))
     {
         FloatingTextStringOnCreature("There was no disease to cure", oPC, FALSE);
         return;
@@ -61,19 +60,18 @@ void CureDisease(object oPC, int iHowMany=10)
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
                         EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oPC);
 
-    iDisease = iDisease-iHowMany;
+    iDisease = PCDGetDiseaseValue(oPC) - iHowMany;
     if(iDisease < 0)
         iDisease = 0;
 
     ReduceDiseaseEffects(oPC, iDisease);
-    SetLocalInt(oPCToken, "iDisease", iDisease);
+    PCDSetDiseaseValue(oPC, iDisease);
 }
 
 void ApplyDisease(object oPC)
 {
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
     object oApplier = GetObjectByTag(APPLIER_TAG);
-    int iDisease = GetLocalInt(oPCToken, "iDisease");
+    int iDisease = PCDGetDiseaseValue(oPC);
     int iAbility;
     effect eEffect;
     float fDuration;
@@ -126,9 +124,9 @@ void ApplyDisease(object oPC)
     }
 }
 
-void HBDiseaseCheck(object oPC, object oPCToken)
+void HBDiseaseCheck(object oPC)
 {
-    int iDisease = GetLocalInt(oPCToken, "iDisease");
+    int iDisease = PCDGetDiseaseValue(oPC);
     if(iDisease < 1)
         return;
 
@@ -178,7 +176,7 @@ void HBDiseaseCheck(object oPC, object oPCToken)
                     }
                     FloatingTextStringOnCreature(sMsg, oPC, FALSE);
                 }
-                SetLocalInt(oPCToken, "iDisease", iDisease);
+                PCDSetDiseaseValue(oPC, iDisease);
             }
             else
                 FloatingTextStringOnCreature("You resist the disease for now...", oPC, FALSE);
@@ -205,7 +203,7 @@ void HBDiseaseCheck(object oPC, object oPCToken)
             else
                 sMsg = "Your disease condition remains stable, but does not improve.";
             FloatingTextStringOnCreature(sMsg, oPC, FALSE);
-            SetLocalInt(oPCToken, "iDisease", iDisease);
+            PCDSetDiseaseValue(oPC, iDisease);
         }
         SetLocalInt(oPC, "heltimer", nHelTimer);
     }

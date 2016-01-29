@@ -20,6 +20,8 @@
 **********************************************************************/
 #include "_incl_disease"
 #include "_incl_xp"
+#include "_incl_pc_data"
+
 int iIsHungry;
 int nLostCon;
 float fScale = 2.0;  // Default scale is 1.
@@ -194,11 +196,9 @@ void main()
     object oCounter;
 
     string sArea;
-    object oPCToken;
 
     while(GetIsObjectValid(oPC))
     {
-        oPCToken = GetItemPossessedBy(oPC, "token_pc");
         PartyRingCheck(oPC);
         DarkHourBellCheck(oPC);
 
@@ -213,7 +213,7 @@ void main()
         }
 
         CandleCheck(oPC);
-        HBDiseaseCheck(oPC, oPCToken);
+        HBDiseaseCheck(oPC);
 
         if (GetItemPossessedBy(oPC,"DeathToken") != OBJECT_INVALID  &&
             GetCurrentHitPoints(oPC) > 0)
@@ -227,8 +227,7 @@ void main()
 
         if (iIsHungry == nEightHours)
         {
-            int iOldSurvivalTimes = GetLocalInt(oPCToken, "iSurvivalTimes");
-            SetLocalInt(oPCToken, "iSurvivalTimes", iOldSurvivalTimes+1);
+            PCDAddSurvivalTime(oPC);
             SendMessageToPC(oPC, "Regardless of the ravages to body and mind" +
                     " brought on by this evil island, you slowly feel yourself" +
                     " growing stronger from the experience.");

@@ -1,8 +1,9 @@
 //Versioning for each PC that enters the mod -Aez
 
 #include "_cls_bard"
-#include "_incl_subrace"
 #include "_incl_disease"
+#include "_incl_pc_data"
+#include "_incl_subrace"
 
 void GiveClassItems(object oPC, int iPCClass);
 void CullClassItems(object oPC, int iPCClass);
@@ -13,7 +14,7 @@ void TwoToVersionThree(object oPC, string sPre);
 void UpdatePC(object oPC);
 
 /* Replace kill/survival time tokens with variables on the players' PC token. */
-void TokensToVars(object oPC, object oPCToken);
+void TokensToVars(object oPC);
 
 
 void GiveClassItems(object oPC, int iPCClass)
@@ -173,13 +174,6 @@ void ZeroToVersionOne(object oPC, string sPre)
     CreateItemOnObject("craftingitem",oPC);
     CreateItemOnObject("subdualmodetog",GetEnteringObject());
 
-    // If the entering object happens to be a DM and they don't have a PC list item,
-    // give one to them.
-    if (GetIsDM(oPC) && GetItemPossessedBy(oPC, "PC_LIST") == OBJECT_INVALID)
-    {
-        CreateItemOnObject("pc_list", oPC, 1);
-    }
-
     SetCampaignInt("VERSIONING", sPre+"Version", 1);
 }
 
@@ -227,19 +221,18 @@ void ZeroToVersionTwo(object oPC, string sPre)
 void TwoToVersionThree(object oPC, string sPre)
 {
     int iPCClass = GetClassByPosition(1, oPC);
-    object oPCToken = CreateItemOnObject("token_pc", oPC);
-        // Setup for brand new bard
-        if (iPCClass == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
-            SetupNewBard(oPC);
-        //they are an old bard, break their toys
-        else if (iPCClass == CLASS_TYPE_BARD) 
-            DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
-    
+    PCDSetupNewToken(oPC);
+
+    // Setup for brand new bard
+    if (iPCClass == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
+        SetupNewBard(oPC);
+
+    //they are an old bard, break their toys
+    else if (iPCClass == CLASS_TYPE_BARD) 
+        DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
 
     // clean up their tokens, if they have any
-    //Dis needs done
-    if (!GetLocalInt(oPCToken, "bTokensInit"))
-        TokensToVars(oPC, oPCToken);
+    TokensToVars(oPC);
 
     SetCampaignInt("VERSIONING", sPre+"Version", 3);   
 }
@@ -264,10 +257,8 @@ void UpdatePC(object oPC)
 
 }
 
-void TokensToVars(object oPC, object oPCToken)
+void TokensToVars(object oPC)
 {
-    SetLocalInt(oPCToken, "bTokensInit", TRUE);
-
     int iSurvivalTokens     = 0;
     int iZombieKillTokens   = 0;
     int iFrenzyKillTokens   = 0;
@@ -311,9 +302,9 @@ void TokensToVars(object oPC, object oPCToken)
         oItem = GetNextItemInInventory(oPC);
     }
 
-    SetLocalInt(oPCToken, "iZombieKills", iZombieKillTokens);
-    SetLocalInt(oPCToken, "iSurvivalTimes", iSurvivalTokens);
-    SetLocalInt(oPCToken, "iFrenzyKills", iFrenzyKillTokens);
+    PCDAddZombieKill(oPC, iZombieKillTokens);
+    PCDAddSurvivalTime(oPC, iSurvivalTokens);
+    PCDAddFrenzyKill(oPC, iFrenzyKillTokens);
 
     /* Second loop - clean up the tokens. Doing it in two loops as opposed to
      * one because lists get screwy if you add/remove while iterating over

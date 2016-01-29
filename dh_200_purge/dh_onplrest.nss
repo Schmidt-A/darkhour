@@ -10,13 +10,13 @@
 // Edited by Vision on September 15, 2007 (Several times)
 // Edited by Tweek Jan 2016 (once)
 
+#include "_incl_pc_data"
+
 void StartRestConversation(object oPC)
 {
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
-
-    int iZombieKills    = GetLocalInt(oPCToken, "iZombieKills");
-    int iSurvivalTime   = GetLocalInt(oPCToken, "iSurvivalTimes");
-    int iFrenzyKills    = GetLocalInt(oPCToken, "iFrenzyKills");
+    int iZombieKills    = PCDGetZombieKills(oPC); 
+    int iSurvivalTime   = PCDGetSurvivalTimes(oPC);
+    int iFrenzyKills    = PCDGetFrenzyKills(oPC);
     int iCurrentHour    = GetTimeHour();
 
     // Apparently we get one survival time token every 8 hours

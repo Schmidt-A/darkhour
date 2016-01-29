@@ -28,6 +28,7 @@
 //:://////////////////////////////////////////////
 
 #include "x2_inc_switches"
+#include "_incl_pc_data"
 
 void main()
 {
@@ -59,9 +60,9 @@ void main()
             {
                 if (FortitudeSave(oSpellTarget,9,SAVING_THROW_TYPE_DISEASE) == 0)
                 {
-                    object oPCToken = GetItemPossessedBy(oSpellTarget, "token_pc");
+                    int iDisease = PCDGetDiseaseValue(oSpellTarget);
                     ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_DISEASE_S),oSpellTarget);
-                    SetLocalInt(oPCToken, "iDisease", GetLocalInt(oPCToken, "iDisease")+1);
+                    PCDSetDiseaseValue(oSpellTarget, iDisease+1);
                     FloatingTextStringOnCreature("You have been diseased!",oSpellTarget,FALSE);
                 }
             }

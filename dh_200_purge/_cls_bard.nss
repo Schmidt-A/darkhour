@@ -2,26 +2,19 @@
 #include "nwnx_funcs"
 
 /* Called from the module OnLevel event. Handles granting our bard buffs. */
-void BardLevel(object oPC, object oPCToken, int iBardLevels);
+void BardLevel(object oPC, int iBardLevels);
 
 /* Make sure the bard can at LEAST cast the lowest tier bardsong
  * before boosting. */
-int CanBoost(object oPCToken, string sBoost, int nPerform);
-
-/* Add a boost to the bard's token so long as its within their limit */
-void SetupBoost(object oPCToken, string sBoost);
+int CanBoost(string sBoost, int nPerform);
 
 /* This gets called every time a level up happens. We need to see if a bard
  * has gained access to a new boost (that they don't already have of course). */
-void SetBardBoosts(object oPC, object oPCToken);
-
-/* This gets called every time a level up happens. We need to see if a bard
- * has gained access to a new boost (that they don't already have of course). */
-void SetBardBoosts(object oPC, object oPCToken);
+void SetBardBoosts(object oPC);
 
 /* Called the first time a bard logs in. Bards with less than 14 charisma will
  * not receive any boosts since they are inelligible. */
-void SetupNewBard(object oPC);
+void SetupNewBard(object oPC, int bNewPC=TRUE);
 
 /* Returns the amount of HP that a healing-boost bardsong should restore. */
 int GetHealValue(object oPC);
@@ -34,21 +27,26 @@ int GetHasteDuration(object oPC);
  * damage if they have the Curse boost. */
 void DoCurseSong(int bDecrementUses);
 
+string BOOST_SPEED      = "bBardSpeed";
+string BOOST_BOTH       = "bBardBoth";
+string BOOST_OFFENSE    = "bBardOffense";
+string BOOST_DEFENSE    = "bBardDefense";
+string BOOST_HEAL       = "bBardHeal";
+string BOOST_SKILLS     = "bBardSkills";
+string BOOST_CURSE      = "bBardCurse";
+string BOOST_LINGERING  = "bBardLingering";
 
-void BardLevel(object oPC, object oPCToken, int iBardLevels)
+
+void BardLevel(object oPC, int iBardLevels)
 {
     // New multiclass bard
-    if(iBardLevels == 1 && !GetLocalInt(oPCToken, "bBardInitialized"))
-        SetLocalInt(oPCToken, "bBardInitialized", TRUE);
-
-    int iLastBardLevels = GetLocalInt(oPCToken, "iBardLevel");
-    SetLocalInt(oPCToken, "iBardLevel", iBardLevels);
+    if(iBardLevels == 1)
+        SetupNewBard(oPC, FALSE);
 
     if(iBardLevels == 3 || iBardLevels == 6 ||
        (iLastBardLevels == 0 && iBardLevels == 1))
     {
-        SetLocalInt(oPCToken, "iMaxBoosts",
-                    GetLocalInt(oPCToken, "iMaxBoosts")+1);
+        PCDBardAddMaxBoosts(oPC, 1)
     }
 
     // TODO: probably need a way to provide this later if they increase their cha
@@ -61,7 +59,7 @@ void BardLevel(object oPC, object oPCToken, int iBardLevels)
     // Increment the bard's level 4 boosted skill (if they have one)
     if(iBardLevels > 4)
     {
-        int iSkillBoosted = GetLocalInt(oPCToken, "iSkillID");
+        int iSkillBoosted = PCDBardGetSkillBoosted(oPC);
         int iSkillPoints = GetPCSkillPoints(oPC);
         // Only increment if they saved a point for it
         if(iSkillBoosted && iSkillPoints > 0)
@@ -71,7 +69,7 @@ void BardLevel(object oPC, object oPCToken, int iBardLevels)
         }
     }
 
-    SetBardBoosts(oPC, oPCToken);
+    SetBardBoosts(oPC);
 
     if(iBardLevels == 4 || iBardLevels == 8)
     {
@@ -80,68 +78,61 @@ void BardLevel(object oPC, object oPCToken, int iBardLevels)
     }
 }
 
-int CanBoost(object oPCToken, string sBoost, int nPerform)
+int CanBoost(string sBoost, int nPerform)
 {
-    if(GetLocalInt(oPCToken, sBoost)&& nPerform >= 3)
+    if(PCDCheckFlag(oPC, sBoost) && nPerform >= 3)
         return TRUE;
     return FALSE;
 }
 
-void SetupBoost(object oPCToken, string sBoost)
+void SetBardBoosts(object oPC)
 {
-    int iActiveBoosts = GetLocalInt(oPCToken, "iBoosts");
-    int iMaxBoosts = GetLocalInt(oPCToken, "iMaxBoosts");
+    if(GetHasFeat(FEAT_ARTIST, oPC) && !PCDCheckFlag(BOOST_SPEED))
+        PCDBardSetupBoost(BOOST_SPEED);
 
-    if(iActiveBoosts < iMaxBoosts)
+    if(GetHasFeat(FEAT_SKILL_FOCUS_PERFORM, oPC) && !PCDCheckFlag(BOOST_BOTH))
+        PCDBardSetupBoost(BOOST_BOTH);
+
+    if(GetHasFeat(FEAT_SKILL_FOCUS_INTIMIDATE, oPC) && !PCDCheckFlag(BOOST_OFFENSE))
+        PCDBardSetupBoost(BOOST_OFFENSE);
+
+    if(GetHasFeat(FEAT_SKILL_FOCUS_TUMBLE, oPC) && !PCDCheckFlag(BOOST_DEFENSE))
+        PCDBardSetupBoost(BOOST_DEFENSE);
+
+    if(GetHasFeat(FEAT_SKILL_FOCUS_HEAL, oPC) && !PCDCheckFlag(BOOST_HEAL))
+        PCDBardSetupBoost(BOOST_HEAL);
+
+    if(GetHasFeat(FEAT_SKILL_FOCUS_SEARCH, oPC) && !PCDCheckFlag(BOOST_SKILLS))
+        PCDBardSetupBoost(BOOST_SKILLS);
+
+    if(GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY, oPC) && !PCDCheckFlag(BOOST_CURSE))
+        PCDBardSetupBoost(BOOST_CURSE);
+
+    if(GetHasFeat(FEAT_LINGERING_SONG, oPC) && !PCDCheckFlag(BOOST_LINGERING))
+        PCDBardSetupBoost(BOOST_LINGERING);
+}
+
+void SetupNewBard(object oPC, int bNewPC=TRUE)
+{
+    int iMaxBoosts;
+
+    PCDBardSetInitialized(oPC);
+
+    if(bNewPC)
     {
-        SetLocalInt(oPCToken, sBoost, TRUE);
-        SetLocalInt(oPCToken, "iBoosts", iActiveBoosts+1);
+        if(GetRacialType(oPC) == RACIAL_TYPE_HUMAN)
+            iMaxBoosts = 2;
+        else
+            iMaxBoosts = 1;
     }
-}
-
-void SetBardBoosts(object oPC, object oPCToken)
-{
-    if(GetHasFeat(FEAT_ARTIST, oPC) && GetLocalInt(oPCToken, "bSpeed") == FALSE)
-        SetupBoost(oPCToken, "bSpeed");
-
-    if(GetHasFeat(FEAT_SKILL_FOCUS_PERFORM, oPC) && GetLocalInt(oPCToken, "bBoth") == FALSE)
-        SetupBoost(oPCToken, "bBoth");
-
-    if(GetHasFeat(FEAT_SKILL_FOCUS_INTIMIDATE, oPC) && GetLocalInt(oPCToken, "bOffense") == FALSE)
-        SetupBoost(oPCToken, "bOffense");
-
-    if(GetHasFeat(FEAT_SKILL_FOCUS_TUMBLE, oPC) && GetLocalInt(oPCToken, "bDefense") == FALSE)
-        SetupBoost(oPCToken, "bDefense");
-
-    if(GetHasFeat(FEAT_SKILL_FOCUS_HEAL, oPC) && GetLocalInt(oPCToken, "bHeal") == FALSE)
-        SetupBoost(oPCToken, "bHeal");
-
-    if(GetHasFeat(FEAT_SKILL_FOCUS_SEARCH, oPC) && GetLocalInt(oPCToken, "bSkills") == FALSE)
-        SetupBoost(oPCToken, "bSkills");
-
-    if(GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY, oPC) && GetLocalInt(oPCToken, "bCurse") == FALSE)
-        SetupBoost(oPCToken, "bCurse");
-
-    if(GetHasFeat(FEAT_LINGERING_SONG, oPC) && GetLocalInt(oPCToken, "bLingering") == FALSE)
-        SetupBoost(oPCToken, "bLingering");
-}
-
-void SetupNewBard(object oPC)
-{
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
-    SetLocalInt(oPCToken, "bBardInitialized", TRUE);
-
-    if(GetRacialType(oPC) == RACIAL_TYPE_HUMAN)
-        SetLocalInt(oPCToken, "iMaxBoosts", 2);
     else
-        SetLocalInt(oPCToken, "iMaxBoosts", 1);
+        iMaxBoosts = 1;
 
     if(GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) < 14)
-        SetLocalInt(oPCToken, "iMaxBoosts", 0);
+        iMaxBoosts = 0;
 
-    SetLocalInt(oPCToken, "iBardLevel", 1);
-
-    SetBardBoosts(oPC, oPCToken);
+    PCDBardAddMaxBoosts(oPC, iMaxBoosts);
+    SetBardBoosts(oPC);
 }
 
 int GetHealValue(object oPC)
@@ -176,8 +167,6 @@ void DoCurseSong(int bDecrementUses)
     int nPerform = nRanks;
     int nDuration = 10 + (nChr * 3);
 
-    object oPCToken = GetItemPossessedBy(OBJECT_SELF, "token_pc");
-
     effect eAttack;
     effect eDamage;
     effect eWill;
@@ -195,9 +184,6 @@ void DoCurseSong(int bDecrementUses)
     int nHP     = 0;
     int nAC     = 0;
     int nSkill  = 0;
-
-    if(CanBoost(oPCToken, "bLingering", nPerform))
-        nDuration += 15;
 
     else if(nPerform >= 15 && nLevel >= 8)
     {
@@ -236,7 +222,7 @@ void DoCurseSong(int bDecrementUses)
         nAttack = 1;
         nDamage = 1;
     }
-    if(CanBoost(oPCToken, "bCurse", nPerform))
+    if(CanBoost(BOOST_CURSE, nPerform))
     {
         nHP += d4(nLevel) + nLevel;
         nAC += 1;
@@ -305,7 +291,7 @@ void DoCurseSong(int bDecrementUses)
                 if(!GetHasFeatEffect(871, oTarget)&& !GetHasSpellEffect(GetSpellId(),oTarget))
                 {
                      // Reset the damage scaling if applicable.
-                    if(CanBoost(oPCToken, "bLingering", nPerform))
+                    if(CanBoost(BOOST_LINGERING, nPerform))
                         SetLocalFloat(oTarget, "fBDamageScale", 1.0);
                     if (nHP > 0)
                     {
@@ -321,7 +307,7 @@ void DoCurseSong(int bDecrementUses)
                 }
                 // Bards with lingering song can re-apply their damage
                 // (if they have SF:Necromancy)
-                else if(CanBoost(oPCToken, "bLingering", nPerform))
+                else if(CanBoost(BOOST_LINGERING, nPerform))
                 {
                     float fDamageScale = GetLocalFloat(oTarget, "fBDamageScale");
                     nHP = FloatToInt(IntToFloat(nHP) * fDamageScale);

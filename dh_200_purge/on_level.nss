@@ -1,13 +1,11 @@
 #include "_cls_bard"
+#include "_incl_pc_data"
 
 void main()
 {
     object oPC = GetPCLevellingUp();
     int iBardLevels = GetLevelByClass(CLASS_TYPE_BARD, oPC);
 
-    object oPCToken = GetItemPossessedBy(oPC, "bard_boosts");
-    int iLastBardLevels = GetLocalInt(oPCToken, "iBardLevel");
-
-    if(iBardLevels > 0 && iBardLevels > iLastBardLevels)
-        BardLevel(oPC, oPCToken, iBardLevels);
+    if(PCDBardLevelChanged(oPC, iBardLevels))
+        BardLevel(oPC, iBardLevels);
 }

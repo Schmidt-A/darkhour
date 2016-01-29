@@ -18,10 +18,9 @@ void main()
 {
     object oCaster  = GetLastSpellCaster();
     object oTarget  = GetSpellTargetObject();
-    object oPCToken = GetItemPossessedBy(oTarget, "token_pc");
 
     int iCasterLevel = GetCasterLevel(oCaster);
-    int iDisease     = GetLocalInt(oPCToken, "iDisease");
+    int iDisease     = PCDGetDiseaseValue(oTarget);
     int bDoVFX       = FALSE;
 
     string sMsg;

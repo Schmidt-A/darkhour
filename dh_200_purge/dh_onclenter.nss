@@ -13,8 +13,76 @@
 //:://////////////////////////////////////////////
 
 #include "x3_inc_horse"
+
+#include "_incl_disease"
+#include "_incl_pc_setup"
 #include "_incl_subrace"
+#include "_incl_xp"
+
 #include "nwnx_chat"
+
+void BootIfBanned(object oPC)
+{
+    if(GetCampaignInt(GetPCPlayerName(oPC)+"_BANNED", GetPCPlayerName(oPC)) == TRUE ||
+       GetCampaignInt(GetPCIPAddress(oPC)+"_BANNED",  GetPCIPAddress(oPC))  == TRUE ||
+       GetCampaignInt(GetPCPublicCDKey(oPC)+"_BANNED",GetPCPublicCDKey(oPC))== TRUE ||
+       OBJECT_INVALID != GetItemPossessedBy(oPC, "Banner"))
+    {
+        BootPC(oPC);
+    }
+}
+
+void EntryMessage(object oPC)
+{
+    string sName = GetName(oPC);
+    string sMessage = sName + " is entering the game from: " +
+                        GetPCPublicCDKey(oPC) + " IP ADDRESS: " +
+                        GetPCIPAddress(oPC);
+    SendMessageToAllDMs(sMessage);
+    PrintString(sMessage);
+}
+
+void RestorePreviousHP(object oPC)
+{
+    int nHitpoints = GetLocalInt(GetModule(),sName);
+    if (nHitpoints > 0)
+    {
+        int nLessHP = GetMaxHitPoints(oPC) - nHitpoints;
+        if (nLessHP > 0)
+            ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nLessHP),oPC);
+    }
+}
+
+void SetJournalEntries(object oPC)
+{
+    AddJournalQuestEntry("Stuff1",1,oPC,FALSE);
+    AddJournalQuestEntry("RULES2",1,oPC,FALSE);
+    AddJournalQuestEntry("Stuff3",1,oPC,FALSE);
+    AddJournalQuestEntry("Stuff4",1,oPC,FALSE);
+    AddJournalQuestEntry("DMTEAM",1,oPC,FALSE);
+    AddJournalQuestEntry("CraftingSystem",1,oPC,FALSE);
+    AddJournalQuestEntry("ClawingFeverInfo",1,oPC,FALSE);
+}
+
+void CheckForDeath(object oPC)
+{
+    if(!PCDIsDead(oPC))
+        return;
+
+    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
+        OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
+    {
+        location lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
+        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
+    }
+}
+
+void CheckForDisease(object oPC)
+{
+    if(!PCDIsDiseased(oPC))
+        return;
+    ApplyDisease(oPC);
+}
 
 void main()
 {
@@ -23,21 +91,27 @@ void main()
     // nwnx_chat
     dmb_PCin(oPC);
 
-    ExecuteScript("x3_mod_pre_enter",OBJECT_SELF); // Override for other skin systems
+    BootIfBanned(oPC);
+    EntryMessage(oPC);
+    RestorePreviousHP(oPC);
+    SetJournalEntries(oPC);
+    UpdatePC(oPC);
+    PCDCacheToken(oPC);
+    CheckForDeath(oPC);
+    CheckForDisease(oPC);
 
-    if ((GetIsPC(oPC)||GetIsDM(oPC))&&!GetHasFeat(FEAT_HORSE_MENU,oPC))
-    { // add horse menu
+    // Unique skin stuff has to be set prior to this point.
+    if ((GetIsPC(oPC) || GetIsDM(oPC)) && !GetHasFeat(FEAT_HORSE_MENU,oPC))
+    { 
         HorseAddHorseMenu(oPC);
         if (GetLocalInt(GetModule(),"X3_ENABLE_MOUNT_DB"))
-        { // restore PC horse status from database
             DelayCommand(2.0,HorseReloadFromDatabase(oPC,X3_HORSE_DATABASE));
-        } // restore PC horse status from database
-    } // add horse menu
+    } 
     if (GetIsPC(oPC))
-    { // more details
+    { 
         // restore appearance in case you export your character in mounted form, etc.
-        //if (!GetSkinInt(oPC,"bX3_IS_MOUNTED")) HorseIfNotDefaultAppearanceChange(oPC);
-        // pre-cache horse animations for player as attaching a tail to the model
+        if(!GetSkinInt(oPC,"bX3_IS_MOUNTED"))
+            HorseIfNotDefaultAppearanceChange(oPC);
 
         // Format : PC_ENTER:[pc name]
         // Example: PC_ENTER:My PC
@@ -47,25 +121,5 @@ void main()
 
         HorsePreloadAnimations(oPC);
         DelayCommand(3.0,HorseRestoreHenchmenLocations(oPC));
-        //Authenticate(oPC);
-    } // more details
-}
-
-// Homebrew CD Key Authentication
-void Authenticate(object oPC)
-{
-    string AUTH_DB_NAME= "AUTH";
-    string sPlayerName = GetPCPlayerName(oPC);
-    string sKey        = GetPCPublicCDKey(oPC);
-    string sKeyVarName = "KEY_" + sPlayerName;
-    string sStoredKey  = GetCampaignString(AUTH_DB_NAME, sKeyVarName);
-
-    // First time this player has logged in
-    if(sStoredKey == "")
-        SetCampaignString(AUTH_DB_NAME, sKeyVarName, sKey);
-    else if(sStoredKey != sKey)
-    {
-        SendMessageToPC(oPC, "YOU HAVE LOGGED IN TO AN ACCOUNT BOUND TO ANOTHER CD KEY. IF THIS IS A MISTAKE AND YOU ARE THE REAL OWNER OF THIS ACCOUNT, CONTACT THE ADMINS AT http://dhepilogue.boards.net/");
-        DelayCommand(15.0, BootPC(oPC)); // GTFO if your key is invalid
-    }
+    } 
 }

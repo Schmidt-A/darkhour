@@ -5,6 +5,8 @@
 #include "x0_i0_spawncond"
 #include "nw_i0_tool"
 
+#include "_incl_pc_data"
+
 const int MAX_ZOMBIE_KILLS  = 50;
 const int ZOMBIE_KILL_XP    = 3;
 
@@ -35,12 +37,12 @@ void main()
     if(!GetIsPC(oDamager))
         return;
 
-    SetLocalInt(oDamager, "iZombieKills", GetLocalInt(oDamager,"iZombieKills")+1);
+    PCDAddZombieKill(oDamager);
     // TODO: kill badges
     if (GetTimeHour() == 0)
-        CreateItemOnObject("frenzykill", oDamager, 1);
+        PCDAddFrenzyKill(oDamager);
 
-    // Grant XP if we're under the kill-limit per day
+    // Grant XP if we're under the kill-limit per reset
     int iZombieKills = GetLocalInt(oDamager, "zkxpcount");
     if(iZombieKills < MAX_ZOMBIE_KILLS)
     {

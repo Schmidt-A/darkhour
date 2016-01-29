@@ -1,10 +1,10 @@
+#include "_incl_pc_data"
 #include "nwnx_odbc"
 #include "nwnx_funcs"
 
 void main()
 {
     object oPC          = OBJECT_SELF;
-    object oPCToken   = GetItemPossessedBy(oPC, "bard_boosts");
     string sConvPos     = IntToString(GetLocalInt(oPC, "iConvPos"));
 
     /* This is a really simple table that just maps the conversational skill
@@ -18,6 +18,6 @@ void main()
         ModifySkillRank(oPC, iSkillID, 5);
         /* Keep track of what skill they chose to increase, since we may have
          * to increase it for them at later levels. */
-        SetLocalInt(oPCToken, "iSkillID", iSkillID);
+        PCDBardSetSkillBoosted(oPC, iSkillID);
     }
 }

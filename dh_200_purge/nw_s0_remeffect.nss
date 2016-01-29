@@ -36,10 +36,9 @@ void main()
     int nSpellID = GetSpellId();
     object oTarget = GetSpellTargetObject();
     object oCaster = OBJECT_SELF;
-    object oPCToken = GetItemPossessedBy(oTarget, "token_pc");
 
     int iCasterLevel = GetCasterLevel(oCaster);
-    int iDisease     = GetLocalInt(oPCToken, "iDisease");
+    int iDisease     = PCDGetDiseaseValue(oTarget);
     int nEffect1;
     int nEffect2;
     int nEffect3;

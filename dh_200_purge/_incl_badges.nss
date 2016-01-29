@@ -1,4 +1,5 @@
 #include "_incl_xp"
+#include "_incl_pc_data"
 #include "nwnx_odbc"
 #include "x3_inc_string"
 #include "x0_i0_stringlib"
@@ -8,8 +9,7 @@ void RefreshBadges(object oPC);
 string GetBadgeTagsFromDB(object oPC)
 {
     //Get their DB char id
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
-    string sCharId = GetLocalString(oPCToken, "char_id");
+    string sCharId = PCDCharID(oPC);
     string sBadgeList = "";
 
     //Get all badges that the pc has
@@ -30,6 +30,7 @@ string GetBadgeEntriesFromDB(object oPC)
 {
     //GET CHARACTER ID FROM oPC
     string sCharId;
+    string sCharId = PCDCharID(oPC);
 
     //Get all badges that the pc has
     SQLExecDirect("SELECT entry FROM badge_table WHERE badge_id = " +
@@ -55,8 +56,7 @@ void AddBadgeToDB(string sBadgeTag, object oPC, int bHasXP)
         sHasXP = "FALSE";
     }
 
-    object oPCToken = GetItemPossessedBy(oPC, "token_pc");
-    string sCharId = GetLocalString(oPCToken, "char_id");
+    string sCharId = PCDCharID(oPC);
 
     SQLExecDirect("INSERT INTO char_badge_many (char_id, badge_id, has_xp) " +
         "VALUES (" + sCharId +
@@ -71,7 +71,7 @@ void AddBadgeToDB(string sBadgeTag, object oPC, int bHasXP)
 
 void HasBadge(string sBadgeTag, object oPC)
 {
-    string sBadgeList = GetLocalString(oPCToken, "sBadgeList");
+    string sBadgeList = PCDBadgeList(oPC);
 
     //If it's an empty string like this, that means they don't have the local int
     //If so, we should refresh their badgelist
@@ -113,18 +113,16 @@ void AddBadgeJournal(string sBadgeTag, object oPC)
 void AddBadge(string sBadgeTag, object oPC, string sBadgeName, int iExp)
 {
     //should it check has badge in here?
+    // TODO: Probably
 
     FloatingTextStringOnCreature("You receieved a new badge, " + sBadgeName + "!", oPC, FALSE);
     GiveXPToCreatureDH(oPC, iExp, "XP_BADGE");
 
     AddBadgeJournal(sBadgeTag, oPC);
-
     AddBadgeToDB(sBadgeTag, oPC, TRUE);
 
     //Add to their local string
-    string sBadgeList = GetLocalString(oPC, "sBadgeList") + " " + sBadgeTag;
-
-    SetLocalString(oPCToken, "sBadgeList", sBadgeList);
+    PCDAddBadge(oPC, sBadgeTag);
 }
 
 void AddCustomBadge(object oPC, int iExp, string sName)
@@ -158,7 +156,6 @@ void RefreshBadges(object oPC)
             sBadgeTokens = AdvanceToNextToken(sBadgeTokens);
         }
     }
-
-    SetLocalString(oPCToken, "sBadgeList", sBadgeList);
+    PCDSetBadgeList(oPC, sBadgeList);
 }
 

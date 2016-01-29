@@ -66,8 +66,6 @@ void main()
     int nPerform = nRanks;
     int nDuration = 10 + (nChr * 3);
 
-    object oPCToken = GetItemPossessedBy(OBJECT_SELF, "bard_boosts");
-
     effect eAttack;
     effect eDamage;
 
@@ -120,21 +118,21 @@ void main()
         nDamage = 1;
     }
 
-    if(CanBoost(oPCToken, "bOffense", nPerform))
+    if(CanBoost(BOOST_OFFENSE, nPerform))
     {
         nAttack += 2;
         nDamage += 2;
     }
-    if(CanBoost(oPCToken, "bDefense", nPerform))
+    if(CanBoost(BOOST_DEFENSE, nPerform))
     {
         nAC += 2;
         nFort += 2;
         nWill += 2;
         nReflex += 2;
     }
-    if(CanBoost(oPCToken, "bHeal", nPerform))
+    if(CanBoost(BOOST_HEAL, nPerform))
         nHeal = GetHealValue(OBJECT_SELF);
-    if(CanBoost(oPCToken, "bSkills", nPerform))
+    if(CanBoost(BOOST_SKILLS, nPerform))
         nSkill += 5;
 
     effect eVis = EffectVisualEffect(VFX_DUR_BARD_SONG);
@@ -194,15 +192,15 @@ void main()
                 if(oTarget == OBJECT_SELF)
                 {
                     // Reset the heal scaling if applicable.
-                    if(CanBoost(oPCToken, "bLingering", nPerform))
-                        SetLocalFloat(oPCToken, "fBHealScale", 1.0);
+                    if(CanBoost(BOOST_LINGERING, nPerform))
+                        SetLocalFloat(oTarget, "fBHealScale", 1.0);
 
                     effect eLinkBard = EffectLinkEffects(eLink, eVis);
                     eLinkBard = ExtraordinaryEffect(eLinkBard);
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLinkBard,
                                         oTarget, RoundsToSeconds(nDuration));
                     UnlinkedSongEffects(oTarget, nDuration, nHP, nHeal,
-                                        CanBoost(oPCToken, "bSpeed", nPerform));
+                                        CanBoost(BOOST_SPEED, nPerform));
                 }
                 else if(!GetIsEnemy(oTarget))
                 {
@@ -210,25 +208,25 @@ void main()
                     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget,
                                         RoundsToSeconds(nDuration));
                     UnlinkedSongEffects(oTarget, nDuration, nHP, nHeal,
-                                        CanBoost(oPCToken, "bSpeed", nPerform));
+                                        CanBoost(BOOST_SPEED, nPerform));
                 }
             }
         }
         /* Bards with lingering song can re-apply their healing (if they have
          * SF:Heal). Healing value is decreasingly effective over the course
          * of a given song duration. */
-        else if(CanBoost(oPCToken, "bLingering", nPerform))
+        else if(CanBoost(BOOST_LINGERING, nPerform))
         {
-            float fHealScale = GetLocalFloat(oPCToken, "fBHealScale");
+            float fHealScale = GetLocalFloat(oTarget, "fBHealScale");
             nHeal = FloatToInt(IntToFloat(nHeal) * fHealScale);
             UnlinkedSongEffects(oTarget, 0, 0, nHeal, FALSE);
-            SetLocalFloat(oPCToken, "fBHealScale", fHealScale-0.15);
+            SetLocalFloat(oTarget, "fBHealScale", fHealScale-0.15);
         }
 
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL,
                                        GetLocation(OBJECT_SELF));
     }
-    if(CanBoost(oPCToken, "bBoth", nPerform))
+    if(CanBoost(BOOST_BOTH, nPerform))
         DoCurseSong(FALSE);
 }
 
