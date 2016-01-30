@@ -7,7 +7,7 @@
  * int    iMaxEnemies = numeric cap on how many enemies should spawn at a given
  *                      time.
  * string sWPTag = tag of the waypoints that you want creatures to spawn at
- * string sBosResRef = if you have a boss baddie that you want to (sometimes)
+ * string sBossResRef = if you have a boss baddie that you want to (sometimes)
  *                     spawn in your area, provide its RESREF (not tag) here
  * string sCreature1Ref = resref of the regular creature you want to spawn
  * string sCreature2Ref = resref of an (optional) second variation of creature
@@ -20,7 +20,7 @@
 
 void main()
 {
-    int iNumEnemies = 0; // Current number of zombies
+    int iNumEnemies = 0; // Current number of monsters
     int iNumWPs = 0; // Current number of waypoints
 
     // Waypoint tags to spawn the zombies at
@@ -28,11 +28,11 @@ void main()
 
     int iMaxEnemies = GetLocalInt(OBJECT_SELF,"iMaxEnemies");
 
-    string sBossResRef = GetLocalString(OBJECT_SELF, "sBoss");
+    string sBossResRef = GetLocalString(OBJECT_SELF, "sBossResRef");
     int bBossSpawned = FALSE;
 
-    string sCreature1Ref = GetLocalString(OBJECT_SELF, "sCreature1");
-    string sCreature2Ref = GetLocalString(OBJECT_SELF, "sCreature2");
+    string sCreature1Ref = GetLocalString(OBJECT_SELF, "sCreature1Ref");
+    string sCreature2Ref = GetLocalString(OBJECT_SELF, "sCreature2Ref");
 
     // Take a count on the enemies/WPs in the area
     object oObj = GetFirstObjectInArea();
