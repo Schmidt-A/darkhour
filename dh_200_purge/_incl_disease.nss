@@ -60,7 +60,7 @@ void CureDisease(object oPC, int iHowMany=10)
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
                         EffectVisualEffect(VFX_IMP_REMOVE_CONDITION), oPC);
 
-    iDisease = PCDGetDiseaseValue(oPC) - iHowMany;
+    int iDisease = PCDGetDiseaseValue(oPC) - iHowMany;
     if(iDisease < 0)
         iDisease = 0;
 

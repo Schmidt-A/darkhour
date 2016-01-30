@@ -1,6 +1,9 @@
-/* Written as an interface to deal with the data made persistent on a 
+/* Written as an interface to deal with the data made persistent on a
  * character's PC Token item. There are a few things that are duplicated
  * but they make using the interface a lot more coherent. */
+
+#include "x3_inc_string"
+#include "x0_i0_stringlib"
 
 string TOKEN_VAR = "oPCToken";
 string TOKEN_TAG = "token_pc";
@@ -20,7 +23,7 @@ void UpdateIntValue(object oPC, string sField, int iAmount)
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
     int iLastKills = GetLocalInt(oPCToken, sField);
 
-    SetLocalInt(oPCToken, sField, iLastKills + iKills);
+    SetLocalInt(oPCToken, sField, iLastKills + iAmount);
 
     SetLocalObject(oPC, TOKEN_VAR, oPCToken);
 }
@@ -28,7 +31,7 @@ void UpdateIntValue(object oPC, string sField, int iAmount)
 int GetIntValue(object oPC, string sField)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
-    return GetLocalInt(oPCToken, sField)
+    return GetLocalInt(oPCToken, sField);
 }
 
 void SetStringValue(object oPC, string sField, string sValue)
@@ -56,7 +59,7 @@ void UpdateStringValue(object oPC, string sField, string sValue, string sDelim =
 string GetStringValue(object oPC, string sField)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
-    return GetLocalString(oPCToken, sField)
+    return GetLocalString(oPCToken, sField);
 }
 
 string GetFirstName(object oPC)
@@ -97,7 +100,7 @@ void PCDCacheToken(object oPC)
 
 
 // ----------------- PC Data Retrival Functions ---------------
-void PCDIsDead(object oPC)
+int PCDIsDead(object oPC)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
 
@@ -106,7 +109,7 @@ void PCDIsDead(object oPC)
     return FALSE;
 }
 
-void PCDIsDiseased(object oPC)
+int PCDIsDiseased(object oPC)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
 
@@ -115,43 +118,43 @@ void PCDIsDiseased(object oPC)
     return FALSE;
 }
 
-void PCDGetDiseaseValue(object oPC)
+int PCDGetDiseaseValue(object oPC)
 {
     return GetIntValue(oPC, "iDisease");
 }
 
-void PCDCheckFlag(object oPC, string sField)
+int PCDCheckFlag(object oPC, string sField)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
-    return GetLocalInt(oPCToken, sField)
+    return GetLocalInt(oPCToken, sField);
 }
 
-void PCDGetName(object oPC)
+string PCDGetName(object oPC)
 {
     return GetStringValue(oPC, "sName");
 }
 
-void PCDGetZombieKills(object oPC)
+int PCDGetZombieKills(object oPC)
 {
     return GetIntValue(oPC, "iZombieKills");
 }
 
-void PCDGetSurvivalTimes(object oPC)
+int PCDGetSurvivalTimes(object oPC)
 {
     return GetIntValue(oPC, "iSurvivalTimes");
 }
 
-void PCDGetFrenzyKills(object oPC)
+int PCDGetFrenzyKills(object oPC)
 {
     return GetIntValue(oPC, "iFrenzyKills");
 }
 
-void PCDCharID(object oPC)
+string PCDCharID(object oPC)
 {
     return GetStringValue(oPC, "char_id");
 }
 
-void PCDBadgeList(object oPC)
+string PCDBadgeList(object oPC)
 {
     return GetStringValue(oPC, "sBadgeList");
 }
@@ -159,7 +162,7 @@ void PCDBadgeList(object oPC)
 // ----------------- PC Data Setter Functions ---------------
 void PCDAddZombieKill(object oPC, int iKills=1)
 {
-    UpdateIntValue(oPC, "iZombieKills", iKills)
+    UpdateIntValue(oPC, "iZombieKills", iKills);
 }
 
 void PCDAddFrenzyKill(object oPC, int iFrenzyKills=1)
@@ -214,12 +217,12 @@ void PCDBardSetupBoost(object oPC, string sBoost)
     SetLocalObject(oPC, TOKEN_VAR, oPCToken);
 }
 
-void PCDBardGetSkillBoosted(object oPC)
+int PCDBardGetSkillBoosted(object oPC)
 {
-    return GetIntValue(oPC, "iBardSkillID"); 
+    return GetIntValue(oPC, "iBardSkillID");
 }
 
-void PCDBardLevelChanged(object oPC, int iNewLevels)
+int PCDBardLevelChanged(object oPC, int iNewLevels)
 {
     int iOldLevels = GetIntValue(oPC, "iBardLevel");
     if(iNewLevels > iOldLevels)
@@ -229,7 +232,7 @@ void PCDBardLevelChanged(object oPC, int iNewLevels)
 
 void PCDBardSetInitialized(object oPC)
 {
-    InitializeFlag(oPC, "bBardInitialized");    
+    InitializeFlag(oPC, "bBardInitialized");
     UpdateIntValue(oPC, "bBardLevel", GetLevelByClass(CLASS_TYPE_BARD, oPC));
 }
 

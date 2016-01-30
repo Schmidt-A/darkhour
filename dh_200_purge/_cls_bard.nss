@@ -44,11 +44,8 @@ void BardLevel(object oPC, int iBardLevels)
     if(iBardLevels == 1)
         SetupNewBard(oPC, FALSE);
 
-    if(iBardLevels == 3 || iBardLevels == 6 ||
-       (iLastBardLevels == 0 && iBardLevels == 1))
-    {
-        PCDBardAddMaxBoosts(oPC, 1)
-    }
+    if(iBardLevels == 3 || iBardLevels == 6)
+        PCDBardAddMaxBoosts(oPC, 1);
 
     // TODO: probably need a way to provide this later if they increase their cha
     if(iBardLevels == 2 && GetAbilityScore(oPC, ABILITY_CHARISMA, TRUE) >= 14)
@@ -81,36 +78,36 @@ void BardLevel(object oPC, int iBardLevels)
 
 int CanBoost(string sBoost, int nPerform)
 {
-    if(PCDCheckFlag(oPC, sBoost) && nPerform >= 3)
+    if(PCDCheckFlag(OBJECT_SELF, sBoost) && nPerform >= 3)
         return TRUE;
     return FALSE;
 }
 
 void SetBardBoosts(object oPC)
 {
-    if(GetHasFeat(FEAT_ARTIST, oPC) && !PCDCheckFlag(BOOST_SPEED))
-        PCDBardSetupBoost(BOOST_SPEED);
+    if(GetHasFeat(FEAT_ARTIST, oPC) && !PCDCheckFlag(oPC, BOOST_SPEED))
+        PCDBardSetupBoost(oPC, BOOST_SPEED);
 
-    if(GetHasFeat(FEAT_SKILL_FOCUS_PERFORM, oPC) && !PCDCheckFlag(BOOST_BOTH))
-        PCDBardSetupBoost(BOOST_BOTH);
+    if(GetHasFeat(FEAT_SKILL_FOCUS_PERFORM, oPC) && !PCDCheckFlag(oPC, BOOST_BOTH))
+        PCDBardSetupBoost(oPC, BOOST_BOTH);
 
-    if(GetHasFeat(FEAT_SKILL_FOCUS_INTIMIDATE, oPC) && !PCDCheckFlag(BOOST_OFFENSE))
-        PCDBardSetupBoost(BOOST_OFFENSE);
+    if(GetHasFeat(FEAT_SKILL_FOCUS_INTIMIDATE, oPC) && !PCDCheckFlag(oPC, BOOST_OFFENSE))
+        PCDBardSetupBoost(oPC, BOOST_OFFENSE);
 
-    if(GetHasFeat(FEAT_SKILL_FOCUS_TUMBLE, oPC) && !PCDCheckFlag(BOOST_DEFENSE))
-        PCDBardSetupBoost(BOOST_DEFENSE);
+    if(GetHasFeat(FEAT_SKILL_FOCUS_TUMBLE, oPC) && !PCDCheckFlag(oPC, BOOST_DEFENSE))
+        PCDBardSetupBoost(oPC, BOOST_DEFENSE);
 
-    if(GetHasFeat(FEAT_SKILL_FOCUS_HEAL, oPC) && !PCDCheckFlag(BOOST_HEAL))
-        PCDBardSetupBoost(BOOST_HEAL);
+    if(GetHasFeat(FEAT_SKILL_FOCUS_HEAL, oPC) && !PCDCheckFlag(oPC, BOOST_HEAL))
+        PCDBardSetupBoost(oPC, BOOST_HEAL);
 
-    if(GetHasFeat(FEAT_SKILL_FOCUS_SEARCH, oPC) && !PCDCheckFlag(BOOST_SKILLS))
-        PCDBardSetupBoost(BOOST_SKILLS);
+    if(GetHasFeat(FEAT_SKILL_FOCUS_SEARCH, oPC) && !PCDCheckFlag(oPC, BOOST_SKILLS))
+        PCDBardSetupBoost(oPC, BOOST_SKILLS);
 
-    if(GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY, oPC) && !PCDCheckFlag(BOOST_CURSE))
-        PCDBardSetupBoost(BOOST_CURSE);
+    if(GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY, oPC) && !PCDCheckFlag(oPC, BOOST_CURSE))
+        PCDBardSetupBoost(oPC, BOOST_CURSE);
 
-    if(GetHasFeat(FEAT_LINGERING_SONG, oPC) && !PCDCheckFlag(BOOST_LINGERING))
-        PCDBardSetupBoost(BOOST_LINGERING);
+    if(GetHasFeat(FEAT_LINGERING_SONG, oPC) && !PCDCheckFlag(oPC, BOOST_LINGERING))
+        PCDBardSetupBoost(oPC, BOOST_LINGERING);
 }
 
 void SetupNewBard(object oPC, int bNewPC=TRUE)
@@ -186,7 +183,7 @@ void DoCurseSong(int bDecrementUses)
     int nAC     = 0;
     int nSkill  = 0;
 
-    else if(nPerform >= 15 && nLevel >= 8)
+    if(nPerform >= 15 && nLevel >= 8)
     {
         nAttack = 2;
         nDamage = 2;

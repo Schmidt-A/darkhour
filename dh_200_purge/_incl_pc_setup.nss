@@ -228,13 +228,13 @@ void TwoToVersionThree(object oPC, string sPre)
         SetupNewBard(oPC);
 
     //they are an old bard, break their toys
-    else if (iPCClass == CLASS_TYPE_BARD) 
+    else if (iPCClass == CLASS_TYPE_BARD)
         DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
 
     // clean up their tokens, if they have any
     TokensToVars(oPC);
 
-    SetCampaignInt("VERSIONING", sPre+"Version", 3);   
+    SetCampaignInt("VERSIONING", sPre+"Version", 3);
 }
 
 void UpdatePC(object oPC)

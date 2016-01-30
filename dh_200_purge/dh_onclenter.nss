@@ -11,7 +11,6 @@
 //:: Created On: Dec 30th, 2007
 //:: Last Update: April 21th, 2008
 //:://////////////////////////////////////////////
-
 #include "x3_inc_horse"
 
 #include "_incl_disease"
@@ -45,7 +44,7 @@ void EntryMessage(object oPC)
 
 void RestorePreviousHP(object oPC)
 {
-    int nHitpoints = GetLocalInt(GetModule(),sName);
+    int nHitpoints = GetLocalInt(GetModule(),GetName(oPC));
     if (nHitpoints > 0)
     {
         int nLessHP = GetMaxHitPoints(oPC) - nHitpoints;
@@ -103,13 +102,13 @@ void main()
 
     // Unique skin stuff has to be set prior to this point.
     if ((GetIsPC(oPC) || GetIsDM(oPC)) && !GetHasFeat(FEAT_HORSE_MENU,oPC))
-    { 
+    {
         HorseAddHorseMenu(oPC);
         if (GetLocalInt(GetModule(),"X3_ENABLE_MOUNT_DB"))
             DelayCommand(2.0,HorseReloadFromDatabase(oPC,X3_HORSE_DATABASE));
-    } 
+    }
     if (GetIsPC(oPC))
-    { 
+    {
         // restore appearance in case you export your character in mounted form, etc.
         if(!GetSkinInt(oPC,"bX3_IS_MOUNTED"))
             HorseIfNotDefaultAppearanceChange(oPC);
@@ -122,5 +121,5 @@ void main()
 
         HorsePreloadAnimations(oPC);
         DelayCommand(3.0,HorseRestoreHenchmenLocations(oPC));
-    } 
+    }
 }
