@@ -94,12 +94,11 @@ CREATE_TABLE `eff_char_level_table` (
 
 CREATE_TABLE `stats_table` (
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
-  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `badge_table` (
+CREATE_TABLE `badge_table` (
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `name` varchar(64) NOT NULL DEFAULT ' ',
   `tag` varchar(64) NOT NULL DEFAULT ' ',
@@ -108,11 +107,57 @@ CREATE TABLE `badge_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `char_badge_many`
+CREATE_TABLE `char_badge_many`
   `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
   `char_id` int(11) NOT NULL DEFAULT '0',
   `badge_id` int(11) NOT NULL DEFAULT '0',
   `has_xp` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`char_id`) REFERENCES char_list(`id`),
   FOREIGN KEY (`badge_id`) REFERENCES badge_table(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+
+
+CREATE_TABLE `encounter_table`
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `tag` varchar(64),
+  `area` varchar(64),
+  `waypoint` varchar(64),
+  `trigger_tag` varchar(64),
+  `trigger_condition` varchar(64),
+  `next_encounter` int(11),
+  `complete_condition` varchar(64),
+  `complete_tag` varchar(64),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+
+
+CREATE_TABLE `enc_creatures`
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `encounter_id` NOT NULL DEFAULT '0',
+  `creature_tag` varchar(64) NOT NULL DEFAULT ' ',
+  `creature_num` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`encounter_id`) REFERENCES encounter_table(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+
+
+CREATE_TABLE `drop_table`
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `trigger_tag` varchar(64),
+  `area` varchar(64),
+  `dc` int(11) NOT NULL DEFAULT '14',
+  `increment` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+
+
+CREATE_TABLE `drop_items`
+  `id` int(11) NOT NULL DEFAULT '0' UNIQUE,
+  `drop_id` NOT NULL DEFAULT '0',
+  `item_tag` varchar(64) NOT NULL DEFAULT ' ',
+  `stack_size` int(11),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`drop_id`) REFERENCES drop_table(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+
