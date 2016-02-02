@@ -21,9 +21,9 @@ void SetIntValue(object oPC, string sField, int iValue)
 void UpdateIntValue(object oPC, string sField, int iAmount)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
-    int iLastKills = GetLocalInt(oPCToken, sField);
+    int iLocalInt = GetLocalInt(oPCToken, sField);
 
-    SetLocalInt(oPCToken, sField, iLastKills + iAmount);
+    SetLocalInt(oPCToken, sField, iLocalInt + iAmount);
 
     SetLocalObject(oPC, TOKEN_VAR, oPCToken);
 }
@@ -60,6 +60,21 @@ string GetStringValue(object oPC, string sField)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
     return GetLocalString(oPCToken, sField);
+}
+
+void SetObjectValue(object oPC, string sField, object oTag)
+{
+    object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
+
+    SetLocalObject(oPCToken, sField, oTag);
+
+    SetLocalObject(oPC, TOKEN_VAR, oPCToken);
+}
+
+int GetObjectValue(object oPC, string sField)
+{
+    object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
+    return GetLocalObject(oPCToken, sField);
 }
 
 string GetFirstName(object oPC)
