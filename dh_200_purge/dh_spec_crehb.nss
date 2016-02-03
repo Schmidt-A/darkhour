@@ -21,13 +21,9 @@
 
 void main()
 {
-    object oBadToken = GetItemPossessedBy(OBJECT_SELF,"DeathToken");
     int nMove = GetLocalInt(OBJECT_SELF,"MovementSpeed");
     object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR);
-    if (oBadToken != OBJECT_INVALID)
-    {
-        DestroyObject(oBadToken);
-    }
+
     if ((GetCurrentAction() == ACTION_INVALID) && (GetLocalInt(OBJECT_SELF,"feeding") == 0) && (GetTag(OBJECT_SELF) != "ZN_ZOMBIEL"))
     {
         ClearAllActions();

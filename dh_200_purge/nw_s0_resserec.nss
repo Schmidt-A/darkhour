@@ -49,9 +49,9 @@ void main()
         if (GetIsDead(oTarget))
         {
             //Declare major variables
-            object oItem;
-            oItem = GetItemPossessedBy(oTarget, "ReaperToken");
-            DestroyObject(oItem);
+            if(GetIsPC(oTarget))
+                PCDSetAlive(oTarget);
+
             int nHealed = GetMaxHitPoints(oTarget);
             effect eRaise = EffectResurrection();
             effect eHeal = EffectHeal(nHealed + 10);

@@ -171,6 +171,11 @@ int PCDGetFrenzyKills(object oPC)
     return GetIntValue(oPC, "iFrenzyKills");
 }
 
+int PCDGetUsedOneChance(object oPC)
+{
+    return GetIntValue(oPC, "bOneChance");
+}
+
 string PCDCharID(object oPC)
 {
     return GetStringValue(oPC, "char_id");
@@ -210,6 +215,31 @@ void PCDSetBadgeList(object oPC, string sNewList)
 void PCDSetDiseaseValue(object oPC, int iAmount)
 {
     SetIntValue(oPC, "iDisease", iAmount);
+}
+
+void PCDSetZombied(object oPC)
+{
+    SetIntValue(oPC, "bZombied", TRUE);
+}
+
+void PCDSetUnZombied(object oPC)
+{
+    SetIntValue(oPC, "bZombied", FALSE);
+}
+
+void PCDSetDead(object oPC)
+{
+    SetIntValue(oPC, "bDead", TRUE);
+}
+
+void PCDSetAlive(object oPC)
+{
+    SetIntValue(oPC, "bDead", FALSE);
+}
+
+void PCDSetUsedOneChance(object oPC)
+{
+    SetIntValue(oPC, "bOneChance", TRUE);
 }
 
 // ----------------- Bard Data Functions ----------------------

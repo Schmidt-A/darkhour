@@ -1,4 +1,3 @@
-#include "subdual_inc"
 //::///////////////////////////////////////////////
 //:: Death Script
 //:: NW_O0_DEATH.NSS
@@ -14,19 +13,20 @@
 //:: Created By: Brent Knowles
 //:: Created On: November 6, 2001
 //:://////////////////////////////////////////////
-void Raise(object oPlayer)
+
+#include "subdual_inc"
+#Include "_incl_pc_data"
+
+void Raise(object oPC)
 {
-        SetLocalInt(oPlayer, "raiseattempts", 0);
+        SetLocalInt(oPC, "raiseattempts", 0);
         effect eVisual = EffectVisualEffect(VFX_IMP_RESTORATION);
 
-        effect eBad = GetFirstEffect(oPlayer);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectResurrection(),oPlayer);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectHeal(GetMaxHitPoints(oPlayer)), oPlayer);
+        effect eBad = GetFirstEffect(oPC);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectResurrection(),oPC);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectHeal(GetMaxHitPoints(oPC)), oPC);
 
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPlayer, "DeathToken")) && (GetIsPossessedFamiliar(oPlayer) == FALSE))
-        {
-            DestroyObject(GetItemPossessedBy(oPlayer, "DeathToken"));
-        }
+        PCDSetAlive(oPC);
 
         //Search for negative effects
         while(GetIsEffectValid(eBad))
@@ -45,94 +45,81 @@ void Raise(object oPlayer)
                 GetEffectType(eBad) == EFFECT_TYPE_NEGATIVELEVEL)
                 {
                     //Remove effect if it is negative.
-                    RemoveEffect(oPlayer, eBad);
+                    RemoveEffect(oPC, eBad);
                 }
-            eBad = GetNextEffect(oPlayer);
+            eBad = GetNextEffect(oPC);
         }
         //Fire cast spell at event for the specified target
-        SetLocalInt(oPlayer, "raiseattempts", 0);
-        SignalEvent(oPlayer, EventSpellCastAt(OBJECT_SELF, SPELL_RESTORATION, FALSE));
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual, oPlayer);
+        SetLocalInt(oPC, "raiseattempts", 0);
+        SignalEvent(oPC, EventSpellCastAt(OBJECT_SELF, SPELL_RESTORATION, FALSE));
+        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual, oPC);
 }
 
 void main()
 {
-object oPC = GetLastPlayerDied();
-object oKiller = GetLastHostileActor(oPC);
-SetLocalInt(oPC, "raiseattempts", 0);
-if(GetTag(GetArea(oPC)) == "UnknownArea")
-    {
-    Raise(oPC);
-    DelayCommand(10.0, Raise(oPC));
-    ExecuteScript("amalgkill", oPC);
-    return;
-    }
-   if (CheckSubdual(GetLastPlayerDied())) return;
+    object oPC = GetLastPlayerDied();
+    object oKiller = GetLastHostileActor(oPC);
 
-    object oPlayer = GetLastPlayerDied();
+    SetLocalInt(oPC, "raiseattempts", 0);
+
+    if (CheckSubdual(oPC))
+        return;
+
     // * increment global tracking number of times that I died
-    SetLocalInt(oPlayer, "NW_L_PLAYER_DIED", GetLocalInt(oPlayer, "NW_L_PLAYER_DIED") + 1);
+    SetLocalInt(oPC, "NW_L_PLAYER_DIED", GetLocalInt(oPC, "NW_L_PLAYER_DIED") + 1);
 
     // * make friendly to Each of the 3 common factions
-    AssignCommand(oPlayer, ClearAllActions());
+    AssignCommand(oPC, ClearAllActions());
     // * Note: waiting for Sophia to make SetStandardFactionReptuation to clear all personal reputation
-    if (GetStandardFactionReputation(STANDARD_FACTION_COMMONER, oPlayer) <= 10)
-    {   SetLocalInt(oPlayer, "NW_G_Playerhasbeenbad", 10); // * Player bad
-        SetStandardFactionReputation(STANDARD_FACTION_COMMONER, 80, oPlayer);
+    if (GetStandardFactionReputation(STANDARD_FACTION_COMMONER, oPC) <= 10)
+    {   SetLocalInt(oPC, "NW_G_Playerhasbeenbad", 10); // * Player bad
+        SetStandardFactionReputation(STANDARD_FACTION_COMMONER, 80, oPC);
     }
-    if (GetStandardFactionReputation(STANDARD_FACTION_MERCHANT, oPlayer) <= 10)
-    {   SetLocalInt(oPlayer, "NW_G_Playerhasbeenbad", 10); // * Player bad
-        SetStandardFactionReputation(STANDARD_FACTION_MERCHANT, 80, oPlayer);
+    if (GetStandardFactionReputation(STANDARD_FACTION_MERCHANT, oPC) <= 10)
+    {   SetLocalInt(oPC, "NW_G_Playerhasbeenbad", 10); // * Player bad
+        SetStandardFactionReputation(STANDARD_FACTION_MERCHANT, 80, oPC);
     }
-    if (GetStandardFactionReputation(STANDARD_FACTION_DEFENDER, oPlayer) <= 10)
-    {   SetLocalInt(oPlayer, "NW_G_Playerhasbeenbad", 10); // * Player bad
-        SetStandardFactionReputation(STANDARD_FACTION_DEFENDER, 80, oPlayer);
+    if (GetStandardFactionReputation(STANDARD_FACTION_DEFENDER, oPC) <= 10)
+    {   SetLocalInt(oPC, "NW_G_Playerhasbeenbad", 10); // * Player bad
+        SetStandardFactionReputation(STANDARD_FACTION_DEFENDER, 80, oPC);
     }
 
-    if (OBJECT_INVALID != GetItemPossessedBy(oPlayer, "DeathToken"))
-        DestroyObject(GetItemPossessedBy(oPlayer, "DeathToken"));
+    PCDSetAlive(oPC);
 
-    location lDeathSpot = GetLocation(oPlayer);
+    location lDeathSpot = GetLocation(oPC);
     object oCorpse = CreateObject(OBJECT_TYPE_PLACEABLE,"playercorpse",lDeathSpot);
 
     // Remove any Ki Shuriken
-    object oShuriken = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oPlayer);
+    object oShuriken = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oPC);
     if (GetTag(oShuriken) == "kishuriken")
     {
         DestroyObject(oShuriken);
     }
-    oShuriken = GetFirstItemInInventory(oPlayer);
+    oShuriken = GetFirstItemInInventory(oPC);
     while (oShuriken != OBJECT_INVALID)
     {
         if (GetTag(oShuriken) == "kishuriken")
         {
             DestroyObject(oShuriken);
         }
-        oShuriken = GetNextItemInInventory(oPlayer);
+        oShuriken = GetNextItemInInventory(oPC);
     }
 
     // Now move all Droppable items into the placeable's inventory
-    object oItem = GetFirstItemInInventory(oPlayer);
+    object oItem = GetFirstItemInInventory(oPC);
     while (GetIsObjectValid(oItem))
     {
         if ((GetItemCursedFlag(oItem) == FALSE) && (GetTag(oItem)!="NW_WBWSL001") && (GetTag(oItem)!="DyeKit"))
         {
-            AssignCommand(oCorpse,ActionTakeItem(oItem,oPlayer));
+            AssignCommand(oCorpse,ActionTakeItem(oItem,oPC));
         }
-        oItem = GetNextItemInInventory(oPlayer);
+        oItem = GetNextItemInInventory(oPC);
     }
-    AssignCommand(oCorpse,TakeGoldFromCreature(GetGold(oPlayer),oPlayer));
-    SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPlayer));
-    SetName(oCorpse,GetName(oPlayer)+"'s Corpse");
-    SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPlayer));
-    if(GetItemPossessedBy(oPlayer,"DeathToken")==OBJECT_INVALID)
-        CreateItemOnObject("deathtoken",oPlayer);
-    object oReaperToken = CreateItemOnObject("reapertoken",oPlayer);
-    if(GetRacialType(oKiller)==RACIAL_TYPE_UNDEAD)
-        {
-        SetLocalInt(oReaperToken,"ZOMBIEDEATH",TRUE);
-        //SendMessageToPC(oPlayer,"UNDEAD! ZOMBIE DEATH VARIABLE IS "+IntToString(GetLocalInt(oReaperToken,"ZOMBIEDEATH")));
-        }
+    AssignCommand(oCorpse,TakeGoldFromCreature(GetGold(oPC),oPC));
+    SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPC));
+    SetName(oCorpse,GetName(oPC)+"'s Corpse");
+    SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPC));
 
-    ExportSingleCharacter(oPlayer);
+    PCDSetDead(oPC);
+    ExportSingleCharacter(oPC);
 }

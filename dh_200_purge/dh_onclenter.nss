@@ -14,6 +14,7 @@
 #include "x3_inc_horse"
 
 #include "_incl_disease"
+#include "_incl_location"
 #include "_incl_pc_data"
 #include "_incl_pc_setup"
 #include "_incl_subrace"
@@ -69,12 +70,15 @@ void CheckForDeath(object oPC)
     if(!PCDIsDead(oPC))
         return;
 
-    if (OBJECT_INVALID != GetItemPossessedBy(oPC, "DeathToken") ||
-        OBJECT_INVALID != GetItemPossessedBy(oPC, "ReaperToken"))
-    {
-        location lLoc = GetLocation(GetWaypointByTag("GoToFugue"));
-        DelayCommand(0.5,AssignCommand(oPC,JumpToLocation(lLoc)));
-    }
+    DelayCommand(0.5, PortToWaypoint(oPC, "GoToFugue"))
+}
+
+void CheckForLostSoul(object oPC)
+{
+    if(!PCDIsZombied(oPC))
+        return;
+
+    DelayCommand(0.5, PortToWaypoint("lostsoularrive"));
 }
 
 void CheckForDisease(object oPC)
@@ -91,7 +95,7 @@ void main()
     // nwnx_chat
     dmb_PCin(oPC);
 
-    if(GetIsPC(oPC)) 
+    if(GetIsPC(oPC) && !GetIsDM(oPC)) 
     {
         BootIfBanned(oPC);
         EntryMessage(oPC);
@@ -100,6 +104,7 @@ void main()
         UpdatePC(oPC);
         PCDCacheToken(oPC);
         CheckForDeath(oPC);
+        CheckForLostSoul(oPC);
         CheckForDisease(oPC);
     }
 

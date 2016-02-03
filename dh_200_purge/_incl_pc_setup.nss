@@ -301,6 +301,9 @@ void TokensToVars(object oPC)
         else if (sTag == "FK100")
             iFrenzyKillTokens += 100 * iStackSize;
 
+        else if (sTag == "ReaperToken")
+            PCDSetDead(oPC);
+
         oItem = GetNextItemInInventory(oPC);
     }
 
@@ -319,7 +322,8 @@ void TokensToVars(object oPC)
         if(sTag == "ZombieKill" || sTag == "ZK10" || sTag == "ZKHUNDRED" ||
            sTag == "ZKTHOUSAND" || sTag == "zkxthous" || sTag == "SurvivalTime" ||
            sTag == "ST10" || sTag == "ST100" || sTag == "ST1000" ||
-           sTag == "FrenzyKill" || sTag == "FK10" || sTag == "FK100")
+           sTag == "FrenzyKill" || sTag == "FK10" || sTag == "FK100" ||
+           sTag == "DeathToken" || sTag == "ReaperToken")
         {
             DestroyObject(oItem);
         }

@@ -145,7 +145,7 @@ void HBDiseaseCheck(object oPC)
                 iDisease += 1;
                 if (iDisease > 9)
                 {
-                    CreateItemOnObject("deathtoken",oPC);
+                    PCDSetZombied(oPC);
                     ExecuteScript("zombieclone",oPC);
                     PortToWaypoint(oPC, "lostsoularrive");
                     DelayCommand(0.3,FloatingTextStringOnCreature("Your body has become a zombie.",oPC,FALSE));

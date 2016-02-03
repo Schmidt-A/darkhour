@@ -96,11 +96,6 @@ void main()
     int nMove        = GetLocalInt(OBJECT_SELF, "MovementSpeed");
     int nTime        = GetTimeHour();
     object oSkin     = GetItemInSlot(INVENTORY_SLOT_CARMOUR);
-    object oBadToken = GetItemPossessedBy(OBJECT_SELF, "DeathToken");
-
-    // I'm not sure why we're doing this.
-    if (oBadToken != OBJECT_INVALID)
-        DestroyObject(oBadToken);
 
     if(nTime==0 && nMove != 1)
     {

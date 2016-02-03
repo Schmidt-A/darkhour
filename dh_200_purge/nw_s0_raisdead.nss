@@ -12,6 +12,7 @@
 //:: VFX Pass By: Preston W, On: June 22, 2001
 
 #include "x2_inc_spellhook"
+#include "_incl_pc_data"
 
 void main()
 {
@@ -45,9 +46,7 @@ void main()
         //Apply raise dead effect and VFX impact
         ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eRaise, oTarget);
-        DestroyObject(GetItemPossessedBy(oTarget,"deathtoken"));
-        DestroyObject(GetItemPossessedBy(oTarget,"ReaperToken"));
-
+        PCDSetAlive(oTarget);
     }
 }
 

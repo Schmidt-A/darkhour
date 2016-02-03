@@ -14,26 +14,23 @@
 //:: Created By: Brent Knowles
 //:: Created On: November 6, 2001
 //:://////////////////////////////////////////////
+
+#include "_incl_pc_data"
+
 void Raise(object oPlayer)
 {
-        effect eVisual = EffectVisualEffect(VFX_IMP_PULSE_HOLY);
+    effect eVisual = EffectVisualEffect(VFX_IMP_PULSE_HOLY);
 
-        effect eBad = GetFirstEffect(oPlayer);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectResurrection(),oPlayer);
+    effect eBad = GetFirstEffect(oPlayer);
+    ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectResurrection(),oPlayer);
 
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPlayer, "DeathToken")) && (GetIsPossessedFamiliar(oPlayer) == FALSE))
-        {
-            DestroyObject(GetItemPossessedBy(oPlayer, "DeathToken"));
-        }
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPlayer, "ReaperToken")) && (GetIsPossessedFamiliar(oPlayer) == FALSE))
-        {
-            DestroyObject(GetItemPossessedBy(oPlayer, "ReaperToken"));
-        }
+    if(!GetIsPossessedFamiliar(oPlayer))
+        PCDSetAlive(oPlayer);
 
-        //Search for negative effects
-        while(GetIsEffectValid(eBad))
-        {
-            if (GetEffectType(eBad) == EFFECT_TYPE_ABILITY_DECREASE ||
+    //Search for negative effects
+    while(GetIsEffectValid(eBad))
+    {
+        if (GetEffectType(eBad) == EFFECT_TYPE_ABILITY_DECREASE ||
                 GetEffectType(eBad) == EFFECT_TYPE_AC_DECREASE ||
                 GetEffectType(eBad) == EFFECT_TYPE_ATTACK_DECREASE ||
                 GetEffectType(eBad) == EFFECT_TYPE_DAMAGE_DECREASE ||
@@ -45,13 +42,13 @@ void Raise(object oPlayer)
                 GetEffectType(eBad) == EFFECT_TYPE_DEAF ||
                 GetEffectType(eBad) == EFFECT_TYPE_PARALYZE ||
                 GetEffectType(eBad) == EFFECT_TYPE_NEGATIVELEVEL)
-                {
-                    //Remove effect if it is negative.
-                    RemoveEffect(oPlayer, eBad);
-                }
-            eBad = GetNextEffect(oPlayer);
+        {
+            //Remove effect if it is negative.
+            RemoveEffect(oPlayer, eBad);
         }
-        //Fire cast spell at event for the specified target
-        SignalEvent(oPlayer, EventSpellCastAt(OBJECT_SELF, SPELL_RESTORATION, FALSE));
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual, oPlayer);
+        eBad = GetNextEffect(oPlayer);
+    }
+    //Fire cast spell at event for the specified target
+    SignalEvent(oPlayer, EventSpellCastAt(OBJECT_SELF, SPELL_RESTORATION, FALSE));
+    ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual, oPlayer);
 }

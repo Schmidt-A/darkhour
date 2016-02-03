@@ -25,6 +25,7 @@
 //:: E-mail : getmilk@gmail.com
 //:: Updated: May 22, 2007
 //:://////////////////////////////////////////////
+
 void Bleed(int iBleedAmt)
 {
     object oDying = GetLocalObject(OBJECT_SELF, "PCName");
@@ -106,11 +107,10 @@ void main()
 
     if(GetIsPossessedFamiliar(oDying) == FALSE)
     {
-        // Create death token on player
-        object oDeathToken = CreateItemOnObject("deathtoken", oDying);
+        // TODO: Do we need to track if a player is dying on the token?
         if(!GetIsPC(oKiller))
             AssignCommand(oDying, Bleed(1));
         else
-            PVPKill(oDying, oKiller, oDeathToken);
+            PVPKill(oDying, oKiller);
     }
 }

@@ -1,9 +1,13 @@
 void DestroyAllYourStuff(object oPC)
 {
     object oItem = GetFirstItemInInventory(oPC);
+    string sTag;
+
     while (oItem != OBJECT_INVALID)
     {
-        if ((GetTag(oItem)!="DeathToken") && (GetTag(oItem)!="scavenger") && (GetTag(oItem)!="dmfi_pc_dicebag") && (GetTag(oItem)!="ZombieKill") && (GetTag(oItem)!="FrenzyKill") && (GetTag(oItem)!="SurvivalTime") && (GetTag(oItem)!="ZK10") && (GetTag(oItem)!="ZKHUNDRED") && (GetTag(oItem)!="FK10") && (GetTag(oItem)!="ST10") && (GetTag(oItem)!="SanctuaryToken") && (GetTag(oItem)!="ZombieDisease") && (GetStringLeft(GetTag(oItem),5)!="badge"))
+        sTag = GetTag(oItem);
+        if (sTag != "scavenger" && sTag != "dmfi_pc_dicebag" &&
+            sTag != "SanctuaryToken" && GetStringLeft(sTag,5) != "badge")
         {
             DestroyObject(oItem);
         }

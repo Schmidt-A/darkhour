@@ -1,4 +1,5 @@
 #include "nwnx_dmactions"
+#include "_incl_pc_data"
 
 void main() {
     object oDM = OBJECT_SELF;
@@ -68,5 +69,14 @@ void main() {
                         GetResRef(oItem) + " | " +
                         GetName(oItem);
         WriteTimestampedLogEntry(sLog);
+    }
+    else if(iAction == DM_ACTION_HEAL_CREATURE) {
+        object oCreature = oGetDMAction_Target();
+        
+        if(GetIsPC(oCreature) && !GetIsPossessedFamiliar(oCreature))
+        {
+            PCDSetUnZombied(oCreature);
+            PCDSetAlive(oCreature);
+        }
     }
 }

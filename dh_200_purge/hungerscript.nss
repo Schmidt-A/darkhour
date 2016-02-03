@@ -215,12 +215,6 @@ void main()
         CandleCheck(oPC);
         HBDiseaseCheck(oPC);
 
-        if (GetItemPossessedBy(oPC,"DeathToken") != OBJECT_INVALID  &&
-            GetCurrentHitPoints(oPC) > 0)
-        {
-            DestroyObject(GetItemPossessedBy(oPC,"DeathToken"));
-        }
-
         /* Tweek: Not refactoring any of this mess for now since we'll be
            gutting it shortly. */
         iIsHungry = GetLocalInt(oPC, "IsHungry") + 1;  // Increment hunger each pass
