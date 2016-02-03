@@ -91,7 +91,7 @@ void main()
     // nwnx_chat
     dmb_PCin(oPC);
 
-    if (GetIsDM(oPC)) 
+    if(GetIsPC(oPC)) 
     {
         BootIfBanned(oPC);
         EntryMessage(oPC);
