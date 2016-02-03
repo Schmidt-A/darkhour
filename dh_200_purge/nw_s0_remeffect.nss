@@ -63,18 +63,19 @@ void main()
         nEffect1 = EFFECT_TYPE_DISEASE;
         nEffect2 = EFFECT_TYPE_ABILITY_DECREASE;
         // Zombie disease effects.
-        if(iCasterLevel >= iDisease)
+        if(iCasterLevel >= iDisease && iDisease > 0)
         {
             CureDisease(oTarget, iDisease);
             sMsg = "You manage to cleanse " + GetName(oTarget) + "'s plague.";
-            FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
         }
-        else
+        else if(iDisease > 0)
         {
             sMsg = "Your divine magic is not potent enough to deal with " +
                 GetName(oTarget) + "'s disease, ill as they are.";
-            FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
         }
+        else
+            sMsg = GetName(oTarget) + " has no trace of the plague on them.";
+        FloatingTextStringOnCreature(sMsg, oCaster, FALSE);
     }
     else if(nSpellID == SPELL_NEUTRALIZE_POISON)
     {
