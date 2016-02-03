@@ -71,7 +71,7 @@ void SetObjectValue(object oPC, string sField, object oTag)
     SetLocalObject(oPC, TOKEN_VAR, oPCToken);
 }
 
-int GetObjectValue(object oPC, string sField)
+object GetObjectValue(object oPC, string sField)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
     return GetLocalObject(oPCToken, sField);

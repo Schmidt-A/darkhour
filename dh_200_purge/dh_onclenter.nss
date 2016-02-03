@@ -91,14 +91,17 @@ void main()
     // nwnx_chat
     dmb_PCin(oPC);
 
-    BootIfBanned(oPC);
-    EntryMessage(oPC);
-    RestorePreviousHP(oPC);
-    SetJournalEntries(oPC);
-    UpdatePC(oPC);
-    PCDCacheToken(oPC);
-    CheckForDeath(oPC);
-    CheckForDisease(oPC);
+    if (GetIsDM(oPC)) 
+    {
+        BootIfBanned(oPC);
+        EntryMessage(oPC);
+        RestorePreviousHP(oPC);
+        SetJournalEntries(oPC);
+        UpdatePC(oPC);
+        PCDCacheToken(oPC);
+        CheckForDeath(oPC);
+        CheckForDisease(oPC);
+    }
 
     // Unique skin stuff has to be set prior to this point.
     if ((GetIsPC(oPC) || GetIsDM(oPC)) && !GetHasFeat(FEAT_HORSE_MENU,oPC))

@@ -170,11 +170,10 @@ void ZeroToVersionOne(object oPC, string sPre)
         CreateItemOnObject("chairleg",oPC);
     }
     CreateItemOnObject("zn_medkit",oPC);
-    CreateItemOnObject("mil_dyekit002",oPC);
     CreateItemOnObject("bread",oPC);
     CreateItemOnObject("bread",oPC);
     CreateItemOnObject("craftingitem",oPC);
-    CreateItemOnObject("subdualmodetog",oPC;
+    CreateItemOnObject("subdualmodetog",oPC);
 
     SetCampaignInt("VERSIONING", sPre+"Version", 1);
 }
