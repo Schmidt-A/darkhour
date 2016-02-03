@@ -1,6 +1,11 @@
-// Wrapper for the Dark Hour module
+#include "_cls_bard"
+#include "_incl_pc_data"
 
 void main()
 {
-    // Placeholder for now. We'll add bard stuff here.
+    object oPC = GetPCLevellingUp();
+    int iBardLevels = GetLevelByClass(CLASS_TYPE_BARD, oPC);
+
+    if(PCDBardLevelChanged(oPC, iBardLevels))
+        BardLevel(oPC, iBardLevels);
 }
