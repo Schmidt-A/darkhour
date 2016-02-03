@@ -95,11 +95,11 @@ void main()
     // nwnx_chat
     dmb_PCin(oPC);
     BootIfBanned(oPC);
+    SetJournalEntries(oPC);
 
     if(!GetIsDM(oPC)) 
         EntryMessage(oPC);
         RestorePreviousHP(oPC);
-        SetJournalEntries(oPC);
         UpdatePC(oPC);
         PCDCacheToken(oPC);
         CheckForDeath(oPC);
@@ -108,13 +108,13 @@ void main()
     }
 
     // Unique skin stuff has to be set prior to this point.
-    if ((GetIsPC(oPC) || GetIsDM(oPC)) && !GetHasFeat(FEAT_HORSE_MENU,oPC))
+    if (GetIsPC(oPC) && !GetHasFeat(FEAT_HORSE_MENU,oPC))
     {
         HorseAddHorseMenu(oPC);
         if (GetLocalInt(GetModule(),"X3_ENABLE_MOUNT_DB"))
             DelayCommand(2.0,HorseReloadFromDatabase(oPC,X3_HORSE_DATABASE));
     }
-    if (GetIsPC(oPC) || GetIsDM(oPC)))
+    if (GetIsPC(oPC))
     {
         // restore appearance in case you export your character in mounted form, etc.
         if(!GetSkinInt(oPC,"bX3_IS_MOUNTED"))
