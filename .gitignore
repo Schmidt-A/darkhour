@@ -1,4 +1,4 @@
 .idea/
 .DS_Store
-dh_106_files/*.ncs
-dh_200_purge/*.ncs
+.gitignore
+*.ncs
