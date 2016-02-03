@@ -4,6 +4,7 @@
 
 #include "x3_inc_string"
 #include "x0_i0_stringlib"
+#include "nwnx_funcs"
 
 string TOKEN_VAR = "oPCToken";
 string TOKEN_TAG = "token_pc";
@@ -111,6 +112,12 @@ void PCDCacheToken(object oPC)
 {
     if(GetLocalObject(oPC, TOKEN_VAR) == OBJECT_INVALID)
         SetLocalObject(oPC, TOKEN_VAR, GetItemPossessedBy(oPC, TOKEN_TAG));
+}
+
+void PCDDebugOutput(object oPC)
+{
+    object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
+    SendMessageToPC(oPC, DumpLocalVariables(oPCToken));
 }
 
 
