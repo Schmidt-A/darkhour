@@ -16,8 +16,7 @@ string GetActivateScript(string sItemTag)
     if(GetStringLength(sItemTag) > 13)
         sItemTag = GetStringLeft(sItemTag, 13);
     sItemTag = GetStringLowerCase(sItemTag);
-
-    return sItemTag;
+    return "ac_" + sItemTag;
 }
 
 void main()
