@@ -70,7 +70,7 @@ void CheckForDeath(object oPC)
     if(!PCDIsDead(oPC))
         return;
 
-    DelayCommand(0.5, PortToWaypoint(oPC, "GoToFugue"))
+    DelayCommand(0.5, PortToWaypoint(oPC, "GoToFugue"));
 }
 
 void CheckForLostSoul(object oPC)
@@ -78,7 +78,7 @@ void CheckForLostSoul(object oPC)
     if(!PCDIsZombied(oPC))
         return;
 
-    DelayCommand(0.5, PortToWaypoint("lostsoularrive"));
+    DelayCommand(0.5, PortToWaypoint(oPC, "lostsoularrive"));
 }
 
 void CheckForDisease(object oPC)
@@ -95,7 +95,7 @@ void main()
     // nwnx_chat
     dmb_PCin(oPC);
 
-    if(GetIsPC(oPC) && !GetIsDM(oPC)) 
+    if(GetIsPC(oPC) && !GetIsDM(oPC))
     {
         BootIfBanned(oPC);
         EntryMessage(oPC);

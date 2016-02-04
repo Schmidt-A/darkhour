@@ -176,6 +176,11 @@ int PCDGetUsedOneChance(object oPC)
     return GetIntValue(oPC, "bOneChance");
 }
 
+int PCDIsZombied(object oPC)
+{
+    return GetIntValue(oPC, "bZombied");
+}
+
 string PCDCharID(object oPC)
 {
     return GetStringValue(oPC, "char_id");

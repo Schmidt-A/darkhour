@@ -15,7 +15,7 @@
 //:://////////////////////////////////////////////
 
 #include "subdual_inc"
-#Include "_incl_pc_data"
+#include "_incl_pc_data"
 
 void Raise(object oPC)
 {

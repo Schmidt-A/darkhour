@@ -18,6 +18,7 @@
 //:: VFX Pass By: Preston W, On: June 22, 2001
 
 #include "x2_inc_spellhook"
+#include "_incl_pc_data"
 
 void main()
 {
