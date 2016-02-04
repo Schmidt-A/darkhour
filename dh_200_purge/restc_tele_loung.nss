@@ -7,15 +7,19 @@
 void main()
 {
     object oPC = GetPCSpeaker();
-    object oRestObject = GetNearestObjectByTag("DH_RESTOBJ", oPC);
 
-    // Player must be within 5 meters of a "DH_RESTOBJ" placeable to rest
-    if (GetDistanceBetween(oRestObject, oPC) <= 5.0 && oRestObject != OBJECT_INVALID)
+    // Apparently Sundered Desolation's tag is "carnival" ? XD
+    // If the area is not Sundered Desolation, inform the player and do nothing else.
+    if (GetTag(GetArea(oPC)) != "carnival")
     {
-        SetLocalLocation(oPC,"ReturnToRestSpot", GetLocation(oPC));
-        ApplyEffectToObject(DURATION_TYPE_INSTANT,
-                EffectVisualEffect(VFX_IMP_UNSUMMON, FALSE), oPC);
-
-        PortToWaypoint(oPC, "WP_PLAYER_LOUNGE");
+        SendMessageToPC(oPC, "You can only teleport to the player lounge from the Sundered Desolation!");
+        return;
     }
+
+    SetLocalLocation(oPC,"ReturnToRestSpot", GetLocation(oPC));
+    
+    ApplyEffectToObject(DURATION_TYPE_INSTANT,
+            EffectVisualEffect(VFX_IMP_UNSUMMON, FALSE), oPC);
+
+    PortToWaypoint(oPC, "WP_PLAYER_LOUNGE");
 }
