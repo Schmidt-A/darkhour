@@ -233,7 +233,7 @@ void TwoToVersionThree(object oPC, string sPre)
     if(GetHasFeat(FEAT_STRONGSOUL, oPC) && GetItemPossessedBy(oPC, "ressurecttool") == OBJECT_INVALID)
     {
         CreateItemOnObject("ressurecttool", oPC);
-        SendMessageToPC(oPC, "Because of the clarity of your soul, you able to use an ancient technique to recall a soul before it reaches the fugue plane.");
+        SendMessageToPC(oPC, "Because of the clarity of your soul, you able to recall a soul before it reaches the fugue plane.");
     }
 
     SetCampaignInt("VERSIONING", sPre+"Version", 3);
