@@ -79,6 +79,9 @@ void main()
     {
         DelayCommand(0.5,ApplyEffectToObject(DURATION_TYPE_INSTANT,eWounds,OBJECT_SELF));
     }
+
+    SpawnSurprise(OBJECT_SELF);
+
     ExecuteScript("randomclothing2",OBJECT_SELF);
     ExecuteScript("zombie_feed",OBJECT_SELF);
 }

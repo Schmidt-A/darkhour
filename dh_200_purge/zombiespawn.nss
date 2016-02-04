@@ -82,10 +82,5 @@ void main()
     ExecuteScript("randomclothing",OBJECT_SELF);
     ExecuteScript("zombie_feed",OBJECT_SELF);
 
-    effect eMiss = EffectMissChance(99, MISS_CHANCE_TYPE_NORMAL);
-    effect eSlowDown = EffectMovementSpeedDecrease(50);
-    effect eSurprise = EffectLinkEffects(eMiss, eSlowDown);
-    
-    //zombies start by being dazed for 3 seconds
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eSurprise, OBJECT_SELF, 3.0f);
+    SpawnSurprise(OBJECT_SELF);
 }

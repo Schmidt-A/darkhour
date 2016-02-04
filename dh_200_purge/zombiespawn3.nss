@@ -80,4 +80,6 @@ void main()
         object oCarry = CreateItemOnObject("nw_it_spdvscr501",OBJECT_SELF);
         SetDroppableFlag(oCarry,TRUE);
     }
+
+    SpawnSurprise(OBJECT_SELF);
 }

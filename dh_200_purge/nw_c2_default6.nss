@@ -20,8 +20,8 @@
 
 #include "nw_i0_generic"
 #include "x3_inc_horse"
-#include "nwnx_funcs"
 #include "nw_i0_spells"
+#include "_incl_enemies"
 
 void TryMountedDamageEvasion(object oDamager)
 {
@@ -98,62 +98,6 @@ void TryAmmoSalvage(object oDamager, object oWeapon)
     }
 }
 
-void BehemothRampage()
-{
-    // TODO: Add param for lesser/greater behemoths.
-    // We can't stack rampages. :(
-    if (GetLocalInt(OBJECT_SELF, "rampaging"))
-        return;
-
-    location lMyLocation = GetLocation(OBJECT_SELF);
-    object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, 51.0, lMyLocation);
-    int iSave;
-
-    SetLocalInt(OBJECT_SELF, "rampaging", TRUE);
-
-    SpeakString("The lumbering behemoth has become enraged by your assault! " +
-            "It roars and slams its fists into the ground with such fury that " +
-            "the ground trembles. It then begins racing towards you!",
-            TALKVOLUME_TALK);
-
-    //Excerpted because the nwnx movement funcs didn't work for whatever reason
-    //SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_NORMAL);
-
-    //We're increasing the speed by 99 percent after removing their movespeed decrease
-    RemoveSpecificEffect(EFFECT_TYPE_MOVEMENT_SPEED_DECREASE, OBJECT_SELF);
-
-    effect BehemothRage = EffectLinkEffects(EffectMovementSpeedIncrease(60), OBJECT_SELF), 
-                                            EffectVisualEffect(VFX_DUR_AURA_RED_DARK), OBJECT_SELF);
-        
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT, BehemothRage);
-    ApplyEffectToObject(DURATION_TYPE_INSTANT,
-                        EffectVisualEffect(VFX_FNF_HOWL_MIND), OBJECT_SELF);
-
-    while(GetIsObjectValid(oTarget))
-    {
-        // Ignore placeables, doors, etc.
-        if(!GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
-        {
-            oTarget = GetNextObjectInShape(SHAPE_SPHERE, 51.0, lMyLocation);
-            continue;
-        }
-
-        // If close enough, GET REKT
-        if ((GetDistanceBetween(OBJECT_SELF, oTarget) <= 50.0)
-                && (GetDistanceBetween(OBJECT_SELF, oTarget) > 0.0))
-        {
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
-                            EffectVisualEffect(VFX_FNF_SCREEN_SHAKE), oTarget, 2.0);
-            if(ReflexSave(oTarget, 10) < 1)
-            {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY,
-                            EffectKnockdown(), oTarget, 3.0);
-            }
-        }
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, 51.0, lMyLocation);
-    }
-}
-
 void main()
 {
     object oDamager = GetLastDamager();
@@ -207,5 +151,5 @@ void main()
 
     // If we're a damaged behemoth, FUCK 'EM UP.
     if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB" && GetPercentageHPLoss(OBJECT_SELF) < 50)
-        BehemothRampage();
+        BehemothRampage(OBJECT_SELF);
 }

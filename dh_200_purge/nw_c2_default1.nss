@@ -26,64 +26,9 @@
 */
 
 #include "nw_i0_generic"
-#include "nwnx_funcs"
 #include "nw_i0_spells"
+#include "_incl_enemies"
 
-void ApplyFrenzy(object oSkin)
-{
-    itemproperty ipLoop = GetFirstItemProperty(oSkin);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        ExtraordinaryEffect(EffectHaste()),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_PARALYZED)),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_STRENGTH,d4(1))),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        ExtraordinaryEffect(EffectAbilityIncrease(ABILITY_CONSTITUTION,d4(1))),OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        ExtraordinaryEffect(EffectSeeInvisible()),OBJECT_SELF);
-
-    while (GetIsItemPropertyValid(ipLoop))
-    {
-        //If ipLoop is a true seeing property, remove it
-        if (GetItemPropertyType(ipLoop) == ITEM_PROPERTY_SPECIAL_WALK)
-        RemoveItemProperty(oSkin, ipLoop);
-        ipLoop = GetNextItemProperty(oSkin);
-    }
-}
-
-void RemoveFrenzy(object oSkin)
-{
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySpecialWalk(), oSkin);
-
-    effect eLoop = GetFirstEffect(OBJECT_SELF);
-    while (GetIsEffectValid(eLoop))
-    {
-        if (GetEffectType(eLoop) == EFFECT_TYPE_ABILITY_INCREASE ||
-            GetEffectType(eLoop) == EFFECT_TYPE_HASTE ||
-            GetEffectType(eLoop) == EFFECT_TYPE_VISUALEFFECT ||
-            GetEffectType(eLoop) == EFFECT_TYPE_SEEINVISIBLE)
-        {
-            RemoveEffect(OBJECT_SELF, eLoop);
-        }
-        eLoop=GetNextEffect(OBJECT_SELF);
-    }
-}
-
-void BehemothEndRampage()
-{
-    SetLocalInt(OBJECT_SELF, "rampaging", FALSE);
-
-    //Excerpted because the nwnx movement funcs didn't work for whatever reason
-    //SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_VERY_SLOW);
-    RemoveEffectOfType(EFFECT_TYPE_MOVEMENT_SPEED_INCREASE, OBJECT_SELF);
-
-    //Add in a speed decrease again
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectMovementSpeedIncrease(60), OBJECT_SELF);
-
-    SpeakString("With the worst of its injuries having renegerated, the hulking " +
-            "beast seems placated... For now.", TALKVOLUME_TALK);
-}
 
 void main()
 {
@@ -100,18 +45,18 @@ void main()
     if(nTime==0 && nMove != 1)
     {
         SetLocalInt(OBJECT_SELF,"MovementSpeed", 1);
-        ApplyFrenzy(oSkin);
+        ApplyFrenzy(oSkin, OBJECT_SELF);
     }
     else if(nTime != 0 && nMove == 1)
     {
         SetLocalInt(OBJECT_SELF,"MovementSpeed", 0);
-        RemoveFrenzy(oSkin);
+        RemoveFrenzy(oSkin, OBJECT_SELF);
     }
     // If we're a behemoth, see if we should stop rampaging.
     if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB" && GetLocalInt(OBJECT_SELF, "rampaging"))
     {
         if(GetPercentageHPLoss(OBJECT_SELF) > 64)
-            BehemothEndRampage();
+            BehemothEndRampage(OBJECT_SELF);
     }
     if (GetCurrentAction() == ACTION_INVALID &&
         GetLocalInt(OBJECT_SELF,"feeding") == 0 &&

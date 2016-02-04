@@ -94,6 +94,15 @@ void main()
     }
     SetDroppableFlag(oCarry,TRUE);
 
+    SpawnSurprise(OBJECT_SELF);
+
+    //Set behemoth speed
+    if(GetTag(OBJECT_SELF) == "ZN_ZOMBIEB")
+    {
+        SetLocalInt(OBJECT_SELF, "rampaging", FALSE);
+        ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectMovementSpeedIncrease(60), OBJECT_SELF);
+    }
+    
     effect eSpawnthing = EffectVisualEffect(VFX_FNF_IMPLOSION);
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eSpawnthing, GetLocation(OBJECT_SELF));
     ExecuteScript("speedburst",OBJECT_SELF);
