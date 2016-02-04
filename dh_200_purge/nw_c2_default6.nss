@@ -21,6 +21,7 @@
 #include "nw_i0_generic"
 #include "x3_inc_horse"
 #include "nwnx_funcs"
+#include "nw_i0_spells"
 
 void TryMountedDamageEvasion(object oDamager)
 {
@@ -115,11 +116,18 @@ void BehemothRampage()
             "the ground trembles. It then begins racing towards you!",
             TALKVOLUME_TALK);
 
-    SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_NORMAL);
+    //Excerpted because the nwnx movement funcs didn't work for whatever reason
+    //SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_NORMAL);
+
+    //We're increasing the speed by 99 percent after removing their movespeed decrease
+    RemoveSpecificEffect(EFFECT_TYPE_MOVEMENT_SPEED_DECREASE, OBJECT_SELF);
+
+    effect BehemothRage = EffectLinkEffects(EffectMovementSpeedIncrease(60), OBJECT_SELF), 
+                                            EffectVisualEffect(VFX_DUR_AURA_RED_DARK), OBJECT_SELF);
+        
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT, BehemothRage);
     ApplyEffectToObject(DURATION_TYPE_INSTANT,
                         EffectVisualEffect(VFX_FNF_HOWL_MIND), OBJECT_SELF);
-    ApplyEffectToObject(DURATION_TYPE_PERMANENT,
-                        EffectVisualEffect(VFX_DUR_AURA_RED_DARK), OBJECT_SELF);
 
     while(GetIsObjectValid(oTarget))
     {

@@ -2,3 +2,5 @@
 .DS_Store
 dh_106_files/*.ncs
 dh_200_purge/*.ncs
+dh_106_files/*.ndb
+dh_200_purge/*.ndb

@@ -27,6 +27,7 @@
 
 #include "nw_i0_generic"
 #include "nwnx_funcs"
+#include "nw_i0_spells"
 
 void ApplyFrenzy(object oSkin)
 {
@@ -73,14 +74,13 @@ void BehemothEndRampage()
 {
     SetLocalInt(OBJECT_SELF, "rampaging", FALSE);
 
-    SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_VERY_SLOW);
-    effect eLoop = GetFirstEffect(OBJECT_SELF);
-    while (GetIsEffectValid(eLoop))
-    {
-        if (GetEffectType(eLoop) == EFFECT_TYPE_VISUALEFFECT)
-            RemoveEffect(OBJECT_SELF, eLoop);
-        eLoop=GetNextEffect(OBJECT_SELF);
-    }
+    //Excerpted because the nwnx movement funcs didn't work for whatever reason
+    //SetMovementRate(OBJECT_SELF, MOVEMENT_RATE_VERY_SLOW);
+    RemoveEffectOfType(EFFECT_TYPE_MOVEMENT_SPEED_INCREASE, OBJECT_SELF);
+
+    //Add in a speed decrease again
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectMovementSpeedIncrease(60), OBJECT_SELF);
+
     SpeakString("With the worst of its injuries having renegerated, the hulking " +
             "beast seems placated... For now.", TALKVOLUME_TALK);
 }
