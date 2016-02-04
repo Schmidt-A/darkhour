@@ -94,10 +94,9 @@ void main()
 
     // nwnx_chat
     dmb_PCin(oPC);
+    BootIfBanned(oPC);
 
-    if(GetIsPC(oPC) && !GetIsDM(oPC))
-    {
-        BootIfBanned(oPC);
+    if(!GetIsDM(oPC)) 
         EntryMessage(oPC);
         RestorePreviousHP(oPC);
         SetJournalEntries(oPC);
@@ -115,7 +114,7 @@ void main()
         if (GetLocalInt(GetModule(),"X3_ENABLE_MOUNT_DB"))
             DelayCommand(2.0,HorseReloadFromDatabase(oPC,X3_HORSE_DATABASE));
     }
-    if (GetIsPC(oPC))
+    if (GetIsPC(oPC) || GetIsDM(oPC)))
     {
         // restore appearance in case you export your character in mounted form, etc.
         if(!GetSkinInt(oPC,"bX3_IS_MOUNTED"))

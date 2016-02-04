@@ -187,18 +187,11 @@ void ZeroToVersionTwo(object oPC, string sPre)
     if (GetItemPossessedBy(oPC, "scavenger") == OBJECT_INVALID)
     {
         ZeroToVersionOne(oPC, sPre);
-        if (GetIsDM(oPC) == FALSE)
-        {
-
-            GiveClassItems(oPC, iPCClass);
-        }
+        GiveClassItems(oPC, iPCClass);
     }
     // They are actually version 1 because they've logged in before
     else
     {
-        if (!GetIsDM(oPC))
-        {
-
             int iSecondClass = GetClassByPosition(2, oPC);
             if (iSecondClass != 255)
             {
@@ -213,7 +206,7 @@ void ZeroToVersionTwo(object oPC, string sPre)
             {
                 CreateItemOnObject("BloodMagicBook",oPC);
             }
-        }
+        
     }
 
     SetCampaignInt("VERSIONING", sPre+"Version", 2);
