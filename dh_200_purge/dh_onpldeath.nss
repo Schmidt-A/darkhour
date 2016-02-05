@@ -27,8 +27,12 @@ void ClearRaiseData(object oPC)
     while(var.obj != OBJECT_INVALID)
     {
         if(GetStringLeft(var.name, 13) == "bRaiseAttempt")
+        {
+            var = GetNextLocalVariable(oPC);
             DeleteLocalInt(oPC, var.name);
-        var = GetNextLocalVariable(oPC);
+        }
+        else
+            var = GetNextLocalVariable(oPC);
     }
     SetLocalInt(oPC, "bDeadTooLong", FALSE);
     DelayCommand(240.0, SetLocalInt(oPC, "bDeadTooLong", TRUE));

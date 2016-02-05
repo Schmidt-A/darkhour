@@ -1,3 +1,15 @@
+#include "nwnx_funcs"
+#include "_incl_rndloc"
+
+location GetRandomWalkableLocation(location lCenter, int iMinRange, int iMaxRange)
+{
+    location lRandom = RndLoc(lCenter, iMaxRange, iMinRange);
+    while(!GetIsWalkableLocation(lRandom))
+        lRandom = RndLoc(lCenter, iMaxRange, iMinRange);
+
+    return lRandom;
+}
+
 void PortToWaypoint(object oPC, string sWPTag)
 {
     location lTarget = GetLocation(GetWaypointByTag(sWPTag));
