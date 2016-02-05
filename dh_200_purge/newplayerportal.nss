@@ -18,6 +18,6 @@ void main()
         bPorted = PortToWPIfAreaIsEmpty(oPC, "kalaramdarkalle3");
 
     // If there were no empty starting areas, let the player know
-    FloatingTextStringOnCreature(oPC, "All the starting paths are currently " +
-            "occupied. Please try again in a minute or so.", FALSE);
+    FloatingTextStringOnCreature("All the starting paths are currently " +
+            "occupied. Please try again in a minute or so.", oPC, FALSE);
 }

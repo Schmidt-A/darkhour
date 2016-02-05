@@ -78,12 +78,12 @@ void main()
         int iDC = 18 + GetDCModifier(oTarget);
         int iSkill = GetSkillRank(SKILL_HEAL, oPC, FALSE);
         int iResult = iRoll + iSkill;
-        
+
         sMsg = ColorText("Heal Check, Roll 1d20: " + IntToString(iRoll) +
-            " + Modifier: " + IntToString(iSKill) +
-            " = Total: " + IntToString(iResult) + 
+            " + Modifier: " + IntToString(iSkill) +
+            " = Total: " + IntToString(iResult) +
             " vs DC:" + IntToString(iDC), "cyan");
-        SendMessageToPC(oPC, sMsg); 
+        SendMessageToPC(oPC, sMsg);
 
         if(iResult > iDC)
         {

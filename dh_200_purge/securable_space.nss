@@ -9,7 +9,7 @@
 
    float fRadius        Defines the radius in meters of a square-shape (which is kind of
                         weird) of which this space. One toolset tile = 10m.
-   
+
    string sCreatureN    The resref of the Nth creature that should be part of this
                         spawn, where N is however many number of creatures you've
                         already defined + 1.
@@ -33,7 +33,7 @@
    string sCreatureWPN  If set, causes creature N to be spawned at a specific
                         waypoint as opposed to at a random location. Using the
                         above example, you could set sCreatureWP2 = "zWP"
-                        to cause all zombies to spawn at a waypoint with the 
+                        to cause all zombies to spawn at a waypoint with the
                         tag zWP.
 
    string sDoorTag      If clearing the spawn should open a door, specify its

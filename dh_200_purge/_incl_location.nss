@@ -50,14 +50,14 @@ int PortToWPIfAreaIsEmpty(object oPC, string sWPTag)
     {
         if(GetIsPC(oObj) && !GetIsDM(oObj))
         {
-            hasPlayer = TRUE;
+            bHasPlayer = TRUE;
             break;
         }
         oObj = GetNextObjectInArea(oArea);
     }
-    if(!hasPlayer)
+    if(!bHasPlayer)
     {
-        PortToWaypoint(oPC, lLoc);
+        PortToLocation(oPC, lLoc);
         return TRUE;
     }
     return FALSE;

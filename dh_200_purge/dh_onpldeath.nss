@@ -23,16 +23,16 @@
 void ClearRaiseData(object oPC)
 {
     struct LocalVariable var = GetFirstLocalVariable(oPC);
-    
+
     while(var.obj != OBJECT_INVALID)
     {
         if(GetStringLeft(var.name, 13) == "bRaiseAttempt")
         {
-            var = GetNextLocalVariable(oPC);
+            var = GetNextLocalVariable(var);
             DeleteLocalInt(oPC, var.name);
         }
         else
-            var = GetNextLocalVariable(oPC);
+            var = GetNextLocalVariable(var);
     }
     SetLocalInt(oPC, "bDeadTooLong", FALSE);
     DelayCommand(240.0, SetLocalInt(oPC, "bDeadTooLong", TRUE));

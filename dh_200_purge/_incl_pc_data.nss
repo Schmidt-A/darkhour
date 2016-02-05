@@ -122,6 +122,7 @@ void PCDDebugOutput(object oPC)
 
 
 // ----------------- PC Data Retrival Functions ---------------
+
 int PCDIsDead(object oPC)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
@@ -151,7 +152,7 @@ int PCDCheckFlag(object oPC, string sField)
     return GetLocalInt(oPCToken, sField);
 }
 
-string PCDGetName(object oPC)
+string PCDGetFirstName(object oPC)
 {
     return GetStringValue(oPC, "sName");
 }

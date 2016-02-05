@@ -13,6 +13,7 @@
 //:://////////////////////////////////////////////
 //#include "NW_O2_CONINCLUDE"
 #include "NW_I0_GENERIC"
+#include "_incl_enemies"
 
 void main()
 {

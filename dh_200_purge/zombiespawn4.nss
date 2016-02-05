@@ -13,6 +13,7 @@
 //:://////////////////////////////////////////////
 #include "NW_O2_CONINCLUDE"
 #include "NW_I0_GENERIC"
+#include "_incl_enemies"
 
 void main()
 {
@@ -102,7 +103,7 @@ void main()
         SetLocalInt(OBJECT_SELF, "rampaging", FALSE);
         ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectMovementSpeedIncrease(60), OBJECT_SELF);
     }
-    
+
     effect eSpawnthing = EffectVisualEffect(VFX_FNF_IMPLOSION);
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eSpawnthing, GetLocation(OBJECT_SELF));
     ExecuteScript("speedburst",OBJECT_SELF);

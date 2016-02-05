@@ -97,7 +97,8 @@ void main()
     BootIfBanned(oPC);
     SetJournalEntries(oPC);
 
-    if(!GetIsDM(oPC)) 
+    if(!GetIsDM(oPC))
+    {
         EntryMessage(oPC);
         RestorePreviousHP(oPC);
         UpdatePC(oPC);
@@ -108,7 +109,7 @@ void main()
     }
 
     // Unique skin stuff has to be set prior to this point.
-    if (GetIsPC(oPC) && !GetHasFeat(FEAT_HORSE_MENU,oPC))
+    if (GetIsPC(oPC) && !GetHasFeat(FEAT_HORSE_MENU, oPC))
     {
         HorseAddHorseMenu(oPC);
         if (GetLocalInt(GetModule(),"X3_ENABLE_MOUNT_DB"))
