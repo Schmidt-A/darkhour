@@ -259,11 +259,15 @@ void TokensToVars(object oPC)
     int iFrenzyKillTokens   = 0;
     int iStackSize;
     string sTag;
+    object oNextItem;
 
     // First loop - count how many tokens we have
     object oItem = GetFirstItemInInventory(oPC);
     while(GetIsObjectValid(oItem))
     {
+        // for loop/destroy safety
+        oNextItem = GetNextItemInInventory(oPC);
+
         sTag = GetTag(oItem);
         iStackSize = GetItemStackSize(oItem);
 
@@ -297,21 +301,6 @@ void TokensToVars(object oPC)
         else if (sTag == "ReaperToken")
             PCDSetDead(oPC);
 
-        oItem = GetNextItemInInventory(oPC);
-    }
-
-    PCDAddZombieKill(oPC, iZombieKillTokens);
-    PCDAddSurvivalTime(oPC, iSurvivalTokens);
-    PCDAddFrenzyKill(oPC, iFrenzyKillTokens);
-
-    /* Second loop - clean up the tokens. Doing it in two loops as opposed to
-     * one because lists get screwy if you add/remove while iterating over
-     * them. */
-    oItem = GetFirstItemInInventory(oPC);
-    while(GetIsObjectValid(oItem))
-    {
-        sTag = GetTag(oItem);
-
         if(sTag == "ZombieKill" || sTag == "ZK10" || sTag == "ZKHUNDRED" ||
            sTag == "ZKTHOUSAND" || sTag == "zkxthous" || sTag == "SurvivalTime" ||
            sTag == "ST10" || sTag == "ST100" || sTag == "ST1000" ||
@@ -320,6 +309,11 @@ void TokensToVars(object oPC)
         {
             DestroyObject(oItem);
         }
-        oItem = GetNextItemInInventory(oPC);
+
+        oItem = oNextItem;
     }
+
+    PCDAddZombieKill(oPC, iZombieKillTokens);
+    PCDAddSurvivalTime(oPC, iSurvivalTokens);
+    PCDAddFrenzyKill(oPC, iFrenzyKillTokens);
 }
