@@ -1,44 +1,104 @@
-#include "x2_inc_switches"
+#include "_incl_pc_data"
 #include "raiseinclude"
+#include "dmfi_dmw_inc"
+
+int GetDCModifier(object oTarget)
+{
+    int iHP = GetCurrentHitPoints(oTarget);
+    int iModifier = (0 - iHP) - 10;
+    return iModifier / 2;
+}
+
 void main()
 {
-int nEvent = GetUserDefinedItemEventNumber();
-if (nEvent ==  X2_ITEM_EVENT_ACTIVATE)
+    object oPC      = GetItemActivator();
+    object oItem    = GetItemActivated();
+    object oTarget  = GetItemActivatedTarget();
+
+    string sHealerName  = PCDGetFirstName(oPC);
+    string sDeadName    = PCDGetFirstName(oTarget);
+
+    int bDeadTooLong    = GetLocalInt(oTarget, "bDeadTooLong");
+    int bButchered      = GetLocalInt(oTarget, "bButchered");
+
+    string sVarName     = "bRaiseAttempt" + sHealerName;
+    int iRaiseAttempts  = GetLocalInt(oTarget, "iRaiseAttempts");
+    int bTried          = GetLocalInt(oTarget, sVarName);
+
+    if(!GetIsPC(oTarget) || !GetIsDead(oTarget))
     {
-    object oPC = GetItemActivator();
-    object oItem = GetItemActivated();
-    object oTarget = GetItemActivatedTarget();
-    int nTries = GetLocalInt(oTarget, "raiseattempts");
-    if(GetIsPC(oTarget) == FALSE)
-        {
-        SendMessageToPC(oPC, "You may only use this on a dead or dying player.");
+        SendMessageToPC(oPC, "You can only resusciate a dead player.");
         return;
-        }
-    if(GetIsDead(oTarget) != TRUE)
-        {
-        SendMessageToPC(oPC, "You may only use this on a dead or dying player.");
+    }
+    if(bDeadTooLong)
+    {
+        SendMessageToPC(oPC, "The poor soul before you has been dead for too " +
+            "long to be ressucitated by mortal means.");
         return;
-        }
-    if(nTries >= 3)
-        {
-        SendMessageToPC(oPC, "Three attempts have already been made to raise this player. They are now beyond your skill.");
+    }
+    if(bButchered)
+    {
+        SendMessageToPC(oPC, "Someone accidentally hurried " + sDeadName + "'s death " +
+            "in their attempt to help. They are beyond " + sHealerName + "'s abilities.");
         return;
-        }
-    SetLocalInt(oTarget, "raiseattempts", nTries + 1);
-    location oLoc = GetLocation(oTarget);
-    int nSkill = GetSkillRank(SKILL_HEAL, oPC, FALSE);
-    int nRand = d20();
-    int nRoll = nSkill + nRand;
-    SendMessageToPC(oPC, "You attempt to heal the severe wounds on " + GetName(oTarget) + ".");
-    FloatingTextStringOnCreature(IntToString(nRand) + " + " + IntToString(nSkill) + " = " + IntToString(nRoll) + " vs DC:28", oPC, FALSE);
-    if(nRoll >= 28)
-        {
-        SendMessageToPC(oPC, "You have succeeded in healing " + GetName(oTarget));
+    }
+    if(bTried)
+    {
+        SendMessageToPC(oPC, sHealerName + " has already tried to bring back " +
+            "the fallen individual before them.");
+        return;
+    }
+
+    SetLocalInt(oTarget, sVarName, TRUE);
+    int iRoll = d20();
+    string sMsg;
+
+    // Critical Success
+    if(iRoll == 20)
+    {
+        sMsg = "In a moment of absolute clarity, " + sHealerName + " manages " +
+            "to bind the worst of " + sDeadName + "'s injuries, allowing them " +
+            "to regain their feet with renewed tenacity.";
+        SendMessageToPC(oPC, sMsg);
         Raise(oTarget);
-        SetLocalInt(oTarget, "raiseattempts", 0);
-        }else
-            {
-            SendMessageToPC(oPC, "You have failed to heal " + GetName(oTarget));
-            }
+    }
+    // Critical Failure
+    else if(iRoll == 1)
+    {
+        sMsg = "The resolve of " + sHealerName + "'s soul wavers and their " +
+            "hands tremble while attempting to resuscitate " + sDeadName + ". " +
+            sDeadName + " gasps suddenly before letting the breath out in a " +
+            "sickening rattle. It dawns on " + sHealerName + " that not only " +
+            "have they failed, but they've ensured their fallen companion's death.";
+        SendMessageToPC(oPC, sMsg);
+        SetLocalInt(oTarget, "bButchered", TRUE);
+    }
+    else
+    {
+        int iDC = 18 + GetDCModifier(oTarget);
+        int iSkill = GetSkillRank(SKILL_HEAL, oPC, FALSE);
+        int iResult = iRoll + iSkill;
+        
+        sMsg = ColorText("Heal Check, Roll 1d20: " + IntToString(iRoll) +
+            " + Modifier: " + IntToString(iSKill) +
+            " = Total: " + IntToString(iResult) + 
+            " vs DC:" + IntToString(iDC), "cyan");
+        SendMessageToPC(oPC, sMsg); 
+
+        if(iResult > iDC)
+        {
+            sMsg = sHealerName + "'s vigorous soul is able to call out to " +
+                sDeadName + "'s and convinces it to return to its battered " +
+                "body. With its return, " + sHealerName + "is able to bring " +
+                sDeadName + " back to consciousness.";
+                SendMessageToPC(oPC, sMsg);
+                Raise(oTarget);
+        }
+        else
+        {
+            sMsg = sHealerName + " is unsuccessful in attempting to resuscitate " +
+                sDeadName + ".";
+            SendMessageToPC(oPC, sMsg);
+        }
     }
 }

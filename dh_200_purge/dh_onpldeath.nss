@@ -14,45 +14,24 @@
 //:: Created On: November 6, 2001
 //:://////////////////////////////////////////////
 
-#include "subdual_inc"
 #include "_incl_pc_data"
+#include "nwnx_funcs"
+#include "subdual_inc"
 
-void Raise(object oPC)
+/* Reset any raise tool attempts that have been used on this player before
+ * and also reset the "dead too long" value. */
+void ClearRaiseData(object oPC)
 {
-        SetLocalInt(oPC, "raiseattempts", 0);
-        effect eVisual = EffectVisualEffect(VFX_IMP_RESTORATION);
-
-        effect eBad = GetFirstEffect(oPC);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectResurrection(),oPC);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectHeal(GetMaxHitPoints(oPC)), oPC);
-
-        PCDSetAlive(oPC);
-
-        //Search for negative effects
-        while(GetIsEffectValid(eBad))
-        {
-            if (GetEffectType(eBad) == EFFECT_TYPE_ABILITY_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_AC_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_ATTACK_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_DAMAGE_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_SAVING_THROW_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_SPELL_RESISTANCE_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_SKILL_DECREASE ||
-                GetEffectType(eBad) == EFFECT_TYPE_BLINDNESS ||
-                GetEffectType(eBad) == EFFECT_TYPE_DEAF ||
-                GetEffectType(eBad) == EFFECT_TYPE_PARALYZE ||
-                GetEffectType(eBad) == EFFECT_TYPE_NEGATIVELEVEL)
-                {
-                    //Remove effect if it is negative.
-                    RemoveEffect(oPC, eBad);
-                }
-            eBad = GetNextEffect(oPC);
-        }
-        //Fire cast spell at event for the specified target
-        SetLocalInt(oPC, "raiseattempts", 0);
-        SignalEvent(oPC, EventSpellCastAt(OBJECT_SELF, SPELL_RESTORATION, FALSE));
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVisual, oPC);
+    struct LocalVariable var = GetFirstLocalVariable(oPC);
+    
+    while(var.obj != OBJECT_INVALID)
+    {
+        if(GetStringLeft(var.name, 13) == "bRaiseAttempt")
+            DeleteLocalInt(oPC, var.name);
+        var = GetNextLocalVariable(oPC);
+    }
+    SetLocalInt(oPC, "bDeadTooLong", FALSE);
+    DelayCommand(240.0, SetLocalInt(oPC, "bDeadTooLong", TRUE));
 }
 
 void main()
@@ -60,10 +39,10 @@ void main()
     object oPC = GetLastPlayerDied();
     object oKiller = GetLastHostileActor(oPC);
 
-    SetLocalInt(oPC, "raiseattempts", 0);
-
     if (CheckSubdual(oPC))
         return;
+
+    ClearRaiseData(oPC);
 
     // * increment global tracking number of times that I died
     SetLocalInt(oPC, "NW_L_PLAYER_DIED", GetLocalInt(oPC, "NW_L_PLAYER_DIED") + 1);
@@ -89,36 +68,28 @@ void main()
     location lDeathSpot = GetLocation(oPC);
     object oCorpse = CreateObject(OBJECT_TYPE_PLACEABLE,"playercorpse",lDeathSpot);
 
-    // Remove any Ki Shuriken
+    // Destroy equipped ki shuriken
     object oShuriken = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oPC);
     if (GetTag(oShuriken) == "kishuriken")
-    {
         DestroyObject(oShuriken);
-    }
-    oShuriken = GetFirstItemInInventory(oPC);
-    while (oShuriken != OBJECT_INVALID)
-    {
-        if (GetTag(oShuriken) == "kishuriken")
-        {
-            DestroyObject(oShuriken);
-        }
-        oShuriken = GetNextItemInInventory(oPC);
-    }
 
-    // Now move all Droppable items into the placeable's inventory
+    // Destroy ki shuriken in inventory, move droppable items into corpse
+    string sTag;
     object oItem = GetFirstItemInInventory(oPC);
     while (GetIsObjectValid(oItem))
     {
-        if ((GetItemCursedFlag(oItem) == FALSE) && (GetTag(oItem)!="NW_WBWSL001") && (GetTag(oItem)!="DyeKit"))
-        {
+        sTag = GetTag(oItem);
+        if(sTag == "kishuriken")
+            DestroyObject(oItem);
+
+        else if (GetItemCursedFlag(oItem) == FALSE &&  sTag != "NW_WBWSL001")
             AssignCommand(oCorpse,ActionTakeItem(oItem,oPC));
-        }
+
         oItem = GetNextItemInInventory(oPC);
     }
-    AssignCommand(oCorpse,TakeGoldFromCreature(GetGold(oPC),oPC));
-    SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPC));
-    SetName(oCorpse,GetName(oPC)+"'s Corpse");
-    SetLocalString(oCorpse,"PlayerName",GetPCPlayerName(oPC));
+    AssignCommand(oCorpse, TakeGoldFromCreature(GetGold(oPC), oPC));
+    SetLocalString(oCorpse, "PlayerName", GetPCPlayerName(oPC));
+    SetName(oCorpse, GetName(oPC)+"'s Corpse");
 
     PCDSetDead(oPC);
     ExportSingleCharacter(oPC);
