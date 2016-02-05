@@ -32,7 +32,7 @@
 
    string sCreatureWPN  If set, causes creature N to be spawned at a specific
                         waypoint as opposed to at a random location. Using the
-                        above example, you could set sCreature2WP = "zWP"
+                        above example, you could set sCreatureWP2 = "zWP"
                         to cause all zombies to spawn at a waypoint with the 
                         tag zWP.
 
