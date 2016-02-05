@@ -25,3 +25,28 @@ void PortToLocation(object oPC, location lLocation)
     AssignCommand(oPC, ClearAllActions());
     AssignCommand(oPC, ActionJumpToLocation(lLocation));
 }
+
+int PortToWPIfAreaIsEmpty(object oPC, string sWPTag)
+{
+    location lLoc   = GetLocation(GetWaypointByTag(sWPTag));
+    object oArea    = GetAreaFromLocation(lLoc);
+    object oObj     = GetFirstObjectInArea(oArea);
+    int bHasPlayer  = FALSE;
+
+    // See if there are any players in the area we're attempting to jump to
+    while(GetIsObjectValid(oObj))
+    {
+        if(GetIsPC(oObj) && !GetIsDM(oObj))
+        {
+            hasPlayer = TRUE;
+            break;
+        }
+        oObj = GetNextObjectInArea(oArea);
+    }
+    if(!hasPlayer)
+    {
+        PortToWaypoint(oPC, lLoc);
+        return TRUE;
+    }
+    return FALSE;
+}
