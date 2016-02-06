@@ -23,16 +23,14 @@
 void ClearRaiseData(object oPC)
 {
     struct LocalVariable var = GetFirstLocalVariable(oPC);
+    struct LocalVariable nextVar;
 
     while(var.obj != OBJECT_INVALID)
     {
+        nextVar = GetNextLocalVariable(var);
         if(GetStringLeft(var.name, 13) == "bRaiseAttempt")
-        {
             var = GetNextLocalVariable(var);
-            DeleteLocalInt(oPC, var.name);
-        }
-        else
-            var = GetNextLocalVariable(var);
+        var = nextVar;
     }
     SetLocalInt(oPC, "bDeadTooLong", FALSE);
     DelayCommand(240.0, SetLocalInt(oPC, "bDeadTooLong", TRUE));
@@ -46,6 +44,7 @@ void main()
     if (CheckSubdual(oPC))
         return;
 
+    PCDSetDead(oPC);
     ClearRaiseData(oPC);
 
     // * increment global tracking number of times that I died
@@ -86,7 +85,8 @@ void main()
         if(sTag == "kishuriken")
             DestroyObject(oItem);
 
-        else if (GetItemCursedFlag(oItem) == FALSE &&  sTag != "NW_WBWSL001")
+        else if (GetItemCursedFlag(oItem) == FALSE &&  sTag != "NW_WBWSL001" &&
+                 sTag != "token_pc")
             AssignCommand(oCorpse,ActionTakeItem(oItem,oPC));
 
         oItem = GetNextItemInInventory(oPC);
@@ -95,6 +95,5 @@ void main()
     SetLocalString(oCorpse, "PlayerName", GetPCPlayerName(oPC));
     SetName(oCorpse, GetName(oPC)+"'s Corpse");
 
-    PCDSetDead(oPC);
     ExportSingleCharacter(oPC);
 }

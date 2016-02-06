@@ -110,8 +110,7 @@ void PCDSetupNewToken(object oPC)
 
 void PCDCacheToken(object oPC)
 {
-    if(GetLocalObject(oPC, TOKEN_VAR) == OBJECT_INVALID)
-        SetLocalObject(oPC, TOKEN_VAR, GetItemPossessedBy(oPC, TOKEN_TAG));
+    SetLocalObject(oPC, TOKEN_VAR, GetItemPossessedBy(oPC, TOKEN_TAG));
 }
 
 void PCDDebugOutput(object oPC)
