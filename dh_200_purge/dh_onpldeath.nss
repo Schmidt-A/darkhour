@@ -29,7 +29,7 @@ void ClearRaiseData(object oPC)
     {
         nextVar = GetNextLocalVariable(var);
         if(GetStringLeft(var.name, 13) == "bRaiseAttempt")
-            var = GetNextLocalVariable(var);
+            DeleteLocalInt(oPC, var.name);
         var = nextVar;
     }
     SetLocalInt(oPC, "bDeadTooLong", FALSE);
@@ -87,7 +87,7 @@ void main()
 
         else if (GetItemCursedFlag(oItem) == FALSE &&  sTag != "NW_WBWSL001" &&
                  sTag != "token_pc")
-            AssignCommand(oCorpse,ActionTakeItem(oItem,oPC));
+            AssignCommand(oCorpse, ActionTakeItem(oItem,oPC));
 
         oItem = GetNextItemInInventory(oPC);
     }
