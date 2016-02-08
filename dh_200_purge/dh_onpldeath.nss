@@ -17,21 +17,38 @@
 #include "_incl_pc_data"
 #include "nwnx_funcs"
 #include "subdual_inc"
+#include "x3_inc_string"
+#include "x0_i0_stringlib"
+
 
 /* Reset any raise tool attempts that have been used on this player before
  * and also reset the "dead too long" value. */
 void ClearRaiseData(object oPC)
 {
     struct LocalVariable var = GetFirstLocalVariable(oPC);
-    struct LocalVariable nextVar;
+    struct sStringTokenizer st;
+    string sVars = "";
 
-    while(var.obj != OBJECT_INVALID)
+    // Collect all variables we need to delete because lists + deletion is dumb
+    while(var.name != "")
     {
-        nextVar = GetNextLocalVariable(var);
         if(GetStringLeft(var.name, 13) == "bRaiseAttempt")
-            DeleteLocalInt(oPC, var.name);
-        var = nextVar;
+            sVars += var.name + "|";
+        var = GetNextLocalVariable(var);
     }
+
+    // Deletion loop
+    st = GetStringTokenizer(sVars, "|");
+    while(HasMoreTokens(st))
+    {
+        DeleteLocalInt(oPC, GetNextToken(st));
+        st = AdvanceToNextToken(st);
+
+        // Need to do it for the last one, since we won't hit this loop again.
+        if(!HasMoreTokens(st))
+            DeleteLocalInt(oPC, GetNextToken(st));
+    }
+
     SetLocalInt(oPC, "bDeadTooLong", FALSE);
     DelayCommand(240.0, SetLocalInt(oPC, "bDeadTooLong", TRUE));
 }
@@ -65,8 +82,6 @@ void main()
     {   SetLocalInt(oPC, "NW_G_Playerhasbeenbad", 10); // * Player bad
         SetStandardFactionReputation(STANDARD_FACTION_DEFENDER, 80, oPC);
     }
-
-    PCDSetAlive(oPC);
 
     location lDeathSpot = GetLocation(oPC);
     object oCorpse = CreateObject(OBJECT_TYPE_PLACEABLE,"playercorpse",lDeathSpot);
