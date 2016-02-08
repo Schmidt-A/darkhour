@@ -102,9 +102,7 @@ void CullClassItems(object oPC, int iLaterClass)
             DestroyObject(GetItemPossessedBy(oPC, "MonkBoots"), 0.0f);
             DestroyObject(GetItemPossessedBy(oPC, "kishuriken"), 0.0f);
             break;
-        case CLASS_TYPE_FIGHTER:
-            //this int is never used
-            SetCampaignInt(GetName(GetModule()), "Has_WRing", 0, oPC);
+        case CLASS_TYPE_FIGHTER:;
             if (GetClassByPosition(1, oPC) != CLASS_TYPE_BARBARIAN)
             {
                 DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f);
@@ -123,8 +121,6 @@ void CullClassItems(object oPC, int iLaterClass)
             DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
             break;
         case CLASS_TYPE_BARBARIAN:
-            //this int is never used
-            SetCampaignInt(GetName(GetModule()), "Has_WRing", 0, oPC);
             if (GetClassByPosition(1, oPC) != CLASS_TYPE_FIGHTER)
             {
                 DestroyObject(GetItemPossessedBy(oPC, "WarriorRing"), 0.0f);
@@ -154,9 +150,9 @@ void ZeroToVersionOne(object oPC, string sPre)
     CreateItemOnObject("scavenger",oPC);
     CreateItemOnObject("professionpc",oPC);
     CreateItemOnObject("langselect", oPC);
-    if (GetHasFeat(FEAT_WEAPON_PROFICIENCY_DRUID, oPC) || 
-        GetHasFeat(FEAT_WEAPON_PROFICIENCY_MONK, oPC) || 
-        GetHasFeat(FEAT_WEAPON_PROFICIENCY_ROGUE, oPC) || 
+    if (GetHasFeat(FEAT_WEAPON_PROFICIENCY_DRUID, oPC) ||
+        GetHasFeat(FEAT_WEAPON_PROFICIENCY_MONK, oPC) ||
+        GetHasFeat(FEAT_WEAPON_PROFICIENCY_ROGUE, oPC) ||
         GetHasFeat(FEAT_WEAPON_PROFICIENCY_SIMPLE, oPC))
     {
         CreateItemOnObject("zn_sling",oPC);
@@ -234,7 +230,7 @@ void TwoToVersionThree(object oPC, string sPre)
     }
 
     //a value of 3 essentially means we're done with the campaign int system and swapping to the pc token
-    SetCampaignInt("VERSIONING", sPre+"Version", 3)
+    SetCampaignInt("VERSIONING", sPre+"Version", 3);
     PCDSetVersion(oPC, 3);
 }
 

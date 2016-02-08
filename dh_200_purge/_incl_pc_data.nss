@@ -131,7 +131,7 @@ void PCDDebugOutput(object oPC)
 int PCDHasToken(object oPC)
 {
     object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
-    if (oPCToken == OBJECT_TYPE_INVALID)
+    if (oPCToken == OBJECT_INVALID)
         return FALSE;
     return TRUE;
 }

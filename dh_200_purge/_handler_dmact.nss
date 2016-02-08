@@ -72,7 +72,7 @@ void main() {
     }
     else if(iAction == DM_ACTION_HEAL_CREATURE) {
         object oCreature = oGetDMAction_Target();
-        
+
         if(GetIsPC(oCreature) && !GetIsPossessedFamiliar(oCreature))
         {
             PCDSetUnZombied(oCreature);
