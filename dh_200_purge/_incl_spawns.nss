@@ -48,7 +48,7 @@ int MaxEnemyCount()
     struct LocalVariable var = GetFirstLocalVariable(OBJECT_SELF);
     int iMax = 0;
 
-    while(var.obj != OBJECT_INVALID)
+    while(var.name != "")
     {
         if(GetStringLeft(var.name, 12) == "sCreatureAmt")
             iMax += GetLocalInt(OBJECT_SELF, var.name);
@@ -73,7 +73,7 @@ void SpawnSubArea()
     string sCreatureWP;
     location lLoc;
 
-    while(var.obj != OBJECT_INVALID)
+    while(var.name != "")
     {
         if(GetStringLeft(var.name, 9) == "sCreature")
         {
