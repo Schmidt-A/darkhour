@@ -80,10 +80,19 @@ object GetObjectValue(object oPC, string sField)
 
 string GetFirstName(object oPC)
 {
-    struct sStringTokenizer sST = GetStringTokenizer(GetName(oPC), " ");
+    /* I couldn't seem to get the string tokenizer to work so
+     * I'm doing it in this weird way. */
+    string sName;
+    string sFullName = GetName(oPC);
+    int iSpace       = FindSubString(sFullName, " ");
 
-    // First name should be the first token
-    return GetNextToken(sST);
+    // No space in their name - first name is their whole name
+    if(iSpace < 0)
+        sName = sFullName;
+    else
+        sName = GetStringLeft(sFullName, iSpace);
+
+    return sName;
 }
 
 void InitializeFlag(object oPC, string sField, int bFlag=TRUE)
