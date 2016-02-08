@@ -8,5 +8,5 @@ void DoVariableConvoScript(object oPC, string sConvScript, int iStoredPos, int i
     SetLocalInt(oPC, "iConvPos", (10 * iStoredPos) + iPos);
     ExecuteScript(sConvScript, oPC);
     DeleteLocalInt(oPC, "iConvPos");
-    DeleteLocalInt(oPC, "iConvScript");
+    DeleteLocalString(oPC, "sConvScript");
 }

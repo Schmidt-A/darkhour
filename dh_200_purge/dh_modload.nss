@@ -1,9 +1,10 @@
 // Wrapper for the Dark Hour module
 
+#include "nwnx_chat"
 #include "nwnx_dmactions"
 #include "nwnx_events"
+#include "nwnx_odbc"
 #include "x2_inc_switches"
-#include "nwnx_chat"
 
 void main()
 {
@@ -20,6 +21,7 @@ void main()
 
     // init nwnx_chat
     dmb_ChatInit();
+    SQLInit();
 
     int iHour = GetTimeHour();
     int iMilli = GetTimeMillisecond();
