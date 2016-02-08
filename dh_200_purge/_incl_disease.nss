@@ -66,6 +66,11 @@ void CureDisease(object oPC, int iHowMany=10)
 
     ReduceDiseaseEffects(oPC, iDisease);
     PCDSetDiseaseValue(oPC, iDisease);
+
+    if(iDisease < 1)
+        FloatingTextStringOnCreature("The plague was fully cured!", oPC, FALSE);
+    else
+        FloatingTextStringOnCreature("The plague's grip was lessened.", oPC, FALSE);
 }
 
 void ApplyDisease(object oPC)
