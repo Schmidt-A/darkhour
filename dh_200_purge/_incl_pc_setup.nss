@@ -206,7 +206,6 @@ void ZeroToVersionTwo(object oPC, string sPre)
             {
                 CreateItemOnObject("BloodMagicBook",oPC);
             }
-        
     }
 
     SetCampaignInt("VERSIONING", sPre+"Version", 2);
@@ -215,13 +214,11 @@ void ZeroToVersionTwo(object oPC, string sPre)
 void TwoToVersionThree(object oPC, string sPre)
 {
     int iPCClass = GetClassByPosition(1, oPC);
-    PCDSetupNewToken(oPC);
 
     // Setup for brand new bard
+    //they are an old bard, break their toys
     if (iPCClass == CLASS_TYPE_BARD && GetHitDice(oPC) == 1)
         SetupNewBard(oPC);
-
-    //they are an old bard, break their toys
     else if (iPCClass == CLASS_TYPE_BARD)
         DestroyObject(GetItemPossessedBy(oPC, "SheetMusic"), 0.0f);
 
@@ -233,24 +230,35 @@ void TwoToVersionThree(object oPC, string sPre)
     if(GetHasFeat(FEAT_STRONGSOUL, oPC) && GetItemPossessedBy(oPC, "ressurecttool") == OBJECT_INVALID)
     {
         CreateItemOnObject("ressurecttool", oPC);
-        SendMessageToPC(oPC, "Because of the clarity of your soul, you able to recall a soul before it reaches the fugue plane.");
+        SendMessageToPC(oPC, "Because of the vigor of your soul, you are able to recall a soul before it reaches the fugue plane.");
     }
 
-    SetCampaignInt("VERSIONING", sPre+"Version", 3);
+    //a value of 3 essentially means we're done with the campaign int system and swapping to the pc token
+    SetCampaignInt("VERSIONING", sPre+"Version", 3)
+    PCDSetVersion(oPC, 3);
 }
 
 void UpdatePC(object oPC)
 {
     string sPre = GetDBVarName(oPC);
-    int iVersion = GetCampaignInt("VERSIONING", sPre+"Version");
+    int iDBVersion = GetCampaignInt("VERSIONING", sPre+"Version");
 
+    // this is vestige of the older campaign int system, we stopped using it at version 2
+    //If they don't have a token, we need to make one
+    if (!PCDHasToken(oPC))
+    {
+        PCDSetupNewToken(oPC);
+        PCDSetVersion(oPC, iDBVersion);
+    }
+
+    int iVersion = PCDGetVersion(oPC);
     switch(iVersion)
     {
         case 2:
             TwoToVersionThree(oPC, sPre);
             break;
         case 3:
-            //They're up to date!
+            //All up to date!
             break;
         default:
             ZeroToVersionTwo(oPC, sPre);

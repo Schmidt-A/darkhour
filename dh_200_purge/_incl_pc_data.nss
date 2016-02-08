@@ -128,6 +128,14 @@ void PCDDebugOutput(object oPC)
     SendMessageToPC(oPC, DumpLocalVariables(oPCToken));
 }
 
+int PCDHasToken(object oPC)
+{
+    object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
+    if (oPCToken == OBJECT_TYPE_INVALID)
+        return FALSE;
+    return TRUE;
+}
+
 
 // ----------------- PC Data Retrival Functions ---------------
 
@@ -200,6 +208,11 @@ string PCDBadgeList(object oPC)
     return GetStringValue(oPC, "sBadgeList");
 }
 
+int PCDGetVersion(object oPC)
+{
+    return GetIntValue(oPC, "iVersion");
+}
+
 // ----------------- PC Data Setter Functions ---------------
 void PCDAddZombieKill(object oPC, int iKills=1)
 {
@@ -254,6 +267,11 @@ void PCDSetAlive(object oPC)
 void PCDSetUsedOneChance(object oPC)
 {
     SetIntValue(oPC, "bOneChance", TRUE);
+}
+
+void PCDSetVersion(object oPC, int iVersion)
+{
+    SetIntValue(oPC, "iVersion", iVersion);
 }
 
 // ----------------- Bard Data Functions ----------------------
