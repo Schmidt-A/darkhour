@@ -10,7 +10,7 @@ void DestroyAllItems(object oPC, int bEquipped=FALSE, int bGold=TRUE)
         int iSlot;
 
         // Iterate over non-creature equipped items
-        for(iSlot=0; i<14; i++)
+        for(iSlot=0; iSlot<14; iSlot++)
         {
             oEquipped = GetItemInSlot(iSlot, oPC);
             AssignCommand(oPC, ActionUnequipItem(oEquipped));
