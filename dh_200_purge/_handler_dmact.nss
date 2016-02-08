@@ -1,5 +1,6 @@
 #include "nwnx_dmactions"
 #include "_incl_pc_data"
+#include "_incl_xp"
 
 void main() {
     object oDM = OBJECT_SELF;
@@ -9,6 +10,15 @@ void main() {
     {
         object oTarget = oGetDMAction_Target();
         int iXP = nGetDMAction_Param();
+
+        // If they're a subrace character we have to do something special
+        if(GetItemPossessedBy(oTarget, "ecl_token") != OBJECT_INVALID)
+        {
+            SendMessageToPC(oTarget, "XP is being removed from your character " +
+                "sheet so it can be tracked on your ECL token instead.");
+            SetXP(oTarget, GetXP(oTarget)-iXP);
+            GiveXPToCreatureDH(oTarget, iXP);
+        }
 
         // Format : XP_DM:[dm name] | [player account] | [character] | [xp amount] | [xp cumulative]
         // Example: XP_DM:Tweek | Aez | Meero Isesi | 100 | 3512
