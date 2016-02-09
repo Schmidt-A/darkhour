@@ -136,7 +136,7 @@ void ZeroToVersionOne(object oPC, string sPre)
 
     object oTemp;
     oTemp = GetFirstItemInInventory(oPC);
-    while (GetIsObjectValid(oTemp))
+    while (GetIsObjectValid(oTemp) && GetTag(oTemp) != "token_pc")
     {
         DestroyObject(oTemp);
         oTemp = GetNextItemInInventory(oPC);
