@@ -13,7 +13,7 @@ void main()
                   "WHERE conv_id = " + sConvPos + ";");
     if(SQLFetch() == SQL_ERROR)
     {
-        WriteTimestampedLogEntry("ERROR: SQL failure when " + sName + "(" + 
+        WriteTimestampedLogEntry("ERROR: SQL failure when " + sName + "(" +
                 GetPCPlayerName(oPC) + ") tried to assemble an artifact " +
                 "with sConvPos = " + sConvPos);
         return;
@@ -49,7 +49,7 @@ void main()
     {
         if(!iHasArtiXP)
         {
-            SetCampaignInt(GetName(GetModule()), "hasartifxp", oPC);
+            SetCampaignInt(GetName(GetModule()), "hasartifxp", TRUE, oPC);
             GiveXPToCreatureDH(oPC, 1000);
             sMsg = "<c þ >A thrill of otherworldly power courses " +
                 "though " + sName + "'s body. They realize that the artifact " +
@@ -60,7 +60,7 @@ void main()
         else
         {
             sMsg = "<c þ >" + sName + " has assembled an artifact! They can tell " +
-                "that their bond with this one is not so strong as the first, but " + 
+                "that their bond with this one is not so strong as the first, but " +
                 "they should still be able to make use of its magic. The familiar " +
                 "sensation of relief returns, as though the artifact is glad to be" +
                 "whole once more.</c>";
