@@ -7,7 +7,7 @@ void BardLevel(object oPC, int iBardLevels);
 
 /* Make sure the bard can at LEAST cast the lowest tier bardsong
  * before boosting. */
-int CanBoost(string sBoost, int nPerform);
+int CanBoost(string sBoost, int nPerform, object oPC=OBJECT_SELF);
 
 /* This gets called every time a level up happens. We need to see if a bard
  * has gained access to a new boost (that they don't already have of course). */
@@ -27,15 +27,6 @@ int GetHasteDuration(object oPC);
  * preserve feat uses if the bard has the Lingering boost, and also up its
  * damage if they have the Curse boost. */
 void DoCurseSong(int bDecrementUses);
-
-string BOOST_SPEED      = "bBardSpeed";
-string BOOST_BOTH       = "bBardBoth";
-string BOOST_OFFENSE    = "bBardOffense";
-string BOOST_DEFENSE    = "bBardDefense";
-string BOOST_HEAL       = "bBardHeal";
-string BOOST_SKILLS     = "bBardSkills";
-string BOOST_CURSE      = "bBardCurse";
-string BOOST_LINGERING  = "bBardLingering";
 
 
 void BardLevel(object oPC, int iBardLevels)

@@ -3,5 +3,6 @@
 void main()
 {
     object oPC = GetItemActivator();
+    PCDOnActivate(oPC);
     PCDDebugOutput(oPC);
 }

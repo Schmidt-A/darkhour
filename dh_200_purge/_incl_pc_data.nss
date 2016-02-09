@@ -6,7 +6,6 @@
 #include "x0_i0_stringlib"
 #include "dmfi_dmw_inc"
 #include "nwnx_funcs"
-#include "_cls_bard"
 
 string TOKEN_VAR = "oPCToken";
 string TOKEN_TAG = "token_pc";
@@ -287,6 +286,16 @@ void PCDSetVersion(object oPC, int iVersion)
 }
 
 // ----------------- Bard Data Functions ----------------------
+
+string BOOST_SPEED      = "bBardSpeed";
+string BOOST_BOTH       = "bBardBoth";
+string BOOST_OFFENSE    = "bBardOffense";
+string BOOST_DEFENSE    = "bBardDefense";
+string BOOST_HEAL       = "bBardHeal";
+string BOOST_SKILLS     = "bBardSkills";
+string BOOST_CURSE      = "bBardCurse";
+string BOOST_LINGERING  = "bBardLingering";
+
 void PCDBardAddMaxBoosts(object oPC, int iAmount)
 {
     UpdateIntValue(oPC, "iMaxBoosts", iAmount);
@@ -344,7 +353,7 @@ string DiseaseString(object oPC)
     int iDisease = PCDGetDiseaseValue(oPC);
     string sMsg  = ColorText("No trace", "cyan");
 
-    if(iDisease > 0 && iDisease =< 3)
+    if(iDisease > 0 && iDisease <= 3)
         sMsg = ColorText("Afflicted", "green");
     else if(iDisease > 3 && iDisease <= 6)
         sMsg = ColorText("Seriously ill", "yellow");
@@ -354,26 +363,26 @@ string DiseaseString(object oPC)
     return sMsg;
 }
 
-string BardString(oPC)
+string BardString(object oPC)
 {
     int iPerform = GetSkillRank(SKILL_PERFORM, oPC);
     string sMsg = "========== Bard Boosts ============\n";
     sMsg += "Active Boosts: " + IntToString(GetIntValue(oPC, "iMaxBoosts")) + "\n";
-    if(CanBoost(BOOST_SPEED, iPerform, oPC))    
+    if(PCDCheckFlag(oPC, BOOST_SPEED))
         sMsg += " - Allegro\n";
-    if(CanBoost(BOOST_BOTH, iPerform, oPC))    
+    if(PCDCheckFlag(oPC, BOOST_BOTH))
         sMsg += " - Duet\n";
-    if(CanBoost(BOOST_OFFENSE, iPerform, oPC))    
+    if(PCDCheckFlag(oPC, BOOST_OFFENSE))
         sMsg += " - Acceso\n";
-    if(CanBoost(BOOST_DEFENSE, iPerform, oPC))    
+    if(PCDCheckFlag(oPC, BOOST_DEFENSE))
         sMsg += " - Risoluto\n";
-    if(CanBoost(BOOST_HEAL, iPerform, oPC))
+    if(PCDCheckFlag(oPC, BOOST_HEAL))
         sMsg += " - Vivacissimo\n";
-    if(CanBoost(BOOST_SKILLS, iPerform, oPC))
+    if(PCDCheckFlag(oPC, BOOST_SKILLS))
         sMsg += " - Delicato\n";
-    if(CanBoost(BOOST_CURSE, iPerform, oPC))
+    if(PCDCheckFlag(oPC, BOOST_CURSE))
         sMsg += " - Morendo\n";
-    if(CanBoost(BOOST_LINGERING, iPerform, oPC))
+    if(PCDCheckFlag(oPC, BOOST_LINGERING))
         sMsg += " - Sostenuto\n";
     sMsg += "\n";
 
@@ -384,13 +393,13 @@ void PCDOnActivate(object oPC)
 {
     string sSummary = "========== General Stats ==========\n";
     sSummary += "Name:    " + PCDGetFirstName(oPC) + "\n";
-    sSummary += "Level:   " + GetHitDice(oPC) + "\n";
-    sSummary += "Disease: " + DiseaseString(oPC) + "\n\n"; 
+    sSummary += "Level:   " + IntToString(GetHitDice(oPC)) + "\n";
+    sSummary += "Disease: " + DiseaseString(oPC) + "\n\n";
 
-    sSummary += "Artifacts:     " + PCDGetArtifactCount(oPC) + "\n";
-    sSummary += "Kills:         " + PCDGetZombieKills(oPC) + "\n";
-    sSummary += "Frenzy Kills:  " + PCDGetFrenzyKills(oPC) + "\n";
-    sSummary += "Survival Time: " + PCDGetSurvivalTimes(oPC) + "\n\n";
+    sSummary += "Artifacts:     " + IntToString(PCDGetArtifactCount(oPC)) + "\n";
+    sSummary += "Kills:         " + IntToString(PCDGetZombieKills(oPC)) + "\n";
+    sSummary += "Frenzy Kills:  " + IntToString(PCDGetFrenzyKills(oPC)) + "\n";
+    sSummary += "Survival Time: " + IntToString(PCDGetSurvivalTimes(oPC)) + "\n\n";
 
     int iBardLevels = GetLevelByClass(CLASS_TYPE_BARD, oPC);
     if(iBardLevels > 0)
