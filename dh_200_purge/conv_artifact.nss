@@ -51,28 +51,29 @@ void main()
         {
             SetCampaignInt(GetName(GetModule()), "hasartifxp", TRUE, oPC);
             GiveXPToCreatureDH(oPC, 1000);
-            sMsg = "<c þ >A thrill of otherworldly power courses " +
+            sMsg = "The ground trembles, and a thrill of otherworldly power courses " +
                 "though " + sName + "'s body. They realize that the artifact " +
                 "has bound to their very being, leaving them stronger for it. " +
                 "This is followed by an overwhelming sense of relief - as if " +
-                "the very pieces themselves had grown weary of being fractured.</c>";
+                "the very pieces themselves had grown weary of being fractured.";
         }
         else
         {
-            sMsg = "<c þ >" + sName + " has assembled an artifact! They can tell " +
+            sMsg = sName + " has assembled an artifact! They can tell " +
                 "that their bond with this one is not so strong as the first, but " +
                 "they should still be able to make use of its magic. The familiar " +
                 "sensation of relief returns, as though the artifact is glad to be" +
-                "whole once more.</c>";
+                "whole once more.";
         }
+        PCDAddArtifact(oPC);
         CreateItemOnObject(sRef, oPC);
     }
     else
     {
-        sMsg = "<c þ >" + sName + " watches as their two identical tablets " +
+        sMsg = sName + " watches as their two identical tablets " +
             "combine of their own volition, to form one more powerful than " +
             "either before. They realize they are now one of the few owners " +
-            "of an Advanced Artifact.</c>";
+            "of an Advanced Artifact.";
         CreateItemOnObject(sAdvRef, oPC);
     }
     SendMessageToPC(oPC, sMsg);

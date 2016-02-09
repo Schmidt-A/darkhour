@@ -1,32 +1,29 @@
+#include "_incl_pc_data"
+
 void main()
 {
-    object oItem = GetItemActivated();
-    object oPC = GetItemActivator();
-    object oArtifact = GetFirstItemInInventory(oPC);
-    int iCount = 0;
+    object oPC      = GetItemActivator();
+    string sName    = PCDGetFirstName(oPC);
+    int i;
 
-    // Note - this means if we make any other item start with resref
-    // st_, this could break.
-    while (GetIsObjectValid(oArtifact))
+    // If we have 4 artifacts, we can't make another
+    if(PCDGetArtifactCount(oPC) > 3)
     {
-        if(GetStringLeft(GetResRef(oArtifact), 3) == "st_")
-            iCount ++;
-        oArtifact = GetNextItemInInventory(oPC);
-    }
-    if(iCount >= 4)
-    {
-        SendMessageToPC(oPC, "You already have the maximum allowed amount of artifacts.");
+        SendMessageToPC(oPC, "No more than four artifacts will bind to a given " +
+            "soul. " + sName + " already has four.");
         return;
     }
 
-        if ((OBJECT_INVALID != GetItemPossessedBy(oPC, "ArtifactPiece1"))
-            && (OBJECT_INVALID != GetItemPossessedBy(oPC, "ArtifactPiece2"))
-            && (OBJECT_INVALID != GetItemPossessedBy(oPC, "ArtifactPiece3"))
-            && (OBJECT_INVALID != GetItemPossessedBy(oPC, "ArtifactPiece4")))
+    // See if we have all 4 pieces
+    for(i=1; i<5; i++)
+    {
+        if(GetItemPossessedBy(oPC, "ArtifactPiece"+IntToString(i)) == OBJECT_INVALID)
         {
-            AssignCommand(oPC, ActionStartConversation(oPC, "artifactconvo", TRUE, FALSE));
+            SendMessageToPC(oPC, sName + " requires all four parts of the artifact " +
+                "in order to merge them.");
+            return;
         }
-        else
-            FloatingTextStringOnCreature("You need all four parts before you can merge the artifact.",oPC,FALSE);
-
+    }
+    SetLocalString(oPC, "sConvScript", "conv_artifact");
+    AssignCommand(oPC, ActionStartConversation(oPC, "artifact", TRUE, FALSE));
 }

@@ -208,6 +208,11 @@ string PCDBadgeList(object oPC)
     return GetStringValue(oPC, "sBadgeList");
 }
 
+int PCDGetArtifactCount(object oPC)
+{
+    return GetIntValue(oPC, "iArtifacts");
+}
+
 int PCDGetVersion(object oPC)
 {
     return GetIntValue(oPC, "iVersion");
@@ -227,6 +232,11 @@ void PCDAddFrenzyKill(object oPC, int iFrenzyKills=1)
 void PCDAddSurvivalTime(object oPC, int iSurvivalTimes=1)
 {
     UpdateIntValue(oPC, "iSurvivalTimes", iSurvivalTimes);
+}
+
+void PCDAddArtifact(object oPC)
+{
+    UpdateIntValue(oPC, "iArtifacts", 1);
 }
 
 void PCDAddBadge(object oPC, string sBadgeTag)
