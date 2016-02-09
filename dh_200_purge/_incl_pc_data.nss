@@ -4,7 +4,7 @@
 
 #include "x3_inc_string"
 #include "x0_i0_stringlib"
-#include "dmfi_dmw_inc"
+#include "colors_inc"
 #include "nwnx_funcs"
 
 string TOKEN_VAR = "oPCToken";
@@ -351,14 +351,14 @@ void PCDBardSetSkillBoosted(object oPC, int iSkillID)
 string DiseaseString(object oPC)
 {
     int iDisease = PCDGetDiseaseValue(oPC);
-    string sMsg  = ColorText("No trace", "cyan");
+    string sMsg  = ColorTokenBlue() + "No trace</c>";
 
     if(iDisease > 0 && iDisease <= 3)
-        sMsg = ColorText("Afflicted", "green");
+        sMsg = ColorTokenYellow() + "Afflicted</c>";
     else if(iDisease > 3 && iDisease <= 6)
-        sMsg = ColorText("Seriously ill", "yellow");
+        sMsg = ColorTokenOrange() + "Seriously ill</c>";
     else if(iDisease > 6)
-        sMsg = ColorText("Approaching the final stages", "red");
+        sMsg = ColorTokenRed() + "Approaching the final stages</c>";
 
     return sMsg;
 }
@@ -391,19 +391,20 @@ string BardString(object oPC)
 
 void PCDOnActivate(object oPC)
 {
-    string sSummary = "========== General Stats ==========\n";
-    sSummary += "Name:    " + PCDGetFirstName(oPC) + "\n";
-    sSummary += "Level:   " + IntToString(GetHitDice(oPC)) + "\n";
-    sSummary += "Disease: " + DiseaseString(oPC) + "\n\n";
+    string sSummary = ColorTokenWhite() + "========== General Stats ==========\n";
+    sSummary += "Name:\t\t" + PCDGetFirstName(oPC) + "\n";
+    sSummary += "Level:\t\t   " + IntToString(GetHitDice(oPC)) + "\n";
+    sSummary += "Disease:\t </c>" + DiseaseString(oPC) + "\n\n";
 
-    sSummary += "Artifacts:     " + IntToString(PCDGetArtifactCount(oPC)) + "\n";
-    sSummary += "Kills:         " + IntToString(PCDGetZombieKills(oPC)) + "\n";
-    sSummary += "Frenzy Kills:  " + IntToString(PCDGetFrenzyKills(oPC)) + "\n";
-    sSummary += "Survival Time: " + IntToString(PCDGetSurvivalTimes(oPC)) + "\n\n";
+    sSummary += ColorTokenWhite() + "Artifacts:\t" + IntToString(PCDGetArtifactCount(oPC)) + "\n";
+    sSummary += "Kills:\t\t\t" + IntToString(PCDGetZombieKills(oPC)) + "\n";
+    sSummary += "Frenzy Kills:\t" + IntToString(PCDGetFrenzyKills(oPC)) + "\n";
+    sSummary += "Survival Time:\t" + IntToString(PCDGetSurvivalTimes(oPC)) + "\n\n";
 
     int iBardLevels = GetLevelByClass(CLASS_TYPE_BARD, oPC);
     if(iBardLevels > 0)
         sSummary += BardString(oPC);
+    sSummary += "</c>";
 
     SendMessageToPC(oPC, sSummary);
 }
