@@ -76,9 +76,9 @@ void BardLevel(object oPC, int iBardLevels)
     }
 }
 
-int CanBoost(string sBoost, int nPerform)
+int CanBoost(string sBoost, int nPerform, object oPC=OBJECT_SELF)
 {
-    if(PCDCheckFlag(OBJECT_SELF, sBoost) && nPerform >= 3)
+    if(PCDCheckFlag(oPC, sBoost) && nPerform >= 3)
         return TRUE;
     return FALSE;
 }
