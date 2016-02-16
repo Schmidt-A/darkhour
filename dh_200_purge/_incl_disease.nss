@@ -3,6 +3,8 @@
 
 #include "_incl_location"
 #include "_incl_pc_data"
+#include "nw_i0_generic"
+#include "_incl_inventory"
 
 // The actual DC ends up being BASE_DC + number of infection points
 int BASE_DC = 12;
@@ -26,10 +28,38 @@ string MSG_9 = "Your conciousness teeters on the edge of a dark abyss. Looking "
     "eyes and fetid flesh, you are scarcely recognizeable from the walking " +
     "corpses all around.";
 
+void CreateClone(object oPC, location lMirror);
+
 void ReduceDiseaseEffects(object oPC, int iDisease);
 void CureDisease(object oPC, int iHowMany=10);
 void ApplyDisease(object oPC);
 void HBDiseaseCheck(object oPC);
+
+
+void CreateClone(object oPC, location lMirror)
+{
+    object oCopy1 = CopyObject(oPC, lMirror, OBJECT_INVALID, "PlayerZombie");
+
+    //Move all items to their new zombie corpse
+    TransferAllItems(oPC, oCopy1, FALSE, TRUE, TRUE);
+
+    // MHADLEY -- Create zombie gear
+    object oG1 = CreateItemOnObject("ZombieCloneBelt",oCopy1);
+    DelayCommand(0.2,SetDroppableFlag(oG1, FALSE));
+    DelayCommand(0.2,AssignCommand(oCopy1,ActionEquipItem(oG1,INVENTORY_SLOT_BELT)));
+    object oG2 = CreateItemOnObject("it_crewps004",oCopy1);
+    DelayCommand(0.4,SetDroppableFlag(oG2, FALSE));
+    DelayCommand(0.4,AssignCommand(oCopy1,ActionEquipItem(oG2,INVENTORY_SLOT_CWEAPON_B)));
+    object oG3 = CreateItemOnObject("nw_it_creitemunf001",oCopy1);
+    DelayCommand(0.6,SetDroppableFlag(oG3, FALSE));
+    DelayCommand(0.6,AssignCommand(oCopy1,ActionEquipItem(oG3,INVENTORY_SLOT_CARMOUR)));
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT,EffectMovementSpeedDecrease(75),oCopy1);
+    int nLevel = LevelUpHenchman(oCopy1,CLASS_TYPE_UNDEAD);
+
+    ChangeToStandardFaction(oCopy1, STANDARD_FACTION_HOSTILE);
+    DelayCommand(2.0, AssignCommand(oCopy1, ClearAllActions()));
+}
+
 
 void ReduceDiseaseEffects(object oPC, int iDisease)
 {
@@ -151,7 +181,9 @@ void HBDiseaseCheck(object oPC)
                 if (iDisease > 9)
                 {
                     PCDSetZombied(oPC);
-                    ExecuteScript("zombieclone",oPC);
+                    location lMirror = GetLocation(oPC);
+                    DelayCommand(0.5,CreateClone(lMirror));
+
                     PortToWaypoint(oPC, "lostsoularrive");
                     DelayCommand(0.3,FloatingTextStringOnCreature("Your body has become a zombie.",oPC,FALSE));
                     DelayCommand(0.5,FloatingTextStringOnCreature("You are now a lost soul.",oPC,FALSE));

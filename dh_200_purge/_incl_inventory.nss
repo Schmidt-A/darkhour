@@ -55,6 +55,20 @@ void TransferAllItems(object oPC, object oTarget, int bDestroyShurikan=TRUE,
             DestroyObject(oItem);
     }
 
+    // This means we want to transfer equipped items too
+    if(bEquipped)
+    {
+        object oEquipped;
+        int iSlot;
+
+        // Iterate over non-creature equipped items
+        for(iSlot=0; iSlot<14; iSlot++)
+        {
+            oEquipped = GetItemInSlot(iSlot, oPC);
+            AssignCommand(oPC, ActionUnequipItem(oEquipped));
+        }
+    }
+
     oItem = GetFirstItemInInventory(oPC);
     while(GetIsObjectValid(oItem))
     {
