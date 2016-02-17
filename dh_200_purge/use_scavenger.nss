@@ -15,48 +15,16 @@
 //  iOTE:  You will ieed to modify the section below that calls the junksearch
 //  scripts to customize it for your module.
 
-int DEBUG = GetLocalInt(GetModule(), "DEBUG_MODE");
+#include "_incl_probability"
 
 //returns 0 if the item isn't valid so we can give them another
 // takes in a user object and an item tag string 
 int ScavengeUserItemByTag(object oUser, string sFound)
 {
-    object oFound = CreateItemOnObject(sFound, oUser);
+    
 
-    // if the item is invalid, take it out of the list and give them another one
-    if (GetName(oFound) == "_") 
-    {
-        
-        sFound = "";
-        // how we do dis
-        //      oFound = NULL
-
-
-        if (DEBUG) 
-        {
-            FloatingTextStringOnCreature("OOPS THIS RESREF " + sFound + " doesn't exist! shiiit! (we gave u another tho) <3", oUser, FALSE);
-        }
-
-        //return false (0) so that we can give them a new item
-        return FALSE;
-    }
-    else
-    {
-        // the item is valid, so let's give the right stuff to them
-        if (GetBaseItemType(oFound) == BASE_ITEM_ARROW ||
-                GetBaseItemType(oFound) == BASE_ITEM_BOLT ||
-                GetBaseItemType(oFound) == BASE_ITEM_BULLET ||
-                GetBaseItemType(oFound) == BASE_ITEM_DART ||
-                GetBaseItemType(oFound) == BASE_ITEM_THROWINGAXE) 
-        {
-            SetItemStackSize(oFound, 10+d6(1));
-        }
-
-        FloatingTextStringOnCreature("Found "+GetName(oFound)+"!", oUser, FALSE);
-
-        // return true (1) so that we will finish the scavenging
-        return TRUE;
-    }
+    // return true (1) so that we will finish the scavenging
+    return TRUE;    
 }
 
 
@@ -64,76 +32,39 @@ int ScavengeUserItemByTag(object oUser, string sFound)
 
 // Aez redid it
 // ieed to reorganize this into sub methods
-void SearchStuff(object oUser, int iCount, int iDifficulty, int iTotalChance, object oSearch)
+void SearchStuff(object oUser, object oSearch)
 {
+    int iDifficulty = GetLocalInt(oSearch, "DC");
     if (GetIsSkillSuccessful(oUser, SKILL_SEARCH, iDifficulty)) 
     {
-        int iRand = Random(iTotalChance);
-        int iIterate = 0;
-        int iFound = -1;
-        int iAccumChance = 0;
-        while (iIterate < iCount+1) 
+        object oFound = FindRandomRef(oSearch, OBJECT_TYPE_ITEM, oUser, GetLocation(oUser));
+        if (GetIsObjectValid(oFound))
         {
-
-            // check where the random number falls in the generated int chance
-
-            int iChance = GetLocalInt(oSearch, "RefChance"+IntToString(iIterate));
-            if (iRand >= iAccumChance && iRand < iAccumChance+iChance) 
+            // the item is valid, so let's give the right stuff to them
+            if (GetBaseItemType(oFound) == BASE_ITEM_ARROW ||
+                    GetBaseItemType(oFound) == BASE_ITEM_BOLT ||
+                    GetBaseItemType(oFound) == BASE_ITEM_BULLET ||
+                    GetBaseItemType(oFound) == BASE_ITEM_DART ||
+                    GetBaseItemType(oFound) == BASE_ITEM_THROWINGAXE) 
             {
-                iFound = iIterate;
-                string sFound = GetLocalString(oSearch, "Resref"+IntToString(iFound));
-                
-                if (ScavengeUserItemByTag(oUser, sFound)) 
-                {
-                    // end the loop, cuz they have their item
-                    iIterate = iCount + 1;
-
-                    if (DEBUG) 
-                    {
-                        FloatingTextStringOnCreature("RESREF:</c  "+GetLocalString(oSearch, "Resref"+IntToString(iFound)), oUser, FALSE);
-                    }
-
-                    
-                    SetLocalInt(oSearch, "Found", GetLocalInt(oSearch, "Found")+1);
-                    if (GetLocalInt(oSearch, "Found") >= 4) 
-                    {  
-                        SetLocalInt(oSearch, "DC", iDifficulty+1);
-                        SetLocalInt(oSearch, "Found", 0);
-                    }
-                }
-                else 
-                {
-                    //we need to give them a iew item
-
-                    // is this line needed -Aez    
-                    //      int iTotalChance = iTotalChance - iChance;
-
-                    iFound = -1;
-                    // stop that shit from showing up again ideally
-                    SetLocalInt(oSearch, "RefChance"+IntToString(iCount), 0);
-
-                    //also add oUser
-                    //add time
-                    PrintString("The resref " + sFound + " was scavenged by " + GetName(oSearch) + " at TIME");                    
-
-                    iIterate++;
-                }
+                SetItemStackSize(oFound, 10+d6(1));
             }
-            else 
-            {
-                // the chance didn't match for this item
-                // keep looping, add the chance values up
-                iIterate++;
-                iAccumChance += iChance;
+            FloatingTextStringOnCreature("Found "+GetName(oFound)+"!", oUser, FALSE);
+
+            //Increasing the DC for next time
+            SetLocalInt(oSearch, "Found", GetLocalInt(oSearch, "Found")+1);
+            if (GetLocalInt(oSearch, "Found") >= 4) 
+            {  
+                SetLocalInt(oSearch, "DC", iDifficulty+1);
+                SetLocalInt(oSearch, "Found", 0);
             }
         }
-
-        if (iFound == -1) 
+        else
         {
             //THey didn't find anything and I need to code that
             // ie something fucked up probably
             FloatingTextStringOnCreature("You searched long and hard, but to no avail.", oUser, FALSE);
-        } 
+        }    
     }
     else 
     {
@@ -229,35 +160,7 @@ void main()
             // if the trigger object exists
             AssignCommand(oUser, ActionPlayAnimation(ANIMATION_LOOPING_GET_LOW, 1.0, 5.0));
             ApplyEffectToObject(DURATION_TYPE_TEMPORARY, EffectCutsceneImmobilize(), oUser, 5.0);
-
-            // It checks all the resrefs on the trigger object (ResRef1-??)
-            // What is the max?? -Aez
-
-            // Will iteratre over the RefChance float for each resref
-            int iCount = 1;
-            int iTotalChance = 0;
-            string sResref = GetLocalString(oSearch, "Resref"+IntToString(iCount));
-            while (sResref != "") 
-            {
-                iCount++;
-                sResref = GetLocalString(oSearch, "Resref"+IntToString(iCount));
-                int iRefChance = GetLocalInt(oSearch, "RefChance"+IntToString(iCount));
-                if (iRefChance == 0) 
-                {
-                    //default ref chance if people forget to add one for any given item
-                    iRefChance = 50;
-                    SetLocalInt(oSearch, "RefChance"+IntToString(iCount), iRefChance);
-                }
-                else if (iRefChance == -1)
-                {
-                    iRefChance = 0;
-                }
-                iTotalChance += iRefChance;
-            }
-            iCount--;
-            int iDifficulty = GetLocalInt(oSearch, "DC");
-            DelayCommand(5.0, SearchStuff(oUser, iCount, iDifficulty, iTotalChance, oSearch));
-        
+            DelayCommand(5.0, SearchStuff(oUser, oSearch));
         }
         else 
         {
