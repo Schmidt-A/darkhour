@@ -5,6 +5,7 @@ CREATE TABLE `char_list` (
   `subrace_id` int(11) NOT NULL DEFAULT '0',
   `palate_id` int(11) DEFAULT '0',
   `class_choice` varchar(64) DEFAULT ' ',
+  `origin` varchar(64) DEFAULT ' ',
   `faction` varchar(64) DEFAULT ' ',
   `profession` varchar(64) DEFAULT 'laborer',
   `prof_lvl` int(11) DEFAULT '0',

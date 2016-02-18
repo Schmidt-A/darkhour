@@ -219,6 +219,11 @@ int PCDGetVersion(object oPC)
     return GetIntValue(oPC, "iVersion");
 }
 
+string PCDGetFaction(object oPC)
+{
+    return GetStringValue(oPC, "sFaction");
+}
+
 // ----------------- PC Data Setter Functions ---------------
 void PCDAddZombieKill(object oPC, int iKills=1)
 {
@@ -284,6 +289,34 @@ void PCDSetVersion(object oPC, int iVersion)
 {
     SetIntValue(oPC, "iVersion", iVersion);
 }
+
+void PCDSetFaction(object oPC, string sFaction)
+{
+    SetStringValue(oPC, "sFaction", sFaction);
+}
+
+// ----------------- Profession Data Functions ----------------
+
+string PCDGetProfession(object oPC)
+{
+    GetStringValue(oPC, "sProfession");
+}
+
+void PCDSetProfession(object oPC, string sProfession)
+{
+    SetStringValue(oPC, "sProfession", sProfession);
+}
+
+int PCDGetProfessionLevel(object oPC)
+{
+    GetIntValue(oPC, "iProfessionLevel");
+}
+
+void PCDSetProfessionLevel(object oPC, int iProfessionLevel)
+{
+    SetIntValue(oPC, "iProfessionLevel", iProfessionLevel);
+}
+
 
 // ----------------- Bard Data Functions ----------------------
 

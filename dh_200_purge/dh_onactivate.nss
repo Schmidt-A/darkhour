@@ -30,7 +30,7 @@ void main()
     // two extra cases.
     if(sItemTag == "scavenger" || sItemTag == "ExtraScavenger")
     {
-        ExecuteScript("use_scavenger", oPC);
+        ExecuteScript("dh_scavenge", oPC);
         return;
     }
 

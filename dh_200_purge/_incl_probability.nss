@@ -1,9 +1,9 @@
 
 int LocalContains(object oLocalVar, string sRef);
 void FailedRef(object oLocalVar, string sRef, int iCount);
-object CheckRef(object oLocalVar, int iType, string sRef, int iCount, object oUser, location lWay);
+object TryCreateRef(object oLocalVar, int iType, string sRef, int iCount, object oUser, location lWay);
 object RandomizeRefs(object oLocalVar, int iType, int iCount, int iTotalChance, object oUser, location lWay);
-object FindRandomRef(object oLocalVar, int iType, object oUser, location lWay);
+object CreateRandomLocalRef(object oLocalVar, int iType, object oUser, location lWay);
 
 //Does the object have this resref as a local var
 int LocalContains(object oLocalVar, string sRef)
@@ -34,7 +34,7 @@ void FailedRef(object oLocalVar, string sRef, int iCount)
 }
 
 //Creates an object and checks if the Ref has a proper GetName value
-object CheckRef(object oLocalVar, int iType, string sRef, int iCount, object oUser, location lWay)
+object TryCreateRef(object oLocalVar, int iType, string sRef, int iCount, object oUser, location lWay)
 {
 	object oCreate;
 
@@ -111,8 +111,8 @@ object RandomizeRefs(object oLocalVar, int iType, int iCount, int iTotalChance, 
 	return oCreate;     
 }
 
-//Setup all the local variables for appropriate iteration via the FindRandomRef
-object FindRandomRef(object oLocalVar, int iType, object oUser, location lWay)
+//Setup all the local variables for appropriate iteration via the RandomizeRefs
+object CreateRandomLocalRef(object oLocalVar, int iType, object oUser, location lWay)
 {
 	// It checks all the resrefs on the trigger object (ResRef1-??)
 	// What is the max?? -Aez
