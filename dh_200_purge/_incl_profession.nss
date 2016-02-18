@@ -1,7 +1,11 @@
+/* All of the profession stuff
+ * Unless we decide to split it out*/
+
 #include "_incl_probability"
 #include "_incl_pc_data"
 
 int CanUseGatherObj(object oPC, object oGather);
+int MineOre(object oPC, object oGather, int iNewDamage);
 
 
 //Can more than one profession gather from the same thing?
@@ -14,6 +18,7 @@ int CanUseGatherObj(object oPC, object oGather)
 }
 
 //This one works via damaging it
+//Returns true or false
 int MineOre(object oPC, object oGather, int iNewDamage)
 {
     if (CanUseGatherObj(oPC, oGather))

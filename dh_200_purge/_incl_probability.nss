@@ -5,6 +5,7 @@ object TryCreateRef(object oLocalVar, int iType, string sRef, int iCount, object
 object RandomizeRefs(object oLocalVar, int iType, int iCount, int iTotalChance, object oUser, location lWay);
 object CreateRandomLocalRef(object oLocalVar, int iType, object oUser, location lWay);
 
+
 //Does the object have this resref as a local var
 int LocalContains(object oLocalVar, string sRef)
 {
@@ -54,9 +55,7 @@ object TryCreateRef(object oLocalVar, int iType, string sRef, int iCount, object
 
 	//Is this check accurate for both creatures and items?
 	if (GetName(oCreate) != "_")
-	{
 		return oCreate;
-	}
 	else 
 	{
 		FailedRef(sRef, iCount, oLocalVar);
@@ -132,6 +131,7 @@ object CreateRandomLocalRef(object oLocalVar, int iType, object oUser, location 
 	    }
 	    else if (iRefChance == -1)
 	    {
+	    	//a -1 corresponds to not dropping that item at all
 	        iRefChance = 0;
 	    }
 	    iTotalChance += iRefChance;
