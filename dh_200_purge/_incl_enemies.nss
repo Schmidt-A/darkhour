@@ -2,6 +2,36 @@
 #include "nw_i0_spells"
 #include "x0_i0_petrify"
 
+//This is the enemy that is surprised - when spawning, they aren't able to move or attack properly
+//Gives a 99% miss chance and a 50% slow for 3 seconds
+//Casting is not effected - on purpose.
+void SpawnSurprise(object oEnemy)
+{
+    effect eMiss = EffectMissChance(99, MISS_CHANCE_TYPE_NORMAL);
+    effect eSlowDown = EffectMovementSpeedDecrease(50);
+    effect eSurprise = EffectLinkEffects(eMiss, eSlowDown);
+
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eSurprise, oEnemy, 3.0f);
+}
+
+//Should be redone to be on the creature, not the creature skin
+void BuffEnemy(object oEnemy, int iStr, int iDex, int iCon)
+{
+    //Get their skin, add some random buffs
+    object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oZomb);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(iStr)),oSkin);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,d2(iDex)),oSkin);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(iCon)),oSkin);
+}
+
+//Random walk via the nearest way point
+void RandomWalkItOut(object oEnemy, string sWaypoint, float fDelay)
+{
+    location lGetOut = GetLocation(GetNearestObjectByTag(sWayPoint, oEnemy));
+    AssignCommand( oEnemy, ActionMoveToLocation(lGetOut) );
+    DelayCommand(fDelay, AssignCommand( oEnemy, ActionRandomWalk()));
+}
+
 void BehemothRampage(object oEnemy)
 {
     // TODO: Add param for lesser/greater behemoths.
@@ -112,18 +142,6 @@ void BehemothEndRampage(object oEnemy)
 
     SpeakString("With the worst of its injuries having renegerated, the hulking " +
             "beast seems placated... For now.", TALKVOLUME_TALK);
-}
-
-//This is the enemy that is surprised - when spawning, they aren't able to move or attack properly
-//Gives a 99% miss chance and a 50% slow for 3 seconds
-//Casting is not effected - on purpose.
-void SpawnSurprise(object oEnemy)
-{
-    effect eMiss = EffectMissChance(99, MISS_CHANCE_TYPE_NORMAL);
-    effect eSlowDown = EffectMovementSpeedDecrease(50);
-    effect eSurprise = EffectLinkEffects(eMiss, eSlowDown);
-
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eSurprise, OBJECT_SELF, 3.0f);
 }
 
 

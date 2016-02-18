@@ -11,6 +11,7 @@
  */
 
  #include "_incl_probability"
+ #include "_incl_enemies"
 
 void main()
 {
@@ -48,10 +49,15 @@ void main()
 
     object oZomb = FindRandomRef(OBJECT_SELF, OBJECT_TYPE_CREATURE, OBJECT_SELF, lSpawnPoint);    
 
-    // Force creature to move away from his spawn location by the use of WalkGuide placeables
-    location lWalk = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
-    AssignCommand(oZomb, ActionMoveToLocation(lWalk));
-    DelayCommand(5.0, AssignCommand(oZomb, ActionRandomWalk()));
+    //Do we want to apply buffs this way? Maybe with local vars?
+    //or maybe 
+    //BuffEnemy(oZomb, GetItemInSlot(INVENTORY_SLOT_CARMOUR,oZomb), 3, 2, 4);
+
+    //Spawn surprise round so zombies don't automurder
+    SpawnSurprise(oZomb);
+
+    // Force zombie to move away from his spawn location by the use of WalkGuide placeables
+    RandomWalkItOut(oZomb, "WalkGuide", 5.0f);
 
     /* I think this gets used to make sure the zombie is destroyed if it
      * follows a player into a different area. */

@@ -5,6 +5,8 @@
 // Created by Ronin_DM on Unknown
 // Commenting by Zunath on July 22, 2007
 
+#include "_incl_enemies"
+
 void main()
 {
     //PrintString("zombiecreator: " + GetName(OBJECT_SELF) + " In: " + GetName(GetArea(OBJECT_SELF))); // Debug - find out wtf this script is called from
@@ -106,15 +108,16 @@ void main()
         }
         // Now create the zombie at the waypoint
         object oZomb = CreateObject(OBJECT_TYPE_CREATURE,sType,lSpot);
+
         //Apply Buffs
-        object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR,oZomb);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(4)),oSkin);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,d2(3)),oSkin);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(4)),oSkin);
+        BuffEnemy(oZomb, 4, 3, 4);
+
+        //Spawn surprise round so zombies don't automurder
+        SpawnSurprise(oZomb);
+
         // Force zombie to move away from his spawn location by the use of WalkGuide placeables
-        location lGetOut = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
-        AssignCommand( oZomb, ActionMoveToLocation(lGetOut) );
-        DelayCommand(5.0, AssignCommand( oZomb, ActionRandomWalk()));
+        RandomWalkItOut(oZomb, "WalkGuide", 5.0f);
+
         // Set "finishcreate" to 1 on the zombie - Possibly used in other scripts???
         DelayCommand(5.0, SetLocalInt(oZomb,"finishcreate",1));
     }

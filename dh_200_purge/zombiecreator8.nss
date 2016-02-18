@@ -1,8 +1,12 @@
 //Easy Spawner. Use in Non-Siranda Location. Grants No bonus to zombies.
+
+
 // This script is called from the OnHeartbeat of different placeables in all of the old-world Ronin-made
 // areas.
 // Created by Ronin_DM on Unknown
 // Commenting by Zunath on July 22, 2007
+
+#include "_incl_enemies"
 
 void main()
 {
@@ -106,10 +110,11 @@ void main()
         // Now create the zombie at the waypoint
         object oZomb = CreateObject(OBJECT_TYPE_CREATURE,sType,lSpot);
 
+        //Spawn surprise round so zombies don't automurder
+        SpawnSurprise(oZomb);
+
         // Force zombie to move away from his spawn location by the use of WalkGuide placeables
-        location lGetOut = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
-        AssignCommand( oZomb, ActionMoveToLocation(lGetOut) );
-        DelayCommand(5.0, AssignCommand( oZomb, ActionRandomWalk()));
+        RandomWalkItOut(oZomb, "WalkGuide", 5.0f);
 
         // Set "finishcreate" to 1 on the zombie - Possibly used in other scripts???
         DelayCommand(5.0, SetLocalInt(oZomb,"finishcreate",1));

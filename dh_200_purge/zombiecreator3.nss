@@ -1,5 +1,8 @@
 //Royal Spawner. Applies a +8 Bonus to Str, Dex and Con. Use in Boss Locations. Siranda.
 //Spawns Siranda Royalty Zombies
+
+#include "_incl_enemies"
+
 void main()
 {
     //PrintString("zombiecreator3: " + GetName(OBJECT_SELF) + " In: " + GetName(GetArea(OBJECT_SELF))); // Debug - find out wtf this script is called from
@@ -28,16 +31,19 @@ void main()
         location lSpot = GetLocation(oObj);
         int nWhich = Random(4) + 13;
         string sType = "zn_zombie0" + IntToString(nWhich);
+        
         object oZomb = CreateObject(OBJECT_TYPE_CREATURE,sType,lSpot);
 
         //Apply Buffs
-        object oSkin = GetItemInSlot(INVENTORY_SLOT_CARMOUR,oZomb);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,d2(5)),oSkin);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,d2(4)),oSkin);
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,d2(6)),oSkin);
+        BuffEnemy(oZomb, 5, 4, 6);
 
-        location lGetOut = GetLocation(GetNearestObjectByTag("WalkGuide",oZomb));
-        AssignCommand( oZomb, ActionMoveToLocation(lGetOut) );
-        DelayCommand(5.0, AssignCommand( oZomb, ActionRandomWalk()));
+        //Spawn surprise round so zombies don't automurder
+        SpawnSurprise(oZomb);
+
+        // Force zombie to move away from his spawn location by the use of WalkGuide placeables
+        RandomWalkItOut(oZomb, "WalkGuide", 5.0f);
+
+        // Set "finishcreate" to 1 on the zombie - Possibly used in other scripts???
+        DelayCommand(5.0, SetLocalInt(oZomb,"finishcreate",1));
     }
 }
