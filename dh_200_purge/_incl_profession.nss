@@ -4,13 +4,18 @@
 #include "_incl_probability"
 #include "_incl_pc_data"
 #include "_incl_time"
+#include "_incl_location"
 
 int CanUseProfessionObj(object oPC, object oProfObject);
 int IsOwnedBy(object oPC, object oProfObject);
+
 void MineOre(object oPC, object oGather, int iNewDamage);
+
 void DestroyPlant(object oPlant);
 void HarvestCrops(object oPC, object oGather);
 void PlantCrops(object oPC, object oSoil, object oSeed);
+
+void BuildBarricade(object oPC, location lTarget);
 
 
 //Can more than one profession gather from the same thing?
@@ -200,4 +205,28 @@ void PlantCrops(object oPC, object oSoil, object oSeed)
     {
         FloatingTextStringOnCreature(sFailure, oPC, FALSE);
     }
+}
+
+
+void BuildBarricade(object oPC, object oMaterial, location lTarget)
+{
+    string sBarriPlace = GetLocalString(oMaterial, "sPlaceable");
+    float fDir = GetFacingFromLocation(lTarget);
+    float fLeftDir = GetLeftDirection(fDir);
+    float fRightDir = GetRightDirection(fDir);
+    int iSize = GetLocalInt(oMaterial, "iSize");
+    float fSpacing = GetLocalFloat(oMaterial, "fSpacing");
+
+    CreateObject(OBJECT_TYPE_PLACEABLE, sBarriPlace, lTarget, TRUE);
+
+    location lLeftBar = lTarget;
+    location lRightBar = lTarget;
+    for (int i = 0; i < iSize; i++)
+    {
+        lLeftBar = GenerateNewLocationFromLocation(lLeftBar, fSpacing, fLeftDir, fDir);
+        lRightBar = GenerateNewLocationFromLocation(lRightBar, fSpacing, fRightDir, fDir);
+        CreateObject(OBJECT_TYPE_PLACEABLE, sBarriPlace, lLeftBar, TRUE);
+        CreateObject(OBJECT_TYPE_PLACEABLE, sBarriPlace, lRightBar, TRUE);
+    }
+
 }

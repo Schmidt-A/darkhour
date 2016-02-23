@@ -1,5 +1,6 @@
 #include "nwnx_funcs"
 #include "_incl_rndloc"
+#include "x0_i0_position"
 
 location GetRandomWalkableLocation(location lCenter, int iMinRange, int iMaxRange)
 {
