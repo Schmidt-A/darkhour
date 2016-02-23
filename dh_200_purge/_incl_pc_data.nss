@@ -137,6 +137,13 @@ int PCDHasToken(object oPC)
     return TRUE;
 }
 
+//Should we do this once on create then store as a local var?
+string PCDUniqueReference(object oPC)
+{
+    object oPCToken = GetLocalObject(oPC, TOKEN_VAR);
+    return ObjectToString(oPCToken);
+}
+
 
 // ----------------- PC Data Retrival Functions ---------------
 

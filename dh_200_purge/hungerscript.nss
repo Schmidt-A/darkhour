@@ -12,19 +12,15 @@
  *  The script will force the player to eat at particular intervals
  *  if they have food.  Heal characters that eat food.
  *
- *  Now with scaling available.
- *  fScale = 1.0 assumes NWN default of 2 min real time = 1 hour game time
- *           2.0 assumes 4 min real time = 1 hour game time.
- *           0.01 is good for quick testing.
 
 **********************************************************************/
 #include "_incl_disease"
 #include "_incl_xp"
 #include "_incl_pc_data"
+#include "_incl_time"
 
 int iIsHungry;
 int nLostCon;
-float fScale = 2.0;  // Default scale is 1.
 
 void AgeFood(object oPC)
 {
@@ -196,6 +192,11 @@ void main()
     object oCounter;
 
     string sArea;
+
+    if ()
+    {
+
+    }
 
     while(GetIsObjectValid(oPC))
     {
