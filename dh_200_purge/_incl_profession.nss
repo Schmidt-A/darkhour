@@ -15,7 +15,7 @@ void DestroyPlant(object oPlant);
 void HarvestCrops(object oPC, object oGather);
 void PlantCrops(object oPC, object oSoil, object oSeed);
 
-void BuildBarricade(object oPC, location lTarget);
+void BuildBarricade(object oPC, object oMaterial, location lTarget);
 
 
 //Can more than one profession gather from the same thing?
@@ -228,5 +228,5 @@ void BuildBarricade(object oPC, object oMaterial, location lTarget)
         CreateObject(OBJECT_TYPE_PLACEABLE, sBarriPlace, lLeftBar, TRUE);
         CreateObject(OBJECT_TYPE_PLACEABLE, sBarriPlace, lRightBar, TRUE);
     }
-
 }
+
